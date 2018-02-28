@@ -1,4 +1,4 @@
-# Project 2CPI 
+﻿# Project 2CPI 
 ### Réalisation d’une plateforme de vente à distance partielle adaptée aux contraintes du marché Algérien
 
 
@@ -10,5 +10,5 @@
 
 clone this repository:
 
-    git clone https://github.com/ossamaazzaz/project-2CPI.git
+git clone https://github.com/ossamaazzaz/project-2CPI.git
 
