@@ -42,15 +42,19 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
+     *  Make sure to validate the phone number later
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-             'username' => 'required|string|max:255',
+             'username' => 'required|string|max:15',
+             'firstName' => 'required|string|max:30',
+             'lastName' => 'required|string|max:30',
+             'phoneNum' => 'required|string|max:15',
+             'adr' => 'required|string|max:255',
+             'idCard' => 'required|string|max:30',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -66,8 +70,12 @@ class RegisterController extends Controller
     {
         return User::create([
             'username' => $data['username'],
-            'name' => $data['name'],
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'phoneNum' => $data['phoneNum'],
             'email' => $data['email'],
+            'adr' => $data['adr'],
+            'idCard' => $data['idCard'],
             'password' => Hash::make($data['password']),
         ]);
     }
