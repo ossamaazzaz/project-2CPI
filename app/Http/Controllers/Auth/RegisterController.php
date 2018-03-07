@@ -52,9 +52,9 @@ class RegisterController extends Controller
              'username' => 'required|string|max:15|alpha_num',
              'firstName' => 'required|string|max:30|alpha',
              'lastName' => 'required|string|max:30|alpha',
-             'phoneNum' => 'required|string|max:15|numeric',
+             'phoneNum' => 'required|string|max:15',
              'adr' => 'required|string|max:255',
-             'idCard' => 'required|string|max:30|numeric',
+             'idCard' => 'required|string|max:30',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
