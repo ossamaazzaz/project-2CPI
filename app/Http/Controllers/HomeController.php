@@ -63,7 +63,7 @@ class HomeController extends Controller
         $user->firstName = $req->all()['firstName'];   
         $user->lastName = $req->all()['lastName'];   
         $user->phoneNum = $req->all()['phoneNum'];   
-        $user->adr = $req->all()['adr'];     
+        $user->adr = $req->all()['adr'];
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
         return view('auth.edit');
