@@ -25,7 +25,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
     public function edit()
     {
         return view('auth.edit');
@@ -69,5 +68,6 @@ class HomeController extends Controller
         $user->save();
         return view('auth.edit');
     }
-
+=========
+>>>>>>>>> Temporary merge branch 2
 }
