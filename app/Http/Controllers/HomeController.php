@@ -68,6 +68,4 @@ class HomeController extends Controller
         $user->save();
         return view('auth.edit');
     }
-=========
->>>>>>>>> Temporary merge branch 2
 }
