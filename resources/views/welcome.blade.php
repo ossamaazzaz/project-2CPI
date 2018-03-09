@@ -78,9 +78,7 @@
             @endif
 
             <div class="content">
-                /*
-                content
-                */
+                <i>Home page </i>
             </div>
         </div>
     </body>
