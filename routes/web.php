@@ -18,22 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
-
-/*
-Dashbaord route 
-*/
-Route::get('/admin', function () {
-    return view('admin');
-});
-
-/*
-Users manager route
-*/
-Route::get('/users', function () {
-    return view('users');
-});
-=======
->>>>>>> parent of d4cde38... finished the front end of users manager
