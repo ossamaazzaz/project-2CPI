@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+<<<<<<< HEAD
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
 
@@ -34,3 +35,5 @@ Users manager route
 Route::get('/users', function () {
     return view('users');
 });
+=======
+>>>>>>> parent of d4cde38... finished the front end of users manager
