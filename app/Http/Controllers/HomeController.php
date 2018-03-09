@@ -39,6 +39,9 @@ class HomeController extends Controller
         */
         $validator =  \Validator::make($req->all(), [
             'firstName' => 'required|string|max:30|alpha',
+            'lastName' => 'required|string|max:30|alpha',
+            'phoneNum' => 'required|string|max:15',
+            'adr' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
         $emailCheck = ($req->input('email') != '') && ($req->input('email') != $user->email);
@@ -58,9 +61,9 @@ class HomeController extends Controller
             $user->email = $req->all()['email'];   
         }
         $user->firstName = $req->all()['firstName'];   
-        /*$user->lastName = $req->all()['lastName'];   
+        $user->lastName = $req->all()['lastName'];   
         $user->phoneNum = $req->all()['phoneNum'];   
-        $user->adr = $req->all()['adr'];     */
+        $user->adr = $req->all()['adr'];     
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
         return view('auth.edit');
