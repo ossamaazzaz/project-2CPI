@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/edit','HomeController@edit');
+Route::post('/home/edit','HomeController@update');
+
+//Dashbaord route
+Route::get('/admin', function () {
+    return view('admin');
+});
+Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
