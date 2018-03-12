@@ -5,7 +5,6 @@ its used to show up the users table
 ?>
 
 <?php $__env->startSection('page_heading','Users Manager'); ?>
-
 <?php $__env->startSection('section'); ?>
 <div class="col-sm-50">	
 <div class="row">
