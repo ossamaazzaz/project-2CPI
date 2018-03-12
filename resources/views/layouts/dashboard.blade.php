@@ -66,7 +66,8 @@ dashboard prinicpale view
                         </li>
 
                         <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('users') }}"><i class="fa fa-table fa-fw"></i> Users</a>
+                            <a href="{{ url ('users') }}"><i class="fa fa-table fa-fw"></i> Users
+                            </a>
                                     <!-- /.nav-second-level -->
                         </li>
                     </ul>

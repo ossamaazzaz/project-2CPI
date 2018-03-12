@@ -11,23 +11,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>John</td>
-			<td>big head</td>
-			<td>London, UK</td>
-			<td>john@gmail.com</td>
-			<td>7468327676732</td>
-			<td><button type="button" class="btn btn-info active">Aprove</button></td>
-			<td>Silver</td>
+		@foreach ($users as $data)
+	   	<tr>
+				<td>{{$data->firstName}}</td>
+				<td>{{$data->lastName}}</td>
+				<td>{{$data->adr}}</td>
+				<td>{{$data->email}}</td>
+				<td>{{$data->phoneNum}}</td>
+				<td><button type="button" class="btn btn-info active">Aprove</button></td>
+				<td>Silver</td>
 		</tr>
-		<tr>
-			<td>John</td>
-			<td>big head</td>
-			<td>London, UK</td>
-			<td>john@gmail.com</td>
-			<td>7468327676732</td>
-			<td><button type="button" class="btn btn-info disabled">Aproved</button></td>
-			<td>Gold</td>
-		</tr>
+		@endforeach
 	</tbody>
 </table>
