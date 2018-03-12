@@ -1,35 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-        <div class="container-fluid">
-            <div class="navbar-header">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-            </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                    @if (Auth::guest())
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <!-- Authentication Links -->
+                        @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                    @else
-                        <li class="nav-item dropdown">
+                        @else
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
                                 </a>
@@ -46,13 +54,16 @@
                                     </form>
                                 </div>
                             </li>
-                    @endif
-                </ul>
+                        @endguest
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    @yield('content')
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
