@@ -20,7 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
-
 /*
 Dashbaord route 
 */
@@ -31,6 +30,4 @@ Route::get('/admin', function () {
 /*
 Users manager route
 */
-Route::get('/users', function () {
-    return view('users');
-});
+Route::post('home/users','UsersController@users');

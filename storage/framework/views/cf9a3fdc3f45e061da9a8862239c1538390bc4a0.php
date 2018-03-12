@@ -13,7 +13,8 @@
                         </div>
                     <?php endif; ?>
 
-                    You are logged in!
+                    Welcome! <?php echo e(Auth::user()->firstName); ?>
+
                 </div>
             </div>
         </div>
