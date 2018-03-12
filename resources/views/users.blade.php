@@ -18,7 +18,7 @@ its used to show up the users table
 			i used here a widget table /widget/table.blade.php
 			*/
 			?>
-			@include('widgets.table', array('class'=>'table-condensed table-bordered table-striped table table-responsive','users'=>users))
+			@include('widgets.table', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'atable'))
 		</div>

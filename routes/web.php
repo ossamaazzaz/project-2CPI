@@ -30,4 +30,5 @@ Route::get('/admin', function () {
 /*
 Users manager route
 */
-Route::post('home/users','UsersController@users');
+Route::get('/users','UsersController@users');
+Route::post('/users','UsersController@users');
