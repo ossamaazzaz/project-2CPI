@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Http\Controllers\Controller;
+use DB;
+
 class UsersController extends Controller
 {
-    
-    public function users(Request $req){
-    	$users = User::all();
-    	return view('users',compact('users'));
-    }
+   public function GetUsers() 
+   {
+	    $users = DB::table('users')->latest()->get();
+	    return view('users',compact('users'));
+   }
 
 }

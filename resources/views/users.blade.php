@@ -5,7 +5,6 @@ its used to show up the users table
 ?>
 @extends('layouts.dashboard')
 @section('page_heading','Users Manager')
-
 @section('section')
 <div class="col-sm-50">	
 <div class="row">

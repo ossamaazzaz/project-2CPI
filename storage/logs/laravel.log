@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 [2018-03-08 18:39:41] local.ERROR: View [widgets.progress] not found. (View: /home/thehappybit/devo/web/project-2CPI/resources/views/welcome.blade.php) {"exception":"[object] (ErrorException(code: 0): View [widgets.progress] not found. (View: /home/thehappybit/devo/web/project-2CPI/resources/views/welcome.blade.php) at /home/thehappybit/devo/web/project-2CPI/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:137, InvalidArgumentException(code: 0): View [widgets.progress] not found. at /home/thehappybit/devo/web/project-2CPI/vendor/laravel/framework/src/Illuminate/View/FileViewFinder.php:137)
 [stacktrace]
 #0 /home/thehappybit/devo/web/project-2CPI/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(45): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(InvalidArgumentException), 1)
@@ -2025,3 +2027,4 @@
 #55 /home/thehappybit/devo/web/project-2CPI/server.php(21): require_once('/home/thehappyb...')
 #56 {main}
 "} 
+>>>>>>> merging

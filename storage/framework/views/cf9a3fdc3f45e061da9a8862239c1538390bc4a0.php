@@ -13,7 +13,13 @@
                         </div>
                     <?php endif; ?>
 
+<<<<<<< HEAD
+                  
+                    Welcome! <?php echo e(Auth::user()->firstName); ?>
+
+=======
                     You are logged in!
+>>>>>>> merging
                 </div>
             </div>
         </div>
