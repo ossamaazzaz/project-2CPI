@@ -21,3 +21,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
+<<<<<<< HEAD
+=======
+/*
+Dashbaord route 
+*/
+Route::get('/admin', function () {
+    return view('admin');
+});
+
+/*
+Users manager route
+*/
+Route::get('/users','UsersController@users');
+Route::post('/users','UsersController@users');
+>>>>>>> merging
