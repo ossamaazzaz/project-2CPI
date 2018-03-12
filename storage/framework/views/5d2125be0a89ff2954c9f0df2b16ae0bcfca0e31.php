@@ -11,23 +11,16 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>John</td>
-			<td>big head</td>
-			<td>London, UK</td>
-			<td>john@gmail.com</td>
-			<td>7468327676732</td>
-			<td><button type="button" class="btn btn-info active">Aprove</button></td>
-			<td>Silver</td>
+		<?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+	   	<tr>
+				<td><?php echo e($data->firstName); ?></td>
+				<td><?php echo e($data->lastName); ?></td>
+				<td><?php echo e($data->adr); ?></td>
+				<td><?php echo e($data->email); ?></td>
+				<td><?php echo e($data->phoneNum); ?></td>
+				<td><button type="button" class="btn btn-info active">Aprove</button></td>
+				<td>Silver</td>
 		</tr>
-		<tr>
-			<td>John</td>
-			<td>big head</td>
-			<td>London, UK</td>
-			<td>john@gmail.com</td>
-			<td>7468327676732</td>
-			<td><button type="button" class="btn btn-info disabled">Aproved</button></td>
-			<td>Gold</td>
-		</tr>
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</tbody>
 </table>

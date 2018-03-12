@@ -67,7 +67,8 @@ dashboard prinicpale view
                         </li>
 
                         <li <?php echo e((Request::is('*users') ? 'class="active"' : '')); ?>>
-                            <a href="<?php echo e(url ('users')); ?>"><i class="fa fa-table fa-fw"></i> Users</a>
+                            <a href="<?php echo e(url ('users')); ?>"><i class="fa fa-table fa-fw"></i> Users
+                            </a>
                                     <!-- /.nav-second-level -->
                         </li>
                     </ul>
