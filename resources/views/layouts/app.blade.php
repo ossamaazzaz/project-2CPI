@@ -7,6 +7,14 @@
     <title>Laravel</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style type="text/css">
+       
+        .form-input{margin-top: 25px;padding-left: 40px;height: 40px; font-size: 15px }
+        .input-place{position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
+    </style>
 
 </head>
 <body>
@@ -29,15 +37,21 @@
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
-                        <li class="nav-item dropdown">
+
+                        <li class="nav-item dropdown"> 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ URL::asset('assets/images/prof.png')}}" height="40px" width="40px" >
+                                    
                                     {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
+
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/home/edit" >edit</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -50,9 +64,10 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>   
 
     @yield('content')
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

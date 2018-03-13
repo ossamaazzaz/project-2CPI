@@ -18,9 +18,19 @@
 				<td>{{$data->adr}}</td>
 				<td>{{$data->email}}</td>
 				<td>{{$data->phoneNum}}</td>
-				<td><button type="button" class="btn btn-info active">Aprove</button></td>
+				<td><button type="button" class="btn btn-info active" onclick="Aprove(this)" >Aprove</button></td>
 				<td>Silver</td>
 		</tr>
 		@endforeach
 	</tbody>
 </table>
+<script type="text/javascript">
+	function Aprove(button) {
+		if(button.innerHTML =='Aproved' ){
+			button.innerHTML = 'Pending';
+		}else{
+			button.innerHTML = 'Aproved';
+		}
+		// body...
+	}
+</script>
