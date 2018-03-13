@@ -8,6 +8,9 @@ its used to show up the users table
 @section('section')
 <div class="col-sm-50">	
 <div class="row">
+
+	<form method="POST" action="{{ action('UsersController@approveUsers') }}">
+		@csrf
 		<div class="col-sm-10">
 			@section ('atable_panel_title','Users')
 			@section ('atable_panel_body')

@@ -8,6 +8,9 @@ its used to show up the users table
 <?php $__env->startSection('section'); ?>
 <div class="col-sm-50">	
 <div class="row">
+
+	<form method="POST" action="<?php echo e(action('UsersController@approveUsers')); ?>">
+		<?php echo csrf_field(); ?>
 		<div class="col-sm-10">
 			<?php $__env->startSection('atable_panel_title','Users'); ?>
 			<?php $__env->startSection('atable_panel_body'); ?>

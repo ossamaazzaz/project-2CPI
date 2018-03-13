@@ -13,5 +13,7 @@ class UsersController extends Controller
 	    $users = DB::table('users')->latest()->get();
 	    return view('users',compact('users'));
    }
-
+   public function approveUsers(){
+   		dd(request()->all());
+   }
 }
