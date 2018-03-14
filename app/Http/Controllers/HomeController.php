@@ -31,12 +31,7 @@ class HomeController extends Controller
     }
     public function update(Request $req) {
         $user = \Auth::user();
-        /* 
-            'firstName' => 'required|string|max:30|alpha',
-        *  'lastName' => 'required|string|max:30|alpha',
-             'phoneNum' => 'required|string|max:15',
-             'adr' => 'required|string|max:255',
-        */
+        
         $validator =  \Validator::make($req->all(), [
             'firstName' => 'required|string|max:30|alpha',
             'lastName' => 'required|string|max:30|alpha',

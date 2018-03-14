@@ -17,12 +17,12 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('brand');
-            $table->float('price');
+            $table->float('price')->default(0);
             $table->integer('categoryId');
-            $table->integer('quantitySale');
-            $table->integer('quantity');
-            $table->integer('detailsId')->unsigned();
-            $table->string('image');
+            $table->integer('quantitySale')->default(0);
+            $table->integer('quantity')->default(0);
+            $table->integer('detailsId')->unsigned()->unique();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

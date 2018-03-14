@@ -27,3 +27,14 @@ Route::get('/admin', function () {
 });
 Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
 Route::post('/users','UsersController@approveUsers');
+
+//prooducts route
+
+Route::get('/admin/products/add','ProductController@add');
+Route::post('/admin/products/add','ProductController@add');
+Route::get('/admin/products','ProductController@index');
+Route::post('/admin/products','ProductController@delete');
+
+
+
+//Route::get('/admin/products/{id}','ProductController@show');
