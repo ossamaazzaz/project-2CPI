@@ -9,7 +9,7 @@ class Product extends Model
 	/**
     * Get the details record associated with the Product.
     */
-    public fucntion productDetails(){
+    public function productDetails(){
     	return $this->hasOne('App\ProductDetails');
     }
 }
