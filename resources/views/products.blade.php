@@ -3,16 +3,14 @@ this the Dashbaord home view
 */
 ?>
 @extends('layouts.dashboard')
-@section('page_heading','Dashboard')
+@section('page_heading','Products')
 @section('section')
 
  <div class="main">
-                        <h1>products</h1> 
-                        <button class="btn btn-primary">add new</button>
+                <button class="btn btn-primary">add new</button>
                                 <div class="table-responsive m-t-40">
                                     <table id="productsTable" class="table table-bordered table-striped">
                                         <thead>
-                                        	 
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Photo</th>
@@ -31,11 +29,11 @@ this the Dashbaord home view
 												    echo '
 												     <tr>
                                                 <td class="showTools"> product
-                                                 <div class="tools">
-                                                    <a href=""><i class="fa fa-edit"></i></a>
-                                                    <a href=""><i class="fa fa-times"></i></a>
-                                                </div>
-                                            </td>
+                                                    <div class="tools">
+                                                        <a href=""><i class="fa fa-edit"></i></a>
+                                                        <a href=""><i class="fa fa-times"></i></a>
+                                                    </div>
+                                                </td>
                                                
                                                 <td>product</td>
                                                 <td>product</td>
@@ -45,16 +43,10 @@ this the Dashbaord home view
                                                 <td>product</td>
                                                 <td>product</td>
                                                 <td>product</td>
-                                            </tr> 
+                                                </tr> 
                                             ';
 												}
 												?> 
-                                            
-                                            
-
-                                            
-
-
                                         </tbody>
                                     </table>
                                 </div> 

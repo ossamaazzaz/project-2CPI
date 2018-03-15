@@ -7,6 +7,15 @@
     <title>Laravel</title>
 
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+
+
+
+    <style type="text/css">
+       
+        .form-input{margin-top: 25px;padding-left: 40px;height: 40px; font-size: 15px }
+        .input-place{position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
+    </style>
 
 </head>
 <body>
@@ -30,15 +39,21 @@
                         <li><a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
                             <li><a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>
                     <?php else: ?>
-                        <li class="nav-item dropdown">
+
+                        <li class="nav-item dropdown"> 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="<?php echo e(URL::asset('assets/images/prof.png')); ?>" height="40px" width="40px" >
+                                    
                                     <?php echo e(Auth::user()->firstName . " " .Auth::user()->lastName); ?> <span class="caret"></span>
+
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/home/edit" >edit</a>
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         <?php echo e(__('Logout')); ?>
 
                                     </a>
@@ -52,9 +67,10 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav>   
 
     <?php echo $__env->yieldContent('content'); ?>
+
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>

@@ -52,4 +52,12 @@ function save(){
         }
     });
 }
+function Aprove(button) {
+		if(button.innerHTML =='Aproved' ){
+			button.innerHTML = 'Pending';
+		}else{
+			button.innerHTML = 'Aproved';
+		}
+		// body...
+	}
 </script>
