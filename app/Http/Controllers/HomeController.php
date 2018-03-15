@@ -25,10 +25,22 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    /**
+    * Show the edit page
+    * 
+    * @return view of auth/edit.blade.php
+     */
     public function edit()
     {
         return view('auth.edit');
     }
+
+    /**
+    * Apply changes to the user
+    * @param Request $req 
+    * @return  view of auth/edit.blade.php
+    * 
+     */
     public function update(Request $req) {
         $user = \Auth::user();
         
