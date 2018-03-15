@@ -13,9 +13,15 @@
 	<meta content="" name="author"/>
 
 	<link rel="stylesheet" href="<?php echo e(asset("assets/stylesheets/styles.css")); ?>" />
+
+	 <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+	 <link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
 </head>
 <body>
+
 	<?php echo $__env->yieldContent('body'); ?>
+
+	 
 	<script src="<?php echo e(asset("assets/scripts/frontend.js")); ?>" type="text/javascript"></script>
 </body>
 </html>
