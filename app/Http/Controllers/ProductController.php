@@ -21,7 +21,9 @@ class ProductController extends Controller {
 		/*
 		* In front-end, use JS to check if
 		* quantitySale <= quantity
+		* Client-side to limit file upload
 		 */
+		$MAX_NUMBER = 5;
 		$rules = [
 	            'name' => 'required|string',
 	            'brand' => 'required|string',
@@ -29,13 +31,20 @@ class ProductController extends Controller {
 	            'categoryId' => 'required|integer',
 	            'quantitySale' => 'integer',
 	            'quantity' => 'required|integer',
-	            'image' => 'image',
+	          
         	];
-
+        	// dd($req->file("images")); //for testing
+        	$imgNum = count($req->file("images"));
+        	
+        	$imgNum = ($imgNum > $MAX_NUMBER) ? $MAX_NUMBER : $imgNum;
+        	for ($i=0;$i<=$imgNum;$i++){
+        		$rules['images.' . $i] = 'image|mimes:jpeg,bmp,png';
+        	}
 		$validator = \Validator::make($req->all(),$rules);
 		if ($validator->fails()) {
 			return back()->withErrors($validator)->withInput();
 		}
+		
 		// validated, proceed to add product
 		$product = new Product();
 		$product->name = $req->all()['name'];
@@ -45,9 +54,24 @@ class ProductController extends Controller {
 		$product->quantitySale = $req->all()['quantitySale'];
 		$product->quantity = $req->all()['quantity'];
 		$product->save();
-
+		// add its details
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
+		$dirname = 'images/' . $product->id;
+		\Storage::makeDirectory($dirname);
+		$productDetails->imgs = $dirname;
+		$imgs = $req->file("images");
+		if (!empty($imgs)) {
+			$product->image = \Storage::putFileAs(
+				$dirname, $imgs[0],'0' 
+			);
+			$product->save();
+			for($i=1;$i<$imgNum;$i++){
+				\Storage::putFileAs(
+				$dirname, $imgs[$i], $i
+				);
+			}
+		}
 		$productDetails->save();
 		return view('admin.productAdd'); //later to redirect to product page instead
 	}

@@ -2,7 +2,7 @@
 @section('page_heading','Add Product')
 @section('section')
 <div class="card-body">
-                    <form method="POST" action="{{ action('ProductController@add') }}">
+                    <form method="POST" action="{{ action('ProductController@add') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">name</label>
@@ -85,10 +85,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="images" class="col-md-4 col-form-label text-md-right"> Images </label>
+
+                            <div class="col-md-6">
+                                <input id="images" type="file" class="form-control{{ $errors->has('images') ? ' is-invalid' : '' }}" name="images[]" value="{{ old('images') }}" required multiple>
+
+                                @if ($errors->has('images'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('images') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Update') }}
                                 </button>
                             </div>
                         </div>
