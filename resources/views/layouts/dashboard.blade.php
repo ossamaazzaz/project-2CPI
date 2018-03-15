@@ -70,6 +70,11 @@ dashboard prinicpale view
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
+                        <li {{ (Request::is('products') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('products') }}"><i class="fa fa-table fa-fw"></i> Products
+                            </a>
+                                    <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
