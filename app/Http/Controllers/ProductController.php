@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use App\ProductDetails;
 use Illuminate\Http\Request;
 
 
@@ -43,8 +44,11 @@ class ProductController extends Controller {
 		$product->categoryId = $req->all()['categoryId'];
 		$product->quantitySale = $req->all()['quantitySale'];
 		$product->quantity = $req->all()['quantity'];
-		$product->detailsId = 22; //tmp
 		$product->save();
+
+		$productDetails =  new ProductDetails();
+		$productDetails->product_id = $product->id;
+		$productDetails->save();
 		return view('admin.productAdd'); //later to redirect to product page instead
 	}
 

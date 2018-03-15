@@ -21,7 +21,6 @@ class CreateProductsTable extends Migration
             $table->integer('categoryId');
             $table->integer('quantitySale')->default(0);
             $table->integer('quantity')->default(0);
-            $table->integer('detailsId')->unsigned();
             $table->string('image')->nullable();
             $table->timestamps();
         });
