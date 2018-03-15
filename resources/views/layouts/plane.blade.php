@@ -13,9 +13,15 @@
 	<meta content="" name="author"/>
 
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
+
+	 <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+	 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+
 	@yield('body')
+
+	 
 	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
 </body>
 </html>

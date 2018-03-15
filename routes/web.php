@@ -26,3 +26,5 @@ Route::get('/admin', function () {
     return view('admin');
 });
 Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
+
+Route::get('/products', 'productsController@GetProducts' ); //products route
