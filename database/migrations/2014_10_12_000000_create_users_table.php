@@ -22,13 +22,11 @@ class CreateUsersTable extends Migration
             $table->string('lastName',30);
             $table->string('phoneNum',15);
             $table->string('email')->unique();
-            // starts here
             $table->string('adr');
-            $table->string('avatar')->nullable();// for now, the avatar can be nullable
-            $table->string('idCard')->unique(); //I think the idCard should be unique
+            $table->string('avatar')->nullable();// the avatar can be nullable
+            $table->string('idCard')->unique(); // idCard should be unique
             $table->smallInteger('groupId')->default(1);
             $table->string('approveState')->default('pending');
-            // ends here
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

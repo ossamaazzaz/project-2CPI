@@ -15,15 +15,11 @@ class CreateProductDetailsTable extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->string('image1')->nullable();
-            $table->string('image2')->nullable();
-            $table->string('image3')->nullable();
-            $table->string('image4')->nullable();
-            $table->string('image5')->nullable();
-            $table->integer('rate')->nullable();
-            $table->text('description')->nullable();
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->string('imgs')->nullable();
+            $table->integer('rate')->default(0);
+            $table->text('desc')->nullable();
             $table->timestamps();
         });
     }
