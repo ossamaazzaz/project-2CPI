@@ -58,9 +58,11 @@ class ProductController extends Controller {
 		// add its details
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
+		$productDetails->desc =  $req->all()['desc'];
 		$dirname = 'images/' . 'products/' . $product->id;
 		//create dir for product
 		\Storage::makeDirectory($dirname);
+		$dirname = 'storage/' . $dirname;
 		$productDetails->imgs = $dirname;
 		$imgs = $req->file("images");
 		if (!empty($imgs)) {
