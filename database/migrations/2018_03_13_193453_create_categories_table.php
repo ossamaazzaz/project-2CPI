@@ -22,7 +22,8 @@ class CreateCategoriesTable extends Migration
             *to display it back ,use:
             *    <img src="data:image/jpeg;base64,'.base64_encode( $imageBlob ).'"/>
             */
-            $table->integer('parentId')->unsigned();
+            //$table->integer('parent_id')->unsigned();
+            // $table->foreign('parent_id')->references('parent_id')->on('parent_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,9 +14,7 @@ class CreateParentCategoriesTable extends Migration
     public function up()
     {
         Schema::create('parent_categories', function (Blueprint $table) {
-            $table->increments('id');
-            //relate the tow table
-            $table->foreign('id')->references('id')->on('categories')->onDelete('cascade');
+            $table->increments('parent_id');
             $table->string('name', 100);
             $table->string('picture');
             $table->timestamps();

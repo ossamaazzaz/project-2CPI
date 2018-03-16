@@ -9,10 +9,8 @@
         </button>
     </span>
 </div>
-<br>
 
  <a href="/categories/add"><button type="button" class="btn btn-primary btn-block">ADD Categories</button></a>
-
 
 <br />
 <!-- show categories -->
@@ -30,7 +28,8 @@
           <p>
             <!-- button-->
               <a href="/categories/edit/{{$cat->id}}" class="btn btn-primary" role="button">Edit</a>
-              <a href="/categories/delete/{{$cat->id}}" class="btn btn-default" role="button">Delete</a>
+              <a href="/categories/delete/{{$cat->id}}" class="btn btn-primary" role="button">Delete</a>
+              <a href="#" class="btn btn-default" role="button">Show more</a>
             <!-- feel free to add-->
           </p>
         </div>
@@ -38,15 +37,6 @@
     </div>
   @endforeach
 </div>
-
-<!-- errors nd stuff
-<div>
-  <p>{{ "errors" }}</p>
-</div>
--->
-
-
-
 
 
 @stop

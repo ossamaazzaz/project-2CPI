@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
-use \App\Category;
+use  \App\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -24,7 +24,7 @@ class CategoriesController extends Controller
     $validator=  \Validator::make($req->all(), [
         'name' => 'required|string|max:100|alpha',
         'description' => 'required',
-        //'picture'=>'required|image|mimes:jpeg,bmp,png',
+        'picture'=>'image|mimes:jpg,jpeg,bmp,png',
         //'parentId' => 'required|integer',
     ]);
     if ($validator->fails()) {
@@ -34,8 +34,8 @@ class CategoriesController extends Controller
     $cat=new Category;
     $cat->name        = $req->all()['name'];
     $cat->description = $req->all()['description'];
-    //store the path
-    /* picture
+    //$cat->parent_id    = $req->all()['parentId'];
+    /*store the path
     $img = $req->file("picture");
     Storage::putFileAs
     (
@@ -45,26 +45,23 @@ class CategoriesController extends Controller
     );
     $cat->picture = "storage/images/" ."cat_".$cat->name.".".$img->getClientOriginalExtension();
     */
-
-
-    $cat->parentId    = 0;
     $cat->save();
     return redirect('/categories');
   }
-
+  
   public function GetCategories()
   {
-      $categories= Category::latest()->get();
+     $categories=DB::table('categories')->latest()->get();
       return view('/categories/main',compact('categories'));
   }
 
-  public function GetParent()
+  /*public function GetParent()
   {
     $Pcategory=DB::table('parent_categories')->latest()->get();
     return view('/categories/add',compact('Pcategory'));
-  }
+  }*/
 
-/********* Edit a category ***********/
+  /********* Edit a category ***********/
 
   public function EditView($id)
   {
@@ -90,7 +87,6 @@ class CategoriesController extends Controller
           $cat->name        = $req->all()['name'];
           $cat->description = $req->all()['description']; 
           // cat->pic =
-          // cat->parentID=
           $cat->save(); 
           return redirect('categories');
       }

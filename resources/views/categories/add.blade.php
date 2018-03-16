@@ -32,30 +32,37 @@
                   </div>
               </div>
 
-              <div class="form-group">
+              <?php /*<div class="form-group">
                 <div class="form-group row">
-                    <label for= "" class="col-md-4 col-form-label text-md-right">Parent Category:</label>
+                    <label for= "parentId" class="col-md-4 col-form-label text-md-right">Parent Category:</label>
                     <div class="col-md-6">
-                      <div class="form-group">
-                          <select class="form-control" id="sel1">
+                      <div class="form-group" >
+                          <select class="form-control" id="sel1" class="form-control{{ $errors->has('parentId') ? ' is-invalid' : '' }}" name="parentId"  required autofocus>
+                            <option selected="selected" disabled selected>-- Select A Parent Category --</option>
                             @foreach ($Pcategory as $cat)
-                                  <option id="{{$cat->id}}">
-                                      {{$cat->name}}
+                                  <option value="{{$cat->parent_id}}">
+                                        {{$cat->name}}
                                   </option>
                             @endforeach
+                            @if ($errors->has('parentId'))
+                                  <span class="invalid-feedback">
+                                      <strong>
+                                            {{ $errors->first('parentId') }}
+                                      </strong>
+                                  </span>
+                            @endif
                           </select>
                     </div>
                 </div>
-              </div>
-      <!-- parentId-->
+              </div> */?>
+  
 
-            <!--
-              <div class="form-group ">
+             <div class="form-group ">
                 <div class="form-group row">
                   <label for="picture" class="col-md-4 col-form-label text-md-right">Picture :</label>
 
                   <div class="col-md-6">
-                      <input id="picture" type="file" class="{{ $errors->has('picture') ? ' is-invalid' : '' }}" name="picture" value="{{ old('picture') }}" required autofocus>
+                      <input id="picture" type="file" class="{{ $errors->has('picture') ? ' is-invalid' : '' }}" name="picture" value="{{ old('picture') }}" >
 
                       @if ($errors->has('picture'))
                           <span class="invalid-feedback">
@@ -65,7 +72,6 @@
                   </div>
                 </div>
               </div>
-            !-->
 
               <div class="form-group row mb-0">
                   <div class="col-md-6 offset-md-4">
