@@ -5,10 +5,18 @@ use App\Product;
 use App\ProductDetails;
 use Illuminate\Http\Request;
 
-
 class ProductController extends Controller {
 
     
+	public function index(Request $req){
+		if ($req->isMethod('get')) {
+			$products = Product::paginate(15);
+			return view('admin.products',['products' => $products]);
+		} else {
+			dd($req);
+		}
+	}
+
 	/**
 	* [add a product if post request else return edit view]
 	* @param Request $req [necessary input data]

@@ -23,11 +23,10 @@ Route::post('/home/edit','HomeController@update');
 
 //Dashbaord route
 Route::get('/admin', 'DashbaordController@index');
-Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
-Route::post('/users','UsersController@approveUsers');
+Route::get('/admin/users', 'UsersController@index' ); //Users manager route
+Route::post('/admin/users','UsersController@approve');
 
-
-//prooducts route
+//eprooducts route
 
 Route::get('/admin/products/add','ProductController@add');
 Route::post('/admin/products/add','ProductController@add');

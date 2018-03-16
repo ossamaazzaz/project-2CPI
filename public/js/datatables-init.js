@@ -1,6 +1,4 @@
-
-
- $(document).ready(function() {
+$(document).ready(function() {
      $.noConflict();
         $('#productsTable').DataTable();
         $(document).ready(function() {
@@ -41,4 +39,3 @@
             });
         });
     });
-  

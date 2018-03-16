@@ -66,12 +66,12 @@ dashboard prinicpale view
                         </li>
 
                         <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('users') }}"><i class="fa fa-table fa-fw"></i> Users
+                            <a href="{{ url ('admin/users') }}"><i class="fa fa-table fa-fw"></i> Users
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('products') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('products') }}"><i class="fa fa-table fa-fw"></i> Products
+                            <a href="{{ url ('admin/products') }}"><i class="fa fa-table fa-fw"></i> Products
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>

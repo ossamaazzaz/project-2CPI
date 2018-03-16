@@ -67,12 +67,12 @@ dashboard prinicpale view
                         </li>
 
                         <li <?php echo e((Request::is('*users') ? 'class="active"' : '')); ?>>
-                            <a href="<?php echo e(url ('users')); ?>"><i class="fa fa-table fa-fw"></i> Users
+                            <a href="<?php echo e(url ('admin/users')); ?>"><i class="fa fa-table fa-fw"></i> Users
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
                         <li <?php echo e((Request::is('products') ? 'class="active"' : '')); ?>>
-                            <a href="<?php echo e(url ('products')); ?>"><i class="fa fa-table fa-fw"></i> Products
+                            <a href="<?php echo e(url ('admin/products')); ?>"><i class="fa fa-table fa-fw"></i> Products
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
