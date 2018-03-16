@@ -8,7 +8,7 @@ use DB;
 
 class UsersController extends Controller
 {
-   public function GetUsers() 
+   public function GetUsers()
    {
 	    $users = DB::table('users')->latest()->get();
 	    return view('users',compact('users'));

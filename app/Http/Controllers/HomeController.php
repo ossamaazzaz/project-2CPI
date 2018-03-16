@@ -31,7 +31,7 @@ class HomeController extends Controller
     }
     public function update(Request $req) {
         $user = \Auth::user();
-        /* 
+        /*
             'firstName' => 'required|string|max:30|alpha',
         *  'lastName' => 'required|string|max:30|alpha',
              'phoneNum' => 'required|string|max:15',
@@ -50,19 +50,19 @@ class HomeController extends Controller
                 $rules = [
                 'email' => 'email|max:255|unique:users',
             ];
-             $validator = \Validator::make($req->all(), $rules);  
+             $validator = \Validator::make($req->all(), $rules);
         }
-        
+
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
         if($emailCheck) {
-            $user->email = $req->all()['email'];   
+            $user->email = $req->all()['email'];
         }
-        $user->firstName = $req->all()['firstName'];   
-        $user->lastName = $req->all()['lastName'];   
-        $user->phoneNum = $req->all()['phoneNum'];   
+        $user->firstName = $req->all()['firstName'];
+        $user->lastName = $req->all()['lastName'];
+        $user->phoneNum = $req->all()['phoneNum'];
         $user->adr = $req->all()['adr'];
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
