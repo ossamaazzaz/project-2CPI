@@ -24,7 +24,9 @@
 				<td>Created_At</td>
 				<td>Number Of Products</td>
 				<td>  <button type="button" class="btn btn-danger">Delete</button> 
+					  <a href="{{ url ('categories/edit') }}">
 					  <button type="button" class="btn btn-primary">Edit</button>
+					  </a>
 					  <button type="button" class="btn">Quick Edit</button>
              	</td>
 			</tr>

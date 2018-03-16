@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
@@ -32,3 +30,4 @@ Route::post('/categories/add','CategoriesController@Add');
 Route::get('/categories/add' ,'CategoriesController@AddView' );
 Route::get('/categories','CategoriesController@GetCategories');
 Route::get('/categories/add','CategoriesController@GetParent');
+
