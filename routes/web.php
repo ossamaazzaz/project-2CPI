@@ -24,7 +24,7 @@ Route::post('/home/edit','HomeController@update');
 //Dashbaord route
 Route::get('/admin', function () {
     return view('admin');
-});
+})->middleware('auth','admin');
 Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
 Route::post('/users','UsersController@approveUsers');
 
