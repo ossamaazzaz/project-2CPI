@@ -16,7 +16,7 @@ class Admin
     public function handle($request, Closure $next)
     {
             // check migration table for groupId reference
-        if (Auth::user() &&  Auth::user()->groupId == 0) {
+        if (\Auth::user() &&  \Auth::user()->groupId == 0) {
             return $next($request);
          }
 
