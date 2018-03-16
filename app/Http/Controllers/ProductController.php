@@ -33,12 +33,13 @@ class ProductController extends Controller {
 	            'quantity' => 'required|integer',
 	          
         	];
-        	// dd($req->file("images")); //for testing
+        	//dd($req->file("images")); //for testing
         	$imgNum = count($req->file("images"));
         	
         	$imgNum = ($imgNum > $MAX_NUMBER) ? $MAX_NUMBER : $imgNum;
         	for ($i=0;$i<=$imgNum;$i++){
-        		$rules['images.' . $i] = 'image|mimes:jpeg,bmp,png';
+        		//verify image rule
+        		$rules['images.' . $i] = 'required|image|mimes:jpeg,bmp,png';
         	}
 		$validator = \Validator::make($req->all(),$rules);
 		if ($validator->fails()) {
@@ -58,17 +59,19 @@ class ProductController extends Controller {
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
 		$dirname = 'images/' . $product->id;
+		//create dir for product
 		\Storage::makeDirectory($dirname);
 		$productDetails->imgs = $dirname;
 		$imgs = $req->file("images");
 		if (!empty($imgs)) {
+			//save first image url
 			$product->image = \Storage::putFileAs(
-				$dirname, $imgs[0],'0' 
+				$dirname, $imgs[0],'0' .'.'. $imgs[0]->getClientOriginalExtension()
 			);
 			$product->save();
 			for($i=1;$i<$imgNum;$i++){
 				\Storage::putFileAs(
-				$dirname, $imgs[$i], $i
+				$dirname, $imgs[$i], $i .'.' . $imgs[$i]->getClientOriginalExtension()
 				);
 			}
 		}
