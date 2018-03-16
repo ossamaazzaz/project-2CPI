@@ -37,7 +37,7 @@ class ProductController extends Controller {
         	$imgNum = count($req->file("images"));
         	
         	$imgNum = ($imgNum > $MAX_NUMBER) ? $MAX_NUMBER : $imgNum;
-        	for ($i=0;$i<=$imgNum;$i++){
+        	for ($i=0;$i<$imgNum;$i++){
         		//verify image rule
         		$rules['images.' . $i] = 'required|image|mimes:jpeg,bmp,png';
         	}
@@ -58,7 +58,7 @@ class ProductController extends Controller {
 		// add its details
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
-		$dirname = 'images/' . $product->id;
+		$dirname = 'images/' . 'products/' . $product->id;
 		//create dir for product
 		\Storage::makeDirectory($dirname);
 		$productDetails->imgs = $dirname;
