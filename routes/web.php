@@ -26,3 +26,9 @@ Route::get('/admin', function () {
     return view('admin');
 });
 Route::get('/users', 'UsersController@GetUsers' ); //Users manager route
+//Category Controller
+Route::get('/categories','CategoriesController@index');
+Route::post('/categories/add','CategoriesController@Add');
+Route::get('/categories/add' ,'CategoriesController@AddView' );
+Route::get('/categories','CategoriesController@GetCategories');
+Route::get('/categories/add','CategoriesController@GetParent');

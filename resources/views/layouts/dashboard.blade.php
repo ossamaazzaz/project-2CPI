@@ -70,6 +70,10 @@ dashboard prinicpale view
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
+                         <li {{ (Request::is('/categories') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('categories') }}"><i class="fa fa-table fa-fw"></i> Categories</a>
+                             <!-- /.nav-theird-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
