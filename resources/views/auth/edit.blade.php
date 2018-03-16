@@ -1,27 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+                <div class="card-body" >
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
+                    <center>
+                    <img src="{{ Auth::user()->avatar }}" height="200px" width="200px" >
+                    <br><br>
+                    <h3>{{ Auth::user()->firstName }}</h3>
+                    <br><br>
+                    </center>
 
-                    Editing the profile of : {{ Auth::user()->firstName }}
-                    <div class="container">
+                    <div class="container" >
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
                     <form method="POST" action="{{ action('HomeController@update') }}">
                         @csrf
                         <!-- Make sure to make this more dynamic, refactor it later -->
@@ -29,7 +31,8 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ Auth::user()->username }}" required autofocus readonly>
+                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} form-input" name="username" value="{{ Auth::user()->username }}" required autofocus style="cursor: no-drop;" disabled>
+                                <i class="fa fa-user-o input-place"></i>
 
                                 @if ($errors->has('username'))
                                     <span class="invalid-feedback">
@@ -43,7 +46,9 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} form-input" name="email" value="{{ Auth::user()->email }}" required>
+                                <span class="fa fa-vcard-o input-place"></span>
+                                
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -57,7 +62,8 @@
                             <label class="col-md-4 col-form-label text-md-right">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="firstName" type="text" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ Auth::user()->firstName }}" required>
+                                <input id="firstName" type="text" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }} form-input" name="firstName" value="{{ Auth::user()->firstName }}" required>
+                                <span class="fa fa-users input-place"></span>
 
                                 @if ($errors->has('firstName'))
                                     <span class="invalid-feedback">
@@ -71,7 +77,8 @@
                             <label class="col-md-4 col-form-label text-md-right">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ Auth::user()->lastName }}" required>
+                                <input id="lastName" type="text" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }} form-input" name="lastName" value="{{ Auth::user()->lastName }}" required>
+                                <span class="fa fa-users input-place"></span>
 
                                 @if ($errors->has('lastName'))
                                     <span class="invalid-feedback">
@@ -85,7 +92,8 @@
                             <label class="col-md-4 col-form-label text-md-right">Phone Number</label>
 
                             <div class="col-md-6">
-                                <input id="phoneNum" type="text" class="form-control{{ $errors->has('phoneNum') ? ' is-invalid' : '' }}" name="phoneNum" value="{{ Auth::user()->phoneNum }}" required>
+                                <input id="phoneNum" type="text" class="form-control{{ $errors->has('phoneNum') ? ' is-invalid' : '' }} form-input" name="phoneNum" value="{{ Auth::user()->phoneNum }}" required>
+                                <span class="fa fa-phone input-place"></span>
 
                                 @if ($errors->has('phoneNum'))
                                     <span class="invalid-feedback">
@@ -99,7 +107,8 @@
                             <label class="col-md-4 col-form-label text-md-right">Address</label>
 
                             <div class="col-md-6">
-                                <input id="adr" type="text" class="form-control{{ $errors->has('adr') ? ' is-invalid' : '' }}" name="adr" value="{{ Auth::user()->adr }}" required>
+                                <input id="adr" type="text" class="form-control{{ $errors->has('adr') ? ' is-invalid' : '' }} form-input" name="adr" value="{{ Auth::user()->adr }}" required>
+                                <span class="fa fa-address-book-o input-place"></span>
 
                                 @if ($errors->has('adr'))
                                     <span class="invalid-feedback">
@@ -117,7 +126,8 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} form-input" name="password" required>
+                                <span class="fa fa-key input-place"></span>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -131,7 +141,8 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control form-input" name="password_confirmation" required>
+                                 <span class="fa fa-key input-place"></span>
                             </div>
                         </div>
 
@@ -145,8 +156,7 @@
 
                         
                     </form>
-                </div>
-            </div>
+              
         </div>
     </div>
 </div>

@@ -62,14 +62,17 @@ class ProductController extends Controller {
 		$dirname = 'images/' . 'products/' . $product->id;
 		//create dir for product
 		\Storage::makeDirectory($dirname);
-		$dirname = 'storage/' . $dirname;
-		$productDetails->imgs = $dirname;
+		// for displaying purposes
+		$relurl = '/storage/' . $dirname;
+		$dirname = 'public/' . $dirname;
+		$productDetails->imgs = $relurl;
 		$imgs = $req->file("images");
 		if (!empty($imgs)) {
 			//save first image url
-			$product->image = \Storage::putFileAs(
+			\Storage::putFileAs(
 				$dirname, $imgs[0],'0' .'.'. $imgs[0]->getClientOriginalExtension()
 			);
+			$product->image = $relurl . '0' .'.'. $imgs[0]->getClientOriginalExtension();
 			$product->save();
 			for($i=1;$i<$imgNum;$i++){
 				\Storage::putFileAs(
