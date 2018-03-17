@@ -10,13 +10,22 @@ class ProductController extends Controller {
     
 	public function index(Request $req){
 		if ($req->isMethod('get')) {
-			$products = Product::paginate(15);
+			$products = Product::get();
 			return view('admin.products',['products' => $products]);
-		} else {
-			dd($req);
 		}
 	}
+	public function delete(Request $req){
+		$ids = array_map('intval', explode(',', $req->ids));
+		foreach ($ids as $id) {
+			$product = Product::destroy($id);
+		}
+		return 'DeleteOpDone';
+	}
+	public function show($id){
 
+		$product = Product::find($id);
+		return view('admin.addProduct',compact('product'));
+	}
 	/**
 	* [add a product if post request else return edit view]
 	* @param Request $req [necessary input data]

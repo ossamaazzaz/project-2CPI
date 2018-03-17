@@ -41,6 +41,7 @@ ul {
 li {
   list-style: none;
 }
+
 .dataTables_info,
 .dataTables_length {
   display: inline-block;

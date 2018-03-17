@@ -10,13 +10,19 @@ class UsersController extends Controller
 {
    public function index() 
    {
-	    $users = User::paginate(10);
+	    $users = User::get();
 	    return view('admin.users',compact('users'));
    }
+   /*this function responsable on approve the user @TH3HPBT*/
    public function approve(Request $req){
-   		$ids = explode(',',$req->ids,0);
+   		$ids = array_map('intval', explode(',', $req->ids));
 
-   		return $ids;
+   		foreach ($ids as $id) {
+   			$user  = User::find($id);
+   			$user->approveState = "Approved";
+   			$user->save();
+   		}
+   		return "ApprovingOpDone";
    }
 
 }

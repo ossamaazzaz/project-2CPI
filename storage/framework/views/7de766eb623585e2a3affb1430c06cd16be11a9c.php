@@ -18,10 +18,14 @@
 <body>
 
 	<?php echo $__env->yieldContent('body'); ?>
-
-	 
+	
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 	<script src="<?php echo e(asset("assets/scripts/frontend.js")); ?>" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo e(URL::to('js/users.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
+	
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </body>
 </html>

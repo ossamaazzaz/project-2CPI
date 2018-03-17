@@ -1,6 +1,6 @@
 <form id="users" action="#">
 	@csrf
-	<table class="table {{ $class }}">
+	<table id="DataTable" class="table {{ $class }}">
 		<thead>
 			<tr>
 				<th>User Name</th>
@@ -32,4 +32,3 @@
 	</table>
 	<input type="submit" id="sub" value="Save" class="btn btn-primary">
 </form>
-<div id="req"></div>
