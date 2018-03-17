@@ -34,7 +34,9 @@
                     <label for= "" class="col-md-2 col-form-label text-md-right">Parent Category:</label>
                     <div class="col-md-2">
                       <div class="form-group">
+                         <select class="form-control" id="sel1">
                           
+                          </select>    
                     </div>
                 </div>
               </div>
@@ -61,7 +63,7 @@
                 </div>
               </div>
 
-            <!----------------- ADD Button------------------------>
+            <!----------------- Edit Button------------------------>
               <div class="form-group row mb-0">
                   <div class="col-md-6 offset-md-4">
                       <button type="submit" class="btn btn-success">

@@ -31,3 +31,4 @@ Route::get('/categories/add' ,'CategoriesController@AddView' );
 Route::get('/categories','CategoriesController@GetCategories');
 Route::get('/categories/add','CategoriesController@GetParent');
 
+Route::get('/categories/edit','CategoriesController@AddViewEdit');

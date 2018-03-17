@@ -14,6 +14,10 @@ class CategoriesController extends Controller
   {
      return view('/categories/add');
   }
+  public function AddViewEdit()
+  {
+    return view('/categories/edit');
+  }
   public function Add(Request $req)
   {
     $validator=  \Validator::make($req->all(), [
