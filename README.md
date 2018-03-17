@@ -8,6 +8,10 @@
 
 ## Manual installation
 
+
+- edit `/etc/php/php.ini` and uncomment 
+	`extension=mysqli.so
+	extension=pdo_mysql.so`
 - clone this repository
 
 	`git clone https://github.com/ossamaazzaz/project-2CPI.git`

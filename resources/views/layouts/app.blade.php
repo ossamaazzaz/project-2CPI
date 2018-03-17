@@ -7,8 +7,8 @@
     <title>Laravel</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 
 
     <style type="text/css">
@@ -41,14 +41,17 @@
 
                         <li class="nav-item dropdown"> 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ URL::asset('assets/images/prof.png')}}" height="40px" width="40px" >
+
+                                    <img src="{{ Auth::user()->avatar }}" height="40px" width="40px" >
                                     
                                     {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
 
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/home/edit" >edit</a>
+
+                                    <a class="dropdown-item" href="/home/edit" >Edit</a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

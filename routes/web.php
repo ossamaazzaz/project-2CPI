@@ -22,9 +22,15 @@ Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
 
 //Dashbaord route
+
 Route::get('/admin', 'DashbaordController@index');
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
 Route::post('/admin/users','UsersController@approve');
+
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware('auth','admin');
+
 
 //eprooducts route
 

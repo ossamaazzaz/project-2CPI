@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phoneNum',15);
             $table->string('email')->unique();
             $table->string('adr');
-            $table->string('avatar')->nullable();// the avatar can be nullable
+            $table->string('avatar');
             $table->string('idCard')->unique(); // idCard should be unique
             $table->smallInteger('groupId')->default(1);
             $table->string('approveState')->default('pending');

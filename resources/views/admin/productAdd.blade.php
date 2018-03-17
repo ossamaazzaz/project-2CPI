@@ -2,7 +2,7 @@
 @section('page_heading','Add Product')
 @section('section')
 <div class="card-body">
-                    <form method="POST" action="{{ action('ProductController@add') }}">
+                    <form method="POST" action="{{ action('ProductController@add') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">name</label>
@@ -71,11 +71,32 @@
                                 @endif
                             </div>
                         </div>
+                        
+
                         <div class="form-group row">
+		               <label for="desc" class="col-md-4 col-form-label text-md-right">Description :</label>
+		                  <div class="col-md-6">
+		                       <textarea id="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" name="desc"  required autofocus  rows="3"></textarea>
+		                      @if ($errors->has('desc'))
+		                          <span class="invalid-feedback">
+		                              <strong>{{ $errors->first('desc') }}</strong>
+		                          </span>
+		                      @endif
+		                  </div>
+              	</div>
+
+              	<div class="form-group row">
                             <label for="categoryId" class="col-md-4 col-form-label text-md-right">category Id </label>
 
                             <div class="col-md-6">
-                                <input id="categoryId" type="text" class="form-control{{ $errors->has('categoryId') ? ' is-invalid' : '' }}" name="categoryId" value="{{ old('categoryId') }}" required autofocus>
+                            	<!-- to be changed by category dudes-->
+                                	<select name="categoryId">
+					  <option value="1" selected="selected">Category 1 </option>
+					  <option value="2">Category 2 </option>
+					  <option value="3">Category 3 </option>
+					  <option value="4">Category 4 </option>
+					  <option value="5">Category 5 </option>
+					</select>
 
                                 @if ($errors->has('categoryId'))
                                     <span class="invalid-feedback">
@@ -83,12 +104,30 @@
                                     </span>
                                 @endif
                             </div>
+                      </div>
+
+
+              	
+
+                        <div class="form-group row">
+                            <label for="images" class="col-md-4 col-form-label text-md-right"> Images </label>
+
+                            <div class="col-md-6">
+                                <input id="images" type="file" class="form-control{{ $errors->has('images') ? ' is-invalid' : '' }}" name="images[]" value="{{ old('images') }}" required multiple>
+
+                                @if ($errors->has('images'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('images') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Update') }}
                                 </button>
                             </div>
                         </div>

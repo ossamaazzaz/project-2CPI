@@ -14,7 +14,9 @@
                         </div>
                     @endif
                     <center>
-                    <img src="{{ URL::asset('assets/images/prof.png')}}" height="200px" width="200px" >
+                    
+                    <img src="{{ Auth::user()->avatar }}" height="200px" width="200px" >
+
                     <br><br>
                     <h3>{{ Auth::user()->firstName }}</h3>
                     <br><br>
