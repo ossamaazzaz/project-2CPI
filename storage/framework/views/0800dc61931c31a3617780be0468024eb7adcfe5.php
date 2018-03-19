@@ -73,6 +73,7 @@ dashboard prinicpale view
                         </li>
                         <li <?php echo e((Request::is('products') ? 'class="active"' : '')); ?>>
                             <a href="<?php echo e(url ('admin/products')); ?>"><i class="fa fa-table fa-fw"></i> Products
+
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>

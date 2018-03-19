@@ -23,6 +23,7 @@ Route::post('/home/edit','HomeController@update');
 
 //Dashbaord route
 
+
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
 Route::post('/admin/users','UsersController@approve');
 
@@ -41,3 +42,17 @@ Route::get('/admin/products/{id?}/edit','ProductController@show');
 Route::post('/admin/products/update','ProductController@update');
 
 Route::resource('resource', 'ProductController');
+//Category Controller
+Route::get('/categories','CategoriesController@index');
+
+Route::get('/categories/add' ,'CategoriesController@AddView' );		  //Add button
+Route::post('/categories/add','CategoriesController@Add');			  //Submit the Add	  	
+
+Route::get('/categories','CategoriesController@GetCategories');
+//Route::get('/categories/add','CategoriesController@GetParent');
+
+Route::get('/categories/delete/{id}','CategoriesController@destroy'); //Delete
+
+Route::get('/categories/edit/{id}' ,'CategoriesController@EditView' ); //Edit button
+Route::post('/categories/edit/{id}','CategoriesController@Edit');	 //Submit Edition
+

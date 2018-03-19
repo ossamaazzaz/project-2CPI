@@ -221,5 +221,3 @@ class ProductController extends Controller {
 		$productDetails->save();
 		return view('admin.productAdd'); //later to redirect to product page instead
 	}
-
-}

@@ -43,6 +43,7 @@ class HomeController extends Controller
      */
     public function update(Request $req) {
         $user = \Auth::user();
+
         $validator =  \Validator::make($req->all(), [
             'firstName' => 'required|string|max:30|alpha',
             'lastName' => 'required|string|max:30|alpha',
@@ -55,8 +56,9 @@ class HomeController extends Controller
                 $rules = [
                 'email' => 'email|max:255|unique:users',
             ];
-             $validator = \Validator::make($req->all(), $rules);  
+             $validator = \Validator::make($req->all(), $rules);
         }
+
         //dd($req->hasFile('avatar'));
         if ($req->hasFile('avatar')) {
                 $rules = [
@@ -66,14 +68,16 @@ class HomeController extends Controller
         }
         
         //validating
+
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
         // saving input
         if($emailCheck) {
-            $user->email = $req->all()['email'];   
+            $user->email = $req->all()['email'];
         }
+
         if($req->hasFile('avatar')) {
             \Storage::delete($user->avatar);
             $dirname = 'images/' . 'users';
@@ -88,6 +92,7 @@ class HomeController extends Controller
         $user->firstName = $req->all()['firstName'];   
         $user->lastName = $req->all()['lastName'];   
         $user->phoneNum = $req->all()['phoneNum'];   
+
         $user->adr = $req->all()['adr'];
         $user->password = \Hash::make($req->all()['password']);
         $user->save();

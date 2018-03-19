@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
 	/**
     * Get the details record associated with the Product.
     */
@@ -16,4 +17,5 @@ class Product extends Model
     protected $fillable = [
         'name', 'brand','price','categoryId','quantity','quantitySale',
     ];
+
 }
