@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use  \App\Category;
+use  \App\Product;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -94,21 +95,33 @@ class CategoriesController extends Controller
 
 /********* Remove a category ***********/
 
-  public function destroy($id)
+  public function destroy($id /* + an op arg */ )
   {
-      // delete
+
       $Category = Category::find($id);
+
+      //First Delete/Uncategorize the products
+
+      if (1==1) { 
+        // Delete all the products of this Category        
+        Product::whereCategoryId($id)->delete();
+      
+      } else {    
+        // Move them to 'UNCATEGORIZED'       
+        Product::whereCategoryId($id)->update(['category_id' => null]);
+      
+      }
+
+      //Then Delete the category
       $Category->delete();
+
+
       return redirect('/categories');
-  }
 
       /***
-
-      Still to do: 
+      Still left to do: 
         - Show a text to the user ($log = ($Category->name." deleted successfully.");)
-
-      IDEA FOR LATER: Add a "Undo delete" feature.
-
+        - Add an "Undo delete" feature.
       ***/
-  
+  } 
 }
