@@ -52,7 +52,12 @@ class ProductController extends Controller {
     	];
     	$imgNum = $req->imgNum;
     	$newImgs = json_decode($req->newImgs);
-    	$delOldImgs = explode(",", $req->deletedImgs);
+    	if ($req->deletedImgs == null) {
+    		$delOldImgs = array();
+    	}else{
+    		$delOldImgs = explode(",", $req->deletedImgs);
+    	}
+    	
     	$imgsurls = json_decode($req->NewImgsSrc);
 		// string ath of the deleted file 
     	$imgNum = ($imgNum > $MAX_NUMBER) ? $MAX_NUMBER : $imgNum;
@@ -90,7 +95,8 @@ class ProductController extends Controller {
 		$product->productDetails->save();
 
 		// deleting the images
-		if (count($delOldImgs)>1) {
+		// there is an issue
+		if (count($delOldImgs)>0) {
 			foreach ($delOldImgs as $imgsrc) {
 				//dd(str_replace('/storage', '', $product->productDetails->imgs) . substr($imgsrc, strlen($imgsrc)-5));
 				\Storage::disk('public')->delete(str_replace('/storage', '', $product->productDetails->imgs) . substr($imgsrc, strlen($imgsrc)-5));
@@ -127,6 +133,10 @@ class ProductController extends Controller {
 		}	
 		return response()->json($product->id); //later to redirect to product page instead
 
+	}
+
+	public function destroy(){
+		return;
 	}
 	/**
 	* [add a product if post request else return edit view]
