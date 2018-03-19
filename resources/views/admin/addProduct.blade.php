@@ -300,7 +300,6 @@ $(document).ready(function(){
 		        	
 		        }
 		        data.append("newImgIndex",index);
-		        console.log("deletedOldImgs : "+deletedOldImgs3);
                 $.ajax({
                 type : "POST",
                 url : "/admin/products/update",
@@ -309,6 +308,8 @@ $(document).ready(function(){
                 processData: false,
     			contentType: false,
                 success : function(data){
+                	window.location.pathname = '/admin/products';
+                	window.location.href='/admin/products';
                     console.log(data); }});
         
 	});

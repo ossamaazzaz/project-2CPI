@@ -10,7 +10,6 @@ var selectedProducts = [];
 function selected(element) {
             if ( element.checked  && !selectedProducts.includes(element.value)) {
                 selectedProducts.push(element.value);
-                console.log(selectedProducts);
             } else if (selectedProducts.includes(element.value)){
                 var index = selectedProducts.indexOf(element.value);
                 if (index > -1) {
@@ -28,7 +27,6 @@ function deleteOneProduct(element){
         selectedProducts.push(element.value);
         var data = new FormData();
         data.append("ids",selectedProducts);
-        console.log("deleting :"+element.value+" data "+selectedProducts);
         $.ajax({
             type : "POST",
             url : "/admin/products",
@@ -44,6 +42,7 @@ function deleteOneProduct(element){
                 console.log(data); }});
 }
 $(document).ready(function (){
+    var table = $("#DataTable").DataTable();
 // $.ajaxSetup({
 //     headers: {
 //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -66,11 +65,8 @@ $(document).ready(function (){
     $("#execute").click( function(){
             var data = new FormData();
             data.append("ids",selectedProducts);
-            console.log(data,selectedProducts);
             var list = document.getElementById("selectList");
-            console.log(list.options[list.selectedIndex].text);
             if (list.options[list.selectedIndex].text=="delete") {
-                 console.log("deleting");
                  $.ajax({
                     type : "POST",
                     url : "/admin/products",
@@ -84,10 +80,27 @@ $(document).ready(function (){
                             var productRow = document.getElementById(selectedProducts[i]);
                             productRow.remove();
                         }
-                        console.log(data); }});
+                        console.log(data); 
+                        }});
             }            
     });
-    $("#checkboxAll").clikc(function(){
-        //delete all the table 
+    $("#checkboxAll").click(function(){
+        
+           var page = table.page();
+           var lenpage = table.page.len();
+           var tabledata = table.data();
+           var info = table.page.info();
+           var index = ((info['page']+1)*info["length"])-info["length"];
+           var data = new FormData();
+           for (var i = index; i < index+info["length"]; i++) {
+                var id = tabledata[i]['DT_RowId'];
+                if (this.checked==true) {
+                selectedProducts.push(id);
+                document.getElementById(id).childNodes[1].childNodes[1].checked = true;
+                }else{
+                selectedProducts.splice(index,1);
+                document.getElementById(id).childNodes[1].childNodes[1].checked = false;
+                } 
+            }        
     });
 });

@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
 class ProductController extends Controller {
 
-	public $imgs = 'imgs';
-	protected $product;
-	protected $productDetails;
-	public $imgsPath = 'imgs';
+	
 	public function __construct()
     {
         $this->middleware('auth');
@@ -128,8 +125,7 @@ class ProductController extends Controller {
 				$id++;
 			}	
 		}	
-		return redirect('/admin/products'); //later to redirect to product page instead
-
+		return response()->json($product->id); //later to redirect to product page instead
 
 	}
 	/**
