@@ -8,24 +8,15 @@ use  \App\Category;
 use  \App\Product;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
-{
-  public function index()
-  {
-     return view('/categories/main');
-  }
-  public function AddView()
-  {
-     return view('/categories/add');
-  }
-
+class CategoriesController extends Controller{
+  public function index()  { return view('/categories/main');  }
+  public function AddView(){ return view('/categories/add') ;  }
   public function Add(Request $req)
   {
-
     $validator=  \Validator::make($req->all(), [
         'name' => 'required|string|max:100|alpha',
         'description' => 'required',
-        'picture'=>'image|mimes:jpg,jpeg,bmp,png',
+        'picture'=>'required|image|mimes:jpg,jpeg,bmp,png',
         //'parentId' => 'required|integer',
     ]);
     if ($validator->fails()) {
@@ -36,16 +27,17 @@ class CategoriesController extends Controller
     $cat->name        = $req->all()['name'];
     $cat->description = $req->all()['description'];
     //$cat->parent_id    = $req->all()['parentId'];
-    /*store the path
+    //store image path
     $img = $req->file("picture");
-    Storage::putFileAs
+    dd($img);
+    Storage::putFileAs 
     (
       'public/images',
       $img,
       "cat_".$cat->name.".".$img->getClientOriginalExtension()
     );
     $cat->picture = "storage/images/" ."cat_".$cat->name.".".$img->getClientOriginalExtension();
-    */
+    //save
     $cat->save();
     return redirect('/categories');
   }
@@ -72,56 +64,49 @@ class CategoriesController extends Controller
 
   public function Edit(Request $req, $id)
   {   
-      $validator=  \Validator::make($req->all(), [
-      'name' => 'required|string|max:100|alpha',
-      'description' => 'required',
-      //'picture'=>'required|image|mimes:jpeg,bmp,png',
-      //'parentId' => 'required|integer',
-      ]);
+    $validator=  \Validator::make($req->all(), [
+    'name' => 'required|string|max:100|alpha',
+    'description' => 'required',
+    'picture'=>'required|image|mimes:jpeg,bmp,png',
+    //'parentId' => 'required|integer',
+    ]);
 
-      if ($validator->fails()) {
-          return back()->withErrors($validator)->withInput();
-      }
-      else 
-      {
-          $cat = Category::find($id);
-          $cat->name        = $req->all()['name'];
-          $cat->description = $req->all()['description']; 
-          // cat->pic =
-          $cat->save(); 
-          return redirect('categories');
-      }
+    if ($validator->fails()) {
+        return back()->withErrors($validator)->withInput();
+    }
+    $cat = Category::find($id);
+    $cat->name        = $req->all()['name'];
+    $cat->description = $req->all()['description']; 
+    $img = $req->file("picture");
+    Storage::putFileAs
+    (
+      'public/images',
+      $img,
+      "cat_".$cat->name.".".$img->getClientOriginalExtension()
+    );
+    $cat->picture = "storage/images/" ."cat_".$cat->name.".".$img->getClientOriginalExtension();
+    $cat->save(); 
+
+    return redirect('categories');
   }
 
 /********* Remove a category ***********/
 
   public function destroy($id /* + an op arg */ )
   {
+    $Category = Category::find($id);
+    //First Delete/Uncategorize the products
 
-      $Category = Category::find($id);
-
-      //First Delete/Uncategorize the products
-
-      if (1==1) { 
-        // Delete all the products of this Category        
-        Product::whereCategoryId($id)->delete();
-      
-      } else {    
-        // Move them to 'UNCATEGORIZED'       
-        Product::whereCategoryId($id)->update(['category_id' => null]);
-      
-      }
-
-      //Then Delete the category
-      $Category->delete();
-
-
-      return redirect('/categories');
-
-      /***
-      Still left to do: 
-        - Show a text to the user ($log = ($Category->name." deleted successfully.");)
-        - Add an "Undo delete" feature.
-      ***/
+    if (1==1) 
+    { // Delete all the products of this Category       
+      Product::whereCategoryId($id)->delete();
+    } 
+    else 
+    {    // Move them to 'UNCATEGORIZED'              
+      Product::whereCategoryId($id)->update(['category_id' => null]);
+    }
+    //Then Delete the category
+    $Category->delete();
+    return redirect('/categories');
   } 
 }
