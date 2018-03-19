@@ -38,7 +38,6 @@ class ProductController extends Controller {
 	            'categoryId' => 'required|integer',
 	            'quantitySale' => 'integer',
 	            'quantity' => 'required|integer',
-	          
         	];
         	//dd($req->file("images")); //for testing
         	$imgNum = count($req->file("images"));
