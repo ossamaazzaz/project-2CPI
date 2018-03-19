@@ -300,7 +300,7 @@ $(document).ready(function(){
 		        	
 		        }
 		        data.append("newImgIndex",index);
-		        console.log("deletedOldImgs : "+deletedOldImgs);
+		        console.log("deletedOldImgs : "+deletedOldImgs3);
                 $.ajax({
                 type : "POST",
                 url : "/admin/products/update",

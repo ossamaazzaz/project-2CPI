@@ -1,10 +1,10 @@
-<form id="products" action="#">
+<form id="products" action="">
     <button class="btn btn-primary" id="addnew" onclick=window.location='{{ url("admin/products/add") }}'>add new</button>
     <select id="selectList">
         <option id="delete" value="delete">delete</option>
          <option id="compare" value="compare">compare</option>
     </select>
-    <input type="submit" value="execute" id="execute">
+    <input type="button" value="execute" id="execute">
     <table id="DataTable" class="table {{ $class }}">
         <thead>
             <tr>

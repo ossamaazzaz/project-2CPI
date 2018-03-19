@@ -5,6 +5,7 @@ function addApprovedUser(id,userId,userState) {
                 approvedUsers.push(userId);
             }
         }
+//select products add them to this array below 
 var selectedProducts = [];
 function selected(element) {
             if ( element.checked  && !selectedProducts.includes(element.value)) {
@@ -17,15 +18,17 @@ function selected(element) {
                     }
             }
         }
+// takes to edit page 
 function edit(element){
         $.ajax({
             type : "GET",
-            url : "products/"+element.value,
+            url : "products/"+element.value+"/edit",
             success : function(data){
                 console.log("data : "+data);
             }
         });
 }
+// delete one product
 function deleteOneProduct(element){
         selectedProducts.push(element.value);
         var dataString = "ids="+selectedProducts;
@@ -41,11 +44,12 @@ function deleteOneProduct(element){
                 console.log(data); }});
 }
 $(document).ready(function (){
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+// $.ajaxSetup({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     }
+// });
+//useless one 
 $('#get').click(function(){
     $.ajax({
         type : "GET",
@@ -56,6 +60,7 @@ $('#get').click(function(){
         }
     });
 });
+// this approve the users 
 $('#sub').click(function(){
     var dataString = "ids="+approvedUsers;
     $.ajax({
@@ -66,6 +71,8 @@ $('#sub').click(function(){
             console.log(data); }
     });
 });
+
+// this about products its execute a command in the lits like delete so its delete the selected items
 $("#execute").click( function(){
     var dataString = "ids="+selectedProducts;
         console.log(dataString);
