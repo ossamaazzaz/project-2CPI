@@ -7,8 +7,8 @@
     <title>Laravel</title>
 
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 
+    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 
 
     <style type="text/css">
@@ -42,14 +42,17 @@
 
                         <li class="nav-item dropdown"> 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="<?php echo e(URL::asset('assets/images/prof.png')); ?>" height="40px" width="40px" >
+
+                                    <img src="<?php echo e(Auth::user()->avatar); ?>" height="40px" width="40px" >
                                     
                                     <?php echo e(Auth::user()->firstName . " " .Auth::user()->lastName); ?> <span class="caret"></span>
 
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/home/edit" >edit</a>
+
+                                    <a class="dropdown-item" href="/home/edit" >Edit</a>
+
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
@@ -74,5 +77,6 @@
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </body>
 </html>

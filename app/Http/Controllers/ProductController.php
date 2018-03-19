@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller {
 
-
+	public $imgs = 'imgs';
+	protected $product;
+	protected $productDetails;
+	public $imgsPath = 'imgs';
 	public function __construct()
     {
         $this->middleware('auth');
@@ -26,12 +30,107 @@ class ProductController extends Controller {
 		foreach ($ids as $id) {
 			$product = Product::destroy($id);
 		}
-		return 'DeleteOpDone';
+		return Response::json($ids);
 	}
 	public function show($id){
 
 		$product = Product::find($id);
-		return view('admin.addProduct',compact('product'));
+		$imgsPath = str_replace('storage', 'public', $product->productDetails->imgs );
+		$imgsara = \Storage::allFiles($imgsPath);
+		$imgs  = implode(" ",str_replace('public', '/storage', $imgsara ));
+		
+		return view('admin.addProduct',compact('product','imgs'));
+	
+		}
+	public function update(Request $req){
+		$MAX_NUMBER = 5;
+			$rules = [
+            'name' => 'required|string',
+            'brand' => 'required|string',
+            'price' => 'required|numeric',
+            'categoryId' => 'required|integer',
+            'quantitySale' => 'integer',
+            'quantity' => 'required|integer',
+          
+    	];
+    	$imgNum = $req->imgNum;
+    	$newImgs = json_decode($req->newImgs);
+    	$delOldImgs = explode(",", $req->deletedImgs);
+    	$imgsurls = json_decode($req->NewImgsSrc);
+		// string ath of the deleted file 
+    	$imgNum = ($imgNum > $MAX_NUMBER) ? $MAX_NUMBER : $imgNum;
+   		
+   		$validator = \Validator::make($req->all(),
+            [
+                'file' => 'image',
+            ],
+            [
+                'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
+            ]);
+        if ($validator->fails())
+            return array(
+                'fail' => true,
+                'errors' => $validator->getMessageBag()->toArray()
+            );
+
+		$validator = \Validator::make($req->all(),$rules);
+		if ($validator->fails()) {
+			return response()->json(['errors'=>$validator->errors()->all()]);
+		}
+		
+			// validated, proceed to add product
+		$product = Product::find($req->id);
+		$product->name = $req->all()['name'];
+		$product->brand = $req->all()['brand'];
+		$product->price = $req->all()['price'];
+		$product->categoryId = $req->all()['categoryId'];
+		$product->quantitySale = $req->all()['quantitySale'];
+		$product->quantity = $req->all()['quantity'];
+		$product->save();
+		// add its details
+		$product->productDetails->desc =  $req->all()['desc'];
+
+		$product->productDetails->save();
+
+		// deleting the images
+		if (count($delOldImgs)>1) {
+			foreach ($delOldImgs as $imgsrc) {
+				//dd(str_replace('/storage', '', $product->productDetails->imgs) . substr($imgsrc, strlen($imgsrc)-5));
+				\Storage::disk('public')->delete(str_replace('/storage', '', $product->productDetails->imgs) . substr($imgsrc, strlen($imgsrc)-5));
+				//extract the name of file from imgsrc snd its the path of the image
+			}
+		}
+			
+		//saving the new images
+		$index = explode(",", $req->newImgIndex);
+
+		$dirname = 'images/' . 'products/' . $product->id . '/';
+		$relurl = '/storage/' . $dirname;
+		$dirname = 'public/' . $dirname;
+		
+		// saving the principale image of product 
+		if ($req->hasFile('pimg')) {
+			
+			$pimg = $req->file('pimg');
+			\Storage::putFileAs(
+				$dirname, $pimg,'0' .'.'. $pimg->getClientOriginalExtension()
+			);
+			$product->image = $relurl . '0' .'.'. $pimg->getClientOriginalExtension();
+			$product->save();
+		}
+		$id = $imgNum+1;
+		foreach ($index as $i) {
+			if ($req->hasFile($i)) {
+				$img = $req->file($i);
+				\Storage::putFileAs(
+					$dirname, $img,$id .'.'. $img->getClientOriginalExtension()
+				);
+				$id++;
+			}	
+		}	
+		return redirect('/admin.products'); //later to redirect to product page instead
+
+
 	}
 	/**
 	* [add a product if post request else return edit view]
@@ -65,6 +164,16 @@ class ProductController extends Controller {
         		//verify image rule
         		$rules['images.' . $i] = 'required|image|mimes:jpeg,bmp,png';
         	}
+        	dd($req->file("images"));
+        $validator = \Validator::make($request->all(), [
+           		'name' => 'required|string',
+	            'brand' => 'required|string',
+	            'price' => 'required|numeric',
+	            'categoryId' => 'required|integer',
+	            'quantitySale' => 'integer',
+	            'quantity' => 'required|integer',
+
+        ]);
 		$validator = \Validator::make($req->all(),$rules);
 		if ($validator->fails()) {
 			return back()->withErrors($validator)->withInput();
@@ -83,7 +192,7 @@ class ProductController extends Controller {
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
 		$productDetails->desc =  $req->all()['desc'];
-		$dirname = 'images/' . 'products/' . $product->id;
+		$dirname = 'images/' . 'products/' . $product->id . '/';
 		//create dir for product
 		\Storage::makeDirectory($dirname);
 		// for displaying purposes

@@ -13,4 +13,7 @@ class ProductDetails extends Model
     {
         return $this->belongsTo('App\Product');
     }
+        protected $fillable = [
+        'product_id',
+    ];
 }

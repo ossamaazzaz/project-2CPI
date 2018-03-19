@@ -1,6 +1,6 @@
 <form id="users" action="#">
 	<?php echo csrf_field(); ?>
-	<table id="productsTable" class="table <?php echo e($class); ?>">
+	<table id="DataTable" class="table <?php echo e($class); ?>">
 		<thead>
 			<tr>
 				<th>User Name</th>

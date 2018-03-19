@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use App\ProductDetails;
 class CreateProductDetailsTable extends Migration
 {
     /**
@@ -22,7 +22,9 @@ class CreateProductDetailsTable extends Migration
             $table->text('desc')->nullable();
             $table->timestamps();
         });
-    }
+
+        }
+    
 
     /**
      * Reverse the migrations.

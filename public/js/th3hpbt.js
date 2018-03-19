@@ -1,10 +1,10 @@
 var approvedUsers = [];
 function addApprovedUser(id,userId,userState) {
-			if ( userState == 'pending' && !approvedUsers.includes(userId)) {
-				id.innerHTML = "Approved";
-		    	approvedUsers.push(userId);
-			}
-		}
+            if ( userState == 'pending' && !approvedUsers.includes(userId)) {
+                id.innerHTML = "Approved";
+                approvedUsers.push(userId);
+            }
+        }
 var selectedProducts = [];
 function selected(element) {
             if ( element.checked  && !selectedProducts.includes(element.value)) {
@@ -19,9 +19,8 @@ function selected(element) {
         }
 function edit(element){
         $.ajax({
-            type : "POST",
+            type : "GET",
             url : "products/"+element.value,
-            data : "fuck",
             success : function(data){
                 console.log("data : "+data);
             }
@@ -41,45 +40,47 @@ function deleteOneProduct(element){
                 }
                 console.log(data); }});
 }
-        $(document).ready(function (){
-            $('#get').click(function(){
-                $.ajax({
-                    type : "GET",
-                    url : "get",
-                    success : function(data){
-                        console.log("data : "+data);
-                        $("#req").append(data);
+$(document).ready(function (){
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$('#get').click(function(){
+    $.ajax({
+        type : "GET",
+        url : "get",
+        success : function(data){
+            console.log("data : "+data);
+            $("#req").append(data);
+        }
+    });
+});
+$('#sub').click(function(){
+    var dataString = "ids="+approvedUsers;
+    $.ajax({
+        type : "POST",
+        url : "/admin/users",
+        data : dataString,
+        success : function(data){
+            console.log(data); }
+    });
+});
+$("#execute").click( function(){
+    var dataString = "ids="+selectedProducts;
+        console.log(dataString);
+        if ($("#selectList").value=="delete") {
+             $.ajax({
+                type : "POST",
+                url : "/admin/products",
+                data : dataString,
+                success : function(data){
+                    document.getElementsByClassName("custom-checkbox").checked = false;
+                    for (var i = selectedProducts.length - 1; i >= 0; i--) {
+                        var productRow = document.getElementById(selectedProducts[i]);
+                        productRow.remove();
                     }
-                });
-            });
-            $('#sub').click(function(){
-                var dataString = "ids="+approvedUsers;
-                $.ajax({
-                    type : "POST",
-                    url : "/admin/users",
-                    data : dataString,
-                    success : function(data){
-                        console.log(data); }
-                });
-            });
-            $("#execute").click( function(){
-                var dataString = "ids="+selectedProducts;
-                    if ($('#selectList').value=="delete") {
-                            $.ajax({
-                            type : "POST",
-                            url : "/admin/products",
-                            data : dataString,
-                            success : function(data){
-                                document.getElementsByClassName("custom-checkbox").checked = false;
-                                for (var i = selectedProducts.length - 1; i >= 0; i--) {
-                                    selectedProducts[i].display = 'none';
-                                }
-                                console.log(data); }});
-                    }
-            });
-        });
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+                    console.log(data); }});
+        }            
+});
+});

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('phoneNum',15);
             $table->string('email')->unique();
             $table->string('adr');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('idCard')->unique(); // idCard should be unique
             $table->smallInteger('groupId')->default(1);
             $table->string('approveState')->default('pending');
@@ -31,7 +31,6 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
         for ($i=0; $i < 200; $i++) { 
             User::create([
             'username' => 'username_'.$i,

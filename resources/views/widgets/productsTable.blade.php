@@ -1,11 +1,10 @@
 <form id="products" action="#">
-    @csrf
     <button class="btn btn-primary" id="addnew" onclick=window.location='{{ url("admin/products/add") }}'>add new</button>
     <select id="selectList">
         <option id="delete" value="delete">delete</option>
          <option id="compare" value="compare">compare</option>
     </select>
-    <input type="submit" id="execute" name="excute" value="Execute">
+    <input type="submit" value="execute" id="execute">
     <table id="DataTable" class="table {{ $class }}">
         <thead>
             <tr>
@@ -25,7 +24,7 @@
             @foreach ($products as $product)
                 <tr id="{{ $product->id }}">
                     <td>
-                      <input type="checkbox" class="custom-checkbox" value="{{ $product->id }}" value="" onchange="selected(this)">
+                      <input type="checkbox" class="custom-checkbox" value="{{ $product->id }}" onchange="selected(this)">
                     </td>
                     <td class="showTools"> {{ $product->id }}
                         <div class="tools">

@@ -9,23 +9,23 @@
 	<title>Admin</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
-	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-	<link rel="stylesheet" href="<?php echo e(asset("assets/stylesheets/styles.css")); ?>" />
 
+	<link rel="stylesheet" href="<?php echo e(asset("assets/stylesheets/styles.css")); ?>" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 	<link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo e(asset('css/dropzone.css')); ?>"> 
 </head>
 <body>
 
 	<?php echo $__env->yieldContent('body'); ?>
 	
-	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-	<script src="<?php echo e(asset("assets/scripts/frontend.js")); ?>" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
-	
+	<script src="<?php echo e(asset('js/dropzone.min.js')); ?>"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
+
 </body>
 </html>

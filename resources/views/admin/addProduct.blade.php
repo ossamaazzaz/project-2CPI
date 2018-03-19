@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>page</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style type="text/css">
-	body{
-		font-size: 17px;
-		padding: 0px;
-		background-color: #f2f2f2;
-		margin: 0;
-		overflow-x: hidden
-	}
-	#images{
-		min-width: 400px;
-		min-height: 400px;
-	}
-	.rmImgBtn{
-		background-color: red;
-		color: white;
-		font-size: 15px;
-	}
+<title>Edit Product</title>
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
+<style type="text/css">
+body{
+	font-size: 17px;
+	padding: 0px;
+	background-color: #f2f2f2;
+	margin: 0;
+	overflow-x: hidden
+}
+#images{
+	min-width: 400px;
+	min-height: 400px;
+}
+.rmImgBtn{
+	background-color: red;
+	color: white;
+	font-size: 15px;
+}
 .step {
   height: 15px;
   width: 15px;
@@ -30,167 +31,188 @@
   display: inline-block;
   opacity: 0,5;
 }
-	input[type=text] {
-	  width: 100%;
-	  max-width: 500px;
-	  margin-bottom: 20px;
-	  padding: 12px;
-	  border: 1px solid #ccc;
-	  border-radius: 5px;
-	}
-	#tab1{
-		display: none;
-	}
-		.div{
-			height: 402px;
-			max-width: 302px;
-			border-style: dotted;
+input[type=text] {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+#tab1{
+	display: none;
+}
+.div{
+		height: 402px;
+		max-width: 302px;
+		border-style: dotted;
 
-		}
-		
-		input[type="file"] {
-	    	display: none;
-		}
-	.custom-file-upload {
-	    border: 1px solid #ccc;
-	    display: inline-block;
-	    padding: 6px 12px;
-	    cursor: pointer;
 	}
-	h1{
-		text-align: center;
-		margin : 20px;
-		}
-		label {
-		  margin-bottom: 10px;
-		  display: block;
-		}
-		.inline{
-			display:inline-block;
-		}
+	
+input[type="file"] {
+    	display: none;
+	}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+h1{
+	text-align: center;
+	margin : 20px;
+	}
+	label {
+	  margin-bottom: 10px;
+	  display: block;
+	}
+	.inline{
+		display:inline-block;
+	}
 
-	</style>
+</style>
 
 </head>
 
 
 
 <body>
-	
-	<h1>Add product</h1>
-	
-	<div class="container" id="tab1">
-		<div class="row">
-	<div class="col-md-4">
-	<div class="div">
-	<img id="output" height="395" width="295" />
-	</div>
-	<label class="custom-file-upload btn btn-primary">
-    <input type="file" accept="image/*" onchange="loadFile(event)">
-    Upload a pic
+<form method="POST" id="updateform" enctype="multipart/form-data" accept-charset="utf-8" action="javascript:;">
+@csrf	
+<h1>Edit product</h1>
+
+<div class="container" id="tab1">
+	<div class="row">
+<div class="col-md-4">
+<div class="div">
+<img id="output" height="395" width="295" src="{{ $product->image }}" />
+</div>
+<label class="custom-file-upload btn btn-primary">
+<input type="file" id="pimg" accept="image/*" name="pimage" onchange="loadFile(event)">
+Upload a pic
 </label>
 </div>
 
 
 <div class="col-md-8">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<label>Name :</label>
-				<input type="text" name="" value="{{ $product->name }}" class="form-control">
-			</div>
-			<div class="col-md-4">
-				<label>Brand :</label>
-				<input type="text" name="" value="{{ $product->brand }}" class="form-control">
-			</div>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<label>Name :</label>
+			<input type="text" id="name" value="{{ $product->name }}" class="form-control">
+		</div>
+		<div class="col-md-4">
+			<label>Brand :</label>
+			<input type="text" id="brand" value="{{ $product->brand }}" class="form-control">
+		</div>
+	</div>
 
-			<div>
-			<label>Categories :</label>
-			 <div class="dropdown">
-			  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
-			    <li><a href="#">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			  </ul>
-			</div> 
-			</div>
-			
-			<div >
-				<label>Price :</label>
-				<input type="text" value="{{ $product->price }}" class="form-control inline" style="width: 200px">
-				<span class="inline">DZD</span>
-			</div>
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<label>Quantity :</label>
-						<input type="text" name="" value="{{ $product->quantity }}" class="form-control">
-					</div>
-					<div class="col-md-4">
-						<label>Quantity for sale :</label>
-						<input type="text" name="" value="{{ $product->quantitySale }}" class="form-control">
-					</div>
-					
+	<div>
+		<label>Categories :</label>
+		 <div class="dropdown">
+		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
+		  <span class="caret"></span></button>
+		  <ul class="dropdown-menu">
+		    <li><a href="#">1</a></li>
+		    <li><a href="#">2</a></li>
+		    <li><a href="#">3</a></li>
+		  </ul>
+		</div> 
+	</div>
+		
+		<div >
+			<label>Price :</label>
+			<input type="text" value="{{ $product->price }}" id="price" class="form-control inline" style="width: 200px">
+			<span class="inline">DZD</span>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<label>Quantity :</label>
+					<input type="text" name="" id="quantity" value="{{ $product->quantity }}" class="form-control">
+				</div>
+				<div class="col-md-4">
+					<label>Quantity for sale :</label>
+					<input type="text" name="" id="quantitySale" value="{{ $product->quantitySale }}" class="form-control">
 				</div>
 				
 			</div>
-	</div>
-	<div>
-		<label>Description :</label>
-		<input type="text" name="" value="{{ $product->descritpion }}" class="form-control">
-	</div>
+			
+		</div>
+</div>
+<div>
+	<label>Description :</label>
+	<input type="text" name="" id="desc" value="{{ $product->productDetails->desc }}" class="form-control">
+</div>
 </div>
 </div>
 <div style="overflow:auto;">
-  <div style="float:right;">
-    <button type="button" id="nextBtn" onclick="showTab(2)" >Next</button>
-  </div>
+<div style="float:right;">
+<button type="button" id="nextBtn" onclick="showTab(2)" >Next</button>
 </div>
-
-
 </div>
+</div>
+</form>
+
 <div id="tab2">
+	
 	<center><h3>Adding pictures</h3>
-		<label class="custom-file-upload btn btn-primary" >
-    <input type="file" accept="image/*" id="addPic" onchange="addPic(event)" >
-    + Uplaod new image <br>
-</label>
-<div class="container">
+		<div class="container">
+			<label class="custom-file-upload btn btn-primary" >
+			<input type="file" accept="image/*" id="addPic" name="images[]" onchange="addPicFun(event)" >
+			+ Uplaod new image <br>
+			</label>
+			<div class="container">
 
-	<div class="row" id="images">
-	
-	</div>
-	
-	
-<div style="overflow:auto;">
-  <div style="float:right;">
-    <button type="button" id="prevBtn" onclick="showTab(1)">Previous</button>
-    <button type="submit" id="nextBtn" >submit</button>
-  </div>
+			<div class="row" id="images">
+
+			</div>
+
+			</div>
+
+			<div style="overflow:auto;">
+				  <div style="float:right;">
+				    <button type="button" id="prevBtn" onclick="showTab(1)">Previous</button>
+				    <button type="submit" id="update" >submit</button>
+				  </div>
+			</div>
+		</div>
+
+	</center>	
+
 </div>
-	
-</div>
-</center>
-</div>
+
 
 <div style="text-align:center;margin-top:40px;">
-  <span class="step" onclick="showTab(1)"></span>
-  <span class="step" onclick="showTab(2)"></span>
+<span class="step" onclick="showTab(1)"></span>
+<span class="step" onclick="showTab(2)"></span>
 </div>
+<input type="hidden" id="imgs" name="imgs" value="{{ $imgs }}">
+<input type="hidden" id="productId" name="productid" value="{{ $product->id }}">
 
-
-	
-		
-	
-	
-
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/dropzone.js') }}"></script>
 <script>
 	var images = [];
 	var imgNbr = 0;
-
+	var NewImgsSrc = [];
+	var deletedOldImgs = [];
+	var pImg;
+	var imgs = [];
+	function addPicFun(event){
+		src = URL.createObjectURL(event.target.files[0]);
+		imgs[src] = $('#addPic').prop('files')[0];3
+		NewImgsSrc.push(src);
+		console.log(imgs);
+		document.getElementById("images").innerHTML += '<div class="col-md-4"><div class="btn rmImgBtn" id="'+imgNbr+'" onclick="rm(this)">X</div><br><img id="img'+imgNbr+'" height="395" width="295" src="'+src+'"/></div>';
+		images[imgNbr] = event.target.files[0];
+		imgNbr++;
+		if (imgNbr > 5) {
+			input = document.getElementById("addPic");
+			input.setAttribute('disabled', true);
+			input.parentNode.setAttribute('disabled', true); 	
+		}
+	}
 	function showTab(tab){
 		if(tab == 1){
 			document.getElementById("tab1").style.display = "block";
@@ -203,48 +225,95 @@
 			document.getElementsByClassName("step")[1].style.backgroundColor = "#2ecc71";
 			document.getElementsByClassName("step")[0].style.backgroundColor = "#bbbbbb";
 		}
-	
-	}
-	showTab(1);
-var srcArray = [];
-var idArray = [];
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    console.log("output "+event);
-  };
-  function addPic(event){
-   src = URL.createObjectURL(event.target.files[0]);
-   srcArray.push(src);
-   console.log("src " + src);
-   document.getElementById("images").innerHTML += '<div class="col-md-4"><div class="btn rmImgBtn" id="'+imgNbr+'" onclick="rm(this)">X</div><br><img height="395" width="295" src="'+src+'"/></div>';
-   images[imgNbr] = event.target.files[0];
-   imgNbr++;
-   console.log("imgNbr "+imgNbr);
-   if (imgNbr > 5) {
-   	input = document.getElementById("addPic");
-   	input.setAttribute('disabled', true);
-   	input.parentNode.setAttribute('disabled', true); 	
-   }
-  }
 
-  function rm(object){
-  	if (imgNbr > 5) {
-  		input = document.getElementById("addPic");
-  		input.removeAttribute('disabled');
-  		input.parentNode.removeAttribute('disabled');
-  	}
-  	index = object.getAttribute('id');
-  	for (var i = index+1; i <imgNbr ; i++) {
-  		nIndex = document.getElementsByClassName("rmImgBtn")[i-1].getAttribute('id');
-  		document.getElementsByClassName("rmImgBtn")[i-1].setAttribute("id",nIndex--);
-  		}
-  	images.splice(index, 1);
-  	object.parentNode.remove();
-  	imgNbr--;
-  	
-  }
- 
+	}
+	function rm(object){
+		if (imgNbr > 5) {
+			input = document.getElementById("addPic");
+			input.removeAttribute('disabled');
+			input.parentNode.removeAttribute('disabled');
+		}
+		index = object.getAttribute('id');
+		deletedOldImgs.push(document.getElementById("img"+object.id).src);
+		for (var i = index+1; i <imgNbr ; i++) {
+			nIndex = document.getElementsByClassName("rmImgBtn")[i-1].getAttribute('id');
+			document.getElementsByClassName("rmImgBtn")[i-1].setAttribute("id",nIndex--);
+			}
+		images.splice(index, 1);
+		object.parentNode.remove();
+		imgNbr--;
+		
+	}
+	function loadFile(event) {
+	var output = document.getElementById('output');
+	deletedOldImgs.push(document.getElementById('output').src);
+	pImg = $('#pimg').prop('files')[0];
+
+	console.log(deletedOldImgs);
+	output.src = URL.createObjectURL(event.target.files[0]);
+	};
+$(document).ready(function(){
+
+	var oldImgsPath = document.getElementById("imgs").value.split(' ');
+	imgNbr = oldImgsPath.length;
+	// o in for hide the principale pic in the tab2
+	for (var i = oldImgsPath.length - 1; i > 0; i--) {
+		document.getElementById("images").innerHTML += '<div class="col-md-4"><div class="btn rmImgBtn" id="'+i+'" onclick="rm(this)">X</div><br><img id="img'+i+'"height="395" width="295" src="'+oldImgsPath[i]+'"/></div>';
+	}
+
+	showTab(1);
+
+	// $.ajaxSetup({
+	//     headers: {
+	//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+ //    }});
+    $("#update").click( function(){
+				var id = document.getElementById("productId").value;
+			    var name = document.getElementById("name").value;
+		        var brand  = document.getElementById("brand").value;
+		        var price = document.getElementById("price").value;
+		        var quantity = document.getElementById("quantity").value;
+		        var description = document.getElementById("desc").value;
+		        var quantitySale = document.getElementById("quantitySale").value;
+		        var categoryId = 1;
+
+		        var data = new FormData();
+		        data.append("id",id);
+		        data.append("name",name);
+		        data.append("brand",brand);
+		        data.append("price",price);
+		        data.append("quantity",quantity);
+		        data.append("quantitySale",quantitySale);
+		        data.append("desc",description);
+		        data.append("categoryId",categoryId);
+		        data.append("imgNum",imgNbr);
+		        data.append("deletedImgs",deletedOldImgs);
+		        data.append("pimg",pImg);
+		        var index = [];
+		        for (var i =  0; i < NewImgsSrc.length; i++) {
+
+		        	if(!deletedOldImgs.includes(NewImgsSrc[i])){
+		        		index.push(name+i);
+		        		data.append(name+i,imgs[NewImgsSrc[i]]);
+		        		console.log("added : "+NewImgsSrc[i]+" "+imgs[NewImgsSrc[i]]);
+		        	}
+		        	
+		        }
+		        data.append("newImgIndex",index);
+		        console.log("deletedOldImgs : "+deletedOldImgs);
+                $.ajax({
+                type : "POST",
+                url : "/admin/products/update",
+                data : data,
+            	cache: false,             // To unable request pages to be cached
+                processData: false,
+    			contentType: false,
+                success : function(data){
+                    console.log(data); }});
+        
+	});
+});
+
 </script>
 
 </body>

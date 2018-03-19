@@ -40,5 +40,6 @@ Route::post('/admin/products/add','ProductController@add');
 Route::get('/admin/products','ProductController@index');
 Route::post('/admin/products','ProductController@delete');
 
-Route::get('/admin/products/{id?}','ProductController@show');
+Route::get('/admin/products/{id?}/edit','ProductController@show');
+Route::post('/admin/products/update','ProductController@update');
 
