@@ -5,7 +5,7 @@ use App\Product;
 use App\ProductDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Http\Response;
 class ProductController extends Controller {
 
 	public $imgs = 'imgs';
@@ -26,11 +26,11 @@ class ProductController extends Controller {
 		}
 	}
 	public function delete(Request $req){
-		$ids = array_map('intval', explode(',', $req->ids));
+		$ids = explode(',', $req->ids);
 		foreach ($ids as $id) {
 			$product = Product::destroy($id);
 		}
-		return Response::json($ids);
+		return response()->json($ids);
 	}
 	public function show($id){
 
@@ -128,7 +128,7 @@ class ProductController extends Controller {
 				$id++;
 			}	
 		}	
-		return redirect('/admin.products'); //later to redirect to product page instead
+		return redirect('/admin/products'); //later to redirect to product page instead
 
 
 	}

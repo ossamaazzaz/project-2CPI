@@ -24,7 +24,6 @@
 	<script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/dropzone.min.js')); ?>"></script>
 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-
 	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
 
 </body>

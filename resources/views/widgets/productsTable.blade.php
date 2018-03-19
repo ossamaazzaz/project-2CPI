@@ -1,7 +1,7 @@
 <form id="products" action="">
     <button class="btn btn-primary" id="addnew" onclick=window.location='{{ url("admin/products/add") }}'>add new</button>
     <select id="selectList">
-        <option id="delete" value="delete">delete</option>
+        <option id="delete" value="delete" selected="selected">delete</option>
          <option id="compare" value="compare">compare</option>
     </select>
     <input type="button" value="execute" id="execute">
@@ -28,8 +28,8 @@
                     </td>
                     <td class="showTools"> {{ $product->id }}
                         <div class="tools">
-                            <button class="fa fa-edit" value="{{ $product->id }}" onclick="edit(this)"></button>
-                            <button class="fa fa-times" value="{{ $product->id }}" onclick="deleteOneProduct(this)"></button>
+                            <button type="button" class="fa fa-edit" value="{{ $product->id }}" onclick="edit(this)"></button>
+                            <button type="button" class="fa fa-times" value="{{ $product->id }}" onclick="deleteOneProduct(this)"></button>
                         </div>
                     </td>
                    
