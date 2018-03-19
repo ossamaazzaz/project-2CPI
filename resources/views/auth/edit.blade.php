@@ -26,7 +26,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-                    <form method="POST" action="{{ action('HomeController@update') }}">
+                    <form method="POST" action="{{ action('HomeController@update') }} " enctype="multipart/form-data">
                         @csrf
                         <!-- Make sure to make this more dynamic, refactor it later -->
                         <div class="form-group row">
@@ -119,8 +119,19 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right"> Avatar </label>
 
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}">
 
+                                @if ($errors->has('avatar'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('avatar') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
 
 
