@@ -57,6 +57,7 @@ class RegisterController extends Controller
              'idCard' => 'required|string|max:30|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'avatar' => 'required|image|mimes:jpeg,bmp,png',
         ]);
     }
 
@@ -68,11 +69,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $dirname = 'images/' . 'users';
+        \Storage::makeDirectory($dirname);
+        // for displaying purposes
+        
+        \Storage::putFileAs(
+                'public/' . $dirname, $data['avatar'], $data['username'] .'.'. $data['avatar']->getClientOriginalExtension()
+            );
+
+        $avt = '/storage/' . $dirname . '/' . $data['username'] .'.'. $data['avatar']->getClientOriginalExtension();
+        //dd($avt);
+        
         return User::create([
             'username' => $data['username'],
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'phoneNum' => $data['phoneNum'],
+            'avatar' => $avt,
             'email' => $data['email'],
             'adr' => $data['adr'],
             'idCard' => $data['idCard'],

@@ -6,7 +6,7 @@
                 <div class="card-header"><?php echo e(__('Register')); ?></div>
 
                 <div class="card-body">
-                    <form method="POST" action="<?php echo e(route('register')); ?>">
+                    <form method="POST" action="<?php echo e(route('register')); ?>" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                         <!-- Make sure to make this more dynamic, refactor it later -->
                         <div class="form-group row">
@@ -130,6 +130,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-right"> Avatar </label>
+
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" class="form-control<?php echo e($errors->has('avatar') ? ' is-invalid' : ''); ?>" name="avatar" value="<?php echo e(old('avatar')); ?>" required>
+
+                                <?php if($errors->has('avatar')): ?>
+                                    <span class="invalid-feedback">
+                                        <strong><?php echo e($errors->first('avatar')); ?></strong>
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -138,6 +152,8 @@
                                 </button>
                             </div>
                         </div>
+
+                        
                     </form>
                 </div>
             </div>

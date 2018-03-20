@@ -31,14 +31,17 @@ dashboard prinicpale view
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/home/edit" >Edit</a>
+
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
                                     </form>
                                 </div>
                             </li>
@@ -66,10 +69,22 @@ dashboard prinicpale view
                         </li>
 
                         <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('users') }}"><i class="fa fa-table fa-fw"></i> Users
+                            <a href="{{ url ('admin/users') }}"><i class="fa fa-table fa-fw"></i> Users
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
+                        <li {{ (Request::is('products') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/products') }}"><i class="fa fa-table fa-fw"></i> Products
+                            </a>
+                                    <!-- /.nav-second-level -->
+                        </li>
+
+                        <li {{ (Request::is('categories') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('categories') }}"><i class="fa fa-folder fa-fw"></i> Categories
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -79,13 +94,13 @@ dashboard prinicpale view
 
         <!-- the content of the page -->
         <div id="page-wrapper">
-			 <div class="row">
+			       <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">@yield('page_heading')</h1>
                 </div>
                 <!-- /.col-lg-12 -->
-           </div>
-			<div class="row">  
+             </div>
+			<div class="row">
 				@yield('section')
 
             </div>
@@ -93,4 +108,3 @@ dashboard prinicpale view
         </div>
     </div>
 @stop
-
