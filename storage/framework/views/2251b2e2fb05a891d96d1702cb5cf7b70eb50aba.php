@@ -4,18 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>E-COM</title>
 
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
-
-
-    <style type="text/css">
-       
-        .form-input{margin-top: 25px;padding-left: 40px;height: 40px; font-size: 15px }
-        .input-place{position: absolute;top:35px;left: 20px;font-size:23px;color:gray;}
-    </style>
 
 </head>
 <body>
@@ -77,6 +70,6 @@
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
 </body>
 </html>

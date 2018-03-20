@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Product;
+use App\Category;
 use App\ProductDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -144,8 +145,9 @@ class ProductController extends Controller {
 	* @return  view page [<description>]
 	*/
 	public function add(Request $req) {
+		$categories = Category::get();
 		if ($req->isMethod('get')) {
-			return view('admin.productAdd');
+			return view('admin.productAdd',compact("categories"));
 		}
 		/*
 		* In front-end, use JS to check if
@@ -169,8 +171,7 @@ class ProductController extends Controller {
         		//verify image rule
         		$rules['images.' . $i] = 'required|image|mimes:jpeg,bmp,png';
         	}
-        	dd($req->file("images"));
-        $validator = \Validator::make($request->all(), [
+        $validator = \Validator::make($req->all(), [
            		'name' => 'required|string',
 	            'brand' => 'required|string',
 	            'price' => 'required|numeric',
@@ -219,6 +220,6 @@ class ProductController extends Controller {
 			}
 		}
 		$productDetails->save();
-		return view('admin.productAdd'); //later to redirect to product page instead
+		return view('/categories/main',compact('categories'));  //later to redirect to product page instead
 	}
 }

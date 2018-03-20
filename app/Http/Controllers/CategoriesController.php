@@ -89,21 +89,21 @@ class CategoriesController extends Controller{
 
 /********* Remove a category ***********/
 
-  // public function destroy($id /* + an op arg */ )
-  // {
-  //   $Category = Category::find($id);
-  //   //First Delete/Uncategorize the products
+  public function destroy($id /* + an op arg */ )
+  {
+    $Category = Category::find($id);
+    //First Delete/Uncategorize the products
 
-  //   if (1==1) 
-  //   { // Delete all the products of this Category       
-  //     Product::whereCategoryId($id)->delete();
-  //   } 
-  //   else 
-  //   {    // Move them to 'UNCATEGORIZED'              
-  //     Product::whereCategoryId($id)->update(['categoryId' => null]);
-  //   }
-  //   //Then Delete the category
-  //   $Category->delete();
-  //   return redirect('/categories');
-  // } 
+    if (1==1) 
+    { // Delete all the products of this Category       
+      Product::where('categoryId',$id)->delete();
+    } 
+    else 
+    {    // Move them to 'UNCATEGORIZED'              
+      Product::where($id)->update(['categoryId' => null]);
+    }
+    //Then Delete the category
+    $Category->delete();
+    return redirect('/categories');
+  } 
 }

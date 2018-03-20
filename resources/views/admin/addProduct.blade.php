@@ -3,7 +3,6 @@
 <head>
 <title>Edit Product</title>
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
 <style type="text/css">
 body{
 	font-size: 17px;
@@ -191,7 +190,6 @@ Upload a pic
 <input type="hidden" id="productId" name="productid" value="{{ $product->id }}">
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/dropzone.js') }}"></script>
 <script>
 	var images = [];
 	var imgNbr = 0;

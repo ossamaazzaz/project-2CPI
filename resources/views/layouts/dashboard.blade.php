@@ -31,14 +31,17 @@ dashboard prinicpale view
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/home/edit" >Edit</a>
+
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
                                     </form>
                                 </div>
                             </li>
@@ -76,7 +79,7 @@ dashboard prinicpale view
                                     <!-- /.nav-second-level -->
                         </li>
 
-                        <li {{ (Request::is('/categories') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('categories') ? 'class="active"' : '') }}>
                             <a href="{{ url ('categories') }}"><i class="fa fa-folder fa-fw"></i> Categories
                             </a>
                                     <!-- /.nav-theird-level -->

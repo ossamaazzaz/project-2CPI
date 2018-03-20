@@ -86,17 +86,16 @@
               	</div>
 
               	<div class="form-group row">
-                            <label for="categoryId" class="col-md-4 col-form-label text-md-right">category Id </label>
+                            <label for="categoryId" class="col-md-4 col-form-label text-md-right">Category </label>
 
                             <div class="col-md-6">
                             	<!-- to be changed by category dudes-->
-                                	<select name="categoryId">
-					  <option value="1" selected="selected">Category 1 </option>
-					  <option value="2">Category 2 </option>
-					  <option value="3">Category 3 </option>
-					  <option value="4">Category 4 </option>
-					  <option value="5">Category 5 </option>
-					</select>
+                <select name="categoryId">
+                    <option value="" selected="selected">Chose category </option>
+                    @foreach ($categories as $cat)
+					  <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
+                    @endforeach
+				</select>
 
                                 @if ($errors->has('categoryId'))
                                     <span class="invalid-feedback">

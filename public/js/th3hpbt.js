@@ -21,6 +21,9 @@ function selected(element) {
 function edit(element){
         window.location.href= "products/"+element.value+"/edit";
 }
+function goadd(){
+        window.location.href= "products/add";
+}
 // delete one product
 function deleteOneProduct(element){
         
@@ -80,7 +83,10 @@ $(document).ready(function (){
                             var productRow = document.getElementById(selectedProducts[i]);
                             productRow.remove();
                         }
-                        console.log(data); 
+                        document.getElementById("checkboxAll").checked = false;
+                        window.location.href= "products/";
+                        console.log(data);
+
                         }});
             }            
     });

@@ -1,5 +1,5 @@
+<button class="btn btn-primary" id="addnew" onclick="goadd()">add new</button>
 <form id="products" action="">
-    <button class="btn btn-primary" id="addnew" onclick=window.location='{{ url("admin/products/add") }}'>add new</button>
     <select id="selectList">
         <option id="delete" value="delete" selected="selected">delete</option>
          <option id="compare" value="compare">compare</option>

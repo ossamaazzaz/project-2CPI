@@ -25,16 +25,16 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
         /*create fake data*/
-        for ($i=0; $i < 200; $i++) { 
-            Product::create([
-            'name' => 'product_name_'.$i,
-            'brand' => 'brand_'.$i,
-            'price' => rand(10,1000),
-            'categoryId' => rand(0,10),
-            'quantity'=> rand(0,100),
-            'quantitySale' => rand(0,100),
-            ]); 
-        }
+        // for ($i=0; $i < 200; $i++) { 
+        //     Product::create([
+        //     'name' => 'product_name_'.$i,
+        //     'brand' => 'brand_'.$i,
+        //     'price' => rand(10,1000),
+        //     'categoryId' => rand(0,10),
+        //     'quantity'=> rand(0,100),
+        //     'quantitySale' => rand(0,100),
+        //     ]); 
+        // }
         
     }
 

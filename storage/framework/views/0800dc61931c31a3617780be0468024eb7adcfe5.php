@@ -31,15 +31,18 @@ dashboard prinicpale view
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="/home/edit" >Edit</a>
+
+                                    <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         <?php echo e(__('Logout')); ?>
 
                                     </a>
 
                                     <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                                        <?php echo csrf_field(); ?>
                                     </form>
                                 </div>
                             </li>
@@ -73,10 +76,16 @@ dashboard prinicpale view
                         </li>
                         <li <?php echo e((Request::is('products') ? 'class="active"' : '')); ?>>
                             <a href="<?php echo e(url ('admin/products')); ?>"><i class="fa fa-table fa-fw"></i> Products
-
                             </a>
                                     <!-- /.nav-second-level -->
                         </li>
+
+                        <li <?php echo e((Request::is('categories') ? 'class="active"' : '')); ?>>
+                            <a href="<?php echo e(url ('categories')); ?>"><i class="fa fa-folder fa-fw"></i> Categories
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -86,13 +95,13 @@ dashboard prinicpale view
 
         <!-- the content of the page -->
         <div id="page-wrapper">
-			 <div class="row">
+			       <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header"><?php echo $__env->yieldContent('page_heading'); ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
-           </div>
-			<div class="row">  
+             </div>
+			<div class="row">
 				<?php echo $__env->yieldContent('section'); ?>
 
             </div>
@@ -100,6 +109,5 @@ dashboard prinicpale view
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-
 
 <?php echo $__env->make('layouts.plane', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

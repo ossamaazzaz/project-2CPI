@@ -1,5 +1,4 @@
 <form id="users" action="#">
-	@csrf
 	<table id="DataTable" class="table {{ $class }}">
 		<thead>
 			<tr>

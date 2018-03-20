@@ -1,5 +1,4 @@
 <form id="users" action="#">
-	<?php echo csrf_field(); ?>
 	<table id="DataTable" class="table <?php echo e($class); ?>">
 		<thead>
 			<tr>
