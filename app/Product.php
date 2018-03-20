@@ -13,7 +13,9 @@ class Product extends Model
     public function productDetails(){
     	return $this->hasOne('App\ProductDetails');
     }
-
+    public function category(){
+        return $this->belongsTo('App\Category','categoryId');
+    }
     protected $fillable = [
         'name', 'brand','price','categoryId','quantity','quantitySale',
     ];

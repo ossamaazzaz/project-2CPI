@@ -9,7 +9,10 @@ use  \App\Product;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller{
-  public function index()  { return view('/categories/main');  }
+  public function index()  { 
+      $categories=DB::table('categories')->latest()->get();
+      return view('/categories/main',compact('categories'));  }
+
   public function AddView(){ return view('/categories/add') ;  }
   public function Add(Request $req)
   {
@@ -29,7 +32,6 @@ class CategoriesController extends Controller{
     //$cat->parent_id    = $req->all()['parentId'];
     //store image path
     $img = $req->file("picture");
-    dd($img);
     Storage::putFileAs 
     (
       'public/images',
@@ -42,11 +44,6 @@ class CategoriesController extends Controller{
     return redirect('/categories');
   }
   
-  public function GetCategories()
-  {
-     $categories=DB::table('categories')->latest()->get();
-      return view('/categories/main',compact('categories'));
-  }
 
   /*public function GetParent()
   {
@@ -92,21 +89,21 @@ class CategoriesController extends Controller{
 
 /********* Remove a category ***********/
 
-  public function destroy($id /* + an op arg */ )
-  {
-    $Category = Category::find($id);
-    //First Delete/Uncategorize the products
+  // public function destroy($id /* + an op arg */ )
+  // {
+  //   $Category = Category::find($id);
+  //   //First Delete/Uncategorize the products
 
-    if (1==1) 
-    { // Delete all the products of this Category       
-      Product::whereCategoryId($id)->delete();
-    } 
-    else 
-    {    // Move them to 'UNCATEGORIZED'              
-      Product::whereCategoryId($id)->update(['category_id' => null]);
-    }
-    //Then Delete the category
-    $Category->delete();
-    return redirect('/categories');
-  } 
+  //   if (1==1) 
+  //   { // Delete all the products of this Category       
+  //     Product::whereCategoryId($id)->delete();
+  //   } 
+  //   else 
+  //   {    // Move them to 'UNCATEGORIZED'              
+  //     Product::whereCategoryId($id)->update(['categoryId' => null]);
+  //   }
+  //   //Then Delete the category
+  //   $Category->delete();
+  //   return redirect('/categories');
+  // } 
 }

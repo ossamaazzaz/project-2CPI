@@ -48,8 +48,6 @@ Route::get('/categories','CategoriesController@index');
 Route::get('/categories/add' ,'CategoriesController@AddView' );		  //Add button
 Route::post('/categories/add','CategoriesController@Add');			  //Submit the Add	  	
 
-Route::get('/categories','CategoriesController@GetCategories');
-//Route::get('/categories/add','CategoriesController@GetParent');
 
 Route::get('/categories/delete/{id}','CategoriesController@destroy'); //Delete
 
