@@ -26,7 +26,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-                    <form method="POST" action="{{ action('HomeController@update') }} " enctype="multipart/form-data">
+                    <form method="POST" action="{{ action('ConfirmationMessageController@check') }} " enctype="multipart/form-data">
                         @csrf
                         <!-- Make sure to make this more dynamic, refactor it later -->
                         <div class="form-group row">

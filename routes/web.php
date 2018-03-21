@@ -52,3 +52,10 @@ Route::get('/categories/delete/{id}','CategoriesController@destroy'); //Delete
 Route::get('/categories/edit/{id}' ,'CategoriesController@EditView' ); //Edit button
 Route::post('/categories/edit/{id}','CategoriesController@Edit');	 //Submit Edition
 
+
+
+// Sms confirmation
+Route::get('/confirm','ConfirmationMessageController@index');
+Route::post('/check','ConfirmationMessageController@check');
+Route::get('/confirmed','ConfirmationMessageController@confimed');
+
