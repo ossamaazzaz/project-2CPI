@@ -15,6 +15,7 @@
 
                             <div class="col-md-6">
                                 <input id="code" type="text" name="code" value="" required autofocus>
+                                <!-- to resend the code -->
                                 <button id="resend" onclick="resendcode(this)" class="btn btn-success">{{ __('Resend') }}</button>
                             </div>
                         </div>
@@ -27,7 +28,7 @@
                                 <input type="button" id="confirm" class="btn btn-primary" value="{{ __('Confirm') }}">
                             </div>
                         </div>
-
+                        <!-- model of confirmed by ossama azzaz-->
                        <div id="cmodale" class="cmodale canimated jackInTheBox">
                             <img class="confirmed" src="{{ asset('images/pic.png')}}">
                             <h1>confirmed</h1>

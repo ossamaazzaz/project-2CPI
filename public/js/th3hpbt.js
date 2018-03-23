@@ -112,6 +112,7 @@ $(document).ready(function (){
                 } 
             }        
     });
+    // sms confirmation  to send the code to the controller 
     $("#confirm").click(function(){
         code = document.getElementById("code").value;
         data = new FormData();
@@ -126,13 +127,15 @@ $(document).ready(function (){
                     contentType: false,
                     success : function(data){
                         if (data=="confirmed") {
-                            console.log("fuck")
+                            // show up the model
                             modal = document.getElementById('cmodale');
                             modal.style.display = 'block' ;
                             document.body.style.backgroundColor = "#666";
+                            //delay for 3s and redirect to home page
                             setTimeout(function(){ window.location.href= "/home"; }, 3000);
                             
                         } else if (data=="notconfirmed") {
+                            // show up wrong code
                             document.getElementById("wrongcode").hidden = false;
                         }
                 }});
