@@ -44,6 +44,9 @@ function deleteOneProduct(element){
                 }
                 console.log(data); }});
 }
+function resendcode(element){
+     window.location.href= "/confirmation";
+}
 $(document).ready(function (){
     var table = $("#DataTable").DataTable();
 // $.ajaxSetup({
@@ -108,5 +111,30 @@ $(document).ready(function (){
                 document.getElementById(id).childNodes[1].childNodes[1].checked = false;
                 } 
             }        
+    });
+    $("#confirm").click(function(){
+        code = document.getElementById("code").value;
+        data = new FormData();
+        data.append('code',code);
+        console.log(data,code);
+        $.ajax({
+                    type : "POST",
+                    url : "/confirmation",
+                    data : data,
+                    cache: false,             // To unable request pages to be cached
+                    processData: false,
+                    contentType: false,
+                    success : function(data){
+                        if (data=="confirmed") {
+                            console.log("fuck")
+                            modal = document.getElementById('cmodale');
+                            modal.style.display = 'block' ;
+                            document.body.style.backgroundColor = "#666";
+                            setTimeout(function(){ window.location.href= "/home"; }, 3000);
+                            
+                        } else if (data=="notconfirmed") {
+                            document.getElementById("wrongcode").hidden = false;
+                        }
+                }});
     });
 });

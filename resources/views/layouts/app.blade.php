@@ -7,9 +7,9 @@
     <title>E-COM</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/confirm.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatabes.min.css') }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -67,7 +67,9 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables-init.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/th3hpbt.js') }}"></script>
 </body>
 </html>

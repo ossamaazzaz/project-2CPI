@@ -16,9 +16,14 @@ class ConfirmationMessageController extends Controller
     public function index(){
     		$user = \Auth::user();
     		// send the code to current user
-    		ConfirmationMessage::where('user_id',$user->id)->delete();
-    		ConfirmationMessage::sendCode($user);
-    		return view('auth.confirm');
+    		if ($user->smscon == 0) {
+    			ConfirmationMessage::where('user_id',$user->id)->delete();
+    			ConfirmationMessage::sendCode($user);
+    			return view('auth.confirm');
+    		} else {
+    			return redirect('home');
+    		}
+    		
     }
 
     public function check(Request $req){
@@ -26,11 +31,13 @@ class ConfirmationMessageController extends Controller
     	// check the code 
     	if ($req->code == $user->confirmationmessage->code) {
     		$user->confirmationmessage->state = 1;
-    		return redirect()->route('home');
+    		$user->smscon = 1;
+    		$user->confirmationmessage->save();
+    		$user->save();
+    		return response()->json('confirmed');
     		//show him confirmed float message and redirect him to home page
     	} else {
-    		//error message
+    		return response()->json('notconfirmed');
     	}
-
     }
 }

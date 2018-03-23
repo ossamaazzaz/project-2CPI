@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('idCard')->unique(); // idCard should be unique
             $table->smallInteger('groupId')->default(1);
             $table->string('approveState')->default('pending');
+            $table->integer('smscon')->default(0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

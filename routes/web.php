@@ -55,7 +55,5 @@ Route::post('/categories/edit/{id}','CategoriesController@Edit');	 //Submit Edit
 
 
 // Sms confirmation
-Route::get('/confirm','ConfirmationMessageController@index');
-Route::post('/check','ConfirmationMessageController@check');
-Route::get('/confirmed','ConfirmationMessageController@confimed');
-
+Route::get('/confirmation','ConfirmationMessageController@index');
+Route::post('/confirmation','ConfirmationMessageController@check');

@@ -39,7 +39,7 @@ class ConfirmationMessage extends Model
 		        // A Twilio phone number you purchased at twilio.com/console
 		        'from' => '+18134134239',
 		        // the body of the text message you'd like to send
-		        'body' => 'Your code '.$code
+		        'body' => 'Your confirmtion code '.$code
 		    )
 		);
 	}
