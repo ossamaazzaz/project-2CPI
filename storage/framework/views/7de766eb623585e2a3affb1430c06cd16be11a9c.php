@@ -14,7 +14,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/datatabes.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 	<link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
-	<link rel="stylesheet" href="<?php echo e(asset('css/dropzone.css')); ?>"> 
 </head>
 <body>
 
@@ -23,6 +22,7 @@
 	<script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('js/app.js')); ?>"></script>
 	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
 
 </body>
