@@ -64,7 +64,8 @@ class CategoriesController extends Controller{
     $validator=  \Validator::make($req->all(), [
     'name' => 'required|string|max:100|alpha',
     'description' => 'required',
-    'picture'=>'required|image|mimes:jpeg,bmp,png',
+    // deleting required @th3hpbt
+    'picture'=>'image|mimes:jpeg,bmp,png',
     //'parentId' => 'required|integer',
     ]);
 
@@ -75,14 +76,17 @@ class CategoriesController extends Controller{
     $cat->name        = $req->all()['name'];
     $cat->description = $req->all()['description']; 
     $img = $req->file("picture");
-    Storage::putFileAs
-    (
-      'public/images',
-      $img,
-      "cat_".$cat->name.".".$img->getClientOriginalExtension()
-    );
-    $cat->picture = "storage/images/" ."cat_".$cat->name.".".$img->getClientOriginalExtension();
-    $cat->save(); 
+    
+    if ($img != null) {
+            Storage::putFileAs
+            (
+              'public/images',
+              $img,
+              "cat_".$cat->name.".".$img->getClientOriginalExtension()
+            );
+            $cat->picture = "storage/images/" ."cat_".$cat->name.".".$img->getClientOriginalExtension();
+    }
+    $cat->save();
 
     return redirect('categories');
   }
