@@ -21,9 +21,9 @@
 	<?php echo $__env->yieldContent('body'); ?>
 	
 	<script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('js/app.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
 	<script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
-
 </body>
 </html>

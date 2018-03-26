@@ -1,5 +1,5 @@
 <form id="users" action="#">
-	<table id="DataTable" class="table {{ $class }}">
+	<table id="usersDataTable" class="table {{ $class }}">
 		<thead>
 			<tr>
 				<th>User Name</th>

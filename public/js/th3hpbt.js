@@ -30,7 +30,7 @@ function deleteOneProduct(element){
         selectedProducts.push(element.value);
         var data = new FormData();
         data.append("ids",selectedProducts);
-        $.ajax({
+        jQuery.ajax({
             type : "POST",
             url : "/admin/products",
             data : data,
@@ -44,18 +44,19 @@ function deleteOneProduct(element){
                 }
                 console.log(data); }});
 }
-$(document).ready(function (){
-    var table = $("#DataTable").DataTable();
-// $.ajaxSetup({
+jQuery(document).ready(function (){
+    jQuery.noConflict();
+    var table = jQuery("#productsDataTable").DataTable();
+// jQuery.ajaxSetup({
 //     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
 //     }
 // });
 //useless one 
     // this approve the users 
-    $('#sub').click(function(){
+    jQuery('#sub').click(function(){
         var dataString = "ids="+approvedUsers;
-        $.ajax({
+        jQuery.ajax({
             type : "POST",
             url : "/admin/users",
             data : dataString,
@@ -65,12 +66,12 @@ $(document).ready(function (){
     });
 
     // this about products its execute a command in the lits like delete so its delete the selected items
-    $("#execute").click( function(){
+    jQuery("#execute").click( function(){
             var data = new FormData();
             data.append("ids",selectedProducts);
             var list = document.getElementById("selectList");
             if (list.options[list.selectedIndex].text=="delete") {
-                 $.ajax({
+                 jQuery.ajax({
                     type : "POST",
                     url : "/admin/products",
                     data : data,
@@ -90,7 +91,7 @@ $(document).ready(function (){
                         }});
             }            
     });
-    $("#checkboxAll").click(function(){
+    jQuery("#checkboxAll").click(function(){
         
            var page = table.page();
            var lenpage = table.page.len();

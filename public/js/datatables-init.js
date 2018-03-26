@@ -39,6 +39,7 @@
 //             });
 //         });
 //     });
-$(document).ready( function () {
-    $('#DataTable').DataTable();
+jQuery(document).ready( function () {
+	jQuery.noConflict();
+    jQuery('#productsDataTable').DataTable();
 } );
