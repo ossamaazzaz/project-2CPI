@@ -5,7 +5,7 @@
          <option id="compare" value="compare">compare</option>
     </select>
     <input type="button" value="execute" id="execute">
-    <table id="DataTable" class="table {{ $class }}">
+    <table id="productsTable" class="table {{ $class }}">
         <thead>
             <tr>
                 <th><input id="checkboxAll" type="checkbox" value=""></th>

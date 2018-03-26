@@ -1,5 +1,5 @@
 <form id="users" action="#">
-	<table id="DataTable" class="table <?php echo e($class); ?>">
+	<table id="usersTable" class="table <?php echo e($class); ?>">
 		<thead>
 			<tr>
 				<th>User Name</th>

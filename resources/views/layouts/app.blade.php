@@ -7,10 +7,11 @@
     <title>E-COM</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/confirm.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/confirm.css') }}">
+
 
 </head>
 <body>

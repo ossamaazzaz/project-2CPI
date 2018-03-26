@@ -7,10 +7,11 @@
     <title>E-COM</title>
 
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/confirm.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/datatables.min.css')); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/bootstrap.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/confirm.css')); ?>">
+
 
 </head>
 <body>

@@ -40,5 +40,6 @@
 //         });
 //     });
 // $(document).ready( function () {
+//      $.noConflict();
 //     $('#DataTable').DataTable();
 // } );

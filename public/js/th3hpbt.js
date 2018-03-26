@@ -48,7 +48,8 @@ function resendcode(element){
      window.location.href= "/confirmation";
 }
 $(document).ready(function (){
-    // var table = $("#DataTable").DataTable();
+    $.noConflict();
+    var table = $("#productsTable").DataTable();
 // $.ajaxSetup({
 //     headers: {
 //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
