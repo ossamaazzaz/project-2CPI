@@ -11,7 +11,7 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 
 	<link rel="stylesheet" href="<?php echo e(asset("assets/stylesheets/styles.css")); ?>" />
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/datatabes.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/datatables.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 	<link href="<?php echo e(asset('css/style.css')); ?>" rel="stylesheet">
 </head>

@@ -39,6 +39,6 @@
 //             });
 //         });
 //     });
-$(document).ready( function () {
-    $('#DataTable').DataTable();
-} );
+// $(document).ready( function () {
+//     $('#DataTable').DataTable();
+// } );

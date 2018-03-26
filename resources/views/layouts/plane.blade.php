@@ -12,7 +12,7 @@
 {{-- 	<meta name="csrf-token" content="{{ csrf_token() }}">
  --}}
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/datatabes.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/datatables.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>

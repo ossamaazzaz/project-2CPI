@@ -48,7 +48,7 @@ function resendcode(element){
      window.location.href= "/confirmation";
 }
 $(document).ready(function (){
-    var table = $("#DataTable").DataTable();
+    // var table = $("#DataTable").DataTable();
 // $.ajaxSetup({
 //     headers: {
 //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -127,7 +127,7 @@ $(document).ready(function (){
                     contentType: false,
                     success : function(data){
                         if (data=="confirmed") {
-                            // show up the model
+                            // show uphttp://s4a.cat/ the model
                             modal = document.getElementById('cmodale');
                             modal.style.display = 'block' ;
                             document.body.style.backgroundColor = "#666";

@@ -23,6 +23,8 @@ class CreateProductDetailsTable extends Migration
             $table->timestamps();
         });
 
+
+
         }
     
 
