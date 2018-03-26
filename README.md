@@ -24,3 +24,12 @@
 - run `php artisan migrat`
 - run `php artisan migrate:refresh --seed`
 - run `php artisan serve`
+
+## Admin Access :
+- username : admin
+- email = admin@admin.com
+- password = secret
+
+change the pic after you loging and enjoy being The Admin :p
+
+ 
