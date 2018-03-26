@@ -33,9 +33,15 @@ class ProductController extends Controller {
 	public function show($id){
 
 		$product = Product::find($id);
-		$imgsPath = str_replace('storage', 'public', $product->productDetails->imgs );
-		$imgsara = \Storage::allFiles($imgsPath);
-		$imgs  = implode(" ",str_replace('public', '/storage', $imgsara ));
+		if ($product->productDetails->imgs != null) {
+
+			$imgsPath = str_replace('storage', 'public', $product->productDetails->imgs );
+			$imgsara = \Storage::allFiles($imgsPath);
+			$imgs  = implode(" ",str_replace('public', '/storage', $imgsara ));
+		}else {
+			$imgs  = '/storage';
+		}
+		
 		
 		return view('admin.addProduct',compact('product','imgs'));
 	
