@@ -1,5 +1,9 @@
 <?php
-
+/*
+created by oussama messabih 
+at 26/03/2018 4 am 
+factory of products
+*/
 use Faker\Generator as Faker;
 
 $factory->define(App\Product::class, function (Faker $faker) {
