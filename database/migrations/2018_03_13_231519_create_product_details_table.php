@@ -19,11 +19,12 @@ class CreateProductDetailsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('imgs')->nullable();
             $table->integer('rating')->default(0);
-            $table->text('desc')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
-
-        }
+        DB::statement('ALTER TABLE product_details ADD FULLTEXT search (description) ');
+        
+    }
     
 
     /**

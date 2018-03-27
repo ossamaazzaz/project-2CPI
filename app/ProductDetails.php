@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductDetails extends Model
 {
+    use FullTextSearch;
     /**
     * Get the product that owns this details.
     */
@@ -15,5 +16,9 @@ class ProductDetails extends Model
     }
         protected $fillable = [
         'product_id',
+    ];
+
+    protected $searchable = [
+        'description'
     ];
 }

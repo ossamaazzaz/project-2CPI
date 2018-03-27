@@ -69,6 +69,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables-init.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/th3hpbt.js')}}"></script>
 </body>
 </html>

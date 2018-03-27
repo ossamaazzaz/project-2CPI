@@ -33,9 +33,15 @@ class ProductController extends Controller {
 	public function show($id){
 
 		$product = Product::find($id);
-		$imgsPath = str_replace('storage', 'public', $product->productDetails->imgs );
-		$imgsara = \Storage::allFiles($imgsPath);
-		$imgs  = implode(" ",str_replace('public', '/storage', $imgsara ));
+		if ($product->productDetails->imgs != null) {
+
+			$imgsPath = str_replace('storage', 'public', $product->productDetails->imgs );
+			$imgsara = \Storage::allFiles($imgsPath);
+			$imgs  = implode(" ",str_replace('public', '/storage', $imgsara ));
+		}else {
+			$imgs  = '/storage';
+		}
+		
 		
 		return view('admin.addProduct',compact('product','imgs'));
 	
@@ -91,7 +97,7 @@ class ProductController extends Controller {
 		$product->quantity = $req->all()['quantity'];
 		$product->save();
 		// add its details
-		$product->productDetails->desc =  $req->all()['desc'];
+		$product->productDetails->description =  $req->all()['desc'];
 
 		$product->productDetails->save();
 
@@ -197,7 +203,7 @@ class ProductController extends Controller {
 		// add its details
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
-		$productDetails->desc =  $req->all()['desc'];
+		$productDetails->description =  $req->all()['desc'];
 		$dirname = 'images/' . 'products/' . $product->id . '/';
 		//create dir for product
 		\Storage::makeDirectory($dirname);
