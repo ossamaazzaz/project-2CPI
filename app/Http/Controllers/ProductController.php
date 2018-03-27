@@ -97,7 +97,7 @@ class ProductController extends Controller {
 		$product->quantity = $req->all()['quantity'];
 		$product->save();
 		// add its details
-		$product->productDetails->desc =  $req->all()['desc'];
+		$product->productDetails->description =  $req->all()['desc'];
 
 		$product->productDetails->save();
 
@@ -203,7 +203,7 @@ class ProductController extends Controller {
 		// add its details
 		$productDetails =  new ProductDetails();
 		$productDetails->product_id = $product->id;
-		$productDetails->desc =  $req->all()['desc'];
+		$productDetails->description =  $req->all()['desc'];
 		$dirname = 'images/' . 'products/' . $product->id . '/';
 		//create dir for product
 		\Storage::makeDirectory($dirname);

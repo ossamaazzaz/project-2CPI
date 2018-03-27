@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
+    
+    
+    use FullTextSearch;
 	/**
     * Get the details record associated with the Product.
     */
@@ -20,4 +22,11 @@ class Product extends Model
         'name', 'brand','price','categoryId','quantity','quantitySale',
     ];
 
+    /**
+    * The columns of the full text index
+    */
+    protected $searchable = [
+        'name',
+        'brand'
+    ];
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Product;
+use Illuminate\Support\Facades\DB;
+
 class CreateProductsTable extends Migration
 {
     /**
@@ -24,6 +26,8 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->timestamps();
         });
+         // Full Text Index
+        DB::statement('ALTER TABLE products ADD FULLTEXT search (name,brand)');
     }
 
     /**
