@@ -23,8 +23,17 @@ class CreateProductDetailsTable extends Migration
             $table->timestamps();
         });
 
+        for ($i=1; $i < 200 ; $i++) { 
+            App\ProductDetails::create([
+            'imgs' => 'imgs/' . $i,
+            'rating' => rand(1,5),
+            'desc' => 'description for product ' . $i,
+            'product_id' => $i,
+            ]); 
         }
-    
+
+        }
+
 
     /**
      * Reverse the migrations.
