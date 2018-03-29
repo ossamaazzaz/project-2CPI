@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
         });
          // Full Text Index
         DB::statement('ALTER TABLE products ADD FULLTEXT search (name,brand)');
+        
     }
 
     /**

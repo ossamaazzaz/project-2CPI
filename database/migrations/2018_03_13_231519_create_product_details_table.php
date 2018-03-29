@@ -23,7 +23,7 @@ class CreateProductDetailsTable extends Migration
             $table->timestamps();
         });
         DB::statement('ALTER TABLE product_details ADD FULLTEXT search (description) ');
-        
+       
     }
     
 
