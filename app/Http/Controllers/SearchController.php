@@ -10,7 +10,9 @@ class SearchController extends Controller
 {
 	public function search(Request $req){
 
-		$result = search::where( 'id', '=', '1' )->get();
+		$result = ProductDetails::search('kutc')->orWhereHas('Product',function($q){
+			$q->search('kutc');
+		})->get();
 		dd($result);
 	}   
 }
