@@ -12,9 +12,10 @@ class SearchController extends Controller
 	* search function by Oussama messabih
 	*/
 	public function search(Request $req){
-
-		$result = ProductDetails::search('kutc')->orWhereHas('Product',function($q){
-			$q->search('kutc');
+		//its return the products that their name and brand and description contain the keyword
+		$keyword = 'kutc';
+		$result = Product::search($keyword)->orWhereHas('ProductDetails',function($q){
+			$q->search($keyword);
 		})->get();
 		dd($result);
 	} 
@@ -22,8 +23,8 @@ class SearchController extends Controller
      * [filter the search query]
      * @param  Request $req [query]
      * filters: 
-     * term: product name || desc,
-     * sort[ASC 0, DESC 1] should be done on front end(?),
+     * term: product name || description,
+     * sort[ASC 0, description 1] should be done on front end(?),
      * sortBy[product -price-brand-category],
      * price [lowest-highest], 
      * brand [single],
@@ -39,7 +40,7 @@ class SearchController extends Controller
     		$results = DB::table('products')
     					->join('product_details', 'products.id', '=', 'product_details.product_id')
     					->select('products.id', 'products.name','products.price','products.categoryId',
-    					'products.brand','product_details.desc','product_details.rating')
+    					'products.brand','product_details.description','product_details.rating')
     					;
     		//dd($results);
     		//dd($req);
@@ -69,9 +70,9 @@ class SearchController extends Controller
     		}
 
     		// ^ w/ given term
-    		// SELECT * FROM `product_details` WHERE MATCH (`desc`) AGAINST ('lorem') 
+    		// SELECT * FROM `product_details` WHERE MATCH (`description`) AGAINST ('lorem') 
     		if ($req->has('term')) {
-    			$results = $results->where('desc', 'LIKE', "%". $req->all()['term'] . "%");
+    			$results = $results->where('description', 'LIKE', "%". $req->all()['term'] . "%");
     			
     		}
     		
@@ -79,7 +80,7 @@ class SearchController extends Controller
     		$orders = array('LENGTH(name)','price','categoryId','LENGTH(brand)');
 		$key = ($req->has('orderBy') &&  $req->all()['orderBy'] < count($orders) && $req->all()['orderBy'] >= 0 ) ?
 									$orders[$req->all()['orderBy']] : $orders[0];  
-    		$ordtype = ($req->has('sort') &&$req->all()['sort'] == 'desc') ? 'desc' : 'asc';
+    		$ordtype = ($req->has('sort') &&$req->all()['sort'] == 'description') ? 'description' : 'asc';
     		
     		//$results = $results->orderBy($key,$ordtype);  // sort it alphabeticly only
     		$results = $results->orderByRaw($key .' '. $ordtype); //sort it alphanumiricly
