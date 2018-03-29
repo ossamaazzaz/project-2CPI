@@ -15,7 +15,8 @@ class SearchController extends Controller
 		//its return the products that their name and brand and description contain the keyword
 		$keyword = 'kutc';
 		$result = Product::search($keyword)->orWhereHas('ProductDetails',function($q){
-			$q->search($keyword);
+			$keyword = 'kutc';
+            $q->search($keyword);
 		})->get();
 		dd($result);
 	} 
@@ -78,7 +79,7 @@ class SearchController extends Controller
     		
     		//sort ^ 
     		$orders = array('LENGTH(name)','price','categoryId','LENGTH(brand)');
-		$key = ($req->has('orderBy') &&  $req->all()['orderBy'] < count($orders) && $req->all()['orderBy'] >= 0 ) ?
+			$key = ($req->has('orderBy') &&  $req->all()['orderBy'] < count($orders) && $req->all()['orderBy'] >= 0 ) ?
 									$orders[$req->all()['orderBy']] : $orders[0];  
     		$ordtype = ($req->has('sort') &&$req->all()['sort'] == 'description') ? 'description' : 'asc';
     		
