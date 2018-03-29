@@ -54,3 +54,5 @@ Route::post('/categories/edit/{id}','CategoriesController@Edit');	 //Submit Edit
 
 //search
 Route::get('/home/search','SearchController@search');
+//filter route
+Route::get('/search','SearchController@filter');
