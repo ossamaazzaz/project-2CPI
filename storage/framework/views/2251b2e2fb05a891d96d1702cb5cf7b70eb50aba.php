@@ -24,13 +24,12 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-                    <input id="txtkey" type="text" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;">
+                    <input id="searchinput" type="text" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;">
                     <div class="dropdown">
                         <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
                         <span class="caret"></span>
-                        <label></label>
+                        <label id="chosed"></label>
                         </button>
-
                       <div class="dropdown-menu">
                         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option class="dropdown-item"><?php echo e($cat->name); ?></option>
