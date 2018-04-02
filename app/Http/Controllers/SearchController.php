@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\ProductDetails;
 use DB;
+use App\Category;
 class SearchController extends Controller
 {
 	/*
@@ -18,7 +19,8 @@ class SearchController extends Controller
 			$keyword = 'kutc';
             $q->search($keyword);
 		})->get();
-		dd($result);
+        $categories = Category::all();
+		return view('searchresult',compact('result','categories'));
 	} 
     /**
      * [filter the search query]

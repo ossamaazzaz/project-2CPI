@@ -3,7 +3,7 @@
 * {
   outline: none;
 }
-bo
+
 .main {
   background: #fff;
   font-family: 'Open Sans', sans-serif;
@@ -165,4 +165,8 @@ display: none;
 }
 .showTools:hover .tools{
 display : block;
+}
+
+.col-xs-4{
+  margin: 0px auto;
 }

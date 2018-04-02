@@ -9,14 +9,14 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-
-</head>
+{{--     <link rel="stylesheet" type="text/css" href="{{ asset('css/searchresult.css') }}>
+ --}}</head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'E-com') }}
                 </a>
             </div>
 
@@ -24,7 +24,23 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-
+                    <input id="searchinput" type="text" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;">
+                    <div class="dropdown">
+                        <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                        <span class="caret"></span>
+                        <label id="chosed"></label>
+                        </button>
+                      <div class="dropdown-menu">
+                        @foreach ($categories as $cat)
+                            <option class="dropdown-item">{{ $cat->name }}</option>
+                        @endforeach
+                      </div>
+                    </div> 
+                    <div class="input-group-btn" style="height: 40px;margin: 3px;">
+                          <button class="btn btn-default" type="submit" style="background-color: DodgerBlue;color: white;">
+                            <i  class="fa fa-search" aria-hidden="true"></i>
+                          </button>
+                        </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                     @if (Auth::guest())
@@ -64,7 +80,57 @@
     </nav>   
 
     @yield('content')
-
+        <footer>
+     <div class="container">
+       <div class="row">
+       
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <span class="logo">LOGO</span>
+                  <br><br>
+                  <p style="color: white;"><i>the description of our website ,<br>
+                    some words</i></p>                      
+                </div>
+                
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="menu">
+                         <span>usefull links</span>    
+                         <li>
+                            <a href="#">Home</a>
+                          </li>
+                               
+                          <li>
+                             <a href="#">About</a>
+                          </li>
+                               
+                          <li>
+                            <a href="#">Contact us</a>
+                          </li>
+                               
+                          <li>
+                             <a href="#">Terms and condiitons</a>
+                          </li>
+                     </ul>
+                </div>
+           
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="address">
+                        <span>Contact</span>       
+                        <li>
+                           <i class="fa fa-phone" aria-hidden="true"></i> <a href="#">Phone</a>
+                        </li>
+                        <li>
+                           <i class="fa fa-map-marker" aria-hidden="true"></i> <a href="#">Adress</a>
+                        </li> 
+                        <li>
+                           <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
+                        </li> 
+                   </ul>
+               </div>
+           
+           
+           </div> 
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
