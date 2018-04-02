@@ -24,23 +24,34 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-                    <input id="searchinput" type="text" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;">
-                    <div class="dropdown">
-                        <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
-                        <span class="caret"></span>
-                        <label id="chosed"></label>
-                        </button>
-                      <div class="dropdown-menu">
-                        @foreach ($categories as $cat)
-                            <option class="dropdown-item">{{ $cat->name }}</option>
-                        @endforeach
+                    <form class="navbar-nav mr-auto" method="GET" action="/home/search">
+                      <ul class="navbar-nav">
+                        @if(Request::url()=='/home/search') <li><input id="term" name="term" type="text" value="{{ $term }}" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li> @else <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li> @endif
+                        
+                        <li><div id="dropdownMenu" class="dropdown">
+                            <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                            <span class="caret"></span>
+                            @if(Request::url()=='/home/search') <label id="chosed"><input type="text" id="category" name="category" hidden="true" value="{{ $category->id }}"></label> @else <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label> @endif
+                              </button>
+                            <div class="dropdown-menu" id="selectedCategory">
+                              @foreach ($categories as $cat)
+                                  <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
+                              @endforeach
+                            </div>
+                            </div> 
+
+                        </li>
+                        <li>
+                          <div class="input-group-btn" style="height: 40px;margin: 3px;">
+                            <button class="btn btn-default" type="submit" style="background-color: DodgerBlue;color: white;">
+                              <i  class="fa fa-search" aria-hidden="true"></i>
+                            </button>
                       </div>
-                    </div> 
-                    <div class="input-group-btn" style="height: 40px;margin: 3px;">
-                          <button class="btn btn-default" type="submit" style="background-color: DodgerBlue;color: white;">
-                            <i  class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                        </div>
+                        </li>
+                      
+                    </div>
+                      </ul>
+                    </form>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                     @if (Auth::guest())

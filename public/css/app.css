@@ -120,7 +120,7 @@ footer
 }
 
 h4{
-    color: #FFF;
+    color: black;
     font-weight: 700;
 }
 
@@ -172,17 +172,38 @@ footer{
     font-size:20px;
 }
 
-.rating {
+.srating {
   unicode-bidi: bidi-override;
   direction: rtl;
 }
-.rating > span {
+.srating > span {
   display: inline-block;
   position: relative;
   width: 1.1em;
 }
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
+.srating > span:hover:before,
+.srating > span:hover ~ span:before {
    content: "\2605";
    position: absolute;
+   color: #ffbf00;
+}
+.rating .goldy {
+   display: inline-block;
+   position: relative;
+   width: 1.1em;
+   color: #ffbf00;
+}
+.rating .empty {
+	display: inline-block;
+  	position: relative;
+  	width: 1.1em;
+}
+
+.navbar-nav .search {
+    width: 100%;
+    text-align: center;
+ 	> ul {
+      float: none;
+      display: inline-block;
+    }
 }

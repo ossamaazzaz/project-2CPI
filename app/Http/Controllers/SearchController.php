@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use App\Product;
 use App\ProductDetails;
 use DB;
@@ -14,44 +17,46 @@ class SearchController extends Controller
 	*/
 	public function search(Request $req){
 		//its return the products that their name and brand and description contain the keyword
-		$keyword = 'kutc';
-		$result = Product::search($keyword)->orWhereHas('ProductDetails',function($q){
-			$keyword = 'kutc';
-            $q->search($keyword);
-		})->get();
         $categories = Category::all();
-		return view('searchresult',compact('result','categories'));
+		//return view('searchresult',compact('result','categories'));
+
+        if ($req->has('term')) {
+            $term = $req->all()['term'];
+            $result = Product::search($term)->orWhereHas('ProductDetails', function($q) use ($term){
+            $q->search($term);
+        })->get();
+        }
+        else {
+            $result = Product::all();
+            }
+        $category = Category::find($req->has('category'));
+        return view('searchresult',compact('categories','result','term' ,'category'));
+        //$result = $this->filter($req,$result);
 	} 
+
+
     /**
      * [filter the search query]
      * @param  Request $req [query]
      * filters: 
-     * term: product name || description,
-     * sort[ASC 0, description 1] should be done on front end(?),
-     * sortBy[product -price-brand-category],
+     * sort[ASC 0, DESC 1],
+     * sortBy[product-price-brand-category],
      * price [lowest-highest], 
      * brand [single],
      * category [single], 
-     * pagination
-     * www.website.dz/search?term=something+anything&sort=0&sortBy=2&pl=0&ph=3000&brand=brand1&cat=1&page=1
-     * @return [array]       [results]
+     * pagination[page number]
+     * www.website.dz/search?term=something+anything&sort=0&sortBy=2&pl=0&ph=3000&brand=brand1&category=1&p=1
+     * @return [LengthAwarePaginator]       [Paginator]
+     * Methods you can use:
+     * ->currentPage(), values(), firstItem(), lastPage(), url(page),
+     * nextPageUrl(), perPage(), previousPageUrl(), lastItem(),
+     * total().
      * by renken
      */
-    public static function filter(Request $req) {
-    		//validate input
-    		
-    		$results = DB::table('products')
-    					->join('product_details', 'products.id', '=', 'product_details.product_id')
-    					->select('products.id', 'products.name','products.price','products.categoryId',
-    					'products.brand','product_details.description','product_details.rating')
-    					;
-    		//dd($results);
-    		//dd($req);
-    		//products w/ given category
+    public function filter(Request $req,$results) {
     		
     		if ($req->has('category')) {
-    			$results = $results->where('categoryId',$req->all()['category']);
-    			
+    			$results = $results->where('categoryId',$req->all()['category']);    			
     		}
     		
     		// ^ w/ given brand
@@ -60,37 +65,29 @@ class SearchController extends Controller
     			
     		}
     		// ^ w/ given price 
-    		// $users = DB::table('users')
-      		//               ->whereBetween('votes', [1, 100])->get();
-    		// $pl = ($req->$req->has('pl')) ? $req->all()['pl'] : 0;
     		if ($req->has('pl')) {
     			$results = $results->where('price','>=', $req->all()['pl']);
     		}
-    		// $ph = ($req->$req->has('ph')) ? $req->all()['ph'] : -1;
+
     		if ($req->has('ph')) {
     			$results =  ($req->has('pl') && $req->all()['ph'] > $req->all()['pl'] ) ? $results->where('price','<=', $req->all()['ph']) : $results;
     			
     		}
 
-    		// ^ w/ given term
-    		// SELECT * FROM `product_details` WHERE MATCH (`description`) AGAINST ('lorem') 
-    		if ($req->has('term')) {
-    			$results = $results->where('description', 'LIKE', "%". $req->all()['term'] . "%");
-    			
-    		}
-    		
     		//sort ^ 
-    		$orders = array('LENGTH(name)','price','categoryId','LENGTH(brand)');
-			$key = ($req->has('orderBy') &&  $req->all()['orderBy'] < count($orders) && $req->all()['orderBy'] >= 0 ) ?
-									$orders[$req->all()['orderBy']] : $orders[0];  
-    		$ordtype = ($req->has('sort') &&$req->all()['sort'] == 'description') ? 'description' : 'asc';
+            $orders = array('name','price','categoryId','brand');
+		  
+            $key = ($req->has('sortBy') &&  $req->all()['sortBy'] < count($orders) && $req->all()['sortBy'] >= 0 ) ?
+									$orders[$req->all()['sortBy']] : $orders[0];  
     		
-    		//$results = $results->orderBy($key,$ordtype);  // sort it alphabeticly only
-    		$results = $results->orderByRaw($key .' '. $ordtype); //sort it alphanumiricly
+              $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
     		//paginate(p)
-    		$results = $results->paginate(15);
-    		//return results
-    		dd($results);
-    		return view('admin.admin');
+
+                $p = $req->has('p') ? $req->all()['p']  : null;
+                $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
+                //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
+                $results = $results instanceof Collection ? $results : Collection::make($results); 
+                return new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
     }
+
 }
