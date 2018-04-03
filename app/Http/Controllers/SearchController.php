@@ -27,6 +27,7 @@ class SearchController extends Controller
                 $result = Product::all();
               }
                 $result = $this->filter($req,$result);
+                //$result = $result->load('productdetails');
 		dd($result);
 	} 
 
@@ -70,13 +71,26 @@ class SearchController extends Controller
     			$results =  ($req->has('pl') && $req->all()['ph'] > $req->all()['pl'] ) ? $results->where('price','<=', $req->all()['ph']) : $results;
     			
     		}
-
+             // ^ w/ given rating 
+                if ($req->has('rating') && $req->all()['rating'] >= 0 && $req->all()['rating']  <= 5) {
+                $results = $results->filter(function ($product) use($req) {
+                    return $product->productDetails->rating >= $req->all()['rating'];
+                });
+                }
     		//sort ^ 
-              $orders = array('name','price','categoryId','brand');
+              $orders = array('name','price','categoryId','brand','rating');
 		$key = ($req->has('sortBy') &&  $req->all()['sortBy'] < count($orders) && $req->all()['sortBy'] >= 0 ) ?
 									$orders[$req->all()['sortBy']] : $orders[0];  
     		
-              $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
+             if ($key != $orders[4]) {
+                    $results =  $results->sortBy($key,SORT_REGULAR,($req->has('sort') &&$req->all()['sort'] == 'desc')); 
+             }
+             else {
+                $results = $results->sortBy(function($product) {
+                    return $product->productDetails->rating;
+                });
+             }
+              
     		//paginate(p)
 
                 $p = $req->has('p') ? $req->all()['p']  : null;
