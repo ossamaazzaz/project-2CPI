@@ -88,7 +88,7 @@ class SearchController extends Controller
              else {
                 $results = $results->sortBy(function($product) {
                     return $product->productDetails->rating;
-                });
+                },SORT_NUMERIC,($req->has('sort') &&$req->all()['sort'] == 'desc'));
              }
               
     		//paginate(p)
