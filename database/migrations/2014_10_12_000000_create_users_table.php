@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
+use App\User;
 class CreateUsersTable extends Migration
 {
     /* Run the migrations.
@@ -22,19 +22,30 @@ class CreateUsersTable extends Migration
             $table->string('lastName',30);
             $table->string('phoneNum',15);
             $table->string('email')->unique();
-            // starts here
             $table->string('adr');
-            $table->string('avatar')->nullable();// for now, the avatar can be nullable
-            $table->string('idCard')->unique(); //I think the idCard should be unique
+            $table->string('avatar')->nullable();
+            $table->string('idCard')->unique(); // idCard should be unique
             $table->smallInteger('groupId')->default(1);
             $table->string('approveState')->default('pending');
-            // ends here
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+        // for ($i=0; $i < 200; $i++) { 
+        //     User::create([
+        //     'username' => 'username_'.$i,
+        //     'firstName' => 'firstName_'.$i,
+        //     'lastName' => 'lastName_'.$i,
+        //     'phoneNum' => 'phoneNum_'.$i,
+        //     'email' => 'email_'.$i,
+        //     'adr' => 'adr_'.$i,
+        //     'idCard' => 'idCard_'.$i,
+        //     'groupId' => rand(0,10),
+        //     'password' => 'password_'.$i,
+        //     ]); 
+        // }
     }
-
+    
     /**
      * Reverse the migrations.
      *

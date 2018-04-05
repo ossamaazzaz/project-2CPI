@@ -8,6 +8,10 @@
 
 ## Manual installation
 
+
+- edit `/etc/php/php.ini` and uncomment 
+	`extension=mysqli.so
+	extension=pdo_mysql.so`
 - clone this repository
 
 	`git clone https://github.com/ossamaazzaz/project-2CPI.git`
@@ -17,5 +21,12 @@
 - copy `.env.example` file to `.env` on the project folder
 - open your `.env` file and change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration. On XAMPP, by default the user is `root` and the password is empty
 - run `php artisan key:generate`
-- run `php artisan migrate`
+- run `php artisan migrat --seed`
 - run `php artisan serve`
+
+## Admin Access :
+- username : admin
+- email = admin@admin.com
+- password = secret
+
+ 
