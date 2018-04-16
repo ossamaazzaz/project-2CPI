@@ -65,5 +65,5 @@ trait FullTextSearch{
     //     return $query->selectRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE) AS relevance_score", [$searchableTerm])
     //         ->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $searchableTerm)
     //         ->orderByDesc('relevance_score');
-    // }   //SELECT `products`.`name`, `products`.`brand`, `product_details`.`description` FROM `products` LEFT JOIN `product_details` ON `products`.`id` = `product_details`.`product_id` 
+    // }
 }

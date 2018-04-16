@@ -24,14 +24,21 @@ class SearchController extends Controller
             $term = $req->all()['term'];
             $result = Product::search($term)->orWhereHas('ProductDetails', function($q) use ($term){
             $q->search($term);
-        })->get();
+            })->get();
         }
         else {
             $result = Product::all();
+        }
+
+        $brands = array();
+        foreach ($result as $prod) {
+            if (!in_array($prod->brand, $brands)) {
+                array_push($brands, $prod->brand);   
             }
+        }
         $category = Category::find($req->has('category'));
-        return view('searchresult',compact('categories','result','term' ,'category'));
-        //$result = $this->filter($req,$result);
+        $result = $this->filter($req,$result);
+        return view('searchresult',compact('categories','result','term' ,'category','brands'));
 	} 
 
 
@@ -64,7 +71,13 @@ class SearchController extends Controller
     			$results = $results->where('brand',$req->all()['brand']);
     			
     		}
-    		// ^ w/ given price 
+        // ^ w/ given rating 
+            if ($req->has('rating') && $req->all()['rating'] >= 0 && $req->all()['rating']  <= 5) {
+                $results = $results->filter(function ($product) use($req) {
+                    return $product->productDetails->rating >= $req->all()['rating'];
+                });
+            }
+            // ^ w/ given price 
     		if ($req->has('pl')) {
     			$results = $results->where('price','>=', $req->all()['pl']);
     		}
@@ -76,18 +89,28 @@ class SearchController extends Controller
 
     		//sort ^ 
             $orders = array('name','price','categoryId','brand');
-		  
-            $key = ($req->has('sortBy') &&  $req->all()['sortBy'] < count($orders) && $req->all()['sortBy'] >= 0 ) ?
-									$orders[$req->all()['sortBy']] : $orders[0];  
-    		
-              $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
+		    $key = '';
+            if ($req->has('sortBy') &&  $req->all()['sortBy'] < count($orders) && $req->all()['sortBy'] >= 0 ) {
+                foreach ($orders as $skey) {
+                    if ($skey==$req->all()['sortBy']) {
+                        $key = $skey;
+                    } else {
+                        $key = $orders[0];
+                    }
+                }
+            }
+            $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
+            //pagina
+                }
+            }
+            $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
     		//paginate(p)
 
-                $p = $req->has('p') ? $req->all()['p']  : null;
-                $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
-                //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
-                $results = $results instanceof Collection ? $results : Collection::make($results); 
-                return new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
+            $p = $req->has('p') ? $req->all()['p']  : null;
+            $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
+            //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
+            $results = $results instanceof Collection ? $results : Collection::make($results); 
+            return new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
     }
 
 }

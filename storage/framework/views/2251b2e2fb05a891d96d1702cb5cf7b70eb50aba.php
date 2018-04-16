@@ -26,17 +26,18 @@
                     </ul>
                     <form class="navbar-nav mr-auto" method="GET" action="/home/search">
                       <ul class="navbar-nav">
-                        <?php if(Request::url()=='/home/search'): ?> <li><input id="term" name="term" type="text" value="<?php echo e($term); ?>" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li> <?php else: ?> <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li> <?php endif; ?>
-                        
+                       <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
                         <li><div id="dropdownMenu" class="dropdown">
                             <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
                             <span class="caret"></span>
-                            <?php if(Request::url()=='/home/search'): ?> <label id="chosed"><input type="text" id="category" name="category" hidden="true" value="<?php echo e($category->id); ?>"></label> <?php else: ?> <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label> <?php endif; ?>
+                            <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </button>
                             <div class="dropdown-menu" id="selectedCategory">
-                              <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                  <option class="dropdown-item" id="<?php echo e($cat->id); ?>" onclick="selectedCategory(this)"><?php echo e($cat->name); ?></option>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php if(!Request::is('login')): ?> 
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option class="dropdown-item" id="<?php echo e($cat->id); ?>" onclick="selectedCategory(this)"><?php echo e($cat->name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              <?php endif; ?>
                             </div>
                             </div> 
 
@@ -149,6 +150,7 @@
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
     <script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
-    <script type="text/javascript" src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/searchresult.js')); ?>"></script>
 </body>
 </html>

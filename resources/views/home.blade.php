@@ -9,7 +9,7 @@
           <h1 class="my-4">Categories</h1>
           <div class="list-group">
             @foreach ($categories as $cat)
-            <a href="#" class="list-group-item">{{ $cat->name }}</a>
+            <a onclick="leftcategorylist(this)" id="{{ $cat->id }}" class="list-group-item">{{ $cat->name }}</a>
             @endforeach
           </div>
 

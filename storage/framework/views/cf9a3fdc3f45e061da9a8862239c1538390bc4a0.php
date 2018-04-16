@@ -7,7 +7,7 @@
           <h1 class="my-4">Categories</h1>
           <div class="list-group">
             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <a href="#" class="list-group-item"><?php echo e($cat->name); ?></a>
+            <a onclick="leftcategorylist(this)" id="<?php echo e($cat->id); ?>" class="list-group-item"><?php echo e($cat->name); ?></a>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>
 

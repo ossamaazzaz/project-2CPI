@@ -25,7 +25,7 @@ function goadd(){
         window.location.href= "products/add";
 }
 function selectedCategory(element) {
-    var item = document.getElementById("element.id");
+    var item = document.getElementById(element.id);
     if (element.value!="all") {
         var input = document.getElementById("category");
         input.value = element.id
@@ -54,7 +54,6 @@ function deleteOneProduct(element){
 jQuery(document).ready(function (){
     jQuery.noConflict();
     var table = jQuery("#productsDataTable").DataTable();
-    var searchinput = document.getElementById("term");
 // jQuery.ajaxSetup({
 //     headers: {
 //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')

@@ -4,13 +4,12 @@
 <input type="text" hidden="true" name="" >
 <div class="container">
     <div class="row">
-
         <div class="col-lg-3">
-
+          
           <h1 class="my-4">Categories</h1>
           <div class="list-group">
             @foreach ($categories as $cat)
-            <a href="#" class="list-group-item">{{ $cat->name }}</a>
+            <a onclick="leftcategorylist(this)" id="{{ $cat->id }}" class="list-group-item">{{ $cat->name }}</a>
             @endforeach
           </div>
 
@@ -18,40 +17,72 @@
         <!-- /.col-lg-3 -->
 
         <div class="col-lg-9">
-          <form method="GET" action="/home/search">
             <div class="form-control card"
             >
              <div class="container" style="padding: 14px;">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label>Brand : </label>
-                    <select id="brand">
+                    <select id="brand" style="display: inline;">
                       <option>All</option>
-                      <option>brand 1</option>
+                      @foreach ($brands as $brand)
+                        <option>{{ $brand }}</option>
+                      @endforeach
                     </select>                
                 </div>
                 <div class="col-md-3">
                 <label>Rating : </label>
                 <div class="srating" style="display: inline;">
-                  <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                  <span id="star5" onclick="rating(5)">☆</span><span id="star4" onclick="rating(4)">☆</span><span id="star3" onclick="rating(3)">☆</span><span id="star2" onclick="rating(2)">☆</span><span id="star1" onclick="rating(1)">☆</span>
                 </div>
    
               </div>
                 <div class="col-md-5"> 
                   <label>Price : </label>
-                  <input type="text" name="min" placeholder="min" style="width: 60px;">
+                  <input type="text" name="min" placeholder="min" id="minprice" style="width: 60px;">
                   -
-                  <input type="text" name="max" placeholder="max" style="width: 60px;">
+                  <input type="text" name="max" placeholder="max" id="maxprice" style="width: 60px;">
                 </div>
               </div>
             </div>
+            <button id="filter" class="btn btn-outline-warning"> Apply </button>
+
+    <div class="container">
+
+      <div class="sort-element" style="border:none;margin-right: 6px;">
+              Sorted by 
             </div>
-          </form>
-         
+            <div class="sort-element" style="border-top-left-radius: 10px;border-bottom-left-radius: 10px">
+                <div style="float: left;margin-right: 6px;" class="sort-text">Name </div>
+              <div style="float: left;display: block;">
+                <div class="triangle triangle-up" id="nametoggleup" onclick="toggleTriangle(this,1)" ></div>
+                <div class="triangle triangle-down" id="nametoggledown" onclick="toggleTriangle(this,0)" ></div>
+              </div>
+            </div>
+             <div class="sort-element">
+                <div style="float: left;margin-right: 6px;" class="sort-text">Price </div>
+              <div style="float: left;display: block;">
+                <div class="triangle triangle-up" id="pricetoggleup" onclick="toggleTriangle(this,1)" ></div>
+                <div class="triangle triangle-down" id="pricetoggledown" onclick="toggleTriangle(this,0)" ></div>
+              </div>
+            </div>
+             <div class="sort-element" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px">
+                <div style="float: left;margin-right: 6px;" class="sort-text">Rate </div>
+              <div style="float: left;display: block;">
+                <div class="triangle triangle-up" id="ratetoggleup" onclick="toggleTriangle(this,1)" ></div>
+                <div class="triangle triangle-down" id="ratetoggledown" onclick="toggleTriangle(this,0)" ></div>
+              </div>
+            </div>
+            
+    </div>
+    
+    </div>
+
           <div class="fadeInUp">
 
 
           <h1 class="categorie-title my-4"><a>Result</a></h3>
+
           <div class="categorie-title-divider"></div>
           
        <div id="container">
@@ -102,8 +133,8 @@
           <div class="container card">
              <div class="pagination">
               <a href="#">&laquo;</a>
-              <a href="#">1</a>
-              <a class="active" href="#">2</a>
+              <a class="active" href="#">1</a>
+              <a href="#">2</a>
               <a href="#">3</a>
               <a href="#">4</a>
               <a href="#">5</a>
