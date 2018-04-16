@@ -38,6 +38,7 @@ class SearchController extends Controller
         }
         $category = Category::find($req->has('category'));
         $result = $this->filter($req,$result);
+        //dd($result);
         return view('searchresult',compact('categories','result','term' ,'category','brands'));
 	} 
 
@@ -97,10 +98,6 @@ class SearchController extends Controller
                     } else {
                         $key = $orders[0];
                     }
-                }
-            }
-            $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
-            //pagina
                 }
             }
             $results =  ($req->has('sort') &&$req->all()['sort'] == 'desc') ?  $results->sortByDesc($key) : $results->sortBy($key);
