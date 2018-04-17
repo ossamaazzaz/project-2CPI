@@ -26,7 +26,7 @@
 
 ## Admin Access :
 - username : admin
-- email = admin@admin.com
+- email = admin@email.com
 - password = secret
 
  
