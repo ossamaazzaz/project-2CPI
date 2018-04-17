@@ -5,26 +5,20 @@
 </br>
 <div class="container">
     <div class="row">
-
         <!-- Image -->
+          <div class="col-4 col-lg-7">
+              <div class="card bg-light mb-3">
+                  <div class="card-body">
+                      <a href="" data-toggle="modal" data-target="#productModal">
+                          <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
+                          <!--ps: must to add a slide show-->
+                      </a>
+                  </div>
+              </div>
+          </div>
+      <!-- Add to cart -->
 
-
-        <div class="col-12 col-lg-6">
-            <div class="card bg-light mb-3">
-                <div class="card-body">
-                    <a href="" data-toggle="modal" data-target="#productModal">
-                        <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" />
-                        <!--remmembre to add a slide show-->
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Add to cart -->
-
-        <div class="col-12 col-lg-6 add_to_cart_block">
+        <div class="col-12 col-lg-5 add_to_cart_block">
             <div class="card bg-light mb-3">
                 <div class="card-body">
                     <div><p style="text-align: center;"><strong> {{$product->name}} </strong></p></div>
@@ -38,7 +32,7 @@
                     <div>
                       <input name="id" value="{{$product->id}}" type="hidden"/>
                       <strong> Availability: In Stock/In Market </strong>
-                    </div> <!--add function for that-->
+                    </div> <!--add function for that to say if the product still available-->
                         <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
                             <i class="fa fa-shopping-cart"></i> Add To Cart
                         </button>
@@ -46,33 +40,31 @@
                     <div>
 
 
-                        3 reviews
-                        <i class="fa fa-star" style="color: gold"></i>
-                        <i class="fa fa-star" style="color: gold"></i>
-                        <i class="fa fa-star" style="color: gold"></i>
-                        <i class="fa fa-star" style="color: gold"></i>
+                        3 reviews <!-- it will be dynamic soon -->
+                        @for($i = 0; $i <$productDetails[0]->rating; $i++)
+                          <i class="fa fa-star" style="color: gold"></i>
+                        @endfor
+                        @for($i = $productDetails[0]->rating; $i < 5; $i++)
                         <i class="fa fa-star" style="color: black"></i>
+                        @endfor
                         <!-- La moyenne des stars from reviews------>
 
-                        (4/5)
+                        ({{$productDetails[0]->rating}}/5)
                         <a class="pull-right" href="#reviews">View all reviews</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
      <div class="row">
-
-        <!-- Description -->
+            <!-- Description -->
 
         <div class="col-12">
             <div class="card border-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase">
                   <i class="fa fa-align-justify"></i> Description</div>
                 <div class="card-body">
-                    <p class="card-text">ibckcnkjf</p> <!--productDetails->rating -->
+                    <p class="card-text">{{$productDetails[0]->desc}}</p>
                 </div>
             </div>
         </div>
@@ -110,7 +102,7 @@
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: black"></span>
 
-                         __by Seyf Goumeida
+                         __by Iferroudjene Mouloud
                         <p class="blockquote">
                             <p class="mb-0">Review  Review Review Review Review </p>
                         </p>
@@ -136,7 +128,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img class="img-fluid" src="https://dummyimage.com/1200x1200/55595c/fff" />
+                <img class="img-fluid" src="{{$product->image}}" style="display:block;margin-left: auto;margin-right: auto;height=1200px; width:1200px;"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

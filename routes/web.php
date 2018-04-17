@@ -60,3 +60,4 @@ Route::get('/home/search','SearchController@search');
 //Cart
 Route::get('/cart' ,'CartsController@ShowCart');
 Route::post('/cart' ,'CartsController@UpdateCart');
+Route::get('/cart/delete/{id}','CartsController@RemoveItem'); //Delete

@@ -7,13 +7,16 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ProductDetailsController extends Controller{
-    //
+  
+    /* ==============simple index function to show up  =================*/
+
     public function index($id){
       $product=Product::find($id);
       $productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
-
       return view("cart.productdetails",compact('product','productDetails'));
     }
+
+    /* ============== Add element to the cart (mouloud) ================*/
 
     public function addItemToCart(Request $req){
       $id=$req->all()['id'];
@@ -35,4 +38,6 @@ class ProductDetailsController extends Controller{
       $cartItem->save();
       return redirect("/cart");
     }
+
+
 }

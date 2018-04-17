@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/datatabes.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}">
 
    <title> Cart</title>
 </head>
 
 <body>
 
-@if (sizeof($Items) > 0)
-<!---------cart table------------>  
+@if (sizeof($Items) > 0) //exist
+<!---cart table------------>
 <div class="col-sm-8">
   <h2 style="text-align: center;">Cart Table</h2>
   <div class="table-responsive ">
@@ -33,15 +33,16 @@
         </tr>
       </thead>
       <tbody>
-      <form method="POST" action="/cart" > @csrf   
-      <!------------ Showing Items in the cart -------------->
+      <form method="POST" action="/cart" > @csrf
+      <!-- Showing Items in the cart -------------->
+
       @foreach ($Items as $Item)
          <tr>
           <td>{{ $Item->product->brand }}</td>
           <td>{{ $Item->product->name }}</td>
           <td>{{ $Item->product->price }}</td>
           <td>
-               <div class="row" style="width: 150px"> 
+               <div class="row" style="width: 150px">
                       <div class="input-group number-spinner">
                         <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="dwn"
                           onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1">
@@ -49,7 +50,7 @@
 
 
                         <input id="{{'quantity'.$Item->id}}" type="text" class="form-control text-center"
-                               value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
+                            value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
 
 
                         <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="up"
@@ -58,23 +59,23 @@
                       </div>
                 </div>
           </td>
-        
+
           <td>{{ $Item->price }}</td> <!-- improve it using <output> -->
 
 
           <td style="text-align: right;">
-            <a onclick="this.parentElement.parentElement.remove()" href="#" class="btn btn-danger a-btn-slide-text">
-             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>        
+            <a href="/cart/delete/{{$Item->id}}" onclick="this.parentElement.parentElement.remove()" class="btn btn-danger a-btn-slide-text">
+             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </a>
           </td>
-        </tr> 
+        </tr>
       @endforeach
       <!---------------End Showing Items---------------->
       </tbody>
       <tfoot>
         <tr><strong>
           <th ></th>
-          <th ></th>  
+          <th ></th>
           <th ></th>
           <th> Total  :</th>
           <th >{{ $total }} DA</th>
@@ -82,8 +83,8 @@
       </tfoot>
     </table>
 
-          <button type="button" class="btn btn-warning">Back To Store </button>
-          <button type="submit" class="btn btn-primary">Apply Changes and refresh</a></form> 
+          <a href="/home"><button type="button" class="btn btn-warning">Back To Store </button></a>
+          <button type="submit" class="btn btn-primary">Apply Changes and refresh</form>
           <button type="button" class="btn btn-success" style="float:right;">Check Out </button>
 
   </div>
@@ -94,7 +95,7 @@
   <h3>You have no items in your shopping cart</h3>
   <a href="{{ url('/home') }}" class="btn btn-primary btn-lg">Continue Shopping</a>
   </center>
-@endif  
+@endif
 
 </body>
 

@@ -9,7 +9,7 @@ use  \App\Product;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller{
-  public function index()  { 
+  public function index()  {
       $categories=DB::table('categories')->latest()->get();
       return view('/categories/main',compact('categories'));  }
 
@@ -32,7 +32,7 @@ class CategoriesController extends Controller{
     //$cat->parent_id    = $req->all()['parentId'];
     //store image path
     $img = $req->file("picture");
-    Storage::putFileAs 
+    Storage::putFileAs
     (
       'public/images',
       $img,
@@ -43,7 +43,7 @@ class CategoriesController extends Controller{
     $cat->save();
     return redirect('/categories');
   }
-  
+
 
   /*public function GetParent()
   {
@@ -60,7 +60,7 @@ class CategoriesController extends Controller{
   }
 
   public function submit(Request $req, $id)
-  {   
+  {
     $validator=  \Validator::make($req->all(), [
     'name' => 'required|string|max:100|alpha',
     'description' => 'required',
@@ -74,9 +74,9 @@ class CategoriesController extends Controller{
     }
     $cat = Category::find($id);
     $cat->name        = $req->all()['name'];
-    $cat->description = $req->all()['description']; 
+    $cat->description = $req->all()['description'];
     $img = $req->file("picture");
-    
+
     if ($img != null) {
             Storage::putFileAs
             (
@@ -98,16 +98,16 @@ class CategoriesController extends Controller{
     $Category = Category::find($id);
     //First Delete/Uncategorize the products
 
-    if (1==1) 
-    { // Delete all the products of this Category       
+    if (1==1) //kacem forget to put the right condition or somthng like that (notice it)
+    { // Delete all the products of this Category
       Product::where('categoryId',$id)->delete();
-    } 
-    else 
-    {    // Move them to 'UNCATEGORIZED'              
+    }
+    else
+    {    // Move them to 'UNCATEGORIZED'
       Product::where($id)->update(['categoryId' => null]);
     }
     //Then Delete the category
     $Category->delete();
     return redirect('/categories');
-  } 
+  }
 }
