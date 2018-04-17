@@ -5,9 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E-COM</title>
-
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
-
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
 </head>
 <body>
@@ -28,12 +26,12 @@
                       <ul class="navbar-nav">
                        <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
                         <li><div id="dropdownMenu" class="dropdown">
-                            <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                            <button class="fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
                             <span class="caret"></span>
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </button>
                             <div class="dropdown-menu" id="selectedCategory">
-                              <?php if((!Request::is('home/edit','login'))): ?>
+                              <?php if((!Request::is('home/edit','login','register'))): ?>
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option class="dropdown-item" id="<?php echo e($cat->id); ?>" onclick="selectedCategory(this)"><?php echo e($cat->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -54,17 +52,25 @@
                       </ul>
                     </form>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav navbar-right ml-auto">
                     <?php if(Auth::guest()): ?>
                         <li><a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
                             <li><a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>
                     <?php else: ?>
-
-                        <li class="nav-item dropdown"> 
+                        <li>
+                          <div style="padding :16px 20px; ">
+                              <a href="/cart"> <i class="fas fa-shopping-cart"></i> Shopping Cart
+                                  <span class="badge">
+                                    <!-- i will (mouloud) add here later the badge -->
+                                  </span>
+                              </a>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                                    <img src="<?php echo e(Auth::user()->avatar); ?>" height="40px" width="40px" >
-                                    
+                                    <img src="<?php echo e(Auth::user()->avatar); ?>" height="40px" width="40px">
+
                                     <?php echo e(Auth::user()->firstName . " " .Auth::user()->lastName); ?> <span class="caret"></span>
 
                                 </a>
@@ -82,18 +88,17 @@
                                     </a>
 
                                     <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-                                        <?php echo csrf_field(); ?>
-                                    </form>
+                                     </form>
                                 </div>
                             </li>
                     <?php endif; ?>
                 </ul>
             </div>
         </div>
-    </nav>   
+    </nav>
 
     <?php echo $__env->yieldContent('content'); ?>
-        <footer>
+    <footer>
      <div class="container">
        <div class="row">
        
@@ -137,7 +142,7 @@
                         <li>
                            <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
                         </li> 
-                   </ul>
+                  </ul>
                </div>
            
            
@@ -147,6 +152,7 @@
 
 
     <!-- Scripts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
     <script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
@@ -154,5 +160,6 @@
     <script src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
     <script src="<?php echo e(asset('js/searchresult.js')); ?>"></script>
     <script src="<?php echo e(asset('js/pagination.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/cart.js')); ?>"></script>
 </body>
 </html>

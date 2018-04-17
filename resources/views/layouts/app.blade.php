@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>E-COM</title>
-
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-{{--     <link rel="stylesheet" type="text/css" href="{{ asset('css/searchresult.css') }}>
- --}}</head>
+</head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container-fluid">
@@ -28,12 +25,12 @@
                       <ul class="navbar-nav">
                        <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
                         <li><div id="dropdownMenu" class="dropdown">
-                            <button class="btn fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                            <button class="fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
                             <span class="caret"></span>
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </button>
                             <div class="dropdown-menu" id="selectedCategory">
-                              @if((!Request::is('home/edit','login')))
+                              @if((!Request::is('home/edit','login','register')))
                                 @foreach ($categories as $cat)
                                     <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
                                 @endforeach
@@ -71,7 +68,7 @@
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                                    <img src="{{ Auth::user()->avatar }}" height="40px" width="40px" >
+                                    <img src="{{ Auth::user()->avatar }}" height="40px" width="40px">
 
                                     {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
 
@@ -89,8 +86,7 @@
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                                     </form>
                                 </div>
                             </li>
                     @endif
@@ -100,7 +96,7 @@
     </nav>
 
     @yield('content')
-        <footer>
+    <footer>
      <div class="container">
        <div class="row">
        
@@ -144,7 +140,7 @@
                         <li>
                            <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
                         </li> 
-                   </ul>
+                  </ul>
                </div>
            
            

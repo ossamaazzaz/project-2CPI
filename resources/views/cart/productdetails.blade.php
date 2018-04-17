@@ -64,7 +64,7 @@
                 <div class="card-header bg-primary text-white text-uppercase">
                   <i class="fa fa-align-justify"></i> Description</div>
                 <div class="card-body">
-                    <p class="card-text">{{$productDetails[0]->desc}}</p>
+                    <p class="card-text">{{$productDetails[0]->description}}</p>
                 </div>
             </div>
         </div>

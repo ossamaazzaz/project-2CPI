@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Cart;
 use \App\CartItem;
-
+use App\Category;
 class CartsController extends Controller
 {
 	/* ========================= Show the cart (Kacem )==========================*/
@@ -25,8 +25,8 @@ class CartsController extends Controller
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
-
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total]);
+        $categories = Category::get();
+        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories]);
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

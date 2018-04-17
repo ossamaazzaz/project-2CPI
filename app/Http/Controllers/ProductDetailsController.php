@@ -25,7 +25,7 @@ class ProductDetailsController extends Controller{
       $product=Product::find($id);
       $cartItem= new CartItem;
       $exist=DB::table('carts')->where('user_id','=',\Auth::user()->id)->get();
-      if (! $exist){
+      if (!$exist){
         $cart=new Cart;
         $cart->user_id =  \Auth::user()->id;
         $cart->save();
