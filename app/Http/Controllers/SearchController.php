@@ -18,7 +18,6 @@ class SearchController extends Controller
 	public function search(Request $req){
 		//its return the products that their name and brand and description contain the keyword
         $categories = Category::all();
-		//return view('searchresult',compact('result','categories'));
 
         if ($req->has('term')) {
                 $term = $req->all()['term'];
@@ -28,11 +27,19 @@ class SearchController extends Controller
         } else {
                 $result = Product::all();
                 }
+        $brands = array();
+        foreach ($result as $prod) {
+            if (!in_array($prod->brand, $brands)) {
+                array_push($brands, $prod->brand);   
+            }
+        }
         $category = Category::find($req->has('category'));
         $result = $this->filter($req,$result);
                 //$result = $result->load('productdetails');
 		//dd($result);
-        return view('searchresult',compact('categories','result','term' ,'category','brands'));
+        $lastPage = $result->lastPage();
+        $currentPage = $result->currentPage();
+        return view('searchresult',compact('categories','result','term' ,'category','brands','lastPage','currentPage'));
 
 	} 
 
@@ -112,7 +119,7 @@ class SearchController extends Controller
               
     		//paginate(p)
 
-            $p = $req->has('p') ? $req->all()['p']  : null;
+            $p = $req->has('page') ? $req->all()['page']  : null;
             $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
             //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
             $results = $results instanceof Collection ? $results : Collection::make($results); 

@@ -46,7 +46,7 @@
           </div>
 
           <div class="row">
-            @foreach ($products as $pro)
+            @foreach ($result as $pro)
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="{{ $pro->image }}" alt=""></a>
@@ -71,5 +71,16 @@
 
       </div>
       <!-- /.row -->
+      <div class="container card">
+            <input type="hidden" id="currentPage" value="{{ $currentPage }}">
+            <input type="hidden" id="lastPage" value="{{ $lastPage }}">
+             <div class="pagination">
+              <a onclick="prePage({{ $currentPage }})">&laquo;</a>
+              @for ($i = 1;$i<=$lastPage;$i++)
+              <a id="{{ 'page' . $i}}" onclick="page({{$i}})">{{$i}}</a>
+              @endfor
+              <a onclick="nexPage({{ $currentPage }})">&raquo;</a>
+            </div> 
+          </div>
 </div>
 @endsection

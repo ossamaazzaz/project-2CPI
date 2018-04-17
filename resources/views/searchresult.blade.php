@@ -131,15 +131,14 @@
             @endforeach
           </div><br>
           <div class="container card">
+            <input type="hidden" id="currentPage" value="{{ $currentPage }}">
+            <input type="hidden" id="lastPage" value="{{ $lastPage }}">
              <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a class="active" href="#">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#">6</a>
-              <a href="#">&raquo;</a>
+              <a onclick="prePage({{ $currentPage }})">&laquo;</a>
+              @for ($i = 1;$i<=$lastPage;$i++)
+              <a id="{{ 'page' . $i}}" onclick="page({{$i}})">{{$i}}</a>
+              @endfor
+              <a onclick="nexPage({{ $currentPage }})">&raquo;</a>
             </div> 
           </div>
          

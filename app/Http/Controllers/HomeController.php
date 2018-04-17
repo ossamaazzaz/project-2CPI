@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 class HomeController extends Controller
 {
     /**
@@ -23,11 +25,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         $products = Product::get();
         $categories = Category::get();
-        return view('home',compact("products","categories"));
+
+        $p = $req->has('page') ? $req->all()['page']  : null;
+        $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
+        //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
+        $results = $products instanceof Collection ? $products : Collection::make($products);
+        $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
+        $lastPage = $result->lastPage();
+        $currentPage = $result->currentPage();
+        return view('home',compact("result","categories","lastPage","currentPage"));
     }
     /**
     * Show the edit page

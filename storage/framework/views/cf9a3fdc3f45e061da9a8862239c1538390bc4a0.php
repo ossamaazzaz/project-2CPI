@@ -44,7 +44,7 @@
           </div>
 
           <div class="row">
-            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $result; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="#"><img class="card-img-top" src="<?php echo e($pro->image); ?>" alt=""></a>
@@ -69,6 +69,17 @@
 
       </div>
       <!-- /.row -->
+      <div class="container card">
+            <input type="hidden" id="currentPage" value="<?php echo e($currentPage); ?>">
+            <input type="hidden" id="lastPage" value="<?php echo e($lastPage); ?>">
+             <div class="pagination">
+              <a onclick="prePage(<?php echo e($currentPage); ?>)">&laquo;</a>
+              <?php for($i = 1;$i<=$lastPage;$i++): ?>
+              <a id="<?php echo e('page' . $i); ?>" onclick="page(<?php echo e($i); ?>)"><?php echo e($i); ?></a>
+              <?php endfor; ?>
+              <a onclick="nexPage(<?php echo e($currentPage); ?>)">&raquo;</a>
+            </div> 
+          </div>
 </div>
 <?php $__env->stopSection(); ?>
 

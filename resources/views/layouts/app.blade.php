@@ -33,7 +33,7 @@
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </button>
                             <div class="dropdown-menu" id="selectedCategory">
-                              @if(!Request::is('login')) 
+                              @if((!Request::is('home/edit','login')))
                                 @foreach ($categories as $cat)
                                     <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
                                 @endforeach
@@ -151,5 +151,6 @@
     <script src="{{ asset('js/datatables-init.js') }}"></script>
     <script src="{{ asset('js/th3hpbt.js')}}"></script>
     <script src="{{ asset('js/searchresult.js') }}"></script>
+    <script src="{{ asset('js/pagination.js') }}"></script>
 </body>
 </html>

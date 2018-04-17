@@ -16,7 +16,6 @@ function rating(number){
 }
 
 function getfun(data) {
-    console.log(extracturl());
     data = Object.assign(data,extracturl());
     jQuery.ajax({
             type : "GET",
@@ -151,9 +150,7 @@ jQuery(document).ready(function (){
                             break;
                         case "brand":for (var i = 0; i < brand.options.length  ; i++) {
                             if (brand.options[i].text==keyvalue) {
-                                brand.selectedIndex = i;
-                            };
-                        }
+                                brand.selectedIndex = i;};}
                             break;
                         case "rating":rating(keyvalue);
                             break;

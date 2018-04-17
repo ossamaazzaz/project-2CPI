@@ -33,7 +33,7 @@
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </button>
                             <div class="dropdown-menu" id="selectedCategory">
-                              <?php if(!Request::is('login')): ?> 
+                              <?php if((!Request::is('home/edit','login'))): ?>
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option class="dropdown-item" id="<?php echo e($cat->id); ?>" onclick="selectedCategory(this)"><?php echo e($cat->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -152,5 +152,6 @@
     <script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
     <script src="<?php echo e(asset('js/th3hpbt.js')); ?>"></script>
     <script src="<?php echo e(asset('js/searchresult.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/pagination.js')); ?>"></script>
 </body>
 </html>
