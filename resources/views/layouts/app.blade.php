@@ -54,17 +54,25 @@
                       </ul>
                     </form>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav navbar-right ml-auto">
                     @if (Auth::guest())
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                     @else
-
-                        <li class="nav-item dropdown"> 
+                        <li>
+                          <div style="padding :16px 20px; ">
+                              <a href="/cart"> <i class="fas fa-shopping-cart"></i> Shopping Cart
+                                  <span class="badge">
+                                    <!-- i will (mouloud) add here later the badge -->
+                                  </span>
+                              </a>
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
                                     <img src="{{ Auth::user()->avatar }}" height="40px" width="40px" >
-                                    
+
                                     {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
 
                                 </a>
@@ -89,7 +97,7 @@
                 </ul>
             </div>
         </div>
-    </nav>   
+    </nav>
 
     @yield('content')
         <footer>
@@ -146,6 +154,7 @@
 
 
     <!-- Scripts -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
@@ -153,5 +162,6 @@
     <script src="{{ asset('js/th3hpbt.js')}}"></script>
     <script src="{{ asset('js/searchresult.js') }}"></script>
     <script src="{{ asset('js/pagination.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 </body>
 </html>

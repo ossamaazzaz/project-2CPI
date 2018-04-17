@@ -7,29 +7,29 @@ use \App\Cart;
 use \App\CartItem;
 
 class CartsController extends Controller
-{		
-	/* ========================= Show the cart ==========================*/
-    public function ShowCart()  { 
-		
+{
+	/* ========================= Show the cart (Kacem )==========================*/
+    public function ShowCart()  {
+
         $cart = Cart::where('user_id',\Auth::id())->first();
- 		
+
         if(!$cart){
             $cart =  new Cart();
             $cart->user_id=\Auth::id();
             $cart->save();
         }
- 
+
         $items = $cart->cartItems;
         $total=0;
         foreach($items as $item){
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
- 
+
         return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total]);
     }
 
-	/* ========================= Edit the cart ==========================*/
+	/* ========================= Edit the cart (Kacem)==========================*/
 
     public function UpdateCart(Request $req)
     {
@@ -47,12 +47,12 @@ class CartsController extends Controller
 
         return redirect('cart');
     }
-}
-
-    /* ============== Add element to the cart (mouloud) ================*/
-
-
-
 
     /* ============= Remove an element from cart (mouloud) ============*/
 
+    public function RemoveItem($id){
+        CartItem::find($id)->delete();
+        return redirect('/cart');
+    }
+
+}
