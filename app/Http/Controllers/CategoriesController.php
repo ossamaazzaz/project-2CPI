@@ -53,13 +53,13 @@ class CategoriesController extends Controller{
 
   /********* Edit a category ***********/
 
-  public function EditView($id)
+  public function edit($id)
   {
      $cat = Category::find($id);
      return view('/categories/edit', compact('cat','id'));
   }
 
-  public function Edit(Request $req, $id)
+  public function submit(Request $req, $id)
   {   
     $validator=  \Validator::make($req->all(), [
     'name' => 'required|string|max:100|alpha',

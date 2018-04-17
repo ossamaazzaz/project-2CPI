@@ -125,5 +125,4 @@ class SearchController extends Controller
             $results = $results instanceof Collection ? $results : Collection::make($results); 
             return new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
     }
-
 }

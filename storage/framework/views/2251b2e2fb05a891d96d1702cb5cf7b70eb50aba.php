@@ -9,6 +9,7 @@
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -144,6 +145,7 @@
            </div> 
         </div>
     </footer>
+
 
     <!-- Scripts -->
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
