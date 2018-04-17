@@ -13,7 +13,7 @@
                       <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"  required autofocus>
 
                       @if ($errors->has('name'))
-                          <span class="invalid-feedback">
+                            <span class="invalid-feedback">
                               <strong>{{ $errors->first('name') }}</strong>
                           </span>
                       @endif

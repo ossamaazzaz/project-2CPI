@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+@extends('layouts.app')
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatabes.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dropzone.css') }}"> 
-
-   <title> Product Details </title>
-</head>
-
-<body>
-<!---------Product Details------------>  
-  <h2 style="text-align: center;"> Product Details  </h2>
-
-  <div class="container">
-    <div class="row">
-        <div class="col">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="category.html">Category</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Product</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-</div>
-
+@section('content')
+<!---Product Details------>
+</br>
 <div class="container">
     <div class="row">
 
@@ -42,36 +13,38 @@
             <div class="card bg-light mb-3">
                 <div class="card-body">
                     <a href="" data-toggle="modal" data-target="#productModal">
-                        <img src="http://fakeimg.pl/800x800/" class="img-fluid" />
-                        <p style="text-align: center;">Product Picture </p>
-                        <p style="text-align: right;">Zoom</p>
+                        <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" />
+                        <!--remmembre to add a slide show-->
                     </a>
                 </div>
             </div>
-        </div> 
-  
-        
+        </div>
+
+
 
         <!-- Add to cart -->
 
         <div class="col-12 col-lg-6 add_to_cart_block">
             <div class="card bg-light mb-3">
                 <div class="card-body">
-                    <div><p style="text-align: center;"><strong> Product Name </strong></p></div>
-                    <div><p ><strong>Price  : $70.00 </strong> </p></div>
-                    <div><p ><strong>Quantity : <input type="text" value="1" style="width: 50px" /> </strong> 
-                         </p>
-                    </div>
-                    <div><strong> Availability: In Stock/In Market </strong></div>
-                    <div><strong> Detail 4 ....</strong></div>
-                    <div><strong> Detail 5 ....</strong></div>
-                       
-  
-                        <a href="#" class="btn btn-success btn-lg btn-block text-uppercase">
+                    <div><p style="text-align: center;"><strong> {{$product->name}} </strong></p></div>
+                    <div><p ><strong>Price  : {{$product->price}} DZD</strong> </p></div>
+
+                    <form method="POST"  action="{{ action('ProductDetailsController@addItemToCart') }}" enctype="multipart/form-data">
+                      <div>
+                        <strong>Quantity : <input id="Quantity" type="text" name="Quantity" value="1" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"  style="width: 50px" /> </strong>
+                      </div>
+
+                    <div>
+                      <input name="id" value="{{$product->id}}" type="hidden"/>
+                      <strong> Availability: In Stock/In Market </strong>
+                    </div> <!--add function for that-->
+                        <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
                             <i class="fa fa-shopping-cart"></i> Add To Cart
-                        </a>
-                   
-                    <div >
+                        </button>
+                    </form>
+                    <div>
+
 
                         3 reviews
                         <i class="fa fa-star" style="color: gold"></i>
@@ -79,7 +52,7 @@
                         <i class="fa fa-star" style="color: gold"></i>
                         <i class="fa fa-star" style="color: gold"></i>
                         <i class="fa fa-star" style="color: black"></i>
-                        <!----- La moyenne des stars from reviews------>
+                        <!-- La moyenne des stars from reviews------>
 
                         (4/5)
                         <a class="pull-right" href="#reviews">View all reviews</a>
@@ -89,7 +62,7 @@
         </div>
     </div>
 
-     
+
      <div class="row">
 
         <!-- Description -->
@@ -99,12 +72,7 @@
                 <div class="card-header bg-primary text-white text-uppercase">
                   <i class="fa fa-align-justify"></i> Description</div>
                 <div class="card-body">
-                    <p class="card-text">
-                        DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
-                    </p>
-                    <p class="card-text">
-                          DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription  DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
-                    </p>
+                    <p class="card-text">ibckcnkjf</p> <!--productDetails->rating -->
                 </div>
             </div>
         </div>
@@ -118,13 +86,13 @@
                     <div class="review">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
-                         <!---- stars---->
+                         <!-- stars---->
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: black"></span>
                         <span class="fa fa-star" style="color: black"></span>
-               
+
                         __by Seyf Goumeida
                         <p class="blockquote">
                             <p class="mb-0">Review  Review Review  Review Review </p>
@@ -134,8 +102,8 @@
                     <div class="review">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
-                       
-                        <!---- stars---->
+
+                        <!-- stars---->
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: gold"></span>
                         <span class="fa fa-star" style="color: gold"></span>
@@ -176,5 +144,4 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+@stop
