@@ -45,13 +45,12 @@
 
           <div class="row">
             <?php $__currentLoopData = $result; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="<?php echo e($pro->image); ?>" alt=""></a>
+                <a href="/home/<?php echo e($pro->id); ?>"><img class="card-img-top" src="<?php echo e($pro->image); ?>" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="#"><?php echo e($pro->name); ?></a>
+                    <a href="/home/<?php echo e($pro->id); ?>"><?php echo e($pro->name); ?></a>
                   </h4>
                   <h5><?php echo e($pro->price); ?> DA</h5>
                   <p class="card-text"><?php echo e($pro->desc); ?></p>
@@ -81,7 +80,6 @@
               <a onclick="nexPage(<?php echo e($currentPage); ?>)">&raquo;</a>
             </div> 
           </div>
-
 </div>
 <?php $__env->stopSection(); ?>
 

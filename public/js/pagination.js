@@ -55,10 +55,11 @@ function page(n){
         });
 }
 function nexPage(currentPage){
-	var lastPage = document.getElementById('lastPage');
+	var lastPage = document.getElementById('lastPage').value;
 	data = {};
     data = extracturl();
     if (currentPage<lastPage) {
+
     	    data = Object.assign(data,{page:currentPage+1});
 		    jQuery.ajax({
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\CartItem;
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ProductDetailsController extends Controller{
@@ -11,8 +12,8 @@ class ProductDetailsController extends Controller{
     public function index($id){
       $product=Product::find($id);
       $productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
-
-      return view("cart.productdetails",compact('product','productDetails'));
+      $categories = Category::get();
+      return view("cart.productdetails",compact('product','productDetails','categories'));
     }
 
     public function addItemToCart(Request $req){
@@ -31,7 +32,6 @@ class ProductDetailsController extends Controller{
       $cartItem->product_id=$id;
       $cartItem->quantity=$req->All()['Quantity'];
       $cartItem->price=$product->price;
-      $cartItem->product_id=$id;
       $cartItem->save();
       return redirect("/cart");
     }

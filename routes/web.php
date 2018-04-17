@@ -39,7 +39,7 @@ Route::post('/admin/products','ProductController@delete');
 Route::get('/admin/products/{id?}/edit','ProductController@show');
 Route::post('/admin/products/update','ProductController@update');
 
-Route::get('/home/{id}','ProductDetailsController@index');
+Route::get('/home/{id?}','ProductDetailsController@index');
 Route::post('/home/{id?}','ProductDetailsController@addItemToCart');
 
 Route::resource('resource', 'ProductController');
@@ -57,7 +57,7 @@ Route::post('/categories/edit/{id}','CategoriesController@submit');	 //Submit Ed
 Route::get('/categories/delete/{id}','CategoriesController@destroy'); //Delete
 
 //search
-Route::get('/home/search','SearchController@search');
+Route::get('/search','SearchController@search');
 
 //Cart
 Route::get('/cart' ,'CartsController@ShowCart');

@@ -9,7 +9,6 @@
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
-
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -25,7 +24,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
-                    <form class="navbar-nav mr-auto" method="GET" action="/home/search">
+                    <form class="navbar-nav mr-auto" method="GET" action="/search">
                       <ul class="navbar-nav">
                        <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
                         <li><div id="dropdownMenu" class="dropdown">

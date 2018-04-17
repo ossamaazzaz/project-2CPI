@@ -14,12 +14,27 @@ function rating(number){
     }
 
 }
-
+function addToCart(id) {
+    var Quantity = 1;
+    var data = new FormData();
+        data.append("id",id);
+        data.append("Quantity",Quantity);
+        jQuery.ajax({
+            type : "POST",
+            url : "/home/"+id,
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                window.location.href = "/cart";
+                }});
+}
 function getfun(data) {
     data = Object.assign(data,extracturl());
     jQuery.ajax({
             type : "GET",
-            url : "/home/search",
+            url : "/search",
             data : data,
             success : function(data){
                     window.location=this.url;
@@ -74,7 +89,7 @@ function leftcategorylist(element) {
     jQuery.ajax({
 
                 type : "GET",
-                url : "/home/search",
+                url : "/search",
                 data : data,
                 success : function(data){
                         window.location=this.url;
@@ -220,7 +235,7 @@ jQuery(document).ready(function (){
             jQuery.ajax({
 
                 type : "GET",
-                url : "/home/search",
+                url : "/search",
                 data : data,
                 success : function(data){
                         window.location=this.url;

@@ -103,4 +103,3 @@
   <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="{{ asset('js/datatables.min.js') }}"></script>
   <script src="{{ asset('js/datatables-init.js') }}"></script>
-  <script src="{{ asset('js/cart.js') }}"></script>

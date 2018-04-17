@@ -36,7 +36,7 @@
                       </div>
 
                     <div>
-                      <input name="id" value="{{$product->id}}" type="hidden"/>
+                      <input name="id" id="productId" value="{{$product->id}}" type="hidden"/>
                       <strong> Availability: In Stock/In Market </strong>
                     </div> <!--add function for that-->
                         <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">

@@ -117,7 +117,7 @@
                       <div class="row Productprice">
                         <h4><B> {{ $element->price }} DA</B></h4></div>                   
                       <br>
-                      <div class="row btn btn-primary" style="background-color: #00b894">
+                      <div class="row btn btn-primary" onclick="addToCart({{ $element->id }})" style="background-color: #00b894">
                           <span class="glyphicon glyphicon-shopping-cart"></span> add to cart 
                       </div>
                       <br><br>
