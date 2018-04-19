@@ -63,3 +63,6 @@ Route::get('/search','SearchController@search');
 Route::get('/cart' ,'CartsController@ShowCart');
 Route::post('/cart' ,'CartsController@UpdateCart');
 Route::get('/cart/delete/{id}','CartsController@RemoveItem'); //Delete
+
+//Facture
+Route::get('/facture','PDFController@index');

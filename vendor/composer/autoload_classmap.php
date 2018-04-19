@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-
     'App\\Cart' => $baseDir . '/app/Cart.php',
     'App\\CartItem' => $baseDir . '/app/CartItem.php',
     'App\\Category' => $baseDir . '/app/Category.php',
@@ -44,7 +43,14 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
-    'App\\users' => $baseDir . '/app/users.php',
+    'Barryvdh\\Snappy\\Facades\\SnappyImage' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
+    'Barryvdh\\Snappy\\Facades\\SnappyPdf' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',
+    'Barryvdh\\Snappy\\IlluminateSnappyImage' => $vendorDir . '/barryvdh/laravel-snappy/src/IlluminateSnappyImage.php',
+    'Barryvdh\\Snappy\\IlluminateSnappyPdf' => $vendorDir . '/barryvdh/laravel-snappy/src/IlluminateSnappyPdf.php',
+    'Barryvdh\\Snappy\\ImageWrapper' => $vendorDir . '/barryvdh/laravel-snappy/src/ImageWrapper.php',
+    'Barryvdh\\Snappy\\LumenServiceProvider' => $vendorDir . '/barryvdh/laravel-snappy/src/LumenServiceProvider.php',
+    'Barryvdh\\Snappy\\PdfWrapper' => $vendorDir . '/barryvdh/laravel-snappy/src/PdfWrapper.php',
+    'Barryvdh\\Snappy\\ServiceProvider' => $vendorDir . '/barryvdh/laravel-snappy/src/ServiceProvider.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
@@ -1448,6 +1454,11 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+    'Knp\\Snappy\\AbstractGenerator' => $vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php',
+    'Knp\\Snappy\\Exception\\FileAlreadyExistsException' => $vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy/Exception/FileAlreadyExistsException.php',
+    'Knp\\Snappy\\GeneratorInterface' => $vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy/GeneratorInterface.php',
+    'Knp\\Snappy\\Image' => $vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy/Image.php',
+    'Knp\\Snappy\\Pdf' => $vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php',
     'Laravel\\Tinker\\ClassAliasAutoloader' => $vendorDir . '/laravel/tinker/src/ClassAliasAutoloader.php',
     'Laravel\\Tinker\\Console\\TinkerCommand' => $vendorDir . '/laravel/tinker/src/Console/TinkerCommand.php',
     'Laravel\\Tinker\\TinkerCaster' => $vendorDir . '/laravel/tinker/src/TinkerCaster.php',
@@ -3253,6 +3264,7 @@ return array(
     'Whoops\\Util\\SystemFacade' => $vendorDir . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
     'Whoops\\Util\\TemplateHelper' => $vendorDir . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
     'XdgBaseDir\\Xdg' => $vendorDir . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
+    'h4cc\\WKHTMLToPDF\\WKHTMLToPDF' => $vendorDir . '/h4cc/wkhtmltopdf-amd64/WKHTMLToPDF.php',
     'phpDocumentor\\Reflection\\DocBlock' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
     'phpDocumentor\\Reflection\\DocBlockFactory' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
     'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
