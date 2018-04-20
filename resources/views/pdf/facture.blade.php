@@ -6,7 +6,7 @@
     
     <style>
     .invoice-box {
-        max-width: 800px;
+        /*max-width: 800px;*/
         margin: auto;
         padding: 30px;
         border: 1px solid #eee;
@@ -92,28 +92,16 @@
     border: 0;
     }
 
-    .page-number {
-      text-align: center;
-    }
-
-    .page-number:before {
-        content: "Page " counter(page);
-    }
     </style>
 </head>
 
 <body>
-
-
-
     <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
+        <div class="top">
                     <table>
                         <tr>
                             <td>
-                                <img src="http://i0.kym-cdn.com/photos/images/newsfeed/000/369/281/141.jpg" style="width:100%; max-width:300px;">
+                                <img src="http://i0.kym-cdn.com/photos/images/newsfeed/000/369/281/141.jpg" style="width:100%; max-width:200px;">
                             </td>
                             <td>
                                 Shop Name<br>
@@ -123,35 +111,32 @@
                             </td>
                             
                         </tr>
-                    </table>
-                </td>
-            </tr>
-            
-            <tr class="information">
-                <td colspan="2">
-                    <table>
+                    </table> 
+        </div>
+        <br><br>
+        <div class="information">
+                <table>
                         <tr>
                             
                             <td>
-                                Invoice #: 123<br>
-                                Created: January 1, 2018<br>
-                                Due: February 1, 2018
+                                Facture #: {{$order->id}}<br>
+                                Date de commande: {{$order->created_at}}<br>
+                                Délai: 48 heures
                             </td>
 
                             <td>
-                                Client username<br>
-                                Client name<br>
-                                client@email.com
+                                {{$order->user->username}} <br>
+                                {{$order->user->name}}<br>
+                                {{$order->user->email}}
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
+               </div>
         </table> 
         <table>
             <tr class="heading" style="text-align: center;">
                 <td>
-                    Command N°
+                    Commande N°
                 </td>
 
                 <td style="text-align: center;">
@@ -161,24 +146,24 @@
             
             <tr class="item" style="text-align: center;">
                 <td>
-                    001
+                    {{$order->id}}
                 </td>
                 <td style="text-align: center;">
-                    X75Z2
+                    {{$order->code}}
                 </td>
                 
 
             </tr>
       </table>
-      <br>
+      <br><br>
       <table>      
             <tr class="heading">
                 <td>
-                    Item
+                    Produit
                 </td>
 
                 <td>
-                    Unit Price
+                    Prix Unitaire
                 </td>
 
                 <td>
@@ -186,24 +171,24 @@
                 </td>
 
                 <td>
-                    Price
+                    Prix (will be changed)
                 </td>
 
                 <td style="text-align: center;">
-                    Total
+                    Prix Total
                 </td>
 
                 
                 
             </tr>
-            
+            @foreach ($order->products as $product)
             <tr class="item">
                 <td>
-                    Website design
+                    {{ $product->name }}
                 </td>
                 
                 <td>
-                    $30.00
+                    {{ $product->price }}
                 </td>
 
                 <td>
@@ -292,201 +277,8 @@
             </tr>
 
         </table>
-        <div id="footer">
-            <div class="page-number"></div>
-        </div>
+
     </div>
-    
-    <hr>
-    <div class="invoice-box">
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                <img src="http://i0.kym-cdn.com/photos/images/newsfeed/000/369/281/141.jpg" style="width:100%; max-width:300px;">
-                            </td>
-                            <td>
-                                Shop Name<br>
-                                Shop Website<br>
-                                Address<br>
-                                Phone Number
-                            </td>
-                            
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            
-                            <td>
-                                Invoice #: 123<br>
-                                Created: January 1, 2018<br>
-                                Due: February 1, 2018
-                            </td>
-
-                            <td>
-                                Client username<br>
-                                Client name<br>
-                                client@email.com
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table> 
-        <table>
-            <tr class="heading" style="text-align: center;">
-                <td>
-                    Command N°
-                </td>
-
-                <td style="text-align: center;">
-                    Code
-                </td>
-            </tr>
-            
-            <tr class="item" style="text-align: center;">
-                <td>
-                    001
-                </td>
-                <td style="text-align: center;">
-                    X75Z2
-                </td>
-                
-
-            </tr>
-      </table>
-      <br>
-      <table>      
-            <tr class="heading">
-                <td>
-                    Item
-                </td>
-
-                <td>
-                    Unit Price
-                </td>
-
-                <td>
-                    Quantité
-                </td>
-
-                <td>
-                    Price
-                </td>
-
-                <td style="text-align: center;">
-                    Total
-                </td>
-
-                
-                
-            </tr>
-            
-            <tr class="item">
-                <td>
-                    Website design
-                </td>
-                
-                <td>
-                    $30.00
-                </td>
-
-                <td>
-                    5
-                </td>
-
-                <td>
-                    $300.00
-                </td>
-
-                <td style="text-align: center;">
-                    $3000.00
-                </td>
-            </tr>
-            
-            <tr class="item">
-                <td>
-                    Hosting (3 months)
-                </td>
-
-                <td>
-                    $30.00
-                </td>
-
-                <td>
-                    5
-                </td>
-
-                <td>
-                    $75.00
-                </td>
-
-                <td   style="text-align: center;">
-                    $3100.00
-                </td>
-            </tr>
-            
-            <tr class="item last">
-                <td>
-                    Domain name (1 year)
-                </td>
-                <td>
-                    $30.00
-                </td>
-
-                <td>
-                    5
-                </td>
-
-                <td>
-                    $10.00
-                </td>
-
-                <td   style="text-align: center;">
-                    $3020.00
-                </td>
-            </tr>
-            
-            <tr class="total">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td   style="text-align: center;">
-                   Total: $385.00
-                </td>
-            </tr>
-             <tr class="total">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td  style="text-align: center;">
-                   TVA: 7%     
-                </td>
-            </tr>
-
-            <tr class="total">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td id="grandtotal" style="text-align: center;">
-                   Grand Total: $420.00
-                </td>
-            </tr>
-
-        </table>
-        <div id="footer">
-            <div class="page-number"></div>
-        </div>
-    </div>
+    <hr> <!--End of Page-->
 </body>
 </html>

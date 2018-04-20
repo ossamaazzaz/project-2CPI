@@ -15,7 +15,10 @@ class PDFController extends Controller
     {
         /*$pdf = PDF::loadView('pdf.facture');
         return $pdf->download('facture.pdf');*/
-        return view('pdf.facture');
+        /*return view('pdf.facture');*/
+        $pdf = PDF::loadView('pdf.facture');
+        return $pdf->stream();
+        /*return PDF::loadView('pdf.facture')->setOption('margin-left', 0)->setOption('margin-right', 0)->stream();*/
     }
 
     /**
