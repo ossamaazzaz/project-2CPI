@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('user_id');
             $table->integer('state')->default(0); 
             // 0: Pending 1:Accepted 2:Refused
-            $table->float('total_paid');
+            $table->float('total_paid')->default(0);
             $table->timestamps();
         });
     }

@@ -63,6 +63,19 @@ class OrdersController extends Controller
  
     //==================================================================
 
+    public function AdminPanel(){
+
+        $Pending_Orders = Orders::where('state',0)->orderBy('created_at')->get();
+
+        $Accepted_Orders = Orders::where('state',1)->orderBy('created_at')->get();
+
+        $Refused_Orders = Orders::where('state',2)->orderBy('created_at')->get();
+
+  
+        $categories = \App\Category::get();
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
+    }
+
 
 }
 

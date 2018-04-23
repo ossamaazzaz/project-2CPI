@@ -26,7 +26,6 @@ Route::post('/admin/users','UsersController@approve');
 
 Route::get('/admin', 'DashbaordController@index')->middleware('auth','admin');
 
-
 //eprooducts route
 Route::get('/admin/products/add','ProductController@add');
 Route::post('/admin/products/add','ProductController@add');
@@ -68,3 +67,4 @@ Route::get('/cart/delete/{id}','CartsController@RemoveItem'); //Delete
 Route::post('/checkout', 'OrdersController@checkout');
 Route::get('/orders', 'OrdersController@OrdersList');
 Route::get('/orders/{id}', 'OrdersController@index');
+Route::get('/admin/orders', 'OrdersController@AdminPanel')->middleware('auth','admin');
