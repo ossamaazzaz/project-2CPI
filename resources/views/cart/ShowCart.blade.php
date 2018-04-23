@@ -64,14 +64,18 @@
           <th ></th>  
           <th ></th>
           <th> Total  :</th>
-          <th >{{ $total }} DA</th>
+          <th >{{$total}} DA</th>
         </strong></tr>
       </tfoot>
     </table>
 
           <a href="/home"><button type="button" class="btn btn-warning">Back To Store </button></a>
           <button type="submit" class="btn btn-primary">Apply Changes and refresh</a></form> 
-          <button type="button" class="btn btn-success" style="float:right;">Check Out </button>
+
+          <form method="POST" action="/checkout">  
+          <button type="submit" class="btn btn-success" style="float:right;">Check Out</button>
+          </form>
+
 
   </div>
 </div>
