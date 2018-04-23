@@ -30,11 +30,9 @@
 - password = secret
 
 ## Get PDF Functionality
-- run `composer require h4cc/wkhtmltopdf-amd64 0.12.4`
+- run `composer install`
 - run `sudo cp vendor/h4cc/wkhtmltopdf-amd64/bin/wkhtmltopdf-amd64 /usr/local/bin/wkhtmltopdf`
 - run `sudo chmod +x /usr/local/bin/wkhtmltopdf`
-- run `composer require barryvdh/laravel-snappy`
-- re-run `composer install`
 - try running `php artisan vendor:publish --provider="Barryvdh\Snappy\ServiceProvider"`
 - if it didn't work contact me (renken) and/else read [the official installation guide] (https://github.com/barryvdh/laravel-snappy)
 
