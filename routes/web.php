@@ -63,3 +63,8 @@ Route::get('/search','SearchController@search');
 Route::get('/cart' ,'CartsController@ShowCart');
 Route::post('/cart' ,'CartsController@UpdateCart');
 Route::get('/cart/delete/{id}','CartsController@RemoveItem'); //Delete
+
+//Checkout
+Route::post('/checkout', 'OrdersController@checkout');
+Route::get('/orders', 'OrdersController@OrdersList');
+Route::get('/orders/{id}', 'OrdersController@index');

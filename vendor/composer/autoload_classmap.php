@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-
     'App\\Cart' => $baseDir . '/app/Cart.php',
     'App\\CartItem' => $baseDir . '/app/CartItem.php',
     'App\\Category' => $baseDir . '/app/Category.php',
@@ -23,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashbaordController' => $baseDir . '/app/Http/Controllers/DashbaordController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\OrdersController' => $baseDir . '/app/Http/Controllers/OrdersController.php',
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Controllers\\ProductDetailsController' => $baseDir . '/app/Http/Controllers/ProductDetailsController.php',
     'App\\Http\\Controllers\\SearchController' => $baseDir . '/app/Http/Controllers/SearchController.php',
@@ -36,6 +36,8 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Listeners\\CreateProduct' => $baseDir . '/app/Listeners/CreateProduct.php',
     'App\\Listeners\\EventListener' => $baseDir . '/app/Listeners/EventListener.php',
+    'App\\OrderItem' => $baseDir . '/app/OrderItem.php',
+    'App\\Orders' => $baseDir . '/app/Orders.php',
     'App\\Product' => $baseDir . '/app/Product.php',
     'App\\ProductDetails' => $baseDir . '/app/ProductDetails.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
@@ -44,7 +46,6 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
-    'App\\users' => $baseDir . '/app/users.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
