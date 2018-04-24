@@ -163,7 +163,7 @@
                 </td>
 
                 <td>
-                    Brand
+                    Marque
                 </td>
 
                 <td>
@@ -253,7 +253,7 @@
             </tr>
 
         </table>
-
+     <i style="font-size: 9px;" >* Veuillez attender la confirmation de votre demande.</i>
     </div>
     <!--<hr> End of Page-->
 </body>
