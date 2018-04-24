@@ -8,7 +8,8 @@ use \App\CartItem;
 use \App\Orders;
 use \App\OrderItem;
 use \Auth;
-
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\OrderDone;
 
 class OrdersController extends Controller
 {
@@ -65,7 +66,16 @@ class OrdersController extends Controller
     }
  
     //==================================================================
-
-
+    /**
+    * From the request, you must extract the order + the email.
+    * to view the email template `views/email/orderDone.blade.php`
+    * to view the Mailable class `app/Mail/OrderDone.php`
+    */
+    public function notifyOnDone(Request $req) {
+        $email = 'renkennate@gmail.com';
+        $order = Orders::find(2);
+        Mail::to($email)->send(new OrderDone($order));
+        return view('/');
+    }
 }
 

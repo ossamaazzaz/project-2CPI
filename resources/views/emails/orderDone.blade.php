@@ -1,0 +1,1 @@
+<p>You got a message from our nameless project's website! Code: {{ $code }}</p>

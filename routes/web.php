@@ -74,3 +74,5 @@ Route::post('/checkout', 'OrdersController@checkout');
 Route::get('/orders', 'OrdersController@OrdersList');
 Route::get('/orders/{id}', 'OrdersController@index');
 
+//email
+Route::get('/notification','OrdersController@notifyOnDone');
