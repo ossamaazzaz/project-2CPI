@@ -27,8 +27,11 @@ class PDFController extends Controller
      */
     public function show($code)
     {
-        $order = Orders::where('code','=',$code)->get()[0];
-        //dd($order);
+        $order = Orders::where('code','=',$code)->get()->first();
+
+        if(!$order) {
+        return redirect('home');
+        }
         if (Auth::user()->groupId == 0 ) {
             $pdf = PDF::loadView('pdf.facture',compact('order'));
         }

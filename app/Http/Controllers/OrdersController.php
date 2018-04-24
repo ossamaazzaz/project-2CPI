@@ -142,8 +142,8 @@ class OrdersController extends Controller
                     $order->state = 3;
                     $order->save();
                     // send email notification 
-                    $email = Auth::user()->email;
                     $order = Orders::find($id);
+                    $email = $order->user->email;
                     Mail::to($email)->send(new OrderDone($order));
 
                     $order->notify(new Confirmation($order));
@@ -186,8 +186,10 @@ class OrdersController extends Controller
     */
     public function notifyOnDone($id) {
         //$email = 'o.messabih@esi-sba.dz';
-        $email = Auth::user()->email;
+        
         $order = Orders::find($id);
+        $email = $order->user_id;
+        // dd($email);
         Mail::to($email)->send(new OrderDone($order));
         return view('/');
     }
