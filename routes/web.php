@@ -63,6 +63,11 @@ Route::get('/cart' ,'CartsController@ShowCart');
 Route::post('/cart' ,'CartsController@UpdateCart');
 Route::get('/cart/delete/{id}','CartsController@RemoveItem'); //Delete
 
+
+//Facture
+Route::get('/facture/{code}','PDFController@show');
+Route::get('/admin/facture/{code}','PDFController@index');
+// add route to verify facture, later change ID to HASHCODE
 //Checkout
 Route::post('/checkout', 'OrdersController@checkout');
 Route::get('/orders', 'OrdersController@OrdersList');
@@ -77,3 +82,7 @@ Route::get('/admin/preparation','OrdersController@confirm');
 Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
 Route::get('/admin/check','OrdersController@check');
 Route::post('/admin/check/{id}','OrdersController@check');
+
+//email
+Route::get('/notification','OrdersController@notifyOnDone');
+

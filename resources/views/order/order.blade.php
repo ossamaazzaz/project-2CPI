@@ -22,7 +22,7 @@
       <tbody>
       <form method="POST" action="/cart" > @csrf   
       <!------------ Showing Items in the cart -------------->
-      @foreach ($Items as $Item)
+      @foreach ($order->orderItems as $Item)
          <tr>
           <td>{{ $Item->product->brand }}</td>
           <td>{{ $Item->product->name }}</td>
@@ -40,16 +40,16 @@
           <th ></th>  
           <th ></th>
           <th> Total  :</th>
-          <th >{{$total}} DA</th>
+          <th >{{$order->total_paid}} DA</th>
         </strong></tr>
       </tfoot>
     </table>
 
           <a href="/home"><button type="button" class="btn btn-default">Back To Store </button></a>
-          <a href="/home"><button type="button" class="btn btn-warning">Download PDF file</button></a>
+          <a href="/facture/{{ $order->code }}"><button type="button" class="btn btn-warning">Download PDF file</button></a>
           <a href="/home"><button type="button" class="btn btn-info">Get this as E-mail</button></a>
 
-
+      </form>
 
   </div>
 </div> 

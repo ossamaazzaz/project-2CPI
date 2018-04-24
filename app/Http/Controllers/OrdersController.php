@@ -9,7 +9,8 @@ use \App\Orders;
 use \App\OrderItem;
 use App\Product;
 use \Auth;
-
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\OrderDone;
 
 class OrdersController extends Controller
 {
@@ -27,6 +28,11 @@ class OrdersController extends Controller
         $order = new Orders();
         $order->total_paid= $total;
         $order->user_id=Auth::user()->id;
+        $code = str_random((6));
+        while(!Orders::where('code','=',$code)->get()->isEmpty()) {
+            $code = str_random((6));
+        }
+        $order->code = $code;
         $order->save();
 
         foreach($items as $item){
@@ -46,7 +52,8 @@ class OrdersController extends Controller
  
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
-        return view('order.list',['orders'=>$orders]);
+        $categories = \App\Category::get();
+        return view('order.list',compact('orders','categories'));
     }
     
     public function index($id){
@@ -55,11 +62,8 @@ class OrdersController extends Controller
     		$order = Orders::where('user_id',Auth::user()->id)->first();
     	else
     		$order=Orders::find($id);
-
-        $Items = $order->orderItems;
-        $total = $order->total_paid;
         $categories = \App\Category::get();
-        return view('order.order',compact('Items','total','categories'));
+        return view('order.order',compact('order','categories'));
     }
  
     //==================================================================
@@ -167,5 +171,17 @@ class OrdersController extends Controller
         return view('admin.checkCode');   
     }
 
+
+    /**
+    * From the request, you must extract the order + the email.
+    * to view the email template `views/email/orderDone.blade.php`
+    * to view the Mailable class `app/Mail/OrderDone.php`
+    */
+    public function notifyOnDone(Request $req) {
+        $email = 'renkennate@gmail.com';
+        $order = Orders::find(2);
+        Mail::to($email)->send(new OrderDone($order));
+        return view('/');
+    }
 }
 

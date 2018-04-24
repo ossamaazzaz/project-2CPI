@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('code');
             $table->integer('user_id');
             $table->integer('state')->default(0); 
             // 0: Pending 1:Accepted 2:Refused

@@ -25,15 +25,13 @@ class ProductDetailsController extends Controller{
       $product=Product::find($id);
       $cartItem= new CartItem;
       $exist=DB::table('carts')->where('user_id','=',\Auth::user()->id)->get();
-      //test if the collection is empty or not ~ fixing a bug @oussama messabih
-      if (collect($exist)->isEmpty()){
+      if ($exist->isEmpty()){ 
         $cart=new Cart;
         $cart->user_id =  \Auth::user()->id;
         $cart->save();
         $cartItem->cart_id=$cart->id;
       }else {
-        
-        $cartItem->cart_id=$exist[0]->id;
+      $cartItem->cart_id=$exist->first()->id;
       }
       $cartItem->product_id=$id;
       $cartItem->quantity=$req->All()['Quantity'];
