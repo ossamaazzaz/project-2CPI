@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Notifications\RegisteredUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -60,6 +65,42 @@ class RegisterController extends Controller
             'avatar' => 'required|image|mimes:jpeg,bmp,png',
         ]);
     }
+    //==============================(EmailComfirmation)===========================//
+    /*
+    * utiliser le trait RegistersUsers
+    * @overRide register(Request $request) function
+    * apres la registration il faut envoyer un email de comfirmation a l utilisateur suivant un lien de confirmation
+    */
+    public function register(Request $request){
+      $this->validator($request->all())->validate();
+
+      event(new Registered($user = $this->create($request->all())));
+
+      $user->notify(new RegisteredUser());
+
+      return redirect('/login')->with('success','Votre compte a bien été crée ,vous devez le comfirmer avec l\'email que vous  allez recevoir');
+    }
+
+    public function confirm($id,$token){
+
+      $user= User::where("id",$id)->where('confirmation_token',$token)->first();
+      if($user){
+        //mettre a jour l utilisateur et mettre le confirmation_token=Null
+        //confirmation_token=Null <==> utilisateur Confirmer
+        $user->update(['confirmation_token' => null]);
+        //user login auto
+        $this->guard()->login($user);
+        //apres que l utilisateur est connecter je le redirige vers son compte
+        //le redirectPath suit protected $redirectTo = '/home';
+        return redirect($this->redirectPath())->with('success','Votre compte a été bien confirmer');
+
+
+      } else {
+        return redirect('/login')->with('error','Ce lien n est plus valide');
+      }
+    }
+
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -72,14 +113,14 @@ class RegisterController extends Controller
         $dirname = 'images/' . 'users';
         \Storage::makeDirectory($dirname);
         // for displaying purposes
-        
+
         \Storage::putFileAs(
                 'public/' . $dirname, $data['avatar'], $data['username'] .'.'. $data['avatar']->getClientOriginalExtension()
             );
 
         $avt = '/storage/' . $dirname . '/' . $data['username'] .'.'. $data['avatar']->getClientOriginalExtension();
         //dd($avt);
-        
+
         return User::create([
             'username' => $data['username'],
             'firstName' => $data['firstName'],
@@ -90,6 +131,7 @@ class RegisterController extends Controller
             'adr' => $data['adr'],
             'idCard' => $data['idCard'],
             'password' => Hash::make($data['password']),
+            'confirmation_token' => str_replace('/','',bcrypt(str_random(16)))
         ]);
     }
 }
