@@ -20,8 +20,8 @@
                 @foreach($orders as $order)
                     <tr>
                         <td>{{$order->id}}</td>
-                        <td><a href="/order/{{$order->id}}"> {{$order->created_at}}</a></td>
-                        <td><a href="/order/{{$order->id}}"><i class="fa fa-search-plus"></i></a></td>
+                        <td><a href="/orders/{{$order->id}}"> {{$order->created_at}}</a></td>
+                        <td><a href="/orders/{{$order->id}}"><i class="fa fa-search-plus"></i></a></td>
                     </tr>
                 @endforeach
  

@@ -50,7 +50,8 @@ class OrdersController extends Controller
  
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
-        return view('order.list',['orders'=>$orders]);
+        $categories = \App\Category::get();
+        return view('order.list',compact('orders','categories'));
     }
     
     public function index($id){
@@ -59,9 +60,6 @@ class OrdersController extends Controller
     		$order = Orders::where('user_id',Auth::user()->id)->first();
     	else
     		$order=Orders::find($id);
-
-        // $Items = $order->orderItems;
-        // $total = $order->total_paid;
         $categories = \App\Category::get();
         return view('order.order',compact('order','categories'));
     }
