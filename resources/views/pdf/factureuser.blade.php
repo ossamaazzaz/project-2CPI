@@ -133,29 +133,7 @@
                     </table>
                </div>
         </table> 
-        <table>
-            <tr class="heading" style="text-align: center;">
-                <td>
-                    Commande N°
-                </td>
-
-                <td style="text-align: center;">
-                    Code
-                </td>
-            </tr>
-            
-            <tr class="item" style="text-align: center;">
-                <td>
-                    {{$order->id}}
-                </td>
-                <td style="text-align: center;">
-                    {{$order->code}}
-                </td>
-                
-
-            </tr>
-      </table>
-      <br><br>
+        <br><br>
       <table>      
             <tr class="heading">
                 <td>
@@ -255,6 +233,6 @@
         </table>
 
     </div>
-    <!--<hr> End of Page-->
+    <!-- <hr> End of Page-->
 </body>
 </html>
