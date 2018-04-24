@@ -14,7 +14,7 @@
                         </div>
                         <button type="button" class="btn btn-success" onclick="check()">Check</button>
                         <label class="text-md-right"></label>
-                        <label class="text-justify" id="state"></label>
+                        <label class="text-justify" id="validationMsg"></label>
                 </div>
             </div>
         </div>

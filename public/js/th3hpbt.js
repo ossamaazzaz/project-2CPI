@@ -106,35 +106,39 @@ function confirm(id){
                 }});
     }
 }
-function details(id){
-
+function details(code){
+    if (code!=null) {
+        window.location.href = "/facture/"+code;
+    }
+    
 }
 function check(){
     var code = document.getElementById('codeinput').value;
-    console.log(code);
-    if (code>=0) {
-        data = {id:code};
-        jQuery.ajax({
-            type : "POST",
-            url : "/admin/check/"+code,
-            data : data,
-            cache: false,             // To unable request pages to be cached
-            processData: false,
-            contentType: false,
-            success : function(data){
-                console.log(data);
-                if (data=='Valid') {
-                    document.getElementById('state').innerHTML = "Code is Valid";
-                } else if (data == 'notValid') {
-                    document.getElementById('state').innerHTML = "Code is not Valid";
-                } else if (data = 'ard') {
-                    document.getElementById('state').innerHTML = "Already Validated";
+    data = {code:code};
+    console.log(code,data);
+    jQuery.ajax({
+        type : "POST",
+        url : "/admin/check/"+code,
+        data : data,
+        cache: false,             // To unable request pages to be cached
+        processData: false,
+        contentType: false,
+        success : function(data){
+            console.log(data);
+            var msg = document.getElementById('validationMsg');
+            if (data=='Valid') {
+                msg.innerHTML = "Code is Valid";
+            } else if (data == 'notValid') {
+                msg.innerHTML = "Code is not Valid";
+            } else if (data = 'ard') {
+                msg.innerHTML = "Already Validated";
 
-                }
-                    
-                }});
+            }
+                
+            }
+        });
 
-    }
+    
 }
 jQuery(document).ready(function (){
     jQuery.noConflict();

@@ -153,9 +153,9 @@ class OrdersController extends Controller
     //checking code
     public function check(Request $req){
         if ($req->isMethod('post')) {
-            $id = $req->id;
-            if ($id>=0) {
-            $order = Orders::find($id);
+            $code = $req->code;
+            if ($code!=null) {
+            $order = Orders::where('code',$code)->get()->first();
             if ($order->state == 3) {
                 $order->state = 4;
                 $order->save();
@@ -177,11 +177,10 @@ class OrdersController extends Controller
     * to view the email template `views/email/orderDone.blade.php`
     * to view the Mailable class `app/Mail/OrderDone.php`
     */
-    public function notifyOnDone(Request $req) {
-        $email = 'renkennate@gmail.com';
-        $order = Orders::find(2);
+    public function notifyOnDone($id) {
+        $email = 'o.messabih@esi-sba.dz';
+        $order = Orders::find($id);
         Mail::to($email)->send(new OrderDone($order));
-        return view('/');
     }
 }
 

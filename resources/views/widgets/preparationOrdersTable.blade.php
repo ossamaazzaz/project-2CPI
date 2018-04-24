@@ -14,7 +14,7 @@
                     <td>{{ $Order->created_at }}</td>
                     <!-- buttons for Accept/Refuse -->
                     <td>
-                    <button type="button" class="btn btn-info" id="details{{ $Order->id }}" onclick="details('{{ $Order->id }}','{{ $Order->state }}')">Details</button>
+                    <button type="button" class="btn btn-info" id="details{{ $Order->id }}" onclick="details('{{ $Order->code }}')">Details</button>
                     </td>   
                     <td>
                     <button type="button" class="btn btn-success" id="confirm{{ $Order->id }}" onclick="confirm('{{ $Order->id }}','{{ $Order->state }}')">Confirm</button>

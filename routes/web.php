@@ -81,7 +81,7 @@ Route::post('/admin/orders/{id}/refuse','OrdersController@refuseOrder');
 Route::get('/admin/preparation','OrdersController@confirm');
 Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
 Route::get('/admin/check','OrdersController@check');
-Route::post('/admin/check/{id}','OrdersController@check');
+Route::post('/admin/check/{code}','OrdersController@check');
 
 //email
 Route::get('/notification','OrdersController@notifyOnDone');

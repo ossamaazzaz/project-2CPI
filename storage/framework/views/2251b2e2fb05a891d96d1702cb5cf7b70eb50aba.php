@@ -26,10 +26,11 @@
                       <ul class="navbar-nav">
                        <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
                         <li><div id="dropdownMenu" class="dropdown">
-                            <button class="fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                            <dev class="btn" data-toggle="dropdown" style="height: 40px;">
+                            <i  class="fa fa-bars" aria-hidden="true"></i>
                             <span class="caret"></span>
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
-                              </button>
+                              </dev>
                             <div class="dropdown-menu" id="selectedCategory">
                               <?php if((!Request::is('home/edit','login','register'))): ?>
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -51,6 +52,7 @@
                     </div>
                       </ul>
                     </form>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav navbar-right ml-auto">
                     <?php if(Auth::guest()): ?>
