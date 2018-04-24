@@ -37,10 +37,14 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Listeners\\CreateProduct' => $baseDir . '/app/Listeners/CreateProduct.php',
     'App\\Listeners\\EventListener' => $baseDir . '/app/Listeners/EventListener.php',
+<<<<<<< HEAD
     'App\\Mail\\OrderDone' => $baseDir . '/app/Mail/OrderDone.php',
     'App\\Notifications\\Confirmation' => $baseDir . '/app/Notifications/Confirmation.php',
     'App\\OrderItem' => $baseDir . '/app/OrderItem.php',
     'App\\Orders' => $baseDir . '/app/Orders.php',
+=======
+    'App\\Notifications\\ConfirmEmail' => $baseDir . '/app/Notifications/ConfirmEmail.php',
+>>>>>>> mouloud
     'App\\Product' => $baseDir . '/app/Product.php',
     'App\\ProductDetails' => $baseDir . '/app/ProductDetails.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
@@ -49,6 +53,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\User' => $baseDir . '/app/User.php',
+<<<<<<< HEAD
     'Barryvdh\\Snappy\\Facades\\SnappyImage' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
     'Barryvdh\\Snappy\\Facades\\SnappyPdf' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',
     'Barryvdh\\Snappy\\IlluminateSnappyImage' => $vendorDir . '/barryvdh/laravel-snappy/src/IlluminateSnappyImage.php',
@@ -57,6 +62,8 @@ return array(
     'Barryvdh\\Snappy\\LumenServiceProvider' => $vendorDir . '/barryvdh/laravel-snappy/src/LumenServiceProvider.php',
     'Barryvdh\\Snappy\\PdfWrapper' => $vendorDir . '/barryvdh/laravel-snappy/src/PdfWrapper.php',
     'Barryvdh\\Snappy\\ServiceProvider' => $vendorDir . '/barryvdh/laravel-snappy/src/ServiceProvider.php',
+=======
+>>>>>>> mouloud
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

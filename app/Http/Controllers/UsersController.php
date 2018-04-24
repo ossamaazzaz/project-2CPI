@@ -9,7 +9,7 @@ use App\User;
 class UsersController extends Controller
 {
 
-   public function index() 
+   public function index()
    {
 	    $users = User::get();
 	    return view('admin.users',compact('users'));
