@@ -30,6 +30,9 @@ class OrderDone extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.orderDone')->with(['code' => $this->order->code]);
+        $code  = $this->order->code;
+        $url = url('facture/' . $code);
+        return $this->view('emails.orderDone',compact('code','url'));
     }
+
 }

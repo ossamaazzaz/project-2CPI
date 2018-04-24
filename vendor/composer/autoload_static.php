@@ -369,14 +369,11 @@ class ComposerStaticInit5f72456cb2d56e7b88eab23a689c4843
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Listeners\\CreateProduct' => __DIR__ . '/../..' . '/app/Listeners/CreateProduct.php',
         'App\\Listeners\\EventListener' => __DIR__ . '/../..' . '/app/Listeners/EventListener.php',
-<<<<<<< HEAD
         'App\\Mail\\OrderDone' => __DIR__ . '/../..' . '/app/Mail/OrderDone.php',
         'App\\Notifications\\Confirmation' => __DIR__ . '/../..' . '/app/Notifications/Confirmation.php',
         'App\\OrderItem' => __DIR__ . '/../..' . '/app/OrderItem.php',
         'App\\Orders' => __DIR__ . '/../..' . '/app/Orders.php',
-=======
         'App\\Notifications\\ConfirmEmail' => __DIR__ . '/../..' . '/app/Notifications/ConfirmEmail.php',
->>>>>>> mouloud
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\ProductDetails' => __DIR__ . '/../..' . '/app/ProductDetails.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -385,7 +382,6 @@ class ComposerStaticInit5f72456cb2d56e7b88eab23a689c4843
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
-<<<<<<< HEAD
         'Barryvdh\\Snappy\\Facades\\SnappyImage' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
         'Barryvdh\\Snappy\\Facades\\SnappyPdf' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',
         'Barryvdh\\Snappy\\IlluminateSnappyImage' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/IlluminateSnappyImage.php',
@@ -394,8 +390,6 @@ class ComposerStaticInit5f72456cb2d56e7b88eab23a689c4843
         'Barryvdh\\Snappy\\LumenServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/LumenServiceProvider.php',
         'Barryvdh\\Snappy\\PdfWrapper' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/PdfWrapper.php',
         'Barryvdh\\Snappy\\ServiceProvider' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/ServiceProvider.php',
-=======
->>>>>>> mouloud
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

@@ -11,6 +11,7 @@ use App\Product;
 use \Auth;
 use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
+use App\Notifications\Confirmation;
 
 class OrdersController extends Controller
 {
@@ -140,9 +141,12 @@ class OrdersController extends Controller
                 if ($order->state != 3) {
                     $order->state = 3;
                     $order->save();
-                    $email = 'o.messabih@esi-sba.dz';
+                    // send email notification 
+                    $email = Auth::user()->email;
                     $order = Orders::find($id);
                     Mail::to($email)->send(new OrderDone($order));
+
+                    $order->notify(new Confirmation($order));
                     return response()->json('confirmed');
                 } else {
                     return response()->json('notconfirmed');
@@ -181,9 +185,11 @@ class OrdersController extends Controller
     * to view the Mailable class `app/Mail/OrderDone.php`
     */
     public function notifyOnDone($id) {
-        $email = 'o.messabih@esi-sba.dz';
+        //$email = 'o.messabih@esi-sba.dz';
+        $email = Auth::user()->email;
         $order = Orders::find($id);
         Mail::to($email)->send(new OrderDone($order));
+        return view('/');
     }
 }
 

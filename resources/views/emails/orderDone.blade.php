@@ -1,1 +1,3 @@
-<p>You got a message from our nameless project's website! Code: {{ $code }}</p>
+<p>Your Order validated this the Code: {{ $code }}</p>
+<a href="{{ $url }}"> this ur Bill</a>
+<p>Thank You</p>
