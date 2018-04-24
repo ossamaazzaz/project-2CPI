@@ -85,6 +85,21 @@ dashboard prinicpale view
                             </a>
                                     <!-- /.nav-theird-level -->
                         </li>
+                        <li <?php echo e((Request::is('orders') ? 'class="active"' : '')); ?>>
+                            <a href="<?php echo e(url ('admin/orders')); ?>"><i class="fa fa-folder fa-fw"></i> Orders
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+                        <li <?php echo e((Request::is('preparation') ? 'class="active"' : '')); ?>>
+                            <a href="<?php echo e(url ('admin/preparation')); ?>"><i class="fa fa-folder fa-fw"></i> Preparation
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+                        <li <?php echo e((Request::is('check') ? 'class="active"' : '')); ?>>
+                            <a href="<?php echo e(url ('admin/check')); ?>"><i class="fa fa-folder fa-fw"></i> Check
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
 
                     </ul>
                 </div>

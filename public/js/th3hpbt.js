@@ -51,6 +51,91 @@ function deleteOneProduct(element){
                 }
                 console.log(data); }});
 }
+function validate(id,state){
+    if (state==0) {
+        data = {id:id};
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/orders/"+id+"/validate",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                if (data=='refuse') {
+                    document.getElementById('refuse'+id).classList.remove("disabled");
+                    document.getElementById('validate'+id).classList.add("disabled");
+                    document.getElementById('outofstock'+id).innerHTML = "Out of Stock";
+                }else if (data == 'validate'){
+                    window.location.href = "/admin/orders";
+                }
+                
+                }});
+    }
+}
+function refuse(id,state){
+    if (state==0) {
+        data = {id:id};
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/orders/"+id+"/refuse",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                    window.location.href = "/admin/orders";
+                }});
+    }
+}
+function confirm(id){
+    if (id>=0) {
+        data = {id:id};
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/preparation/"+id+"/confirm",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                if (data=='confirmed') {
+                    window.location.href = "/admin/preparation";
+                }
+                    
+                }});
+    }
+}
+function details(id){
+
+}
+function check(){
+    var code = document.getElementById('codeinput').value;
+    console.log(code);
+    if (code>=0) {
+        data = {id:code};
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/check/"+code,
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                if (data=='Valid') {
+                    document.getElementById('state').innerHTML = "Code is Valid";
+                } else if (data == 'notValid') {
+                    document.getElementById('state').innerHTML = "Code is not Valid";
+                } else if (data = 'ard') {
+                    document.getElementById('state').innerHTML = "Already Validated";
+
+                }
+                    
+                }});
+
+    }
+}
 jQuery(document).ready(function (){
     jQuery.noConflict();
     var table = jQuery("#productsDataTable").DataTable();

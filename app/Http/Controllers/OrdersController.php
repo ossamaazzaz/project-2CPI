@@ -7,6 +7,7 @@ use \App\Cart;
 use \App\CartItem;
 use \App\Orders;
 use \App\OrderItem;
+use App\Product;
 use \Auth;
 
 
@@ -76,6 +77,95 @@ class OrdersController extends Controller
         return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
     }
 
+    //============
+    //Validation function
+    //checking if the intems are ou of stock or not and depending on that its gives the admin
+    //in case out of stock its gives admin option of refuse if not the order will e validated
+    public function validateOrder(Request $req){
+        $outOfStock = false;
+        if ($req->id>=0) {
+            $id = $req->id; 
+            $order = Orders::find($id);
+            //calcule
+            $Items = $order->orderItems;
+            foreach ($Items as $item) {
+                $product = Product::find($item->product_id);
+                if ($product->quantitySale >= $item->quantity) {
+                    $product->quantitySale = $product->quantitySale - $item->quantity;
+                    $product->quantity = $product->quantity - $item->quantity;
+                    $product->save();
+                    $order->state  = 1;
+                } else {
+                    $outOfStock = true;
+                    break;
+                }
+            }
+            $order->save();
+
+        }
+        if ($outOfStock) {
+            return response()->json('refuse');  
+        } else {
+            return response()->json('validate');
+        }
+        
+    }
+    //in case its out of stock so the admin have one option is refuse
+    // puting state on 2 mean refused order
+    public function refuseOrder(Request $req){
+        if ($req->id>=0) {
+            $id = $req->id; 
+            $order = Orders::find($id);
+            $order->state = 2;
+            $order->save();
+        }
+    }
+
+    //============
+    //Preparation confirmation function 
+    //post function : puting state on 3 when preparation  is done
+    //get function : just get the validated orders
+    public function confirm(Request $req){
+        if ($req->isMethod('get')) {
+            $Orders = Orders::where('state',1)->orderBy('created_at')->get();
+            return view('admin.preparation',compact('Orders'));
+        } else if ($req->isMethod('post')){
+            if ($req->id >= 0) {
+                $id = $req->id; 
+                $order = Orders::find($id);
+                if ($order->state != 3) {
+                    $order->state = 3;
+                    $order->save();
+                    return response()->json('confirmed');
+                } else {
+                    return response()->json('notconfirmed');
+                }    
+            }
+        }  
+    }
+    //============
+    //Check order hash code function
+    //puting state 4 when the client took his orders
+    //checking code
+    public function check(Request $req){
+        if ($req->isMethod('post')) {
+            $id = $req->id;
+            if ($id>=0) {
+            $order = Orders::find($id);
+            if ($order->state == 3) {
+                $order->state = 4;
+                $order->save();
+                return response()->json('Valid');
+            } else if ($order->state == 4) {
+                return response()->json('ard');
+            }
+            else {
+                return response()->json('notValid');
+            }
+        }
+        }
+        return view('admin.checkCode');   
+    }
 
 }
 

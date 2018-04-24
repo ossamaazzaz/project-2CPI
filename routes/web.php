@@ -68,3 +68,12 @@ Route::post('/checkout', 'OrdersController@checkout');
 Route::get('/orders', 'OrdersController@OrdersList');
 Route::get('/orders/{id}', 'OrdersController@index');
 Route::get('/admin/orders', 'OrdersController@AdminPanel')->middleware('auth','admin');
+
+
+//orders validation , preparation , hash code checking 
+Route::post('/admin/orders/{id}/validate','OrdersController@validateOrder');
+Route::post('/admin/orders/{id}/refuse','OrdersController@refuseOrder');
+Route::get('/admin/preparation','OrdersController@confirm');
+Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
+Route::get('/admin/check','OrdersController@check');
+Route::post('/admin/check/{id}','OrdersController@check');
