@@ -370,6 +370,7 @@ class ComposerStaticInit5f72456cb2d56e7b88eab23a689c4843
         'App\\Listeners\\CreateProduct' => __DIR__ . '/../..' . '/app/Listeners/CreateProduct.php',
         'App\\Listeners\\EventListener' => __DIR__ . '/../..' . '/app/Listeners/EventListener.php',
         'App\\Mail\\OrderDone' => __DIR__ . '/../..' . '/app/Mail/OrderDone.php',
+        'App\\Notifications\\Confirmation' => __DIR__ . '/../..' . '/app/Notifications/Confirmation.php',
         'App\\OrderItem' => __DIR__ . '/../..' . '/app/OrderItem.php',
         'App\\Orders' => __DIR__ . '/../..' . '/app/Orders.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',

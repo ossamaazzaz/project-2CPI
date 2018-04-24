@@ -38,6 +38,7 @@ return array(
     'App\\Listeners\\CreateProduct' => $baseDir . '/app/Listeners/CreateProduct.php',
     'App\\Listeners\\EventListener' => $baseDir . '/app/Listeners/EventListener.php',
     'App\\Mail\\OrderDone' => $baseDir . '/app/Mail/OrderDone.php',
+    'App\\Notifications\\Confirmation' => $baseDir . '/app/Notifications/Confirmation.php',
     'App\\OrderItem' => $baseDir . '/app/OrderItem.php',
     'App\\Orders' => $baseDir . '/app/Orders.php',
     'App\\Product' => $baseDir . '/app/Product.php',

@@ -140,12 +140,15 @@ class OrdersController extends Controller
                 if ($order->state != 3) {
                     $order->state = 3;
                     $order->save();
+                    $email = 'o.messabih@esi-sba.dz';
+                    $order = Orders::find($id);
+                    Mail::to($email)->send(new OrderDone($order));
                     return response()->json('confirmed');
                 } else {
                     return response()->json('notconfirmed');
                 }    
             }
-        }  
+        }
     }
     //============
     //Check order hash code function
