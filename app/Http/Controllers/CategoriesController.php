@@ -7,13 +7,20 @@ use Illuminate\Support\Facades\DB;
 use  \App\Category;
 use  \App\Product;
 use Illuminate\Http\Request;
-
+/*
+* Done by Kacema and Mouloud
+*/
 class CategoriesController extends Controller{
+
+  
   public function index()  {
       $categories=DB::table('categories')->latest()->get();
       return view('/categories/main',compact('categories'));  }
 
+  
   public function AddView(){ return view('/categories/add') ;  }
+
+
   public function Add(Request $req)
   {
     $validator=  \Validator::make($req->all(), [

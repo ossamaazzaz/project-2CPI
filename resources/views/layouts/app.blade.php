@@ -23,20 +23,21 @@
                     </ul>
                     <form class="navbar-nav mr-auto" method="GET" action="/search">
                       <ul class="navbar-nav">
-                       <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>      
+                       <li><input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch" style="width: 300px;height: 40px; margin: 3px;"></li>
                         <li><div id="dropdownMenu" class="dropdown">
-                            <button class="fa fa-bars" type="button" data-toggle="dropdown" style="height: 40px;">
+                            <dev class="btn" data-toggle="dropdown" style="height: 40px;">
+                            <i  class="fa fa-bars" aria-hidden="true"></i>
                             <span class="caret"></span>
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
-                              </button>
+                              </dev>
                             <div class="dropdown-menu" id="selectedCategory">
-                              @if((!Request::is('home/edit','login','register')))
+                              @if((!Request::is('home/edit','login','register','password/reset')))
                                 @foreach ($categories as $cat)
                                     <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
                                 @endforeach
                               @endif
                             </div>
-                            </div> 
+                            </div>
 
                         </li>
                         <li>
@@ -46,10 +47,11 @@
                             </button>
                       </div>
                         </li>
-                      
+
                     </div>
                       </ul>
                     </form>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav navbar-right ml-auto">
                     @if (Auth::guest())
@@ -94,57 +96,82 @@
             </div>
         </div>
     </nav>
+    <!--success message-->
+
+    @if(session('success'))
+      <div class="container">
+        <div class="alert alert-success">
+          {{ session('success') }}
+        </div>
+      </div>
+    @endif
+
+    <!--error message-->
+
+    @if(session('error'))
+      <div class="container">
+        <div class="alert alert-danger">
+          {{ session('error') }}
+        </div>
+      </div>
+    @endif
+
 
     @yield('content')
+
+
+
+
+
     <footer>
      <div class="container">
        <div class="row">
-       
+
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <span class="logo">LOGO</span>
                   <br><br>
                   <p style="color: white;"><i>the description of our website ,<br>
-                    some words</i></p>                      
+                    some words</i></p>
                 </div>
-                
+
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="menu">
-                         <span>usefull links</span>    
+                         <span>usefull links</span>
                          <li>
                             <a href="#">Home</a>
                           </li>
-                               
+
                           <li>
                              <a href="#">About</a>
                           </li>
-                               
+
                           <li>
                             <a href="#">Contact us</a>
                           </li>
-                               
+
                           <li>
                              <a href="#">Terms and condiitons</a>
                           </li>
                      </ul>
                 </div>
-           
+
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <ul class="address">
-                        <span>Contact</span>       
+                        <span>Contact</span>
                         <li>
                            <i class="fa fa-phone" aria-hidden="true"></i> <a href="#">Phone</a>
                         </li>
                         <li>
                            <i class="fa fa-map-marker" aria-hidden="true"></i> <a href="#">Adress</a>
-                        </li> 
+                        </li>
                         <li>
                            <i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">Email</a>
-                        </li> 
+                        </li>
                   </ul>
                </div>
-           
-           
-           </div> 
+
+
+           </div>
         </div>
     </footer>
 

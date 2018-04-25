@@ -25,6 +25,7 @@ class CartsController extends Controller
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
+        
         $categories = Category::get();
         return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories]);
     }
@@ -40,6 +41,18 @@ class CartsController extends Controller
         $items = $cart->cartItems;
 
         foreach($items as $item){
+
+            $product_sale = (\App\Product::find($item->product_id))->quantitySale;
+
+            $validator = \Validator::make($req->all(), [
+            'quantity'.$item->id => 'required|numeric|between:1,'.$product_sale
+             //Change 999 by product availbl quant
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withErrors($validator)->withInput();
+            }
+
             $item->quantity = intval($input['quantity'.$item->id]);
             $item->save();
         }

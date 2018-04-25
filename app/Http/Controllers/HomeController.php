@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
+     * by renken and thehahppybit
      * @return \Illuminate\Http\Response
      */
     public function index(Request $req)
@@ -53,7 +53,7 @@ class HomeController extends Controller
     * Apply changes to the user
     * @param Request $req 
     * @return  view of auth/edit.blade.php
-    * 
+    * by renken 
      */
     public function update(Request $req) {
         $user = \Auth::user();

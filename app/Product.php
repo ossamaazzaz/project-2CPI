@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     
-    
+    //using the trait of searching 
     use FullTextSearch;
 	/**
     * Get the details record associated with the Product.

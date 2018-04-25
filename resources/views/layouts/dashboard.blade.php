@@ -84,6 +84,21 @@ dashboard prinicpale view
                             </a>
                                     <!-- /.nav-theird-level -->
                         </li>
+                        <li {{ (Request::is('orders') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/orders') }}"><i class="fa fa-folder fa-fw"></i> Orders
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+                        <li {{ (Request::is('preparation') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/preparation') }}"><i class="fa fa-folder fa-fw"></i> Preparation
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+                        <li {{ (Request::is('check') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/check') }}"><i class="fa fa-folder fa-fw"></i> Check
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
 
                     </ul>
                 </div>
