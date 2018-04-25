@@ -55,6 +55,15 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav navbar-right ml-auto">
+                    <li class="nav-item">
+                       <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="fa fa-bell"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#"></a></li>
+                        </ul>
+                      </div> 
+                    </li>
                     <?php if(Auth::guest()): ?>
                         <li><a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
                             <li><a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>
