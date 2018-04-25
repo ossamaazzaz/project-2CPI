@@ -54,6 +54,25 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav navbar-right ml-auto">
+                    <li class="nav-item">
+                       <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="fa fa-bell"></span></button>
+                        <ul class="dropdown-menu">
+                          @if((!Request::is('home/edit','login','register','password/reset')))
+                          @foreach ($notifications as $notif)
+                            @if($notif != null)
+                            <li>
+                              <dev class="notif">
+                                <a href="{{ 'facture/' . $notif }}">Your code is : {{ $notif }}</a>
+                              </dev>
+                            </li>
+                            @endif
+                          @endforeach
+                          @endif
+                        </ul>
+                      </div> 
+                    </li>
                     @if (Auth::guest())
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>

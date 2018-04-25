@@ -55,10 +55,6 @@ class Confirmation extends Notification
      */
     public function toArray($notifiable)
     {
-        $url = url('facture/'. $this->order->code);
-        return [
-            'code' => $this->order->code,
-            'url' => $url,
-        ];
+        return $this->order->code;
     }
 }

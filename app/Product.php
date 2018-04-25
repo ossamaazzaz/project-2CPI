@@ -9,6 +9,7 @@ class Product extends Model
     
     //using the trait of searching 
     use FullTextSearch;
+    use Notif;
 	/**
     * Get the details record associated with the Product.
     */

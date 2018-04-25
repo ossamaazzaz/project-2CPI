@@ -55,6 +55,25 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav navbar-right ml-auto">
+                    <li class="nav-item">
+                       <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="fa fa-bell"></span></button>
+                        <ul class="dropdown-menu">
+                          <?php if((!Request::is('home/edit','login','register','password/reset'))): ?>
+                          <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notif): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($notif != null): ?>
+                            <li>
+                              <dev class="notif">
+                                <a href="<?php echo e('facture/' . $notif); ?>">Your code is : <?php echo e($notif); ?></a>
+                              </dev>
+                            </li>
+                            <?php endif; ?>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
+                        </ul>
+                      </div> 
+                    </li>
                     <?php if(Auth::guest()): ?>
                         <li><a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Login')); ?></a></li>
                             <li><a class="nav-link" href="<?php echo e(route('register')); ?>"><?php echo e(__('Register')); ?></a></li>

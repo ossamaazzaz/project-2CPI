@@ -119,7 +119,6 @@
                         <tr>
                             
                             <td>
-                                Facture #: {{$order->id}}<br>
                                 Date de commande: {{$order->created_at}}<br>
                                 Délai: 48 heures
                             </td>
