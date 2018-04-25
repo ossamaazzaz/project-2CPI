@@ -59,7 +59,17 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="fa fa-bell"></span></button>
                         <ul class="dropdown-menu">
-                          <li><a href="#"></a></li>
+                          @if((!Request::is('home/edit','login','register','password/reset')))
+                          @foreach ($notifications as $notif)
+                            @if($notif != null)
+                            <li>
+                              <dev class="notif">
+                                <a href="{{ 'facture/' . $notif }}">Your code is : {{ $notif }}</a>
+                              </dev>
+                            </li>
+                            @endif
+                          @endforeach
+                          @endif
                         </ul>
                       </div> 
                     </li>

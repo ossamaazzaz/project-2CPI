@@ -15,7 +15,9 @@ class ProductDetailsController extends Controller{
       $product=Product::find($id);
       $productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
       $categories = Category::get();
-      return view("cart.productdetails",compact('product','productDetails','categories'));
+      //added this line to get notifications
+      $notifications = Product::getnotifications();
+      return view("cart.productdetails",compact('product','productDetails','categories','notifications'));
     }
 
     /* ============== Add element to the cart (mouloud) ================*/

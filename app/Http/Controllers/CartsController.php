@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Cart;
 use \App\CartItem;
 use App\Category;
+use App\Product;
 class CartsController extends Controller
 {
 	/* ========================= Show the cart (Kacem )==========================*/
@@ -27,7 +28,9 @@ class CartsController extends Controller
         }
         
         $categories = Category::get();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories]);
+        //added this line to get notifications 
+        $notifications = Product::getnotifications();
+        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

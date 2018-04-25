@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $products = Product::get();
         $categories = Category::get();
-
+        $notifications = Product::getnotifications();
         $p = $req->has('page') ? $req->all()['page']  : null;
         $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
         //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
@@ -37,7 +37,7 @@ class HomeController extends Controller
         $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        return view('home',compact("result","categories","lastPage","currentPage"));
+        return view('home',compact("result","categories","lastPage","currentPage","notifications"));
     }
     /**
     * Show the edit page
@@ -46,7 +46,8 @@ class HomeController extends Controller
      */
     public function edit()
     {
-        return view('auth.edit');
+        $notifications = Product::getnotifications();
+        return view('auth.edit',compact('notifications'));
     }
 
     /**

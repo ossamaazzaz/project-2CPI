@@ -74,7 +74,9 @@ class OrdersController extends Controller
     	else
     		$order=Orders::find($id);
         $categories = \App\Category::get();
-        return view('order.order',compact('order','categories'));
+        //added this line to get notifications
+        $notifications = Product::getnotifications();
+        return view('order.order',compact('order','categories','notifications'));
     }
  
     /*

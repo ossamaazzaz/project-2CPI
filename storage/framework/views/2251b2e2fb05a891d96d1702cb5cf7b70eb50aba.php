@@ -60,7 +60,17 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="fa fa-bell"></span></button>
                         <ul class="dropdown-menu">
-                          <li><a href="#"></a></li>
+                          <?php if((!Request::is('home/edit','login','register','password/reset'))): ?>
+                          <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notif): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($notif != null): ?>
+                            <li>
+                              <dev class="notif">
+                                <a href="<?php echo e('facture/' . $notif); ?>">Your code is : <?php echo e($notif); ?></a>
+                              </dev>
+                            </li>
+                            <?php endif; ?>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                          <?php endif; ?>
                         </ul>
                       </div> 
                     </li>

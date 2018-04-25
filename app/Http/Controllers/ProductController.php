@@ -22,7 +22,8 @@ class ProductController extends Controller {
 	public function index(Request $req){
 		if ($req->isMethod('get')) {
 			$products = Product::get();
-			return view('admin.products',['products' => $products]);
+			$notifications = Product::getnotifications();
+			return view('admin.products',['products' => $products,'notifications' => $notifications]);
 		}
 	}
 	/*
