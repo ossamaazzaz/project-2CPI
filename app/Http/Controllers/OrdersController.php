@@ -15,6 +15,10 @@ use App\Notifications\Confirmation;
 
 class OrdersController extends Controller
 {
+    /*
+    * checkout function 
+    * by kacem
+    */
     public function checkout(Request $request)
     {
  
@@ -49,14 +53,20 @@ class OrdersController extends Controller
         return redirect('orders/'.$order->id);
     }
 
-    //==================================================================
+    /*
+    * to view orders list
+    * by kacem
+    */
  
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
         return view('order.list',compact('orders','categories'));
     }
-    
+    /*
+    * to view an order
+    * by kacem
+    */
     public function index($id){
 
     	if($id == "last")
@@ -67,8 +77,10 @@ class OrdersController extends Controller
         return view('order.order',compact('order','categories'));
     }
  
-    //==================================================================
-
+    /*
+    * to view orders list on admin page
+    * by kacem
+    */
     public function AdminPanel(){
 
         $Pending_Orders = Orders::where('state',0)->orderBy('created_at')->get();
@@ -82,10 +94,12 @@ class OrdersController extends Controller
         return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
     }
 
-    //============
-    //Validation function
-    //checking if the intems are ou of stock or not and depending on that its gives the admin
-    //in case out of stock its gives admin option of refuse if not the order will e validated
+    /**
+    * Validation function
+    * checking if the intems are ou of stock or not and depending on that its gives the admin
+    * in case out of stock its gives admin option of refuse if not the order will e validated
+    * by oussama messabih
+    **/
     public function validateOrder(Request $req){
         $outOfStock = false;
         if ($req->id>=0) {
@@ -115,8 +129,11 @@ class OrdersController extends Controller
         }
         
     }
-    //in case its out of stock so the admin have one option is refuse
-    // puting state on 2 mean refused order
+    /**
+    * in case its out of stock so the admin have one option is refuse
+    * puting state on 2 mean refused order
+    * by oussama messabih
+    **/
     public function refuseOrder(Request $req){
         if ($req->id>=0) {
             $id = $req->id; 
@@ -126,10 +143,12 @@ class OrdersController extends Controller
         }
     }
 
-    //============
-    //Preparation confirmation function 
-    //post function : puting state on 3 when preparation  is done
-    //get function : just get the validated orders
+    /**
+    * Preparation confirmation function 
+    * post function : puting state on 3 when preparation  is done
+    * get function : just get the validated orders
+    * by oussama messabih
+    **/
     public function confirm(Request $req){
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
@@ -154,10 +173,13 @@ class OrdersController extends Controller
             }
         }
     }
-    //============
-    //Check order hash code function
-    //puting state 4 when the client took his orders
-    //checking code
+
+    /**
+    * Check order hash code function
+    * puting state 4 when the client took his orders
+    * checking code
+    * by oussama messabih
+    **/
     public function check(Request $req){
         if ($req->isMethod('post')) {
             $code = $req->code;
@@ -183,10 +205,10 @@ class OrdersController extends Controller
     * From the request, you must extract the order + the email.
     * to view the email template `views/email/orderDone.blade.php`
     * to view the Mailable class `app/Mail/OrderDone.php`
+    * by renken 
     */
     public function notifyOnDone($id) {
-        //$email = 'o.messabih@esi-sba.dz';
-        
+            
         $order = Orders::find($id);
         $email = $order->user_id;
         // dd($email);

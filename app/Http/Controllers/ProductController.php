@@ -15,14 +15,20 @@ class ProductController extends Controller {
         $this->middleware('auth');
         $this->middleware('admin');
     }
-
-    
+    /*
+	* to view the products on the products manager admin page
+	* by Oussama Messabih
+    */
 	public function index(Request $req){
 		if ($req->isMethod('get')) {
 			$products = Product::get();
 			return view('admin.products',['products' => $products]);
 		}
 	}
+	/*
+	* to delete a product 
+	* by Oussama Messabih
+	*/
 	public function delete(Request $req){
 		$ids = explode(',', $req->ids);
 		foreach ($ids as $id) {
@@ -30,6 +36,10 @@ class ProductController extends Controller {
 		}
 		return response()->json($ids);
 	}
+	/*
+	* to view a product details for admin edit product page
+	* by Oussama Messabih
+	*/
 	public function show($id){
 
 		$product = Product::find($id);
@@ -46,6 +56,10 @@ class ProductController extends Controller {
 		return view('admin.addProduct',compact('product','imgs'));
 	
 		}
+	/*
+	* to update the edited values for a product 
+	* by Oussama Messabih
+	*/
 	public function update(Request $req){
 		$MAX_NUMBER = 5;
 			$rules = [
@@ -141,14 +155,11 @@ class ProductController extends Controller {
 		return response()->json($product->id); //later to redirect to product page instead
 
 	}
-
-	public function destroy(){
-		return;
-	}
 	/**
 	* [add a product if post request else return edit view]
 	* @param Request $req [necessary input data]
 	* @return  view page [<description>]
+	* by renken
 	*/
 	public function add(Request $req) {
 		$categories = Category::get();

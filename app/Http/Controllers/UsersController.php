@@ -14,7 +14,10 @@ class UsersController extends Controller
 	    $users = User::get();
 	    return view('admin.users',compact('users'));
    }
-   /*this function responsable on approve the user @TH3HPBT*/
+   /*
+   this function responsable on approve 
+   * by @TH3HPBT
+   */
    public function approve(Request $req){
    		$ids = array_map('intval', explode(',', $req->ids));
 

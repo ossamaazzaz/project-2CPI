@@ -13,7 +13,9 @@ use App\Category;
 class SearchController extends Controller
 {
 	/*
-	* search function by Oussama messabih
+	* search function using a full text search 
+    * using the filtering function of renken 
+    * by Oussama messabih
 	*/
 	public function search(Request $req){
 		//its return the products that their name and brand and description contain the keyword

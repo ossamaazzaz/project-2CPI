@@ -1,11 +1,13 @@
 <?php
  
 namespace App;
- 
+    /**
+     * Full text search 
+     * by Oussama Messabih (thehappybit)
+     */
 trait FullTextSearch{
     /**
-     * Replaces spaces with full text search wildcards
-     *
+     * to trim the term 
      * @param string $term
      * @return string
      */

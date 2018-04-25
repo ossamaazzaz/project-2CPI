@@ -11,7 +11,7 @@ class PDFController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *  
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -21,7 +21,8 @@ class PDFController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * generating facture pdf 
+     * by renken
      * @param  String $code
      * @return \Illuminate\Http\Response
      */

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductDetails extends Model
 {
+        //using the trait of searching 
     use FullTextSearch;
 
     /**
