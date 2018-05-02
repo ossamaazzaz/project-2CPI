@@ -218,7 +218,7 @@ class ProductController extends Controller {
 		$productDetails->description =  $req->all()['desc'];
 		$dirname = 'images/' . 'products/' . $product->id . '/';
 		//create dir for product
-		\Storage::makeDirectory($dirname);
+		// \Storage::makeDirectory($dirname);
 		// for displaying purposes
 		$relurl = '/storage/' . $dirname;
 		$dirname = 'public/' . $dirname;
