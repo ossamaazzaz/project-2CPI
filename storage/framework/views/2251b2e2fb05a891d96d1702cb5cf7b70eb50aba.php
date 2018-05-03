@@ -65,7 +65,11 @@
                             <?php if($notif != null): ?>
                             <li>
                               <dev class="notif">
-                                <a href="<?php echo e('facture/' . $notif); ?>">Your code is : <?php echo e($notif); ?></a>
+                                <?php if($notif->type == 'missingproduct'): ?>
+                                  <a onclick="getmissingproduct('<?php echo e($notif->data); ?>')">there is a missing products on your order : <?php echo e($notif->data); ?><br>click to confirm or delete ! </a>
+                                <?php else: ?>
+                                  <a href="<?php echo e('facture/' . $notif->data); ?>">Your code is : <?php echo e($notif->data); ?></a>
+                                <?php endif; ?>
                               </dev>
                             </li>
                             <?php endif; ?>
@@ -149,7 +153,18 @@
     <footer>
      <div class="container">
        <div class="row">
-
+              <!-- model of confirmed by ossama azzaz-->
+               <input type="hidden" id="code" name="">
+               <div id="cmodale" class="cmodale canimated jackInTheBox">
+                    <h1>Missing Products :</h1>
+                    <h2 id="missingproducts"></h2>
+                    <h1>Available Products :</h1>
+                    <h2 id="availableproducts"></h2>
+                    <dev>
+                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm</button>
+                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                    </dev>
+                </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <span class="logo">LOGO</span>
                   <br><br>

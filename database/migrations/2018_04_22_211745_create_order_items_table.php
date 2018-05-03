@@ -18,6 +18,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->integer('quantity');
+            $table->string('state')->default('available');
             $table->timestamps();
         });
     }

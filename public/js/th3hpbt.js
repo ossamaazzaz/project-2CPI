@@ -140,6 +140,98 @@ function check(){
 
     
 }
+function ask(id){
+    if (id>=0) {
+        console.log(id);
+        data = {id:id};
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/orders/"+id+"/ask",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                }});
+    }
+}
+function getmissingproduct(code){
+    if (code!=null) {
+        console.log(code);
+        data={code:code};
+        document.getElementById('code').value = code;
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/get",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                if ((data == 'noCode') || (data == 'noOrder')) {
+                    console.log('fail');
+                } else {
+
+                    ms = document.getElementById('missingproducts');
+                    av = document.getElementById('availableproducts');
+                    for (var i = 1; i < data[0].length; i++) {
+                        ms.innerHTML = ms.innerHTML +" "+ data[0][i].name+" ,";
+                    }
+                    for (var i = 1; i < data[1].length; i++) {
+                        av.innerHTML = av.innerHTML +" "+ data[1][i].name+" ,"
+                    }
+                    // show up the model
+                    modal = document.getElementById('cmodale');
+                    modal.style.display = 'block' ;
+                    document.body.style.backgroundColor = "#666";
+
+
+                }
+                        
+                }});
+    }
+}
+function hidemodel(){
+    modal = document.getElementById('cmodale');
+    modal.style.display = 'none';
+    document.body.style.backgroundColor = "#f5f8fa";
+}
+function confirmissingproduct(){
+    code = document.getElementById('code').value;
+    if (code!=null) {
+        console.log(code);
+        data={id:code};
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/confirm",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                hidemodel();
+                }});
+    }
+}
+function deleteorder(){
+    code = document.getElementById('code').value;
+    if (code!=null) {
+        console.log(code);
+        data={code:code};
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/delete",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                hidemodel();
+                }});
+    }
+}
 jQuery(document).ready(function (){
     jQuery.noConflict();
     var table = jQuery("#productsDataTable").DataTable();

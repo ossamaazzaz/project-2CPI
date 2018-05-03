@@ -22,6 +22,7 @@
                     <!-- buttons for Accept/Refuse -->
                     <td><button type="button" class="btn btn-success" id="validate{{ $pendingOrder->id }}" onclick="validate('{{ $pendingOrder->id }}','{{ $pendingOrder->state }}')">Validate</button>
                     <button type="button" class="btn btn-warning" id="refuse{{ $pendingOrder->id }}" onclick="refuse('{{ $pendingOrder->id }}','{{ $pendingOrder->state }}')">Refuse</button>
+                    <button type="button" class="btn btn-info" id="ask{{ $pendingOrder->id }}" onclick="ask({{ $pendingOrder->id }})">Ask</button>
                     </td>
                     <td id="outofstock{{ $pendingOrder->id }}">Fine</td>
 

@@ -12,7 +12,7 @@ use \Auth;
 use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
 use App\Notifications\Confirmation;
-
+use App\Notifications\missingproduct;
 class OrdersController extends Controller
 {
     /*
@@ -117,6 +117,8 @@ class OrdersController extends Controller
                     $product->save();
                     $order->state  = 1;
                 } else {
+                    $item->state = "missing";
+                    $item->save();
                     $outOfStock = true;
                     break;
                 }
@@ -144,7 +146,98 @@ class OrdersController extends Controller
             $order->save();
         }
     }
+    /*
+    * Send notification about the missing products to client 
+    * ussing missingproduct notification 
+    * by Oussama Messabih
+    */
+    public function missingProduct(Request $req){
+        $id = $req->id;
+        $order = Orders::find($id);
+        $order->notify(new missingproduct($order));
+        return response()->json('asked');
+    }
+    /*
+    * function to get the order items for float module
+    * by Oussama Messabih
+    */
+    public function getMissingProducts(Request $req){
+        $code  = $req->code;
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
 
+                    $Items = $order->orderItems;
+                    $msproducts = array('');
+                    $avproducts = array('');
+
+                    foreach ($Items as $item) {
+                        if ($item->state == 'missing') {
+                            array_push($msproducts, Product::find($item->product_id));
+                        } else {
+                            array_push($avproducts, Product::find($item->product_id));
+                        }
+                    }
+                    $products = array($msproducts,$avproducts);
+                    return response()->json($products);
+                    
+            } else {
+                return response()->json('noOrder');
+            }
+        } else {
+            return response()->json('noCode');
+        }
+        
+    }
+    /*
+    * Receive the confirmation of taking the order even some products are missing
+    * will confirm the order directly
+    * by Oussama Messabih
+    */
+    public function missingProductConfirm(Request $req){
+        $code = $req->code;
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
+                if ($order->state == 0) {
+                    $Items = $order->orderItems;
+                    foreach ($Items as $item) {
+                        if ($item->state == "missing") {
+                            $item->delete();
+                        }else{
+                            $product = Product::find($item->product_id);
+                            if ($product->quantitySale >= $item->quantity) {
+                                $product->quantitySale = $product->quantitySale - $item->quantity;
+                                $product->quantity = $product->quantity - $item->quantity;
+                                $product->save(); 
+                                }
+                        }}
+                $order->state = 1;
+                $order->save();
+                return response()->json($order->code . 'confirmed');
+                }}
+        } else {
+            return response()->json('noCode');
+        }
+    }
+    /*
+    * Delete the order
+    * basicly i am deleteing it , just archieving it.
+    * will put state 5 for an archieved order 
+    * by Oussama Messabih 
+    */
+    public function missingProductOrderDelete(Request $req){
+        $code = $req->code;
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
+                $order->delete();
+                return response()->json('deleted');
+            } else {
+                return response()->json('notdeleted');
+            }
+        }
+    }
     /**
     * Preparation confirmation function 
     * post function : puting state on 3 when preparation  is done
@@ -168,6 +261,7 @@ class OrdersController extends Controller
                     Mail::to($email)->send(new OrderDone($order));
 
                     $order->notify(new Confirmation($order));
+
                     return response()->json('confirmed');
                 } else {
                     return response()->json('notconfirmed');
