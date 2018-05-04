@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($dOrders as $Order)
+            @foreach ($Orders as $Order)
                 <tr id="{{ $Order->id }}">
                     <td>{{ $Order->id }}</td>
                     <td>{{ $Order->created_at }}</td>

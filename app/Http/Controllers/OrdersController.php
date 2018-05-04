@@ -14,6 +14,7 @@ use \App\Mail\OrderDone;
 use App\Notifications\Confirmation;
 use App\Notifications\missingproduct;
 use DB;
+use ProductDetailsController;
 class OrdersController extends Controller
 {
     /*
@@ -228,6 +229,42 @@ class OrdersController extends Controller
                 }}
         } else {
             return response()->json('noCode');
+        }
+    }
+    public function backToCart(Request $req){
+        $code = $req->all()['code'];
+        if ($code) {
+            $order  = Orders::where('code',$code)->first();
+            if ($order) {
+                $Items = $order->orderItems;
+                foreach ($Items as $item) {
+                    if ($item->state == "missing") {
+                        $item->delete();
+                    }else{
+                        $id = $item->product_id;
+                        $product=Product::find($id);
+                        $cartItem= new CartItem;
+                        $exist=DB::table('carts')->where('user_id','=',\Auth::user()->id)->get();
+                        if ($exist->isEmpty()){ 
+                        $cart=new Cart;
+                        $cart->user_id =  \Auth::user()->id;
+                        $cart->save();
+                        $cartItem->cart_id=$cart->id;
+                        }else {
+                        $cartItem->cart_id=$exist->first()->id;
+                        }
+                        $cartItem->product_id=$id;
+                        $cartItem->quantity=$item->quantity;
+                        $cartItem->price=$product->price;
+                        $cartItem->save();
+                    }
+                }
+                $order->state = 7;
+                $order->save();
+                redirect("/cart");
+            } else{
+                return response()->json('notfound');
+            }
         }
     }
     /*

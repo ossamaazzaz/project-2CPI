@@ -145,11 +145,6 @@
 
 
     <?php echo $__env->yieldContent('content'); ?>
-
-
-
-
-
     <footer>
      <div class="container">
        <div class="row">
@@ -161,7 +156,8 @@
                     <h1>Available Products :</h1>
                     <h2 id="availableproducts"></h2>
                     <dev>
-                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm</button>
+                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
                       <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
                     </dev>
                 </div>

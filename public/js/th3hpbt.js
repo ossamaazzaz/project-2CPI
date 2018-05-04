@@ -218,6 +218,24 @@ function confirmissingproduct(){
                 }});
     }
 }
+function backToCart(){
+    code = document.getElementById('code').value;
+    if (code!=null) {
+        var data = new FormData();
+        data.append("code",code);
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/backtocart",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                hidemodel();
+                }});
+    }
+}
 function deleteorder(){
     var code = document.getElementById('code').value;
     if (code!=null) {
