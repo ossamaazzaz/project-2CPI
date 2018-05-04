@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
 use App\Notifications\Confirmation;
 use App\Notifications\missingproduct;
+use DB;
 class OrdersController extends Controller
 {
     /*
@@ -61,7 +62,8 @@ class OrdersController extends Controller
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
-        return view('order.list',compact('orders','categories'));
+        $notifications = Product::getnotifications();
+        return view('order.list',compact('orders','categories','notifications'));
     }
     /*
     * to view an order
@@ -90,10 +92,12 @@ class OrdersController extends Controller
         $Accepted_Orders = Orders::where('state',1)->orderBy('created_at')->get();
 
         $Refused_Orders = Orders::where('state',2)->orderBy('created_at')->get();
+        //aadded new table of the confirmation of the deleted orders ^^ by thehappybit
+        $ConfirmDeletedOrders = Orders::where('state',5)->orderBy('created_at')->get();
 
   
         $categories = \App\Category::get();
-        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders'));
     }
 
     /**
@@ -104,8 +108,8 @@ class OrdersController extends Controller
     **/
     public function validateOrder(Request $req){
         $outOfStock = false;
-        if ($req->id>=0) {
-            $id = $req->id; 
+        $id = $req->All()['id'];
+        if ($id>=0) {
             $order = Orders::find($id);
             //calcule
             $Items = $order->orderItems;
@@ -139,8 +143,8 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function refuseOrder(Request $req){
-        if ($req->id>=0) {
-            $id = $req->id; 
+        if ($req->All()['id']>=0) {
+            $id = $req->All()['id']; 
             $order = Orders::find($id);
             $order->state = 2;
             $order->save();
@@ -152,17 +156,23 @@ class OrdersController extends Controller
     * by Oussama Messabih
     */
     public function missingProduct(Request $req){
-        $id = $req->id;
-        $order = Orders::find($id);
-        $order->notify(new missingproduct($order));
-        return response()->json('asked');
+        $id = $req->All()['id'];
+        if ($id) {
+            $order = Orders::find($id);
+            if ($order) {
+                $order->notify(new missingproduct($order));
+                return response()->json('asked');
+            } else {
+                return response()->json('fail');
+            }
+        }
     }
     /*
     * function to get the order items for float module
     * by Oussama Messabih
     */
     public function getMissingProducts(Request $req){
-        $code  = $req->code;
+        $code  = $req->All()['code'];
         if ($code) {
             $order = Orders::where('code','=',$code)->first();
             if ($order) {
@@ -195,7 +205,7 @@ class OrdersController extends Controller
     * by Oussama Messabih
     */
     public function missingProductConfirm(Request $req){
-        $code = $req->code;
+        $code = $req->All()['code'];
         if ($code) {
             $order = Orders::where('code','=',$code)->first();
             if ($order) {
@@ -222,12 +232,11 @@ class OrdersController extends Controller
     }
     /*
     * Delete the order
-    * basicly i am deleteing it , just archieving it.
-    * will put state 5 for an archieved order 
+    * delete an order of a missing products
     * by Oussama Messabih 
     */
     public function missingProductOrderDelete(Request $req){
-        $code = $req->code;
+        $code = $req->All()['code'];
         if ($code) {
             $order = Orders::where('code','=',$code)->first();
             if ($order) {
@@ -238,6 +247,38 @@ class OrdersController extends Controller
             }
         }
     }
+    /*
+    * delete an order (archive)
+    * deal with the client request of deleting an order
+    * state 5 when client ask for deleting
+    * state 6 when the adming confirm the deleting
+    */
+    public function deleteOrder(Request $req){
+        $id  = $req->All()['id'];
+        if ($id) {
+            $order = Orders::find($id);
+            $comment = $req->All()['comment'];
+            $who = $req->All()['who'];
+            if ($who == 'user') {
+                $order->state = 5;
+                $order->save();
+                DB::table('orders_archive')->insert(['order_id' => $id, 'buyercomment' => $comment]);
+            } elseif ($who == 'admin') {
+                $order->state = 6;
+                $order->save();
+                $faultofwho = $req->All()['faultofwho'];
+                if ($faultofwho != null) {
+                    DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment,'faultofwho' => $faultofwho]);
+                } else {
+                    DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment]);
+                }
+                
+            }
+            return response()->json('deleted');
+        }
+
+    }
+
     /**
     * Preparation confirmation function 
     * post function : puting state on 3 when preparation  is done
@@ -247,10 +288,11 @@ class OrdersController extends Controller
     public function confirm(Request $req){
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
-            return view('admin.preparation',compact('Orders'));
+            $dOrders = Orders::where('state',6)->orderBy('created_at')->get();
+            return view('admin.preparation',compact('Orders','dOrders'));
         } else if ($req->isMethod('post')){
-            if ($req->id >= 0) {
-                $id = $req->id; 
+            $id = $req->All()['id'];
+            if ($id >= 0) {
                 $order = Orders::find($id);
                 if ($order->state != 3) {
                     $order->state = 3;
@@ -278,7 +320,7 @@ class OrdersController extends Controller
     **/
     public function check(Request $req){
         if ($req->isMethod('post')) {
-            $code = $req->code;
+            $code = $req->All()['code'];
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
             if ($order->state == 3) {
@@ -295,8 +337,31 @@ class OrdersController extends Controller
         }
         return view('admin.checkCode');   
     }
-
-
+    /*
+    * Retrieved deleted Products to Stock
+    * state 7 for retrieved products
+    * by Oussama Messabih
+    */
+    public function retrieve(Request $req){
+        $id = $req->all()['id'];
+        if ($id>=0) {
+            $order  = Orders::find($id);
+            if ($order) {
+                $Items = $order->orderItems;
+                foreach ($Items as $item) {
+                    $product = Product::find($item->product_id);
+                    $product->quantitySale = $product->quantitySale + $item->quantity;
+                    $product->quantity = $product->quantity + $item->quantity;
+                    $product->save();
+                }
+                $order->state = 7;
+                $order->save();
+                return response()->json('retrieved');
+            }else{
+                return response()->json('notfound');
+            }
+        }
+    }
     /**
     * From the request, you must extract the order + the email.
     * to view the email template `views/email/orderDone.blade.php`

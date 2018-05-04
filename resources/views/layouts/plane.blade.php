@@ -15,7 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/datatabes.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
 	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-	<link rel="stylesheet" href="{{ asset('css/dropzone.css') }}"> 
 </head>
 <body>
 

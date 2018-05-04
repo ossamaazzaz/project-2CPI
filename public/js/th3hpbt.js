@@ -53,7 +53,8 @@ function deleteOneProduct(element){
 }
 function validate(id,state){
     if (state==0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/orders/"+id+"/validate",
@@ -75,7 +76,8 @@ function validate(id,state){
 }
 function refuse(id,state){
     if (state==0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/orders/"+id+"/refuse",
@@ -90,7 +92,8 @@ function refuse(id,state){
 }
 function confirm(id){
     if (id>=0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/preparation/"+id+"/confirm",
@@ -114,8 +117,8 @@ function details(code){
 }
 function check(){
     var code = document.getElementById('codeinput').value;
-    data = {code:code};
-    console.log(code,data);
+    var data = new FormData();
+    data.append("code",code);
     jQuery.ajax({
         type : "POST",
         url : "/admin/check/"+code,
@@ -142,8 +145,8 @@ function check(){
 }
 function ask(id){
     if (id>=0) {
-        console.log(id);
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/orders/"+id+"/ask",
@@ -158,8 +161,8 @@ function ask(id){
 }
 function getmissingproduct(code){
     if (code!=null) {
-        console.log(code);
-        data={code:code};
+        var data = new FormData();
+        data.append("code",code);
         document.getElementById('code').value = code;
         jQuery.ajax({
             type : "POST",
@@ -200,8 +203,8 @@ function hidemodel(){
 function confirmissingproduct(){
     code = document.getElementById('code').value;
     if (code!=null) {
-        console.log(code);
-        data={id:code};
+        var data = new FormData();
+        data.append("code",code);
         jQuery.ajax({
             type : "POST",
             url : "/orders/"+code+"/confirm",
@@ -216,13 +219,13 @@ function confirmissingproduct(){
     }
 }
 function deleteorder(){
-    code = document.getElementById('code').value;
+    var code = document.getElementById('code').value;
     if (code!=null) {
-        console.log(code);
-        data={code:code};
+        var data = new FormData();
+        data.append("code",code);
         jQuery.ajax({
             type : "POST",
-            url : "/orders/"+code+"/delete",
+            url : "/orders/"+code+"/msdelete",
             data : data,
             cache: false,             // To unable request pages to be cached
             processData: false,
@@ -230,6 +233,65 @@ function deleteorder(){
             success : function(data){
                 hidemodel();
                 }});
+    }
+}
+function wantdel(id){
+    document.getElementById('orderid').value = id;
+}
+function deleteOrders(who){
+    var id = document.getElementById('orderid').value;
+    if (id>=0) {
+        var comment = document.getElementById('cmt').value;
+        if (comment!="") {
+            var data = new FormData();
+            data.append("id",id);
+            data.append("comment",comment);
+            data.append("who",who);
+            if (who == 'admin') {
+                var sr = document.getElementById('sellerRadio');
+                var br = document.getElementById('buyerRadio');
+                console.log(sr,br);
+                if (sr.checked) {
+                    data.append("faultofwho","seller")
+                } else if (br.checked) {
+                    data.append("faultofwho","buyer");
+                }
+            }
+            console.log(data);
+            jQuery.ajax({
+                type : "POST",
+                url : "/orders/"+id+"/delete",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="deleted") {
+                        document.getElementById('row'+id).remove();
+                    }
+                    
+                    }});
+        }else {
+            console.log('no comment');
+        }
+    }
+}
+function Retrieved(id){
+    if (id) {
+        var data = new FormData();
+        data.append("id",id);
+        jQuery.ajax({
+                type : "POST",
+                url : "/admin/orders/"+id+"/retrieve",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="retrieved") {
+                        document.getElementById('retrieved'+id).remove();
+                    }
+                    }});
     }
 }
 jQuery(document).ready(function (){

@@ -83,13 +83,13 @@ Route::get('/admin/preparation','OrdersController@confirm');
 Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
 Route::get('/admin/check','OrdersController@check');
 Route::post('/admin/check/{code}','OrdersController@check');
+Route::post('/admin/orders/{id}/retrieve','OrdersController@retrieve');
 //orders missing products
 Route::post('/admin/orders/{id}/ask','OrdersController@missingProduct');
 Route::post('/orders/{code}/get','OrdersController@getMissingproducts');
 Route::post('/orders/{code}/confirm','OrdersController@missingProductConfirm');
-Route::post('/orders/{code}/delete','OrdersController@missingProductOrderDelete');
-
-
+Route::post('/orders/{code}/msdelete','OrdersController@missingProductOrderDelete');
+Route::post('/orders/{id}/delete','OrdersController@deleteOrder');
 //email
 Route::get('/notification','OrdersController@notifyOnDone');
 

@@ -3,7 +3,6 @@ dashboard prinicpale view
 */
 ?>
 @extends('layouts.plane')
-
 @section('body')
  <div id="wrapper">
 

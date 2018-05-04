@@ -3,7 +3,6 @@ dashboard prinicpale view
 */
 ?>
 
-
 <?php $__env->startSection('body'); ?>
  <div id="wrapper">
 

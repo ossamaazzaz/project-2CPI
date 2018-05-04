@@ -270,6 +270,19 @@ footer{
 			vertical-align: middle;
 			display: none;
 		}
+		.dmodale{
+			top: 100px;
+			left: 400px;
+			background : #00b894;
+			color: white;
+			position: fixed;
+			padding: 40px;
+			width: 500px;
+			height: 350px;
+			text-align: center;
+			vertical-align: middle;
+			display: none;
+		}
 		.confirmed {
 			height: 200px;
 			width: 200px;
