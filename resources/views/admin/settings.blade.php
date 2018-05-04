@@ -208,6 +208,30 @@
           <!-- Import/ Export part-->
 
           <a href="/admin/settings/export"><button type="button" class="btn btn-warning">Export Users</button></a>
+          <h3>Import Users</h3>
+          <form method="POST" action="{{action('SettingsController@import')}}" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group row">
+                    <label for="json" class="col-md-4 col-form-label text-md-right"> json </label>
+                          <div class="col-md-6">
+                             <input id="json" type="file" class="form-control{{ $errors->has('json') ? ' is-invalid' : '' }}" name="json" value="{{ old('json') }}">
+
+                            @if ($errors->has('json'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('json') }}</strong>
+                                </span>
+                             @endif
+                    </div>
+              </div>
+              <div class="form-group row mb-0">
+                  <div class="col-md-6 offset-md-4">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-check-square-o" style="font-size:18px"></i>
+                          {{ __('Edit!') }}
+                      </button>
+                  </div>
+              </div>
+          </form>
 
       </div>
 @stop

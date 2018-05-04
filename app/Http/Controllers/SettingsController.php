@@ -95,6 +95,39 @@ class SettingsController extends Controller
     	return \Storage::download('backup/users/users.json');
     }
 
+
+    public function import(Request $req) {
+    		if ($req->has('json')) {
+    			$rules = [];
+		    	$validator = \Validator::make($req->all(), $rules);
+			if ($validator->fails()) {
+				return back()->withErrors($validator)->withInput();
+			}
+			$users = json_decode(File::get($req->file('json')));
+			// dd($users)
+			//dd(User::where('email', $users[1]->email)->get());
+			foreach ($users as $user) {
+				if ( !User::where('email', $user->email)->get()->isEmpty() || 
+					!User::where('idCard', $user->idCard)->get()->isEmpty()|| 
+					!User::where('username', $user->username)->get()->isEmpty()
+				) continue;
+				User::create([
+					'username' => $user->username,
+					'firstName' => $user->firstName,
+					'lastName' => $user->lastName,
+					'phoneNum' => $user->phoneNum,
+					'email' => $user->email,
+					'adr' => $user->adr,
+					'idCard' => $user->idCard,
+					'groupId' => $user->groupId,
+					'approveState' => $user->approveState,
+					'password' => $user->password,
+				]);
+			}
+			return redirect('admin');	
+    		}
+    		return redirect('admin/settings');
+    }
     /*
     * Show Settings page.
     */
