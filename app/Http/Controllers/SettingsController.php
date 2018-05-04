@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use  \App\Shop;
+use \App\User;
 use Illuminate\Support\Facades\File;
 class SettingsController extends Controller
 {
@@ -88,6 +89,11 @@ class SettingsController extends Controller
 	return redirect('/admin');
     }
 
+    public function export() {
+    	$users = User::all()->toJson(JSON_PRETTY_PRINT);
+    	\Storage::put('backup/users/users.json', $users);
+    	return \Storage::download('backup/users/users.json');
+    }
 
     /*
     * Show Settings page.

@@ -91,3 +91,4 @@ Route::get('/notification','OrdersController@notifyOnDone');
 Route::get('/admin/settings', 'SettingsController@index')->middleware('admin');
 Route::post('/admin/settings/editText', 'SettingsController@editText');
 Route::post('/admin/settings/editVisual', 'SettingsController@editVisual');
+Route::get('/admin/settings/export', 'SettingsController@export')->middleware('admin');

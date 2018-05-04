@@ -204,5 +204,10 @@
                   </div>
               </div>
           </form>
+
+          <!-- Import/ Export part-->
+
+          <a href="/admin/settings/export"><button type="button" class="btn btn-warning">Export Users</button></a>
+
       </div>
 @stop

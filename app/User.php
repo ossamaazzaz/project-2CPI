@@ -22,8 +22,9 @@ class User extends Authenticatable
      * The attributes that should be hidden for arrays.
      * if it causes issues, add approveState... here
      * @var array
-     */
-    protected $hidden = [
+     protected $hidden = [
         'password', 'remember_token',
-    ];
+     ];
+     */
+    
 }
