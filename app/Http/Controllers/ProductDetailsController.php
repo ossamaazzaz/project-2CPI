@@ -4,16 +4,20 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\CartItem;
 use App\Product;
+use App\ProductDetails;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class ProductDetailsController extends Controller{
-  
+
     /* ==============simple index function to show up  =================*/
 
     public function index($id){
       $product=Product::find($id);
-      $productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
+      //$productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
+
+      $productDetails=ProductDetails::find($id);
+
       $categories = Category::get();
       return view("cart.productdetails",compact('product','productDetails','categories'));
     }

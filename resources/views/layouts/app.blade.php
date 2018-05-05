@@ -7,6 +7,13 @@
     <title>E-COM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <!--comments css -->
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
+
+    <!--end commennts css -->
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -58,7 +65,7 @@
                     @else
                         <li>
                           <div style="padding :16px 20px; ">
-                              <a href="/cart"> <i class="fas fa-shopping-cart"></i> Shopping Cart
+                              <a href="/cart"> <i class="fa fa-shopping-cart"></i> Shopping Cart
                                   <span class="badge">
                                     <!-- i will (mouloud) add here later the badge -->
                                   </span>

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+
 
 class ProductDetails extends Model
 {
@@ -11,16 +11,20 @@ class ProductDetails extends Model
     /**
     * Get the product that owns this details.
     */
-    public function product()
-    {
+
+    public function comments(){
+      return $this->hasMany(Comment::class);
+      /*
+      return $this->hadMany(App\Comment);
+      */
+    }
+
+    public function product(){
         return $this->belongsTo('App\Product');
     }
-        protected $fillable = [
-        'product_id',
-    ];
 
-    protected $searchable = [
-        'description'
-    ];
+    protected $fillable = ['product_id'];
+
+    protected $searchable = ['description'];
 
 }
