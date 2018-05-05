@@ -149,10 +149,8 @@
 </div>
 <!--Scripts-->
 <script type="text/javascript">
-      var textarea = document.querySelector('.comment-input');
       var commentCont;
-      textarea.addEventListener('keydown', autosize);
-
+       $.noConflict();
       function autosize(){
         var el = this;
         setTimeout(function(){
@@ -161,13 +159,14 @@
         },0);
       }
 
-      var comment,lngth,btns,cmtValue;
+      var comment,lngth,btns,cmtValue,btns1;
       function cmtToForm(object){
         comment = object.parentNode.parentNode.childNodes[3];
 
         lngth = comment.parentNode.parentNode.parentNode.childNodes.length;
         comment.parentNode.parentNode.parentNode.childNodes[lngth-2].remove();
         btns = document.getElementsByClassName("tools-btns");
+
         for (var i = 0; i < btns.length; i++) {
           btns[i].style.display = 'none';
         }
@@ -180,12 +179,14 @@
        function cancelComment(object,commentCont){
         var value = commentCont.innerHTML;
         object.parentNode.innerHTML = '<p>'+value+'</p>';
-        var btns = document.getElementsByClassName("tools-btns");
+        btns1 = document.getElementsByClassName("tools-btns");
+
         for (var i = 0; i < btns.length; i++) {
-          btns[i].style.display = 'block';
+          btns1[i].style.display = 'block';
         }
-        $("#comment-box-container").css("display","block");
-        console.log("khraaaa");
+
+        $("#comment-box-container").css("display","flex");
+        alert("khra");
       }
 
 </script>
