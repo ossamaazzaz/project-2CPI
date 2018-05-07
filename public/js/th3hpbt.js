@@ -31,9 +31,21 @@ function selectedCategory(element) {
         input.value = element.id
     }
 }
+var bg = document.getElementsByClassName('modal-bg')[0];
+var modal = document.getElementsByClassName('confir-modal')[0];
+function showConfModal(id) {
+    bg.style.display = 'block';
+    modal.style.display = 'block';
+    document.getElementById('productid').value = id;
+
+}
+function closeConfModal(){
+    bg.style.display = 'none';
+    modal.style.display = 'none';
+}
 // delete one product
-function deleteOneProduct(element){
-        
+function deleteOneProduct(){
+        element = document.getElementById('productid');
         selectedProducts.push(element.value);
         var data = new FormData();
         data.append("ids",selectedProducts);
@@ -49,6 +61,7 @@ function deleteOneProduct(element){
                     var productRow = document.getElementById(selectedProducts[i]);
                     productRow.remove();
                 }
+                closeConfModal();
                 console.log(data); }});
 }
 jQuery(document).ready(function (){

@@ -19,14 +19,18 @@ class ProductController extends Controller {
     
 	public function index(Request $req){
 		if ($req->isMethod('get')) {
-			$products = Product::get();
+			$products = Product::where('deleted',0)->get();
 			return view('admin.products',['products' => $products]);
 		}
 	}
 	public function delete(Request $req){
 		$ids = explode(',', $req->ids);
 		foreach ($ids as $id) {
-			$product = Product::destroy($id);
+			$product = Product::find($id);
+			 $product->deleted  = 1; //Make it True
+			 $product->quantity = 0;
+			 $product->quantitySale = 0;
+			$product->save();
 		}
 		return response()->json($ids);
 	}

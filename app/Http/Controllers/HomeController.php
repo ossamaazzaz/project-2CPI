@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index(Request $req)
     {
-        $products = Product::get();
+        $products = Product::where('deleted',0)->get();
         $categories = Category::get();
 
         $p = $req->has('page') ? $req->all()['page']  : null;
