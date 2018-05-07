@@ -40,7 +40,7 @@
                     <div>
 
 
-                        3 reviews <!-- it will be dynamic soon -->
+                        3 reviews <!-- it will be dynamic soon (kacem)-->
                         @for($i = 0; $i <$productDetails->rating; $i++)
                           <i class="fa fa-star" style="color: gold"></i>
                         @endfor
@@ -81,21 +81,19 @@
                   </div>
                   <div class="col-md-10 container" style='margin-bottom: 10px;font-family: "Raleway", sans-serif'>
                     <h4>  {{$comment->user->username }} </h4>
-                    <div>
-                      <p >{{$comment->body}}</p>
-                    </div>
+                    <div><p>{{$comment->body}}</p></div>
                     <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
                     @if (Auth::id() == $comment->user->id )
-                        <div class="tools-btns">
-                          <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
+                    <div class="tools-btns">
+                      <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
                             <i class="fa fa-edit"></i>
-                          </button>
-                          <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
-                            <button type="submit" class="btn btn-danger">
-                              <i class="fa fa-window-close" aria-hidden="true"></i>
-                            </button>
-                          </a>
-                        </div>
+                      </button>
+                      <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
+                         <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                         </button>
+                      </a>
+                     </div>
                     @endif
 
                   </div>
@@ -149,45 +147,38 @@
 </div>
 <!--Scripts-->
 <script type="text/javascript">
-      var commentCont;
-       $.noConflict();
+      var commentCont,comment,lngth,btns,cmtValue,btns1,el;
+      //----------------------------------------------------------------------//
       function autosize(){
-        var el = this;
+        el = this;
         setTimeout(function(){
           el.style.cssText = 'height:auto; padding:0';
           el.style.cssText = 'height:' + el.scrollHeight + 'px';
         },0);
       }
-
+      //----------------------------------------------------------------------//
       var comment,lngth,btns,cmtValue,btns1;
       function cmtToForm(object){
         comment = object.parentNode.parentNode.childNodes[3];
-
+        console.log(comment.innerHTML);
         lngth = comment.parentNode.parentNode.parentNode.childNodes.length;
-        comment.parentNode.parentNode.parentNode.childNodes[lngth-2].remove();
         btns = document.getElementsByClassName("tools-btns");
-
+        $("#comment-box-container").css("display","none");
+        cmtValue = (comment.innerHTML).substring(3,comment.innerHTML.length-4);
+        commentCont = comment.childNodes[1];
+        comment.innerHTML ='<form method="POST" action="/home/{{$comment->id}}/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
         for (var i = 0; i < btns.length; i++) {
           btns[i].style.display = 'none';
         }
-        $("#comment-box-container").css("display","none");
-        cmtValue = comment.childNodes[1].innerHTML;
-        commentCont = comment.childNodes[1];
-        comment.innerHTML ='<form method="POST" action="/home/{{$comment->id}}/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><i class="glyphicon glyphicon-remove"></i><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button></form><button onclick="cancelComment(this,commentCont)">cancel</button>';
       }
-
-       function cancelComment(object,commentCont){
-        var value = commentCont.innerHTML;
+      //----------------------------------------------------------------------//
+       function cancelComment(object,value){
         object.parentNode.innerHTML = '<p>'+value+'</p>';
         btns1 = document.getElementsByClassName("tools-btns");
-
         for (var i = 0; i < btns.length; i++) {
           btns1[i].style.display = 'block';
         }
-
         $("#comment-box-container").css("display","flex");
-        alert("khra");
       }
-
 </script>
 @endsection
