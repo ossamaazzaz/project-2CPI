@@ -43,6 +43,10 @@ Orders
 
 <!--  /* Deleted table */ -->       
 
+            @include('widgets.askedOrders', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+
+<!--  /* Deleted table */ -->       
+
             @include('widgets.deleteOrdersConfirmation', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
 
 <!--  /* Accepted table */ -->       

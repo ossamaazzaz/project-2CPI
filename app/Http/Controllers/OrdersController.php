@@ -97,9 +97,10 @@ class OrdersController extends Controller
         //aadded new table of the confirmation of the deleted orders ^^ by thehappybit
         $ConfirmDeletedOrders = Orders::where('state',5)->orderBy('created_at')->get();
 
+        $askedOrders = Orders::where('state',8)->orderBy('created_at')->get();
   
         $categories = \App\Category::get();
-        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders'));
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders','askedOrders'));
     }
 
     /**
@@ -162,6 +163,8 @@ class OrdersController extends Controller
         if ($id) {
             $order = Orders::find($id);
             if ($order) {
+                $order->state = 8;
+                $order->save();
                 $order->notify(new missingproduct($order));
                 return response()->json('asked');
             } else {
