@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!---Product Details------>
+<!---Product Details-->
 </br>
 <div class="container">
     <div class="row">
@@ -85,7 +85,7 @@
                     <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
                     @if (Auth::id() == $comment->user->id )
                     <div class="tools-btns">
-                      <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
+                      <button type="submit" id="{{ $comment->id }}" onclick="cmtToForm(this)" class="btn btn-success">
                             <i class="fa fa-edit"></i>
                       </button>
                       <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
@@ -137,7 +137,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img class="img-fluid" src="{{$product->image}}" style="display:block;margin-left: auto;margin-right: auto;height=1200px; width:1200px;"/>
+                <img class="img-fluid" src="{{ $product->image }}" style="display:block;margin-left: auto;margin-right: auto;height=1200px; width:1200px;"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -166,7 +166,9 @@
         $("#comment-box-container").css("display","none");
         cmtValue = (comment.innerHTML).substring(3,comment.innerHTML.length-4);
         commentCont = comment.childNodes[1];
-        comment.innerHTML ='<form method="POST" action="/home/{{$comment->id}}/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
+        // get id (fixing a bug)
+        id = object.id;
+        comment.innerHTML ='<form method="POST" action="/home/'+id+'/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
         for (var i = 0; i < btns.length; i++) {
           btns[i].style.display = 'none';
         }

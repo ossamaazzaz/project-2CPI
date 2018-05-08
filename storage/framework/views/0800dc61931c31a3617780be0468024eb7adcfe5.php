@@ -100,6 +100,12 @@ dashboard prinicpale view
                                     <!-- /.nav-theird-level -->
                         </li>
 
+                        <li <?php echo e((Request::is('settings') ? 'class="active"' : '')); ?>>
+                            <a href="<?php echo e(url ('admin/settings')); ?>"><i class="fa fa-folder fa-fw"></i> Settings
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

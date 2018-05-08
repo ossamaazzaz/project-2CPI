@@ -7,6 +7,13 @@
     <title>E-COM</title>
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+    <!--comments css -->
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="<?php echo e(asset('css/comments.css')); ?>" rel="stylesheet">
+
+    <!--end commennts css -->
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -84,7 +91,7 @@
                     <?php else: ?>
                         <li>
                           <div style="padding :16px 20px; ">
-                              <a href="/cart"> <i class="fas fa-shopping-cart"></i> Shopping Cart
+                              <a href="/cart"> <i class="fa fa-shopping-cart"></i> Shopping Cart
                                   <span class="badge">
                                     <!-- i will (mouloud) add here later the badge -->
                                   </span>
@@ -103,7 +110,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="/home/edit" >Edit</a>
-
+                                    <a href="/orders" class="dropdown-item">Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
@@ -211,6 +218,7 @@
 
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
