@@ -15,6 +15,7 @@ use App\Notifications\Confirmation;
 use App\Notifications\missingproduct;
 use DB;
 use ProductDetailsController;
+
 class OrdersController extends Controller
 {
     /*

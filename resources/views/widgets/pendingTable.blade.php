@@ -47,8 +47,6 @@
                                   <dd>- {{$pendingOrder->user->phoneNum}}</dd>
                                   <dt>Group :</dt>
                                   <dd>- {{$pendingOrder->user->groupId}}</dd>
-                                  <dt>Group :</dt>
-                                  <dd>- {{$pendingOrder->user->groupId}}</dd>
                             </dl> 
                           </div>
                         </div>

@@ -33,7 +33,7 @@ class ProductController extends Controller {
 	public function delete(Request $req){
 		$ids = explode(',', $req->ids);
 		foreach ($ids as $id) {
-			$product = Product::destroy($id);
+			Product::destroy($id);
 		}
 		return response()->json($ids);
 	}
