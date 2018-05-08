@@ -19,7 +19,10 @@ Route::get('/confirm/{id}/{token}','Auth\RegisterController@confirm');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
-
+//Comments
+Route::post('/home/{product}/comments','CommentsController@addComment');
+Route::get('/home/{comment}/delete','CommentsController@removeComment');
+Route::post('/home/{comment}/update','CommentsController@updateComment');
 
 //Dashbaord route
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route

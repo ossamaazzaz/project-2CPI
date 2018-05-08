@@ -40,16 +40,16 @@
                     <div>
 
 
-                        3 reviews <!-- it will be dynamic soon -->
-                        @for($i = 0; $i <$productDetails[0]->rating; $i++)
+                        3 reviews <!-- it will be dynamic soon (kacem)-->
+                        @for($i = 0; $i <$productDetails->rating; $i++)
                           <i class="fa fa-star" style="color: gold"></i>
                         @endfor
-                        @for($i = $productDetails[0]->rating; $i < 5; $i++)
+                        @for($i = $productDetails->rating; $i < 5; $i++)
                         <i class="fa fa-star" style="color: black"></i>
                         @endfor
                         <!-- La moyenne des stars from reviews------>
 
-                        ({{$productDetails[0]->rating}}/5)
+                        ({{$productDetails->rating}}/5)
                         <a class="pull-right" href="#reviews">View all reviews</a>
                     </div>
                 </div>
@@ -64,53 +64,62 @@
                 <div class="card-header bg-primary text-white text-uppercase">
                   <i class="fa fa-align-justify"></i> Description</div>
                 <div class="card-body">
-                    <p class="card-text">{{$productDetails[0]->description}}</p>
+                    <p class="card-text">{{$productDetails->description}}</p>
                 </div>
             </div>
         </div>
 
         <!-- Reviews -->
-
         <div class="col-12" id="reviews">
-            <div class="card border-light mb-3">
-                <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Reviews</div>
-                <div class="card-body">
-                    <div class="review">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
-                         <!-- stars---->
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: black"></span>
-                        <span class="fa fa-star" style="color: black"></span>
+          <div class="card border-light mb-3">
+            <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Commentaires</div>
+            <div class="container ">
+              @foreach ($productDetails->comments as $comment)
+                <div class="row">
+                  <div class="col-md-2" style="margin-bottom: 20px;">
+                    <img class="comment-img" src="{{ $comment->user->avatar }}">
+                  </div>
+                  <div class="col-md-10 container" style='margin-bottom: 10px;font-family: "Raleway", sans-serif'>
+                    <h4>  {{$comment->user->username }} </h4>
+                    <div><p>{{$comment->body}}</p></div>
+                    <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
+                    @if (Auth::id() == $comment->user->id )
+                    <div class="tools-btns">
+                      <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
+                            <i class="fa fa-edit"></i>
+                      </button>
+                      <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
+                         <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                         </button>
+                      </a>
+                     </div>
+                    @endif
 
-                        __by Seyf Goumeida
-                        <p class="blockquote">
-                            <p class="mb-0">Review  Review Review  Review Review </p>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="review">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
-
-                        <!-- stars---->
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: gold"></span>
-                        <span class="fa fa-star" style="color: black"></span>
-
-                         __by Iferroudjene Mouloud
-                        <p class="blockquote">
-                            <p class="mb-0">Review  Review Review Review Review </p>
-                        </p>
-                        <hr>
-                    </div>
+                  </div>
                 </div>
+              </hr>
+              @endforeach
+              <!--did we forgot raiting system -->
+              <!--Add a comment -->
+
+              <div class="row" id="comment-box-container" >
+                <div class="col-md-2" style='margin-bottom: 20px;font-family: "Raleway", sans-serif'>
+                  <img class="comment-img" src="{{ Auth::user()->avatar }}">
+                </div>
+                <div class="col-md-10 container" style="margin-bottom: 20px;">
+                  <form method="POST" action="/home/{{$productDetails->product_id}}/comments">
+                    {{ csrf_field() }}
+                    <textarea name="body" class="comment-input" rows='1' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required></textarea>
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <button type="submit" class="btn btn-success">Envoyer<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                  </form>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 </div>
 
@@ -136,4 +145,40 @@
         </div>
     </div>
 </div>
+<!--Scripts-->
+<script type="text/javascript">
+      var commentCont,comment,lngth,btns,cmtValue,btns1,el;
+      //----------------------------------------------------------------------//
+      function autosize(){
+        el = this;
+        setTimeout(function(){
+          el.style.cssText = 'height:auto; padding:0';
+          el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        },0);
+      }
+      //----------------------------------------------------------------------//
+      var comment,lngth,btns,cmtValue,btns1;
+      function cmtToForm(object){
+        comment = object.parentNode.parentNode.childNodes[3];
+        console.log(comment.innerHTML);
+        lngth = comment.parentNode.parentNode.parentNode.childNodes.length;
+        btns = document.getElementsByClassName("tools-btns");
+        $("#comment-box-container").css("display","none");
+        cmtValue = (comment.innerHTML).substring(3,comment.innerHTML.length-4);
+        commentCont = comment.childNodes[1];
+        comment.innerHTML ='<form method="POST" action="/home/{{$comment->id}}/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].style.display = 'none';
+        }
+      }
+      //----------------------------------------------------------------------//
+       function cancelComment(object,value){
+        object.parentNode.innerHTML = '<p>'+value+'</p>';
+        btns1 = document.getElementsByClassName("tools-btns");
+        for (var i = 0; i < btns.length; i++) {
+          btns1[i].style.display = 'block';
+        }
+        $("#comment-box-container").css("display","flex");
+      }
+</script>
 @endsection
