@@ -14,6 +14,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function comments()
+    {
+       return $this->hasMany(Comment::class);
+       /*
+       return $this->hadMany(App\Comment);
+       */
+    }
     protected $fillable = [
         'email', 'password','username','firstName','lastName','phoneNum','adr','idCard','avatar','confirmation_token'
     ];
@@ -22,8 +29,9 @@ class User extends Authenticatable
      * The attributes that should be hidden for arrays.
      * if it causes issues, add approveState... here
      * @var array
-     */
-    protected $hidden = [
+     protected $hidden = [
         'password', 'remember_token',
-    ];
+     ];
+     */
+    
 }

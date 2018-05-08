@@ -11,8 +11,14 @@ trait Notif{
 		$notificationsCollection = DB::table('notifications')->latest()->get();
         $notifications = array('');
         foreach ($notificationsCollection as $notif) {
-            array_push($notifications ,substr($notif->data,1,count($notif->data)-2));
+        	if ($notif->type == 'App\Notifications\missingproduct') {
+        		$notif->type = 'missingproduct';
+        		$notif->data = substr($notif->data,1,count($notif->data)-2);
+        	} else {
+        		$notif->data = substr($notif->data,1,count($notif->data)-2);
+        	}
+            
         }
-        return $notifications;
+        return $notificationsCollection;
 	}
 }

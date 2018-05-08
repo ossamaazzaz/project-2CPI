@@ -7,6 +7,13 @@
     <title>E-COM</title>
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome/css/font-awesome.min.css')); ?>">
+    <!--comments css -->
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="<?php echo e(asset('css/comments.css')); ?>" rel="stylesheet">
+
+    <!--end commennts css -->
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -65,7 +72,11 @@
                             <?php if($notif != null): ?>
                             <li>
                               <dev class="notif">
-                                <a href="<?php echo e('facture/' . $notif); ?>">Your code is : <?php echo e($notif); ?></a>
+                                <?php if($notif->type == 'missingproduct'): ?>
+                                  <a onclick="getmissingproduct('<?php echo e($notif->data); ?>')">there is a missing products on your order : <?php echo e($notif->data); ?><br>click to confirm or delete ! </a>
+                                <?php else: ?>
+                                  <a href="<?php echo e('facture/' . $notif->data); ?>">Your code is : <?php echo e($notif->data); ?></a>
+                                <?php endif; ?>
                               </dev>
                             </li>
                             <?php endif; ?>
@@ -80,7 +91,7 @@
                     <?php else: ?>
                         <li>
                           <div style="padding :16px 20px; ">
-                              <a href="/cart"> <i class="fas fa-shopping-cart"></i> Shopping Cart
+                              <a href="/cart"> <i class="fa fa-shopping-cart"></i> Shopping Cart
                                   <span class="badge">
                                     <!-- i will (mouloud) add here later the badge -->
                                   </span>
@@ -99,7 +110,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="/home/edit" >Edit</a>
-
+                                    <a href="/orders" class="dropdown-item">Orders</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
@@ -141,15 +152,22 @@
 
 
     <?php echo $__env->yieldContent('content'); ?>
-
-
-
-
-
     <footer>
      <div class="container">
        <div class="row">
-
+              <!-- model of confirmed by ossama azzaz-->
+               <input type="hidden" id="code" name="">
+               <div id="cmodale" class="cmodale canimated jackInTheBox">
+                    <h1>Missing Products :</h1>
+                    <h2 id="missingproducts"></h2>
+                    <h1>Available Products :</h1>
+                    <h2 id="availableproducts"></h2>
+                    <dev>
+                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
+                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                    </dev>
+                </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <span class="logo">LOGO</span>
                   <br><br>
@@ -200,6 +218,7 @@
 
 
     <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>

@@ -19,7 +19,10 @@ Route::get('/confirm/{id}/{token}','Auth\RegisterController@confirm');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
-
+//Comments
+Route::post('/home/{product}/comments','CommentsController@addComment');
+Route::get('/home/{comment}/delete','CommentsController@removeComment');
+Route::post('/home/{comment}/update','CommentsController@updateComment');
 
 //Dashbaord route
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
@@ -83,7 +86,20 @@ Route::get('/admin/preparation','OrdersController@confirm');
 Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
 Route::get('/admin/check','OrdersController@check');
 Route::post('/admin/check/{code}','OrdersController@check');
-
+Route::post('/admin/orders/{id}/retrieve','OrdersController@retrieve');
+//orders missing products
+Route::post('/admin/orders/{id}/ask','OrdersController@missingProduct');
+Route::post('/orders/{code}/get','OrdersController@getMissingproducts');
+Route::post('/orders/{code}/confirm','OrdersController@missingProductConfirm');
+Route::post('/orders/{code}/backtocart','OrdersController@backToCart');
+Route::post('/orders/{code}/msdelete','OrdersController@missingProductOrderDelete');
+Route::post('/orders/{id}/delete','OrdersController@deleteOrder');
 //email
 Route::get('/notification','OrdersController@notifyOnDone');
 
+//settings
+Route::get('/admin/settings', 'SettingsController@index')->middleware('admin');
+Route::post('/admin/settings/editText', 'SettingsController@editText');
+Route::post('/admin/settings/editVisual', 'SettingsController@editVisual');
+Route::get('/admin/settings/export', 'SettingsController@export')->middleware('admin');
+Route::post('/admin/settings/import', 'SettingsController@import')->middleware('admin');

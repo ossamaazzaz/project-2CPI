@@ -3,7 +3,6 @@ dashboard prinicpale view
 */
 ?>
 @extends('layouts.plane')
-
 @section('body')
  <div id="wrapper">
 
@@ -96,6 +95,12 @@ dashboard prinicpale view
                         </li>
                         <li {{ (Request::is('check') ? 'class="active"' : '') }}>
                             <a href="{{ url ('admin/check') }}"><i class="fa fa-folder fa-fw"></i> Check
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+
+                        <li {{ (Request::is('settings') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/settings') }}"><i class="fa fa-folder fa-fw"></i> Settings
                             </a>
                                     <!-- /.nav-theird-level -->
                         </li>

@@ -1,0 +1,33 @@
+
+.comment-img{
+    border-radius: 50%;
+    width:96px;
+    height:96px;
+}
+.comment-date{
+    color: #999;
+    font-size: 16px;
+}
+.comment-container{
+    margin: 20px;
+}
+.comment-input{
+  overflow-y:scroll;
+  padding:10px;
+  width:500px;
+  font-size:14px;
+  display:block;
+  border-radius:10px;
+  border:6px solid #556677;
+  resize:none;
+  min-height: 50px;
+}
+.tools-btns i{
+    font-size: 25px;
+    cursor: pointer;
+}
+.tools-btns i:hover{
+    font-size: 25px;
+    cursor: pointer;
+    color: #b2bec3;
+}

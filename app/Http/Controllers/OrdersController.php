@@ -12,6 +12,9 @@ use \Auth;
 use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
 use App\Notifications\Confirmation;
+use App\Notifications\missingproduct;
+use DB;
+use ProductDetailsController;
 
 class OrdersController extends Controller
 {
@@ -61,7 +64,8 @@ class OrdersController extends Controller
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
-        return view('order.list',compact('orders','categories'));
+        $notifications = Product::getnotifications();
+        return view('order.list',compact('orders','categories','notifications'));
     }
     /*
     * to view an order
@@ -90,10 +94,12 @@ class OrdersController extends Controller
         $Accepted_Orders = Orders::where('state',1)->orderBy('created_at')->get();
 
         $Refused_Orders = Orders::where('state',2)->orderBy('created_at')->get();
+        //aadded new table of the confirmation of the deleted orders ^^ by thehappybit
+        $ConfirmDeletedOrders = Orders::where('state',5)->orderBy('created_at')->get();
 
   
         $categories = \App\Category::get();
-        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders'));
     }
 
     /**
@@ -104,8 +110,8 @@ class OrdersController extends Controller
     **/
     public function validateOrder(Request $req){
         $outOfStock = false;
-        if ($req->id>=0) {
-            $id = $req->id; 
+        $id = $req->All()['id'];
+        if ($id>=0) {
             $order = Orders::find($id);
             //calcule
             $Items = $order->orderItems;
@@ -117,6 +123,8 @@ class OrdersController extends Controller
                     $product->save();
                     $order->state  = 1;
                 } else {
+                    $item->state = "missing";
+                    $item->save();
                     $outOfStock = true;
                     break;
                 }
@@ -137,12 +145,176 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function refuseOrder(Request $req){
-        if ($req->id>=0) {
-            $id = $req->id; 
+        if ($req->All()['id']>=0) {
+            $id = $req->All()['id']; 
             $order = Orders::find($id);
             $order->state = 2;
             $order->save();
         }
+    }
+    /*
+    * Send notification about the missing products to client 
+    * ussing missingproduct notification 
+    * by Oussama Messabih
+    */
+    public function missingProduct(Request $req){
+        $id = $req->All()['id'];
+        if ($id) {
+            $order = Orders::find($id);
+            if ($order) {
+                $order->notify(new missingproduct($order));
+                return response()->json('asked');
+            } else {
+                return response()->json('fail');
+            }
+        }
+    }
+    /*
+    * function to get the order items for float module
+    * by Oussama Messabih
+    */
+    public function getMissingProducts(Request $req){
+        $code  = $req->All()['code'];
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
+
+                    $Items = $order->orderItems;
+                    $msproducts = array('');
+                    $avproducts = array('');
+
+                    foreach ($Items as $item) {
+                        if ($item->state == 'missing') {
+                            array_push($msproducts, Product::find($item->product_id));
+                        } else {
+                            array_push($avproducts, Product::find($item->product_id));
+                        }
+                    }
+                    $products = array($msproducts,$avproducts);
+                    return response()->json($products);
+                    
+            } else {
+                return response()->json('noOrder');
+            }
+        } else {
+            return response()->json('noCode');
+        }
+        
+    }
+    /*
+    * Receive the confirmation of taking the order even some products are missing
+    * will confirm the order directly
+    * by Oussama Messabih
+    */
+    public function missingProductConfirm(Request $req){
+        $code = $req->All()['code'];
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
+                if ($order->state == 0) {
+                    $Items = $order->orderItems;
+                    foreach ($Items as $item) {
+                        if ($item->state == "missing") {
+                            $item->delete();
+                        }else{
+                            $product = Product::find($item->product_id);
+                            if ($product->quantitySale >= $item->quantity) {
+                                $product->quantitySale = $product->quantitySale - $item->quantity;
+                                $product->quantity = $product->quantity - $item->quantity;
+                                $product->save(); 
+                                }
+                        }}
+                $order->state = 1;
+                $order->save();
+                return response()->json($order->code . 'confirmed');
+                }}
+        } else {
+            return response()->json('noCode');
+        }
+    }
+    public function backToCart(Request $req){
+        $code = $req->all()['code'];
+        if ($code) {
+            $order  = Orders::where('code',$code)->first();
+            if ($order) {
+                $Items = $order->orderItems;
+                foreach ($Items as $item) {
+                    if ($item->state == "missing") {
+                        $item->delete();
+                    }else{
+                        $id = $item->product_id;
+                        $product=Product::find($id);
+                        $cartItem= new CartItem;
+                        $exist=DB::table('carts')->where('user_id','=',\Auth::user()->id)->get();
+                        if ($exist->isEmpty()){ 
+                        $cart=new Cart;
+                        $cart->user_id =  \Auth::user()->id;
+                        $cart->save();
+                        $cartItem->cart_id=$cart->id;
+                        }else {
+                        $cartItem->cart_id=$exist->first()->id;
+                        }
+                        $cartItem->product_id=$id;
+                        $cartItem->quantity=$item->quantity;
+                        $cartItem->price=$product->price;
+                        $cartItem->save();
+                    }
+                }
+                $order->state = 7;
+                $order->save();
+                redirect("/cart");
+            } else{
+                return response()->json('notfound');
+            }
+        }
+    }
+    /*
+    * Delete the order
+    * delete an order of a missing products
+    * by Oussama Messabih 
+    */
+    public function missingProductOrderDelete(Request $req){
+        $code = $req->All()['code'];
+        if ($code) {
+            $order = Orders::where('code','=',$code)->first();
+            if ($order) {
+                $order->delete();
+                return response()->json('deleted');
+            } else {
+                return response()->json('notdeleted');
+            }
+        }
+    }
+    /*
+    * delete an order (archive)
+    * deal with the client request of deleting an order
+    * state 5 when client ask for deleting
+    * state 6 when the adming confirm the deleting
+    */
+    public function deleteOrder(Request $req){
+        $id  = $req->All()['id'];
+        if ($id) {
+            $order = Orders::find($id);
+            $comment = $req->All()['comment'];
+            $who = $req->All()['who'];
+            if ($who == 'user') {
+                $order->state = 5;
+                $order->save();
+                DB::table('orders_archive')->insert(['order_id' => $id, 'buyercomment' => $comment]);
+            } elseif ($who == 'admin') {
+                $order->state = 6;
+                $order->save();
+                $faultofwho = $req->All()['faultofwho'];
+                if ($faultofwho != null) {
+                    DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment,'faultofwho' => $faultofwho]);
+                } else {
+                    DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment]);
+                }
+                
+            }
+            return response()->json('deleted');
+        }
+
     }
 
     /**
@@ -154,10 +326,11 @@ class OrdersController extends Controller
     public function confirm(Request $req){
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
-            return view('admin.preparation',compact('Orders'));
+            $dOrders = Orders::where('state',6)->orderBy('created_at')->get();
+            return view('admin.preparation',compact('Orders','dOrders'));
         } else if ($req->isMethod('post')){
-            if ($req->id >= 0) {
-                $id = $req->id; 
+            $id = $req->All()['id'];
+            if ($id >= 0) {
                 $order = Orders::find($id);
                 if ($order->state != 3) {
                     $order->state = 3;
@@ -168,6 +341,7 @@ class OrdersController extends Controller
                     Mail::to($email)->send(new OrderDone($order));
 
                     $order->notify(new Confirmation($order));
+
                     return response()->json('confirmed');
                 } else {
                     return response()->json('notconfirmed');
@@ -184,7 +358,7 @@ class OrdersController extends Controller
     **/
     public function check(Request $req){
         if ($req->isMethod('post')) {
-            $code = $req->code;
+            $code = $req->All()['code'];
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
             if ($order->state == 3) {
@@ -201,8 +375,31 @@ class OrdersController extends Controller
         }
         return view('admin.checkCode');   
     }
-
-
+    /*
+    * Retrieved deleted Products to Stock
+    * state 7 for retrieved products
+    * by Oussama Messabih
+    */
+    public function retrieve(Request $req){
+        $id = $req->all()['id'];
+        if ($id>=0) {
+            $order  = Orders::find($id);
+            if ($order) {
+                $Items = $order->orderItems;
+                foreach ($Items as $item) {
+                    $product = Product::find($item->product_id);
+                    $product->quantitySale = $product->quantitySale + $item->quantity;
+                    $product->quantity = $product->quantity + $item->quantity;
+                    $product->save();
+                }
+                $order->state = 7;
+                $order->save();
+                return response()->json('retrieved');
+            }else{
+                return response()->json('notfound');
+            }
+        }
+    }
     /**
     * From the request, you must extract the order + the email.
     * to view the email template `views/email/orderDone.blade.php`
