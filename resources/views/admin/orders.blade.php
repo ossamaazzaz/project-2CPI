@@ -7,7 +7,7 @@ Orders
 @section('section')
 <div class="col-sm-50"> 
 <div class="row">
-            <div class="col-sm-10">
+            <div class="col-md-12">
             
 
 <?php  /* Pending table */ ?> 

@@ -1,5 +1,9 @@
-<form id="users" action="#">
-	<table id="usersDataTable" class="table {{ $class }}">
+<br>
+<div class="card" style="margin: 10px;">
+    <div class="card-title">
+       <h2 style="text-align: center;">Users</h2>
+    </div>
+	<table id="usersDataTable" class="table">
 		<thead>
 			<tr>
 				<th>User Name</th>
@@ -30,4 +34,6 @@
 		</tbody>
 	</table>
 	<input type="submit" id="sub" value="Save" class="btn btn-primary">
-</form>
+            </div>
+        </div>
+</div>

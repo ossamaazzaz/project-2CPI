@@ -1,42 +1,81 @@
 @extends('layouts.dashboard')
 @section('page_heading','Categories')
 @section('section')
-<div class="input-group custom-search-form">
-    <input type="text" class="form-control" placeholder="Search...">
-    <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
-            <i class="fa fa-search"></i>
-        </button>
-    </span>
-</div>
+<style type="text/css">
+  .categorie-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: arial;
+  height: 400px;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2f3542;
+  overflow-y: scroll;
+  width: 100%;
+  height:0;
+  transition: .5s ease;
+}
 
- <a href="/categories/add"><button type="button" class="btn btn-primary btn-block">ADD Categories</button></a>
+.categorie-card:hover .overlay {
+  top: 0;
+  height: 230px;
+}
+
+.categorie-des{
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+</style>
+
+ <a href="/admin/categories/add"><button type="button" class="btn btn-primary btn-block">ADD Categories</button></a>
 
 <br />
 <!-- show categories -->
-<div class="row">
-  @foreach ($categories as $cat)
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <img src="{{$cat->picture}}" alt="categorie image" width="%50">
-        <div class="caption">
-          <h3>{{ $cat->name }}</h3>
-          <p><!-- description -->
-             {{  $cat->description }}
-          </p>
 
-          <p>
-            <!-- button-->
-              <a href="/categories/edit/{{$cat->id}}" class="btn btn-primary" role="button">Edit</a>
-              <a href="/categories/delete/{{$cat->id}}" class="btn btn-primary" role="button">Delete</a>
-              <a href="#" class="btn btn-default" role="button">Show more</a>
-            <!-- feel free to add-->
-          </p>
-        </div>
-      </div>
-    </div>
-  @endforeach
-</div>
-
+<div class="card" style="margin: 10px;">
+                <div class="container">
+                    <div class="row">
+                        @foreach ($categories as $cat)
+                        <div class="col-md-4">
+                            <div class="categorie-card">
+                              <img src="{{$cat->picture}}" height="230px" width="300px">
+                              <div class="overlay">
+                                <div class="categorie-des">
+                                  {{  $cat->description }}
+                                </div>
+                              </div>
+                              <h1>{{ $cat->name }}</h1>
+                              <div>
+                                  <button class="btn btn-success">
+                                      <a href="/admin/categories/edit/{{$cat->id}}" role="button"><i class="fa fa-edit"></i>&nbsp;edit</a>
+                                  </button>
+                                  <button class="btn btn-danger">
+                                      
+                                      <a href="/admin/categories/delete/{{$cat->id}}" role="button">
+                                      <i class="fa fa-times"></i>&nbsp;remove</a>
+                                  </button>
+                              </div> 
+                              <button class="btn btn-primary">show more</button>
+                              <br>
+                              
+                            </div>
+                        </div>
+                          @endforeach
+                    </div>
+                </div>
+            </div>
 
 @stop

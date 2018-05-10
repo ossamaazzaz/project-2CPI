@@ -183,7 +183,8 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function check(Request $req){
-        if ($req->isMethod('post')) {
+        if (\Auth::user()->groupId == 0 || \Auth::user()->groupId == 2 ) {
+            if ($req->isMethod('post')) {
             $code = $req->code;
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
@@ -199,7 +200,11 @@ class OrdersController extends Controller
             }
         }
         }
-        return view('admin.checkCode');   
+        return view('admin.checkCode');
+        }
+
+        return redirect('/');
+           
     }
 
 

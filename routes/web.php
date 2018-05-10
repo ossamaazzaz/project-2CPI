@@ -79,10 +79,10 @@ Route::get('/admin/orders', 'OrdersController@AdminPanel')->middleware('auth','a
 //orders validation , preparation , hash code checking 
 Route::post('/admin/orders/{id}/validate','OrdersController@validateOrder');
 Route::post('/admin/orders/{id}/refuse','OrdersController@refuseOrder');
-Route::get('/admin/preparation','OrdersController@confirm')->middleware('auth','prep');
-Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm')->middleware('auth','prep');
-Route::get('/admin/check','OrdersController@check')->middleware('auth','prep');
-Route::post('/admin/check/{code}','OrdersController@check')->middleware('auth','prep');
+Route::get('/admin/preparation','OrdersController@confirm')->middleware('auth');
+Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm')->middleware('auth');
+Route::get('/admin/check','OrdersController@check')->middleware('auth');
+Route::post('/admin/check/{code}','OrdersController@check')->middleware('auth');
 
 //email
 Route::get('/notification','OrdersController@notifyOnDone');

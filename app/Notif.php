@@ -11,7 +11,7 @@ trait Notif{
 		$notificationsCollection = DB::table('notifications')->latest()->get();
         $notifications = array('');
         foreach ($notificationsCollection as $notif) {
-            array_push($notifications ,substr($notif->data,1,count($notif->data)-2));
+            array_push($notifications ,substr($notif->data,1,strlen($notif->data)-2));
         }
         return $notifications;
 	}

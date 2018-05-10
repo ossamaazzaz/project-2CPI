@@ -21,7 +21,7 @@ class CategoriesController extends Controller{
   
   public function index()  {
       $categories=DB::table('categories')->latest()->get();
-      return view('/categories/main',compact('categories'));  
+      return view('categories.main',compact('categories'));  
 
     }
 
