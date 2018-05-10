@@ -59,7 +59,10 @@
                               </div>
                               <h1>{{ $cat->name }}</h1>
                               <div>
-                                      <a href="/admin/categories/edit/{{$cat->id}}" role="button"><i class="btn btn-success" role="button"></i>&nbsp;edit</a>
+
+                                      <a href="/admin/categories/edit/{{$cat->id}}" role="button">
+                                        <button class="btn btn-success">&nbsp;edit</button>
+                                      </a>
                                 
                                       <a href="/admin/categories/delete/{{$cat->id}}" role="button" class="btn btn-danger">
                                       <i class="fa fa-times"></i>&nbsp;remove</a>

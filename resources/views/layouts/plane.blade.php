@@ -69,7 +69,7 @@
 
     <script src="{{ asset('js/lib/owl-carousel/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/lib/owl-carousel/owl.carousel-init.js') }}"></script>
-    <script src="{{ asset('Chart.min.js') }}"></script>
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <!-- scripit init-->
 

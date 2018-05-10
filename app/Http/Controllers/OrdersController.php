@@ -154,6 +154,7 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function confirm(Request $req){
+        if (\Auth::user()->groupId != 0 && \Auth::user()->groupId != 2 ) return redirect('/');
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
             $shop = Shop::find(1);
