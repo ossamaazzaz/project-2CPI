@@ -87,6 +87,10 @@ Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
 Route::get('/admin/check','OrdersController@check');
 Route::post('/admin/check/{code}','OrdersController@check');
 Route::post('/admin/orders/{id}/retrieve','OrdersController@retrieve');
+//android app
+Route::post('/admin/preparationapp/{id}/confirm','OrdersController@confirmApp');
+Route::get('/admin/preparationapp','OrdersController@confirmApp');
+
 //orders missing products
 Route::post('/admin/orders/{id}/ask','OrdersController@missingProduct');
 Route::post('/orders/{code}/get','OrdersController@getMissingproducts');
