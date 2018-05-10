@@ -15,7 +15,7 @@
           </div>
           <div class="modal-body">
             <label for="comment">Comment:</label>
-            <textarea class="form-control" rows="5" id="cmt"></textarea>
+            <textarea class="form-control" rows="5" id="commentOrder"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="deleteOrders('user')">Delete</button>
@@ -73,7 +73,7 @@
                         <td><a href="/orders/{{$order->id}}"> {{$order->created_at}}</a></td>
                         <td>{{ $order->code }}</td>
                         <td><a href="/orders/{{$order->id}}"><i class="fa fa-search-plus"></i></a></td>
-                        <td><button class="btn btn-warning" data-toggle="modal" data-target="#deleteorderModal" onclick="wantdel({{ $order->id }})">Delete</button></td>
+                        <td><button class="btn btn-warning" data-toggle="modal" data-target="#deleteorderModal" onclick="wantdel({{ $order->id }},'user')">Delete</button></td>
                     </tr>
                     @endif
                 @endforeach

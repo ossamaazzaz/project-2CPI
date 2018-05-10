@@ -266,13 +266,18 @@ function deleteorder(){
                 }});
     }
 }
-function wantdel(id){
+function wantdel(id,who){
     document.getElementById('orderid').value = id;
+    if (!(who=='user')) {
+        bg.style.display = 'block';
+        modal.style.display = 'block';
+    }
+    
 }
 function deleteOrders(who){
     var id = document.getElementById('orderid').value;
     if (id>=0) {
-        var comment = document.getElementById('cmt').value;
+        var comment = document.getElementById('commentOrder').value;
         if (comment!="") {
             var data = new FormData();
             data.append("id",id);
@@ -281,14 +286,12 @@ function deleteOrders(who){
             if (who == 'admin') {
                 var sr = document.getElementById('sellerRadio');
                 var br = document.getElementById('buyerRadio');
-                console.log(sr,br);
                 if (sr.checked) {
                     data.append("faultofwho","seller")
                 } else if (br.checked) {
                     data.append("faultofwho","buyer");
                 }
             }
-            console.log(data);
             jQuery.ajax({
                 type : "POST",
                 url : "/orders/"+id+"/delete",
@@ -297,7 +300,9 @@ function deleteOrders(who){
                 processData: false,
                 contentType: false,
                 success : function(data){
-                    if (data=="deleted") {
+                    if (data=="admin") {
+                        closeConfModal();
+                    }else{
                         document.getElementById('row'+id).remove();
                     }
                     

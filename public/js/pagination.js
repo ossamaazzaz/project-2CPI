@@ -93,10 +93,10 @@ function prePage(currentPage) {
 jQuery(document).ready(function (){
     jQuery.noConflict();
     var currentPage = document.getElementById('currentPage');
-    if (currentPage.value>0) {
-    	var page = document.getElementById('page'+currentPage.value);
-    	page.setAttribute("class", "active");
+    if (currentPage) {
+        if (currentPage.value>0) {
+        var page = document.getElementById('page'+currentPage.value);
+        page.setAttribute("class", "active");
     }
-    console.log();
-
+    }
 });

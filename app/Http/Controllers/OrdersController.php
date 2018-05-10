@@ -313,9 +313,11 @@ class OrdersController extends Controller
                 } else {
                     DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment]);
                 }
-                
+                return response()->json($who);
             }
-            return response()->json('deleted');
+            
+        }else{
+            response()->json('fail');
         }
 
     }

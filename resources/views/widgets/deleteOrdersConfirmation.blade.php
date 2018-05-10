@@ -1,3 +1,30 @@
+<div class="modal-bg animated fadeIn"></div>
+<div class="confir-modal animated jackInTheBox" id="deleteOrderModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Deleting an order</h5>
+        <button type="button" class="close" onclick="closeConfModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>The mistake of who ?</label>
+        <div class="radio">
+          <label><input type="radio" id="sellerRadio" name="optradio">Seller mistake</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" id="buyerRadio" name="optradio">Buyer mistake</label>
+        </div>
+        <label for="cmt">Comment:</label>
+        <textarea class="form-control" rows="5" id="commentOrder"></textarea>
+        <br>
+        <div class="btn btn-warning" onclick="deleteOrders('admin')">Deletee</div>
+        <div class="btn btn-info" onclick="closeConfModal()">Close</div>
+      </div>
+
+    </div>
+    
+</div>
 <input type="hidden" id="orderid" name="">
 <br>
 <center><h1>Confirm Deleted Orders</h1></center>
@@ -32,7 +59,7 @@
                     </div>
                 </td>
                 <td>
-                  <button class="btn btn-warning" data-toggle="modal" data-target="#adminDeleteorderModal" onclick="wantdel({{ $delOrder->id }})">Delete</button>
+                  <button class="btn btn-warning" onclick="wantdel({{ $delOrder->id }},'admin')">Delete</button>
                   <button type="button" class="btn btn-success" id="" onclick="">Contact {{ $delOrder->user->username }}</button>
                 </td>
             </tr>

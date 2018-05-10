@@ -47,7 +47,7 @@
                         @for($i = $productDetails->rating; $i < 5; $i++)
                         <i class="fa fa-star" style="color: black"></i>
                         @endfor
-                        <!-- La moyenne des stars from reviews------>
+                        <!-- La moyenne des stars from reviews-->
 
                         ({{$productDetails->rating}}/5)
                         <a class="pull-right" href="#reviews">View all reviews</a>
@@ -85,7 +85,7 @@
                     <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
                     @if (Auth::id() == $comment->user->id )
                     <div class="tools-btns">
-                      <button type="submit" id="{{ $comment->id }}" onclick="cmtToForm(this)" class="btn btn-success">
+                      <button type="submit"n onclick="cmtToForm(this)" class="btn btn-success">
                             <i class="fa fa-edit"></i>
                       </button>
                       <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
