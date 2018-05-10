@@ -63,6 +63,7 @@ dashboard prinicpale view
                             </span>
                             </div>
                             <!-- /input-group -->
+                        @if(\Auth::user()->groupId == 0)
                         </li>
                         <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
                             <a href="{{ url ('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -89,23 +90,24 @@ dashboard prinicpale view
                             </a>
                                     <!-- /.nav-theird-level -->
                         </li>
-                        <li {{ (Request::is('preparation') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('admin/preparation') }}"><i class="fa fa-folder fa-fw"></i> Preparation
-                            </a>
-                                    <!-- /.nav-theird-level -->
-                        </li>
-                        <li {{ (Request::is('check') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('admin/check') }}"><i class="fa fa-folder fa-fw"></i> Check
-                            </a>
-                                    <!-- /.nav-theird-level -->
-                        </li>
+                        
 
                         <li {{ (Request::is('settings') ? 'class="active"' : '') }}>
                             <a href="{{ url ('admin/settings') }}"><i class="fa fa-folder fa-fw"></i> Settings
                             </a>
                                     <!-- /.nav-theird-level -->
                         </li>
-
+                        @endif
+                        <li {{ (Request::is('check') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/check') }}"><i class="fa fa-folder fa-fw"></i> Check
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
+                        <li {{ (Request::is('preparation') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('admin/preparation') }}"><i class="fa fa-folder fa-fw"></i> Preparation
+                            </a>
+                                    <!-- /.nav-theird-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

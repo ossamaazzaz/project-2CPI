@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 */
 class CategoriesController extends Controller{
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
   
   public function index()  {
       $categories=DB::table('categories')->latest()->get();
