@@ -1,3 +1,21 @@
+window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+                document.getElementById("go-to-top").style.display = "block";
+            } else {
+                document.getElementById("go-to-top").style.display = "none";
+            }
+        }
+
+        console.log("khraa");
+        $('#go-to-top').each(function(){
+            $(this).click(function(){ 
+                $('html,body').animate({ scrollTop: 0 }, 'slow');
+                return false; 
+            });
+        })
+        
 $(function() {
     "use strict";
     $(function() {

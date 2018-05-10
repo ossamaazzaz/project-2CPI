@@ -17,7 +17,8 @@
 
     <link href="{{ asset('css/lib/calendar2/semantic.ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/lib/calendar2/pignose.calendar.min.css')}}" rel="stylesheet">
-
+    
+    <link href="{{ asset('css/spinners.css')}}" rel="stylesheet">
     <link href="{{ asset('css/helper.css')}}" rel="stylesheet">
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

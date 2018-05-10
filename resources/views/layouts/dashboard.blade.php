@@ -5,10 +5,32 @@ dashboard prinicpale view
 @extends('layouts.plane')
 
 @section('body')
+<style type="text/css">
+#go-to-top {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 99;
+  font-size: 23px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  background-color: rgb(25,34,45); 
+}
+
+</style>
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- go top button-->
+    <div id="go-to-top">
+        <i class="fa fa-arrow-up"></i>
     </div>
     <!-- Main wrapper  -->
     <div id="main-wrapper">
@@ -193,5 +215,6 @@ dashboard prinicpale view
       </div>
 
     </div>
+
 @stop
 
