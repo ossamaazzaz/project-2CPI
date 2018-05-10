@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\User;
+use App\Shop;
 class UsersController extends Controller
 {
 
@@ -18,7 +19,9 @@ class UsersController extends Controller
    public function index()
    {
 	    $users = User::get();
-	    return view('admin.users',compact('users'));
+       $shop = Shop::find(1);
+
+	    return view('admin.users',compact('users','shop'));
    }
    /*
    this function responsable on approve 

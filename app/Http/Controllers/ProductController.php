@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
+use App\Shop;
 use App\ProductDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -23,7 +24,8 @@ class ProductController extends Controller {
 		if ($req->isMethod('get')) {
 			$products = Product::get();
 			$notifications = Product::getnotifications();
-			return view('admin.products',['products' => $products,'notifications' => $notifications]);
+			$shop = Shop::find(1);
+			return view('admin.products',['products' => $products,'notifications' => $notifications,'shop' => $shop]);
 		}
 	}
 	/*
@@ -53,8 +55,8 @@ class ProductController extends Controller {
 			$imgs  = '/storage';
 		}
 		
-		
-		return view('admin.addProduct',compact('product','imgs'));
+		$shop = Shop::find(1);
+		return view('admin.addProduct',compact('product','imgs','shop'));
 	
 		}
 	/*
@@ -164,8 +166,9 @@ class ProductController extends Controller {
 	*/
 	public function add(Request $req) {
 		$categories = Category::get();
+		$shop = Shop::find(1);
 		if ($req->isMethod('get')) {
-			return view('admin.productAdd',compact("categories"));
+			return view('admin.productAdd',compact("categories","shop"));
 		}
 		/*
 		* In front-end, use JS to check if
@@ -238,6 +241,6 @@ class ProductController extends Controller {
 			}
 		}
 		$productDetails->save();
-		return view('/categories/main',compact('categories'));  //later to redirect to product page instead
+		return view('/categories/main',compact('categories','shop'));  //later to redirect to product page instead
 	}
 }

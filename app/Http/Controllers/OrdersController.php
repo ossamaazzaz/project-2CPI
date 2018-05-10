@@ -8,6 +8,7 @@ use \App\CartItem;
 use \App\Orders;
 use \App\OrderItem;
 use App\Product;
+use App\Shop;
 use \Auth;
 use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
@@ -93,7 +94,8 @@ class OrdersController extends Controller
 
   
         $categories = \App\Category::get();
-        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories'));
+        $shop = Shop::find(1);
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','shop'));
     }
 
     /**
@@ -154,7 +156,8 @@ class OrdersController extends Controller
     public function confirm(Request $req){
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
-            return view('admin.preparation',compact('Orders'));
+            $shop = Shop::find(1);
+            return view('admin.preparation',compact('Orders','shop'));
         } else if ($req->isMethod('post')){
             if ($req->id >= 0) {
                 $id = $req->id; 
@@ -200,7 +203,8 @@ class OrdersController extends Controller
             }
         }
         }
-        return view('admin.checkCode');
+        $shop = Shop::find(1);
+        return view('admin.checkCode',compact('shop'));
         }
 
         return redirect('/');

@@ -19,7 +19,7 @@ dashboard prinicpale view
                 <div class="navbar-header dark">
                     <a class="navbar-brand" href="{{ url ('/admin') }}">
                         <!-- Logo icon -->
-                        <b><img src="" class="dark-logo" width="100" height="50" /></b>
+                        <b><img src="{{ $shop->logo }}" class="dark-logo" width="100" height="50" /></b>
                         <!--End Logo icon -->
                       
                     </a>
@@ -78,7 +78,7 @@ dashboard prinicpale view
                                         <div class="message-center">
                                             <!-- Message -->
                                             <a href="#">
-                                                <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                <div class="user-img"> <img src="{{  Auth::user()->avatar }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
                                                 <div class="mail-contnet">
                                                     <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
                                                 </div>
@@ -95,7 +95,7 @@ dashboard prinicpale view
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/users/5.jpg" alt="user" class="profile-pic" /></a>
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{  Auth::user()->avatar }}" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
                                     <li><a href="#"><i class="ti-settings"></i> Setting</a></li>

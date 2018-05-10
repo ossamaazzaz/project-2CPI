@@ -59,14 +59,10 @@
                               </div>
                               <h1>{{ $cat->name }}</h1>
                               <div>
-                                  <button class="btn btn-success">
-                                      <a href="/admin/categories/edit/{{$cat->id}}" role="button"><i class="fa fa-edit"></i>&nbsp;edit</a>
-                                  </button>
-                                  <button class="btn btn-danger">
-                                      
-                                      <a href="/admin/categories/delete/{{$cat->id}}" role="button">
+                                      <a href="/admin/categories/edit/{{$cat->id}}" role="button"><i class="btn btn-success" role="button"></i>&nbsp;edit</a>
+                                
+                                      <a href="/admin/categories/delete/{{$cat->id}}" role="button" class="btn btn-danger">
                                       <i class="fa fa-times"></i>&nbsp;remove</a>
-                                  </button>
                               </div> 
                               <button class="btn btn-primary">show more</button>
                               <br>
