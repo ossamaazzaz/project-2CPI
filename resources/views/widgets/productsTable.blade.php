@@ -1,3 +1,12 @@
+<div class="modal-bg animated fadeIn"></div>
+<div class="confir-modal animated jackInTheBox" id="myDiv">
+    <div class="confir-modal-text">
+        <span class="close-confmodal" onclick="closeConfModal()">&times;</span>
+        Are you sure ?
+    </div>
+    <div class="btn yes" onclick="deleteOneProduct()">yes,i'm sure</div>
+    <div class="btn no" onclick="closeConfModal()">no</div>
+</div>
 <button class="btn btn-primary" id="addnew" onclick="goadd()">add new</button>
 <form id="products" action="">
     <select id="selectList">
@@ -5,6 +14,7 @@
          <option id="compare" value="compare">compare</option>
     </select>
     <input type="button" value="execute" id="execute">
+    <input type="hidden" id="productid">
     <table id="productsDataTable" class="table {{ $class }}">
         <thead>
             <tr>
@@ -29,7 +39,7 @@
                     <td class="showTools"> {{ $product->id }}
                         <div class="tools">
                             <button type="button" class="fa fa-edit" value="{{ $product->id }}" onclick="edit(this)"></button>
-                            <button type="button" class="fa fa-times" value="{{ $product->id }}" onclick="deleteOneProduct(this)"></button>
+                            <button type="button" class="fa fa-times" value="{{ $product->id }}" onclick="showConfModal('{{ $product->id }}')"></button>
                         </div>
                     </td>
                    
