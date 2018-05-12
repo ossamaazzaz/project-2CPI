@@ -1443,9 +1443,7 @@ ul.list-style-none li a:hover {
 .custom-select {
   background: url("../../assets/images/custom-select.png") right 0.75rem center no-repeat;
 }
-textarea {
-  resize: none;
-}
+
 .mailbox ul li .drop-title {
   font-weight: 500;
   padding: 11px 20px 15px;
@@ -7018,3 +7016,82 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+/*tabs setting page*/
+#content1,#content2,#content3,#content4 {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+.tabs-input{
+  display: none;
+}
+
+.tabs-label {
+  width: 200px;
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+.tabs-label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label[for*='1']:before {
+  content: '\f015';
+}
+
+label[for*='2']:before {
+  content: "\f022";
+}
+
+label[for*='3']:before {
+  content: "\f019";
+}
+
+label[for*='4']:before {
+  content: "\f040";
+}
+
+.tabs-label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+.tabs-input:checked + .tabs-label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid orange;
+  border-bottom: 1px solid #fff;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  .tabs-label {
+    font-size: 0;
+  }
+
+  .tabs-label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .tabs-label {
+    padding: 15px;
+  }
+}
+

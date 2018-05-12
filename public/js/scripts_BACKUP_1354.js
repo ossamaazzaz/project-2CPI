@@ -1,4 +1,3 @@
-//scroll to top button
 window.onscroll = function() {scrollFunction()};
 
         function scrollFunction() {
@@ -16,7 +15,7 @@ window.onscroll = function() {scrollFunction()};
                 return false; 
             });
         })
-//page preloader        
+        
 $(function() {
     "use strict";
     $(function() {
@@ -148,6 +147,8 @@ $(function() {
             $(this).closest(".card").removeClass().slideUp("fast");
         });
 });
+<<<<<<< Updated upstream
+=======
 //check input
 var $form = $('.register');
 
@@ -174,12 +175,9 @@ $form.on('keyup', 'input', function (e) {
         $(this).removeClass('active');
     }
 });
-
-
-
 //don't accept spaces and special chars in input
 $('#register').on('input', function() {
   $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
 });
 
-
+>>>>>>> Stashed changes
