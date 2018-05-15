@@ -8,6 +8,7 @@ use \App\CartItem;
 use \App\Orders;
 use \App\OrderItem;
 use App\Product;
+use App\Shop;
 use \Auth;
 use Illuminate\Support\Facades\Mail;
 use \App\Mail\OrderDone;
@@ -100,7 +101,9 @@ class OrdersController extends Controller
         $askedOrders = Orders::where('state',8)->orderBy('created_at')->get();
   
         $categories = \App\Category::get();
-        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders','askedOrders'));
+        $shop = Shop::find(1);
+        return view('admin.orders',compact('Pending_Orders','Refused_Orders','Accepted_Orders','categories','ConfirmDeletedOrders','askedOrders','shop'));
+
     }
 
     /**
@@ -313,9 +316,11 @@ class OrdersController extends Controller
                 } else {
                     DB::table('orders_archive')->where('id', $id)->update(['sellercomment' => $comment]);
                 }
-                
+                return response()->json($who);
             }
-            return response()->json('deleted');
+            
+        }else{
+            response()->json('fail');
         }
 
     }
@@ -327,10 +332,39 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function confirm(Request $req){
+        if (\Auth::user()->groupId != 0 && \Auth::user()->groupId != 2 ) return redirect('/');
+        if ($req->isMethod('get')) {
+            $Orders = Orders::where('state',1)->orderBy('created_at')->get();
+            $shop = Shop::find(1);
+            $dOrders = Orders::where('state',6)->orderBy('created_at')->get();
+            return view('admin.preparation',compact('Orders','dOrders','shop'));
+
+        } else if ($req->isMethod('post')){
+            $id = $req->All()['id'];
+            if ($id >= 0) {
+                $order = Orders::find($id);
+                if ($order->state != 3) {
+                    $order->state = 3;
+                    $order->save();
+                    // send email notification 
+                    $order = Orders::find($id);
+                    $email = $order->user->email;
+                    Mail::to($email)->send(new OrderDone($order));
+
+                    $order->notify(new Confirmation($order));
+
+                    return response()->json('confirmed');
+                } else {
+                    return response()->json('notconfirmed');
+                }    
+            }
+        }
+    }
+    public function confirmApp(Request $req){
         if ($req->isMethod('get')) {
             $Orders = Orders::where('state',1)->orderBy('created_at')->get();
             $dOrders = Orders::where('state',6)->orderBy('created_at')->get();
-            return view('admin.preparation',compact('Orders','dOrders'));
+            return ['Orders' => $Orders,'dOrders' => $dOrders];
         } else if ($req->isMethod('post')){
             $id = $req->All()['id'];
             if ($id >= 0) {
@@ -360,8 +394,10 @@ class OrdersController extends Controller
     * by oussama messabih
     **/
     public function check(Request $req){
+        if (\Auth::user()->groupId == 0 || \Auth::user()->groupId == 2 ) {
         if ($req->isMethod('post')) {
             $code = $req->All()['code'];
+
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
             if ($order->state == 3) {
@@ -376,7 +412,12 @@ class OrdersController extends Controller
             }
         }
         }
-        return view('admin.checkCode');   
+        $shop = Shop::find(1);
+        return view('admin.checkCode',compact('shop'));
+        }
+
+        return redirect('/');
+           
     }
     /*
     * Retrieved deleted Products to Stock

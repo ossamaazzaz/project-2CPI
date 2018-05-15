@@ -2,7 +2,7 @@
 @section('page_heading','Edit Categories')
 @section('section')
       <div class="card-body">
-          <form method="POST" action="/categories/edit/{{$id}}" enctype="multipart/form-data">
+          <form method="POST" action="/admin/categories/edit/{{$id}}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name :</label>

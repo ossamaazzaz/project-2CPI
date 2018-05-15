@@ -1,6 +1,29 @@
 @extends('layouts.dashboard')
 
 @section('section')
+<div class="card" style="height: 180px;">
+<center><h2>Enter the code here :</h2></center><br>
+<div class="register">
+  <div class="field">
+    <input id="codeinput" maxlength="6" type="text"  autocomplete="off" />
+    <button onclick="check()">CHECK</button>
+  </div>
+</div>
+</div>
+<div class="card">
+    <div id="validMsg" class="alert alert-success fadeIn hidden" >
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Order exists !</strong>&nbsp;and here is the PDF file
+    </div>
+    <div id="notValidMsg" class="alert alert-danger fadeIn hidden" id="order-no-exists" >
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>Order doesn't exist !</strong>
+    </div>
+    <iframe id="pdfSource" class="hidden" style="min-height: 600px"></iframe>
+</div>
+
+
+<!--
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,4 +43,5 @@
         </div>
     </div>
 </div>
+-->
 @endsection

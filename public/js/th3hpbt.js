@@ -1,10 +1,15 @@
 var approvedUsers = [];
+var deletedUsers = [];
 function addApprovedUser(id,userId,userState) {
             if ( userState == 'pending' && !approvedUsers.includes(userId)) {
                 id.innerHTML = "Approved";
                 approvedUsers.push(userId);
             }
         }
+function deleteUser(userId){
+    deletedUsers.push(userId);
+}
+
 //select products add them to this array below 
 var selectedProducts = [];
 function selected(element) {
@@ -141,13 +146,14 @@ function check(){
         contentType: false,
         success : function(data){
             console.log(data);
-            var msg = document.getElementById('validationMsg');
             if (data=='Valid') {
-                msg.innerHTML = "Code is Valid";
+                document.getElementById("validMsg").classList.remove("hidden");
+                var pdf = document.getElementById("pdfSource");
+                pdf.src = "/facture/"+code;
+                pdf.classList.remove("hidden");
             } else if (data == 'notValid') {
-                msg.innerHTML = "Code is not Valid";
+                document.getElementById("notValidMsg").classList.remove("hidden");
             } else if (data = 'ard') {
-                msg.innerHTML = "Already Validated";
 
             }
                 
@@ -266,13 +272,18 @@ function deleteorder(){
                 }});
     }
 }
-function wantdel(id){
+function wantdel(id,who){
     document.getElementById('orderid').value = id;
+    if (!(who=='user')) {
+        bg.style.display = 'block';
+        modal.style.display = 'block';
+    }
+    
 }
 function deleteOrders(who){
     var id = document.getElementById('orderid').value;
     if (id>=0) {
-        var comment = document.getElementById('cmt').value;
+        var comment = document.getElementById('commentOrder').value;
         if (comment!="") {
             var data = new FormData();
             data.append("id",id);
@@ -281,14 +292,12 @@ function deleteOrders(who){
             if (who == 'admin') {
                 var sr = document.getElementById('sellerRadio');
                 var br = document.getElementById('buyerRadio');
-                console.log(sr,br);
                 if (sr.checked) {
                     data.append("faultofwho","seller")
                 } else if (br.checked) {
                     data.append("faultofwho","buyer");
                 }
             }
-            console.log(data);
             jQuery.ajax({
                 type : "POST",
                 url : "/orders/"+id+"/delete",
@@ -297,7 +306,9 @@ function deleteOrders(who){
                 processData: false,
                 contentType: false,
                 success : function(data){
-                    if (data=="deleted") {
+                    if (data=="admin") {
+                        closeConfModal();
+                    }else{
                         document.getElementById('row'+id).remove();
                     }
                     
@@ -334,13 +345,19 @@ jQuery(document).ready(function (){
 //     }
 // });
 //useless one 
-    // this approve the users 
+    // this save operations that did to the users 
     jQuery('#sub').click(function(){
-        var dataString = "ids="+approvedUsers;
+        var data = new FormData();
+        data.append("approveIds",approvedUsers);
+        data.append("deleteIds",deletedUsers);
+        console.log(deletedUsers);
         jQuery.ajax({
             type : "POST",
             url : "/admin/users",
-            data : dataString,
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
             success : function(data){
                 console.log(data); }
         });
