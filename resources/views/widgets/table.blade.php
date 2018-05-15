@@ -15,6 +15,7 @@
 				<th>Card Id</th>
 				<th>State</th>
 				<th>Group</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -29,11 +30,12 @@
 					<td>{{ $user->idCard }}</td>
 					<td><button type="button" class="btn btn-info active" id="{{ $user->id }}" onclick="addApprovedUser(this,{{ $user->id }},'{{ $user->approveState }}')">{{ $user->approveState }}</button></td>
 					<td>{{ $user->groupId }}</td>
+					<td><button type="button" class="btn btn-danger" id="delete{{ $user->id }}" onclick="deleteUser({{$user->id}})">Delete</button></td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
 	<input type="submit" id="sub" value="Save" class="btn btn-primary">
-            </div>
-        </div>
+          </div>
+    </div>
 </div>

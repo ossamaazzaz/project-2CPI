@@ -5,21 +5,21 @@
 <center><h2>Enter the code here :</h2></center><br>
 <div class="register">
   <div class="field">
-    <input id="register" maxlength="6" type="text"  autocomplete="off" />
+    <input id="codeinput" maxlength="6" type="text"  autocomplete="off" />
     <button onclick="check()">CHECK</button>
   </div>
 </div>
 </div>
 <div class="card">
-    <div class="alert alert-success fadeIn" >
+    <div id="validMsg" class="alert alert-success fadeIn hidden" >
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>Order exists !</strong>&nbsp;and here is the PDF file
     </div>
-    <div class="alert alert-danger fadeIn" id="order-no-exists" >
+    <div id="notValidMsg" class="alert alert-danger fadeIn hidden" id="order-no-exists" >
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <strong>Order doesn't exist !</strong>
     </div>
-    <iframe src="{{ asset('TP7.pdf') }}" style="min-height: 600px"></iframe>
+    <iframe id="pdfSource" class="hidden" style="min-height: 600px"></iframe>
 </div>
 
 

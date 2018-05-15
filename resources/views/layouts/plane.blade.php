@@ -134,13 +134,9 @@
 <body class="fix-header fix-sidebar">
 	@yield('body')
 
-    <script src="{{ asset('js/th3hpbt.js')}}"></script>
-    <script src="{{ asset('js/searchresult.js') }}"></script>
-    <script src="{{ asset('js/pagination.js') }}"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
 	
 	<!-- All Jquery -->
-    <script src="{{ asset('js/lib/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ asset('js/lib/bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('js/lib/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -176,7 +172,7 @@
     <!-- scripit init-->
 
     <script src="{{ asset('js/custom.min.js') }}"></script>
-       <script type="text/javascript">
+      <script type="text/javascript">
         
       $('.counter').each(function() {
       var $this = $(this),
@@ -217,6 +213,12 @@
       });
      
     </script>
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables-init.js') }}"></script>
+    <script src="{{ asset('js/th3hpbt.js')}}"></script>
+    <script src="{{ asset('js/searchresult.js') }}"></script>
+    <script src="{{ asset('js/pagination.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 
 </body>
 </html>

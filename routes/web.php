@@ -26,7 +26,7 @@ Route::post('/home/{comment}/update','CommentsController@updateComment');
 
 //Dashbaord route
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
-Route::post('/admin/users','UsersController@approve');
+Route::post('/admin/users','UsersController@save');
 
 Route::get('/admin', 'DashbaordController@index');
 

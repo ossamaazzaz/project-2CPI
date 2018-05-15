@@ -1,10 +1,15 @@
 var approvedUsers = [];
+var deletedUsers = [];
 function addApprovedUser(id,userId,userState) {
             if ( userState == 'pending' && !approvedUsers.includes(userId)) {
                 id.innerHTML = "Approved";
                 approvedUsers.push(userId);
             }
         }
+function deleteUser(userId){
+    deletedUsers.push(userId);
+}
+
 //select products add them to this array below 
 var selectedProducts = [];
 function selected(element) {
@@ -141,13 +146,14 @@ function check(){
         contentType: false,
         success : function(data){
             console.log(data);
-            var msg = document.getElementById('validationMsg');
             if (data=='Valid') {
-                msg.innerHTML = "Code is Valid";
+                document.getElementById("validMsg").classList.remove("hidden");
+                var pdf = document.getElementById("pdfSource");
+                pdf.src = "/facture/"+code;
+                pdf.classList.remove("hidden");
             } else if (data == 'notValid') {
-                msg.innerHTML = "Code is not Valid";
+                document.getElementById("notValidMsg").classList.remove("hidden");
             } else if (data = 'ard') {
-                msg.innerHTML = "Already Validated";
 
             }
                 
@@ -339,13 +345,19 @@ jQuery(document).ready(function (){
 //     }
 // });
 //useless one 
-    // this approve the users 
+    // this save operations that did to the users 
     jQuery('#sub').click(function(){
-        var dataString = "ids="+approvedUsers;
+        var data = new FormData();
+        data.append("approveIds",approvedUsers);
+        data.append("deleteIds",deletedUsers);
+        console.log(deletedUsers);
         jQuery.ajax({
             type : "POST",
             url : "/admin/users",
-            data : dataString,
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
             success : function(data){
                 console.log(data); }
         });

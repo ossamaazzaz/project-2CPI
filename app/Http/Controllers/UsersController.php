@@ -27,15 +27,21 @@ class UsersController extends Controller
    this function responsable on approve 
    * by @TH3HPBT
    */
-   public function approve(Request $req){
-   		$ids = array_map('intval', explode(',', $req->ids));
-
-   		foreach ($ids as $id) {
-   			$user  = User::find($id);
-   			$user->approveState = "Approved";
-   			$user->save();
-   		}
-   		return "ApprovingOpDone";
+   public function save(Request $req){
+   	
+      if ($req->approveIds !=null) {
+        $ids = array_map('intval', explode(',', $req->approveIds));
+        foreach ($ids as $id) {
+          $user  = User::find($id);
+          $user->approveState = "Approved";
+          $user->save();
+        }
+      }
+      if ($req->deleteIds!=null) {
+        $ids = array_map('intval', explode(',', $req->deleteIds));
+        User::destroy($ids);
+      }
+      return "Done";
    }
 
 }
