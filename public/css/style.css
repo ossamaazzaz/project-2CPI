@@ -60,6 +60,113 @@
 42. responsive
 
 */
+/* check input */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: none;
+}
+#register{
+  text-align: center;
+  padding: 5px;
+}
+.register {
+  margin: 0 auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.field {
+  width: 700px;
+  height: 70px;
+  position: relative;
+}
+.field input {
+  width: 100%;
+  border-radius: 6px;
+  height: 70px;
+  border: 0;
+  padding: 10px;
+  padding: 20px 0 0 16px;
+  font-size: 50px;
+  background: #1566BB;
+  transition: background .3s ease;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-align: center;
+}
+.field input:focus {
+  background: #065CB7;
+  font-size: 50px;
+}
+.field input:focus::-moz-selection {
+  background: rgba(188, 232, 255, 0.5);
+}
+.field input:focus::selection {
+  background: rgba(188, 232, 255, 0.5);
+}
+.field input.active {
+  background: #065CB7;
+  font-size: 50px;
+
+}
+.field input,
+.field button {
+  position: absolute;
+  height: 100px;
+}
+.field button {
+  background: rgba(0, 0, 0, 0.3);
+  right: 0;
+  border: 0;
+  width: 115px;
+  border-radius: 6px;
+  font-size: 25px;
+  cursor: pointer;
+  transition: width .3s ease, background .3s ease, opacity .3s ease;
+  opacity: 0;
+  color: #065CB7;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.field button.active {
+  color: #ffffff;
+  background: #639EDB;
+  opacity: 1;
+  pointer-events: auto;
+}
+.field button.active:hover {
+  background: #5E99D6;
+}
+
+.field input:focus + label {
+  font-size: 19px;
+  -webkit-transform: translate(16px, 11px);
+          transform: translate(16px, 11px);
+  color: rgba(255, 255, 255, 0.7);
+}
+.field label {
+  position: absolute;
+  color: white;
+  -webkit-transform: translate(16px, 20px);
+          transform: translate(16px, 20px);
+  transition: font-size .3s ease, color .3s .1s ease, -webkit-transform .3s ease;
+  transition: transform .3s ease, font-size .3s ease, color .3s .1s ease;
+  transition: transform .3s ease, font-size .3s ease, color .3s .1s ease, -webkit-transform .3s ease;
+  font-size: 28px;
+}
+.field label.active {
+  font-size: 19px;
+  -webkit-transform: translate(16px, 11px);
+          transform: translate(16px, 11px);
+  color: rgba(255, 255, 255, 0.7);
+}
+.field input:focus + label + button {
+  opacity: 1;
+}
+/* preloader */
 .preloader {
   width: 100%;
   height: 100%;
@@ -73,6 +180,7 @@
   top: calc(46.5%);
   left: calc(46.5%);
 }
+
 * {
   outline: none;
 }
@@ -1335,9 +1443,7 @@ ul.list-style-none li a:hover {
 .custom-select {
   background: url("../../assets/images/custom-select.png") right 0.75rem center no-repeat;
 }
-textarea {
-  resize: none;
-}
+
 .mailbox ul li .drop-title {
   font-weight: 500;
   padding: 11px 20px 15px;
@@ -5818,9 +5924,9 @@ tbody tr td:last-child {
   color: #4680ff;
 }
 .alert-success {
-  background-color: #93ede9;
-  border-color: #93ede9;
-  color: #26dad2;
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px;
 }
 .alert-warning {
   background-color: #ffeacd;
@@ -5828,9 +5934,9 @@ tbody tr td:last-child {
   color: #ffb64d;
 }
 .alert-danger {
-  background-color: #fedee5;
-  border-color: #fedee5;
-  color: #fc6180;
+  background-color: #f44336;
+  color: white;
+  padding: 20px; 
 }
 .alert-pink {
   background-color: #f8e4fb;
@@ -6910,3 +7016,82 @@ tbody tr td:last-child {
     display: inline-block !important;
   }
 }
+/*tabs setting page*/
+#content1,#content2,#content3,#content4 {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+.tabs-input{
+  display: none;
+}
+
+.tabs-label {
+  width: 200px;
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+.tabs-label:before {
+  font-family: fontawesome;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+label[for*='1']:before {
+  content: '\f015';
+}
+
+label[for*='2']:before {
+  content: "\f022";
+}
+
+label[for*='3']:before {
+  content: "\f019";
+}
+
+label[for*='4']:before {
+  content: "\f040";
+}
+
+.tabs-label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+.tabs-input:checked + .tabs-label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid orange;
+  border-bottom: 1px solid #fff;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  .tabs-label {
+    font-size: 0;
+  }
+
+  .tabs-label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .tabs-label {
+    padding: 15px;
+  }
+}
+

@@ -174,12 +174,8 @@ $form.on('keyup', 'input', function (e) {
         $(this).removeClass('active');
     }
 });
-
-
-
 //don't accept spaces and special chars in input
 $('#register').on('input', function() {
   $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
 });
-
 

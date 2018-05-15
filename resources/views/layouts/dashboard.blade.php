@@ -28,7 +28,7 @@ dashboard prinicpale view
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
     <!-- go top button-->
-    <div id="go-to-top">
+    <div id="go-to-top" class="animated fadeIn">
         <i class="fa fa-arrow-up"></i>
     </div>
     <!-- Main wrapper  -->

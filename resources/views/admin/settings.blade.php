@@ -1,8 +1,23 @@
 @extends('layouts.dashboard')
 @section('page_heading','Settings')
 @section('section')
-      <div class="card-body">
-          <form method="POST" action="{{action('SettingsController@editText')}}" enctype="multipart/form-data">
+      <div class="card">
+        <div class="main-settings">
+          <center>
+            <input id="tab1" type="radio" name="tabs" checked class="tabs-input">
+            <label for="tab1" class="tabs-label" >generale settings</label>
+              
+            <input id="tab2" type="radio" name="tabs" class="tabs-input">
+            <label for="tab2" class="tabs-label">visual part</label>
+              
+            <input id="tab3" type="radio" name="tabs" class="tabs-input">
+            <label for="tab3" class="tabs-label" >import/export</label>
+              
+            <input id="tab4" type="radio" name="tabs" class="tabs-input">
+            <label for="tab4" class="tabs-label">other</label>
+           
+            <section id="content1">
+              <form method="POST" action="{{action('SettingsController@editText')}}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name :</label>
@@ -124,8 +139,7 @@
               <div class="form-group row">
                   <label for="quotes" class="col-md-4 col-form-label text-md-right">quotes :</label>
                   <div class="col-md-6">
-                       <textarea id="quotes" class="form-control{{ $errors->has('quotes') ? ' is-invalid' : '' }}" name="quotes" required autofocus  rows="3">{{$shop->quotes}}</textarea>
-                       
+                       <textarea id="quotes" class="form-control{{ $errors->has('quotes') ? ' is-invalid' : '' }}" name="quotes" required autofocus  data-role="tagsinput" rows="3">{{$shop->quotes}}</textarea>
                       @if ($errors->has('quotes'))
                           <span class="invalid-feedback">
                               <strong>{{ $errors->first('quotes') }}</strong>
@@ -156,56 +170,57 @@
                       </button>
                   </div>
               </div>
-          </form>
+              </form>
+            </section>
+              
+            <section id="content2">
+               <!-- Visual Part -->
+              <form method="POST" action="{{action('SettingsController@editVisual')}}" enctype="multipart/form-data">
+                  @csrf
+                  <div class="form-group row">
+                        <label for="logo" class="col-md-4 col-form-label text-md-right"> logo </label>
+                            <img src="{{ $shop->logo }}" height="200px" width="200px" >
+                              <div class="col-md-6">
+                                 <input id="logo" type="file" class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}">
 
-
-
-          <!-- Visual Part -->
-
-          <form method="POST" action="{{action('SettingsController@editVisual')}}" enctype="multipart/form-data">
-              @csrf
-              <div class="form-group row">
-                    <label for="logo" class="col-md-4 col-form-label text-md-right"> logo </label>
-                        <img src="{{ $shop->logo }}" height="200px" width="200px" >
-                          <div class="col-md-6">
-                             <input id="logo" type="file" class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}">
-
-                            @if ($errors->has('logo'))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('logo') }}</strong>
-                                </span>
-                             @endif
-                    </div>
-              </div>
-              @for ($i=1;$i<=3;$i++)
-                <div class="form-group row">
-                    <label for="{{"slide" . $i}}" class="col-md-4 col-form-label text-md-right"> {{"slide" . $i}} </label>
-                        @if ($i <= count($slides) && $slides[$i-1] != null)
-                        <img src="{{ $slides[$i - 1] }}" title="{{ $slides[$i - 1] }}" height="200px" width="200px" >
-                        @endif
-                          <div class="col-md-6">
-                             <input id="{{ "slide" . $i }}" type="file" class="form-control{{ $errors->has("slide" . $i ) ? ' is-invalid' : '' }}" name="{{"slide" . $i}}" value="{{ old( "slide" . $i) }}">
-
-                            @if ($errors->has("slide" . $i))
-                                <span class="invalid-feedback">
-                                    <strong>{{ $errors->first("slide" . $i) }}</strong>
-                                </span>
-                             @endif
-                    </div>
-              </div>
-              @endfor
-            
-              <div class="form-group row mb-0">
-                  <div class="col-md-6 offset-md-4">
-                      <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-check-square-o" style="font-size:18px"></i>
-                          {{ __('Edit!') }}
-                      </button>
+                                @if ($errors->has('logo'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('logo') }}</strong>
+                                    </span>
+                                 @endif
+                        </div>
                   </div>
-              </div>
-          </form>
+                  @for ($i=1;$i<=3;$i++)
+                    <div class="form-group row">
+                        <label for="{{"slide" . $i}}" class="col-md-4 col-form-label text-md-right"> {{"slide" . $i}} </label>
+                            @if ($i <= count($slides) && $slides[$i-1] != null)
+                            <img src="{{ $slides[$i - 1] }}" title="{{ $slides[$i - 1] }}" height="200px" width="200px" >
+                            @endif
+                              <div class="col-md-6">
+                                 <input id="{{ "slide" . $i }}" type="file" class="form-control{{ $errors->has("slide" . $i ) ? ' is-invalid' : '' }}" name="{{"slide" . $i}}" value="{{ old( "slide" . $i) }}">
 
-          <!-- Import/ Export part-->
+                                @if ($errors->has("slide" . $i))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first("slide" . $i) }}</strong>
+                                    </span>
+                                 @endif
+                        </div>
+                  </div>
+                  @endfor
+                
+                  <div class="form-group row mb-0">
+                      <div class="col-md-6 offset-md-4">
+                          <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-check-square-o" style="font-size:18px"></i>
+                              {{ __('Edit!') }}
+                          </button>
+                      </div>
+                  </div>
+              </form>
+            </section>
+              
+            <section id="content3">
+              <!-- Import/ Export part-->
 
           <a href="/admin/settings/export"><button type="button" class="btn btn-warning">Export Users</button></a>
           <h3>Import Users</h3>
@@ -232,6 +247,13 @@
                   </div>
               </div>
           </form>
-
+            </section>
+              
+            <section id="content4">
+              maybe someother content
+            </section>
+           </center>   
+          </div>
+          
       </div>
 @stop
