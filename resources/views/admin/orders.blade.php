@@ -7,8 +7,10 @@ Orders
 @section('section')
 <div class="col-sm-50"> 
 <div class="row">
-            <div class="col-sm-10">
-<!--  /* Pending table */ --> 
+            <div class="col-md-12">
+            
+
+<?php  /* Pending table */ ?> 
 
             @section ('atable_panel_title','From here you can manage all users orders')
             @section ('atable_panel_body')

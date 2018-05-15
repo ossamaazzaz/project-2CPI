@@ -1,7 +1,11 @@
 <br>
-<center><h1>Refused Orders</h1></center>
-<form id="Orders" action="">
-    <table id="PendingOrdersTable" class="table {{ $class }}">
+<div class="card" style="margin: 10px;">
+    <div class="card-title">
+       <h2 style="text-align: center;">Refused Orders</h2>
+    </div>
+         <div class="card-body">
+                <div class="table-responsive">
+    <table id="PendingOrdersTable" class="table">
         <thead>
             <tr>
                 <th>Order ID</th>
@@ -23,4 +27,6 @@
                 @endforeach 
         </tbody>
     </table>
-</form>
+            </div>
+        </div>
+</div>

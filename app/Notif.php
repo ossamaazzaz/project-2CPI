@@ -17,7 +17,6 @@ trait Notif{
         	} else {
         		$notif->data = substr($notif->data,1,strlen($notif->data)-2);
         	}
-            
         }
         return $notificationsCollection;
 	}

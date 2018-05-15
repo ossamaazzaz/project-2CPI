@@ -1,6 +1,11 @@
 <br>
-<h3>Preparation of Orders</h3>
-<table id="preparationOrdersTable" class="table {{ $class }}">
+<div class="card" style="margin: 10px;">
+    <div class="card-title">
+       <h2 style="text-align: center;">Pending Orders To Prepare</h2>
+    </div>
+         <div class="card-body">
+                <div class="table-responsive">
+<table id="preparationOrdersTable" class="table">
         <thead>
             <tr>
                 <th>Order ID</th>
@@ -25,3 +30,6 @@
                 @endforeach 
         </tbody>
     </table>
+                </div>
+        </div>
+</div>

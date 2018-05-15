@@ -39,6 +39,7 @@ class CreateShopTable extends Migration
             $table->string('twitter_link')->nullable();
             $table->text('quotes')->nullable();
             $table->string('slides')->nullable();
+            $table->double('revenue')->default(0);
             $table->timestamps();
         });
         Shop::create([

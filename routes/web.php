@@ -28,7 +28,7 @@ Route::post('/home/{comment}/update','CommentsController@updateComment');
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
 Route::post('/admin/users','UsersController@approve');
 
-Route::get('/admin', 'DashbaordController@index')->middleware('auth','admin');
+Route::get('/admin', 'DashbaordController@index');
 
 //eprooducts route
 Route::get('/admin/products/add','ProductController@add');
@@ -47,17 +47,17 @@ Route::post('/home/{id?}','ProductDetailsController@addItemToCart');
 
 Route::resource('resource', 'ProductController');
 //Category Controller
-Route::get('/categories','CategoriesController@index');
+Route::get('/admin/categories','CategoriesController@index');
 
 
-Route::get('/categories/add' ,'CategoriesController@AddView' );		  //Add button
-Route::post('/categories/add','CategoriesController@Add');			  //Submit the Add
+Route::get('/admin/categories/add' ,'CategoriesController@AddView' );		  //Add button
+Route::post('/admin/categories/add','CategoriesController@Add');			  //Submit the Add
 
 
-Route::get('/categories/edit/{id}' ,'CategoriesController@edit'); //Edit button
-Route::post('/categories/edit/{id}','CategoriesController@submit');	 //Submit Edition
+Route::get('/admin/categories/edit/{id}' ,'CategoriesController@edit'); //Edit button
+Route::post('/admin/categories/edit/{id}','CategoriesController@submit');	 //Submit Edition
 
-Route::get('/categories/delete/{id}','CategoriesController@destroy'); //Delete
+Route::get('/admin/categories/delete/{id}','CategoriesController@destroy'); //Delete
 
 //search
 Route::get('/search','SearchController@search');
@@ -82,10 +82,11 @@ Route::get('/admin/orders', 'OrdersController@AdminPanel')->middleware('auth','a
 //orders validation , preparation , hash code checking 
 Route::post('/admin/orders/{id}/validate','OrdersController@validateOrder');
 Route::post('/admin/orders/{id}/refuse','OrdersController@refuseOrder');
-Route::get('/admin/preparation','OrdersController@confirm');
-Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm');
-Route::get('/admin/check','OrdersController@check');
-Route::post('/admin/check/{code}','OrdersController@check');
+
+Route::get('/admin/preparation','OrdersController@confirm')->middleware('auth');
+Route::post('/admin/preparation/{id}/confirm','OrdersController@confirm')->middleware('auth');
+Route::get('/admin/check','OrdersController@check')->middleware('auth');
+Route::post('/admin/check/{code}','OrdersController@check')->middleware('auth');
 Route::post('/admin/orders/{id}/retrieve','OrdersController@retrieve');
 //android app
 Route::post('/admin/preparationapp/{id}/confirm','OrdersController@confirmApp');
@@ -102,8 +103,8 @@ Route::post('/orders/{id}/delete','OrdersController@deleteOrder');
 Route::get('/notification','OrdersController@notifyOnDone');
 
 //settings
-Route::get('/admin/settings', 'SettingsController@index')->middleware('admin');
+Route::get('/admin/settings', 'SettingsController@index');
 Route::post('/admin/settings/editText', 'SettingsController@editText');
 Route::post('/admin/settings/editVisual', 'SettingsController@editVisual');
-Route::get('/admin/settings/export', 'SettingsController@export')->middleware('admin');
-Route::post('/admin/settings/import', 'SettingsController@import')->middleware('admin');
+Route::get('/admin/settings/export', 'SettingsController@export');
+Route::post('/admin/settings/import', 'SettingsController@import');
