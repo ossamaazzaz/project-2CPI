@@ -15,7 +15,7 @@
     </select>
     <input type="button" value="execute" id="execute">
     <input type="hidden" id="productid">
-    <table id="productsDataTable" class="table {{ $class }}">
+    <table id="productsDataTable" class="table">
         <thead>
             <tr>
                 <th><input id="checkboxAll" type="checkbox" value=""></th>

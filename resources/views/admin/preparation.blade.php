@@ -12,9 +12,9 @@ Orders
 <!--  /* Pending table */ --> 
 
             @section ('atable_panel_body')
-            @include('widgets.preparationOrdersTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.preparationOrdersTable')
 <!-- Deleted Orders -->
-            @include('widgets.deletedOrdersTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.deletedOrdersTable')
             
             @endsection
             @include('widgets.panel', array('header'=>true, 'as'=>'atable'))

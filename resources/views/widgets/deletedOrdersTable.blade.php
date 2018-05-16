@@ -1,6 +1,6 @@
 <br>
 <h3>Retrieve Orders</h3>
-<table id="deletedOrdersTable" class="table {{ $class }}">
+<table id="deletedOrdersTable" class="table">
         <thead>
             <tr>
                 <th>Order ID</th>

@@ -1,7 +1,7 @@
 <br>
 <center><h1>Asked Orders</h1></center>
 <form id="Orders" action="">
-    <table id="PendingOrdersTable" class="table {{ $class }}">
+    <table id="PendingOrdersTable" class="table">
         <thead>
             <tr>
                 <th>Order ID</th>

@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="">
-    <title>dashboard</title>
+    <title>@yield('title')</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/lib/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -149,11 +149,6 @@
     <!--Custom JavaScript -->
 
 
-    <!-- Amchart -->
-     <script src="{{ asset('js/lib/morris-chart/raphael-min.js') }}"></script>
-    <script src="{{ asset('js/lib/morris-chart/morris.js') }}"></script>
-    <script src="{{ asset('js/lib/morris-chart/dashboard1-init.js') }}"></script>
-
 
 	<script src="{{ asset('js/lib/calendar-2/moment.latest.min.js') }}"></script>
     <!-- scripit init-->
@@ -194,7 +189,7 @@
 
       });  
     });
-        var ctxx = document.getElementById('users-chart').getContext('2d');
+      var ctxx = document.getElementById('users-chart').getContext('2d');
       var chart = new Chart(ctxx, {
           // The type of chart we want to create
           type: 'line',

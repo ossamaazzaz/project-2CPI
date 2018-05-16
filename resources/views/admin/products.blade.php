@@ -13,7 +13,7 @@ procusts
             i used here a widget table /widget/table.blade.php
             */
             ?>
-            @include('widgets.productsTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.productsTable')
             @endsection
             @include('widgets.panel', array('header'=>true, 'as'=>'atable'))
         </div>

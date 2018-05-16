@@ -177,7 +177,7 @@ jQueryform.on('keyup', 'input', function (e) {
 
 
 //don't accept spaces and special chars in input
-jQuery('#register').on('input', function() {
+jQuery('#codeinput').on('input', function() {
   jQuery(this).val(jQuery(this).val().replace(/[^a-z0-9]/gi, ''));
 });
 

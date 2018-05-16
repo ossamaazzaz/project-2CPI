@@ -3,6 +3,7 @@ Orders
 */
 -->
 @extends('layouts.dashboard')
+@section('title','Orders')
 @section('page_heading','Orders Manager')
 @section('section')
 <div class="col-sm-50"> 
@@ -14,25 +15,25 @@ Orders
 
             @section ('atable_panel_title','From here you can manage all users orders')
             @section ('atable_panel_body')
-            @include('widgets.pendingTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.pendingTable')
 
 <!--  /* Deleted table */ -->       
 
-            @include('widgets.askedOrders', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.askedOrders')
 
 <!--  /* Deleted table */ -->       
 
-            @include('widgets.deleteOrdersConfirmation', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.deleteOrdersConfirmation')
 
 <!--  /* Accepted table */ -->       
 
-            @include('widgets.AcceptedTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.AcceptedTable')
 
 
 
 <!-- /* Refused table */ -->       
 
-            @include('widgets.RefusedTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            @include('widgets.RefusedTable')
             
             @endsection
             @include('widgets.panel', array('header'=>true, 'as'=>'atable'))

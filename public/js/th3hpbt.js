@@ -154,6 +154,7 @@ function check(){
             } else if (data == 'notValid') {
                 document.getElementById("notValidMsg").classList.remove("hidden");
             } else if (data = 'ard') {
+                document.getElementById("notValidMsg").classList.remove("hidden");
 
             }
                 

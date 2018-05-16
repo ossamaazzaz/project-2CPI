@@ -28,7 +28,7 @@
 <input type="hidden" id="orderid" name="">
 <br>
 <center><h1>Confirm Deleted Orders</h1></center>
-<table id="delOrdersTable" class="table {{ $class }}">
+<table id="delOrdersTable" class="table">
     <thead>
         <tr>
             <th>Order ID</th>
