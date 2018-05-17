@@ -4950,7 +4950,6 @@ footer p {
   margin-bottom: 20px;
 }
 .form-control {
-  height: 42px;
   border-radius: 0;
   box-shadow: none;
   border-color: #e7e7e7;
@@ -7094,4 +7093,46 @@ label[for*='4']:before {
     padding: 15px;
   }
 }
+/*categories overlay*/
+  .categorie-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: arial;
+  height: 400px;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2f3542;
+  overflow-y: scroll;
+  width: 100%;
+  height:0;
+  transition: .3s ease;
+}
 
+.categorie-card:hover .overlay {
+  top: 0;
+  height: 230px;
+}
+
+.categorie-des{
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.blue-btn{
+  background-color: #1976d2;
+}
+.blue-btn:hover{
+  background-color: #1976d2;
+}

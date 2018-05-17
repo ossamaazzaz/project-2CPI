@@ -63,7 +63,7 @@ class ProductController extends Controller {
 		}
 		
 		$shop = Shop::find(1);
-		return view('admin.addProduct',compact('product','imgs','shop'));
+		return view('admin.editProduct',compact('product','imgs','shop'));
 	
 		}
 	/*
