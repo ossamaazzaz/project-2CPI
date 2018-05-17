@@ -8,9 +8,9 @@
     <div class="btn no" onclick="closeConfModal()">no</div>
 </div>
 <div class="card">
-<form id="products" action="">
-    <button class="btn btn-primary" id="addnew" onclick="goadd()">add new product</button>   
-    <input type="button" class="btn btn-danger" value="delete all" id="delete">
+<div id="products" class="container">
+    <button class="btn btn-primary" id="addnew" style="max-width: 150px;display: inline;" onclick="goadd()">add new product</button>  
+    <button type="button" class="btn btn-danger" style="max-width: 100px;display: inline;" id="delete">delete all</button>
     <input type="hidden" id="productid">
     <div class="table-responsive">
     <table id="productsDataTable" class="table">
@@ -53,5 +53,5 @@
         </tbody>
     </table>
 </div>
-</form>  
+</div>  
 </div>

@@ -5,9 +5,9 @@ Orders
 @extends('layouts.dashboard')
 @section('page_heading','Orders Manager')
 @section('section')
-<div class="col-sm-50"> 
+<div class="col-md-12"> 
 <div class="row">
-            <div class="col-sm-10">
+            <div class="col-md-12">
 
 <!--  /* Pending table */ --> 
 
