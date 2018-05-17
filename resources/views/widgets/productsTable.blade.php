@@ -8,14 +8,9 @@
     <div class="btn no" onclick="closeConfModal()">no</div>
 </div>
 <div class="card">
-
-<button class="btn btn-primary" id="addnew" onclick="goadd()">add new</button>
 <form id="products" action="">
-    <select id="selectList">
-        <option id="delete" value="delete" selected="selected">delete</option>
-         <option id="compare" value="compare">compare</option>
-    </select>
-    <input type="button" value="execute" id="execute">
+    <button class="btn btn-primary" id="addnew" onclick="goadd()">add new product</button>   
+    <input type="button" class="btn btn-danger" value="delete all" id="delete">
     <input type="hidden" id="productid">
     <div class="table-responsive">
     <table id="productsDataTable" class="table">
@@ -31,6 +26,7 @@
                 <th>quantity</th>
                 <th>quantitySale</th>
                 <th>Rate</th>
+                <th>Tools</th>
             </tr>
         </thead>
         <tbody>
@@ -39,21 +35,19 @@
                     <td>
                       <input type="checkbox" class="custom-checkbox" value="{{ $product->id }}" onchange="selected(this)">
                     </td>
-                    <td class="showTools"> {{ $product->id }}
-                        <div class="tools">
-                            <button type="button" class="fa fa-edit" value="{{ $product->id }}" onclick="edit(this)"></button>
-                            <button type="button" class="fa fa-times" value="{{ $product->id }}" onclick="showConfModal('{{ $product->id }}')"></button>
-                        </div>
-                    </td>
-                   
+                    <td>{{ $product->id }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>image</td>
+                    <td><img src="{{ $product->image }}" width="50px"></td>
                     <td>{{ $product->brand }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->categoryId }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>{{ $product->quantitySale }}</td>
-                    <td>rate</td>
+                    <td>{{ $product->productDetails->rating }}</td>
+                    <td class="showTools">
+                            <button type="button" class="btn btn-primary" value="{{ $product->id }}" onclick="edit(this)"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger" value="{{ $product->id }}" onclick="showConfModal('{{ $product->id }}')"><i class="fa fa-times"></i></button>
+                    </td>
                 </tr>
                 @endforeach 
         </tbody>

@@ -27,7 +27,12 @@
 </div>
 <input type="hidden" id="orderid" name="">
 <br>
-<center><h1>Confirm Deleted Orders</h1></center>
+<div class="card" style="margin: 10px;">
+    <div class="card-title">
+       <h2 style="text-align: center;">Confirm Deleted Orders</h2>
+    </div>
+         <div class="card-body">
+                <div class="table-responsive">
 <table id="delOrdersTable" class="table">
     <thead>
         <tr>
@@ -66,3 +71,6 @@
             @endforeach 
     </tbody>
 </table>
+</div>
+</div>
+</div>

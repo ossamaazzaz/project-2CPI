@@ -1,5 +1,8 @@
 <br>
-<h3>Retrieve Orders</h3>
+<div class="card" style="margin: 10px;">
+    <div class="card-title">
+       <h2 style="text-align: center;">Retrieve Orders</h2>
+    </div>
 <table id="deletedOrdersTable" class="table">
         <thead>
             <tr>
@@ -15,12 +18,13 @@
                     <td>{{ $Order->id }}</td>
                     <td>{{ $Order->created_at }}</td>
                     <td>
-                    <button type="button" class="btn btn-info" id="details{{ $Order->id }}" onclick="details('{{ $Order->code }}')">Details</button>
+                    <button type="button" class="btn btn-info" id="details{{ $Order->id }}" onclick="details('{{ $Order->code }}')"><i class="fa fa-list"></i></button>
                     </td>   
                     <td>
-                    <button type="button" class="btn btn-success" id="retrieve{{ $Order->id }}" onclick="Retrieved('{{ $Order->id }}')">Retrieved</button>
+                    <button type="button" class="btn btn-success" id="retrieve{{ $Order->id }}" onclick="Retrieved('{{ $Order->id }}')"><i class="fa fa-reply"></i></button>
                     </td>
                 </tr>
                 @endforeach 
         </tbody>
     </table>
+</div>

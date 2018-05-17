@@ -27,7 +27,7 @@ function edit(element){
         window.location.href= "products/"+element.value+"/edit";
 }
 function goadd(){
-        window.location.href= "products/add";
+        window.location = "/admin/products/add";
 }
 function selectedCategory(element) {
     var item = document.getElementById(element.id);
@@ -365,11 +365,9 @@ jQuery(document).ready(function (){
     });
 
     // this about products its execute a command in the lits like delete so its delete the selected items
-    jQuery("#execute").click( function(){
+    jQuery("#delete").click( function(){
             var data = new FormData();
             data.append("ids",selectedProducts);
-            var list = document.getElementById("selectList");
-            if (list.options[list.selectedIndex].text=="delete") {
                  jQuery.ajax({
                     type : "POST",
                     url : "/admin/products",
@@ -384,11 +382,10 @@ jQuery(document).ready(function (){
                             productRow.remove();
                         }
                         document.getElementById("checkboxAll").checked = false;
-                        window.location.href= "products/";
+                        window.location = "/admin/products/";
                         console.log(data);
 
                         }});
-            }            
     });
     jQuery("#checkboxAll").click(function(){
         

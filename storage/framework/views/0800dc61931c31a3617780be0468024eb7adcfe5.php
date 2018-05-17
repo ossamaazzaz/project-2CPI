@@ -20,7 +20,9 @@ dashboard prinicpale view
   border-radius: 50%;
   background-color: rgb(25,34,45); 
 }
-
+.detailsMenu{
+    display: inline;
+}
 </style>
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">

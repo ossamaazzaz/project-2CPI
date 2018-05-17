@@ -11,7 +11,7 @@ Orders
             <div class="col-md-12">
             
 
-<?php  /* Pending table */ ?> 
+<!--  /* Pending table */ --> 
 
             @section ('atable_panel_title','From here you can manage all users orders')
             @section ('atable_panel_body')

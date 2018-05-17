@@ -9,15 +9,6 @@ use \App\OrderItems;
 use \Auth;
 class PDFController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *  
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
 
     /**
      * Display the specified resource.
