@@ -18,14 +18,16 @@ class ProductController extends Controller {
     }
     /*
 	* to view the products on the products manager admin page
-	* by Oussama Messabih
+	* by Oussama Messabih edited by kacem
     */
 	public function index(Request $req){
 		if ($req->isMethod('get')) {
 			$products = Product::get();
+			$products = Product::where('deleted',0)->get();
 			$notifications = Product::getnotifications();
 			$shop = Shop::find(1);
 			return view('admin.products',['products' => $products,'notifications' => $notifications,'shop' => $shop]);
+
 		}
 	}
 	/*
@@ -35,7 +37,12 @@ class ProductController extends Controller {
 	public function delete(Request $req){
 		$ids = explode(',', $req->ids);
 		foreach ($ids as $id) {
-			$product = Product::destroy($id);
+			//Product::destroy($id);
+			$product = Product::find($id);
+			 $product->deleted  = 1; //Make it True
+			 $product->quantity = 0;
+			 $product->quantitySale = 0;
+			$product->save();
 		}
 		return response()->json($ids);
 	}
@@ -241,6 +248,6 @@ class ProductController extends Controller {
 			}
 		}
 		$productDetails->save();
-		return view('/categories/main',compact('categories','shop'));  //later to redirect to product page instead
+		return redirect('admin/products');
 	}
 }

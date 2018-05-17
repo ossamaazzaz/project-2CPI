@@ -31,9 +31,21 @@ function selectedCategory(element) {
         input.value = element.id
     }
 }
+var bg = document.getElementsByClassName('modal-bg')[0];
+var modal = document.getElementsByClassName('confir-modal')[0];
+function showConfModal(id) {
+    bg.style.display = 'block';
+    modal.style.display = 'block';
+    document.getElementById('productid').value = id;
+
+}
+function closeConfModal(){
+    bg.style.display = 'none';
+    modal.style.display = 'none';
+}
 // delete one product
-function deleteOneProduct(element){
-        
+function deleteOneProduct(){
+        element = document.getElementById('productid');
         selectedProducts.push(element.value);
         var data = new FormData();
         data.append("ids",selectedProducts);
@@ -49,11 +61,13 @@ function deleteOneProduct(element){
                     var productRow = document.getElementById(selectedProducts[i]);
                     productRow.remove();
                 }
+                closeConfModal();
                 console.log(data); }});
 }
 function validate(id,state){
     if (state==0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/orders/"+id+"/validate",
@@ -75,7 +89,8 @@ function validate(id,state){
 }
 function refuse(id,state){
     if (state==0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/orders/"+id+"/refuse",
@@ -90,7 +105,8 @@ function refuse(id,state){
 }
 function confirm(id){
     if (id>=0) {
-        data = {id:id};
+        var data = new FormData();
+        data.append("id",id);
         jQuery.ajax({
             type : "POST",
             url : "/admin/preparation/"+id+"/confirm",
@@ -114,8 +130,8 @@ function details(code){
 }
 function check(){
     var code = document.getElementById('codeinput').value;
-    data = {code:code};
-    console.log(code,data);
+    var data = new FormData();
+    data.append("code",code);
     jQuery.ajax({
         type : "POST",
         url : "/admin/check/"+code,
@@ -139,6 +155,175 @@ function check(){
         });
 
     
+}
+function ask(id){
+    if (id>=0) {
+        var data = new FormData();
+        data.append("id",id);
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/orders/"+id+"/ask",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                }});
+    }
+}
+function getmissingproduct(code){
+    if (code!=null) {
+        var data = new FormData();
+        data.append("code",code);
+        document.getElementById('code').value = code;
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/get",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                if ((data == 'noCode') || (data == 'noOrder')) {
+                    console.log('fail');
+                } else {
+
+                    ms = document.getElementById('missingproducts');
+                    av = document.getElementById('availableproducts');
+                    for (var i = 1; i < data[0].length; i++) {
+                        ms.innerHTML = ms.innerHTML +" "+ data[0][i].name+" ,";
+                    }
+                    for (var i = 1; i < data[1].length; i++) {
+                        av.innerHTML = av.innerHTML +" "+ data[1][i].name+" ,"
+                    }
+                    // show up the model
+                    modal = document.getElementById('cmodale');
+                    modal.style.display = 'block' ;
+                    document.body.style.backgroundColor = "#666";
+
+
+                }
+                        
+                }});
+    }
+}
+function hidemodel(){
+    modal = document.getElementById('cmodale');
+    modal.style.display = 'none';
+    document.body.style.backgroundColor = "#f5f8fa";
+}
+function confirmissingproduct(){
+    code = document.getElementById('code').value;
+    if (code!=null) {
+        var data = new FormData();
+        data.append("code",code);
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/confirm",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                hidemodel();
+                }});
+    }
+}
+function backToCart(){
+    code = document.getElementById('code').value;
+    if (code!=null) {
+        var data = new FormData();
+        data.append("code",code);
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/backtocart",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log(data);
+                hidemodel();
+                }});
+    }
+}
+function deleteorder(){
+    var code = document.getElementById('code').value;
+    if (code!=null) {
+        var data = new FormData();
+        data.append("code",code);
+        jQuery.ajax({
+            type : "POST",
+            url : "/orders/"+code+"/msdelete",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                hidemodel();
+                }});
+    }
+}
+function wantdel(id){
+    document.getElementById('orderid').value = id;
+}
+function deleteOrders(who){
+    var id = document.getElementById('orderid').value;
+    if (id>=0) {
+        var comment = document.getElementById('cmt').value;
+        if (comment!="") {
+            var data = new FormData();
+            data.append("id",id);
+            data.append("comment",comment);
+            data.append("who",who);
+            if (who == 'admin') {
+                var sr = document.getElementById('sellerRadio');
+                var br = document.getElementById('buyerRadio');
+                console.log(sr,br);
+                if (sr.checked) {
+                    data.append("faultofwho","seller")
+                } else if (br.checked) {
+                    data.append("faultofwho","buyer");
+                }
+            }
+            console.log(data);
+            jQuery.ajax({
+                type : "POST",
+                url : "/orders/"+id+"/delete",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="deleted") {
+                        document.getElementById('row'+id).remove();
+                    }
+                    
+                    }});
+        }else {
+            console.log('no comment');
+        }
+    }
+}
+function Retrieved(id){
+    if (id) {
+        var data = new FormData();
+        data.append("id",id);
+        jQuery.ajax({
+                type : "POST",
+                url : "/admin/orders/"+id+"/retrieve",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="retrieved") {
+                        document.getElementById('retrieved'+id).remove();
+                    }
+                    }});
+    }
 }
 jQuery(document).ready(function (){
     jQuery.noConflict();

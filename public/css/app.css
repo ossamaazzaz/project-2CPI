@@ -251,3 +251,109 @@ footer{
 	margin: 3px;
 	padding: 3px;
 }
+
+
+
+/*
+	modale with e to avoid bootstrap models 
+	*/
+		.cmodale{
+			top: 100px;
+			left: 400px;
+			background : #00b894;
+			color: white;
+			position: fixed;
+			padding: 40px;
+			width: 500px;
+			height: 350px;
+			text-align: center;
+			vertical-align: middle;
+			z-index: 9999999;
+			display: none;
+		}
+		.dmodale{
+			top: 100px;
+			left: 400px;
+			background : #00b894;
+			color: white;
+			position: fixed;
+			padding: 40px;
+			width: 500px;
+			height: 350px;
+			text-align: center;
+			vertical-align: middle;
+			z-index: 999999;
+			display: none;
+		}
+		.confirmed {
+			height: 200px;
+			width: 200px;
+			border-radius: 50%;
+		}
+		.canimated {
+		  -webkit-animation-duration: 1s;
+		  animation-duration: 1s;
+		  -webkit-animation-fill-mode: both;
+		  animation-fill-mode: both;
+		}
+
+		.canimated.infinite {
+		  -webkit-animation-iteration-count: infinite;
+		  animation-iteration-count: infinite;
+		}
+	@-webkit-keyframes jackInTheBox {
+	  from {
+	    opacity: 0;
+	    -webkit-transform: scale(0.1) rotate(30deg);
+	    transform: scale(0.1) rotate(30deg);
+	    -webkit-transform-origin: center bottom;
+	    transform-origin: center bottom;
+	  }
+
+	  50% {
+	    -webkit-transform: rotate(-10deg);
+	    transform: rotate(-10deg);
+	  }
+
+	  70% {
+	    -webkit-transform: rotate(3deg);
+	    transform: rotate(3deg);
+	  }
+
+	  to {
+	    opacity: 1;
+	    -webkit-transform: scale(1);
+	    transform: scale(1);
+	  }
+	}
+
+	@keyframes jackInTheBox {
+	  from {
+	    opacity: 0;
+	    -webkit-transform: scale(0.1) rotate(30deg);
+	    transform: scale(0.1) rotate(30deg);
+	    -webkit-transform-origin: center bottom;
+	    transform-origin: center bottom;
+	  }
+
+	  50% {
+	    -webkit-transform: rotate(-10deg);
+	    transform: rotate(-10deg);
+	  }
+
+	  70% {
+	    -webkit-transform: rotate(3deg);
+	    transform: rotate(3deg);
+	  }
+
+	  to {
+	    opacity: 1;
+	    -webkit-transform: scale(1);
+	    transform: scale(1);
+	  }
+	}
+
+	.jackInTheBox {
+	  -webkit-animation-name: jackInTheBox;
+	  animation-name: jackInTheBox;
+}

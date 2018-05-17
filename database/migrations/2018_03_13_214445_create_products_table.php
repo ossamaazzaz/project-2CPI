@@ -23,6 +23,8 @@ class CreateProductsTable extends Migration
             $table->integer('categoryId');
             $table->integer('quantitySale')->default(0);
             $table->integer('quantity')->default(0);
+            $table->integer('deleted')->default(0); 
+                //0: not deleted && 1:Deleted.
             $table->string('image')->nullable();
             $table->timestamps();
         });

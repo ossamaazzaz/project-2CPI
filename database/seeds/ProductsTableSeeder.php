@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
     	// will generate 200 product if you wanna change it just change the 200 value below
-    	factory(Product::class, 200)
+    	factory(Product::class, 50)
            ->create()
            ->each(function ($u) {
                 $u->productDetails()->save(factory(ProductDetails::class)->make());
