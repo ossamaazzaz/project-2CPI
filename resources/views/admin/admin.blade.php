@@ -148,8 +148,8 @@
                 </div>
 
 
-                <div class="row">
-                    <div class="col-lg-8">
+
+
                         <div class="row">
                         <div class="col-lg-6">
                             <div class="card">
@@ -214,15 +214,5 @@
 
 
                         </div>
-                    </div>
 
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                cardknlk
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 @stop

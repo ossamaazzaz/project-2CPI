@@ -1,6 +1,33 @@
 @extends('layouts.dashboard')
 @section('page_heading','Settings')
 @section('section')
+<style type="text/css">
+   .center-text-image{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transition: .5s ease;
+      opacity: 0;
+   }
+   .img-cont{
+      position: relative;
+   }
+   .container:hover .settings-img {
+    opacity: 0.3;
+  }
+
+  .container:hover .center-text-image {
+    opacity: 1;
+  }
+  .settings-img{
+    width: 200px;
+    height: 200px;
+    transition: .5s ease;
+  }
+
+</style>
       <div class="card">
         <div class="main-settings">
           <center>
@@ -175,13 +202,64 @@
               
             <section id="content2">
                <!-- Visual Part -->
+               <div class="container">
+                 <div class="row">
+                   <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
+                     <h4>Logo</h4>
+                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="logo-img">
+                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('logoInput')" >
+                         change logo
+                     </button>  
+                     <input type="file" accept="image/*" class="hidden" id="logoInput" onchange="loadImage(event,'logo-img')">
+                   </div>
+
+
+                   <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
+                     <h4>Slide 1</h4>
+                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide1-img">
+                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn1')">
+                         change slide
+                     </button>  
+                     <input type="file" accept="image/*" class="hidden" id="slideIn1" onchange="loadImage(event,'slide1-img')">
+                   </div>
+
+
+                   <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
+                     <h4>Slide 2</h4>
+                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide2-img">
+                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn2')">
+                         change slide
+                     </button>  
+                     <input type="file" accept="image/*" class="hidden" id="slideIn2" onchange="loadImage(event,'slide2-img')">
+                   </div>
+
+                   <div class="col-md-3" class="img-cont">
+                     <h4>Slide 3</h4>
+                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide3-img">
+                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn3')">
+                         change slide
+                     </button>  
+                     <input type="file" accept="image/*" class="hidden" id="slideIn3" onchange="loadImage(event,'slide3-img')">
+                   </div>
+                 
+                 </div>
+               </div><br><br>
+                  <button type="submit" class="btn btn-primary blue-btn">
+                    <i class="fa fa-check-square-o" style="font-size:18px"></i>
+                      sauvgarder
+                  </button>
+               <!--
               <form method="POST" action="{{action('SettingsController@editVisual')}}" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group row">
+                   
                         <label for="logo" class="col-md-4 col-form-label text-md-right"> logo </label>
+                    
                             <img src="{{ $shop->logo }}" height="200px" width="200px" >
                               <div class="col-md-6">
+                            
                                  <input id="logo" type="file" class="form-control{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}">
+                          
 
                                 @if ($errors->has('logo'))
                                     <span class="invalid-feedback">
@@ -216,20 +294,29 @@
                           </button>
                       </div>
                   </div>
+                -->
               </form>
             </section>
               
             <section id="content3">
               <!-- Import/ Export part-->
-
-          <a href="/admin/settings/export"><button type="button" class="btn btn-warning">Export Users</button></a>
-          <h3>Import Users</h3>
+              <br><br>
+          <div class="row">
+            <div class="col-md-4">
+              <h3>Exporter les utilisatuers :</h3>
+            </div>
+            <div class="col-md-1">
+              <a href="/admin/settings/export"><button type="button" class="btn btn-warning">Exporter</button></a>
+            </div>
+          </div><br><br>
           <form method="POST" action="{{action('SettingsController@import')}}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
-                    <label for="json" class="col-md-4 col-form-label text-md-right"> json </label>
-                          <div class="col-md-6">
-                             <input id="json" type="file" class="form-control{{ $errors->has('json') ? ' is-invalid' : '' }}" name="json" value="{{ old('json') }}">
+                <div class="col-md-4">
+                    <h3>Importer des utilisateurs :</h3>
+                </div>
+                          <div class="col-md-4">
+                             <input id="json" type="file" class="form-control{{ $errors->has('json') ? ' is-invalid' : '' }}" name="json" value="{{ old('json') }}" accept=".json">
 
                             @if ($errors->has('json'))
                                 <span class="invalid-feedback">
@@ -237,16 +324,16 @@
                                 </span>
                              @endif
                     </div>
-              </div>
-              <div class="form-group row mb-0">
-                  <div class="col-md-6 offset-md-4">
-                      <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-check-square-o" style="font-size:18px"></i>
-                          {{ __('Edit!') }}
-                      </button>
+                  <div class="form-group col-md-1">
+                    <button type="submit" class="btn btn-primary">
+                      <i class="fa fa-check-square-o" style="font-size:18px"></i>
+                        submit
+                    </button>
                   </div>
               </div>
+              
           </form>
+
             </section>
               
             <section id="content4">
@@ -256,4 +343,13 @@
           </div>
           
       </div>
+      <script type="text/javascript">
+        function clickInput(id) {
+          document.getElementById(id).click();
+        }
+        function loadImage(event,id) {
+          var output = document.getElementById(id);
+          output.src = URL.createObjectURL(event.target.files[0]);
+        };
+      </script>
 @stop

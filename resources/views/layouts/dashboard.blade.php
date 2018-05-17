@@ -51,8 +51,6 @@ dashboard prinicpale view
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
@@ -148,40 +146,40 @@ dashboard prinicpale view
                         @if(\Auth::user()->groupId == 0)
                         </li>
                         <li {{ (Request::is('admin') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin') }}"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                            <a href="{{ url ('admin') }}"><i class="fa fa-tachometer"></i><span class="hide-menu">tableau de bord</span></a>
                         </li>
 
                         <li {{ (Request::is('*users') ? 'class=active' : '') }}>
-                             <a href="{{ url ('admin/users') }}" ><i class="fa fa-user"></i><span class="hide-menu">Users</span></a>
+                             <a href="{{ url ('admin/users') }}" ><i class="fa fa-user"></i><span class="hide-menu">utilisateurs</span></a>
                                     <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*products') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin/products') }}"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Products</span></a>
+                            <a href="{{ url ('admin/products') }}"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Produits</span></a>
                                     <!-- /.nav-second-level -->
                         </li>
 
                         <li {{ (Request::is('*categories') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin/categories') }}" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">Categories</span></a>
+                            <a href="{{ url ('admin/categories') }}" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">catégories</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <li {{ (Request::is('*orders') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin/orders') }}"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
+                            <a href="{{ url ('admin/orders') }}"><i class="fa fa-shopping-cart"></i><span class="hide-menu">les commandes</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         
 
                         <li {{ (Request::is('*settings') ? 'class=active' : '') }}>
 
-                            <a href="{{ url ('admin/settings') }}"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
+                            <a href="{{ url ('admin/settings') }}"><i class="ti-settings"></i><span class="hide-menu">paramètres</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         @endif
                         <li {{ (Request::is('*check') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin/check') }}"><i class="fa fa-calendar-check-o"></i><span class="hide-menu">Check Order</span></a>
+                            <a href="{{ url ('admin/check') }}"><i class="fa fa-calendar-check-o"></i><span class="hide-menu">Vérifier commandes</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <li {{ (Request::is('*preparation') ? 'class=active' : '') }}>
-                            <a href="{{ url ('admin/preparation') }}"><i class="fa fa-archive"></i><span class="hide-menu">Preparation</span></a>
+                            <a href="{{ url ('admin/preparation') }}"><i class="fa fa-archive"></i><span class="hide-menu">Préparation</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                     </ul>
