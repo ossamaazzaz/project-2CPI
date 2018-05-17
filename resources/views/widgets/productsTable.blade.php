@@ -7,6 +7,8 @@
     <div class="btn yes" onclick="deleteOneProduct()">yes,i'm sure</div>
     <div class="btn no" onclick="closeConfModal()">no</div>
 </div>
+<div class="card">
+
 <button class="btn btn-primary" id="addnew" onclick="goadd()">add new</button>
 <form id="products" action="">
     <select id="selectList">
@@ -15,6 +17,7 @@
     </select>
     <input type="button" value="execute" id="execute">
     <input type="hidden" id="productid">
+    <div class="table-responsive">
     <table id="productsDataTable" class="table">
         <thead>
             <tr>
@@ -55,4 +58,6 @@
                 @endforeach 
         </tbody>
     </table>
-</form>
+</div>
+</form>  
+</div>

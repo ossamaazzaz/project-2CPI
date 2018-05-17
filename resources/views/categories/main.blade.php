@@ -67,7 +67,6 @@
                                       <a href="/admin/categories/delete/{{$cat->id}}" role="button" class="btn btn-danger">
                                       <i class="fa fa-times"></i>&nbsp;remove</a>
                               </div> 
-                              <button class="btn btn-primary">show more</button>
                               <br>
                               
                             </div>
