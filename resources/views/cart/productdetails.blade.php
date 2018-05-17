@@ -10,7 +10,7 @@
               <div class="card bg-light mb-3">
                   <div class="card-body">
                       <a href="" data-toggle="modal" data-target="#productModal">
-                          <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
+                          <img src="" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
                           <!--ps: must to add a slide show-->
                       </a>
                   </div>
