@@ -37,7 +37,7 @@ class HomeController extends Controller
         $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        return view('home',compact("result","categories","lastPage","currentPage","notifications"));
+        return view('homev2',compact("result","categories","lastPage","currentPage","notifications"));
     }
     /**
     * Show the edit page

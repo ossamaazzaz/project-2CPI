@@ -128,7 +128,7 @@
             </div>
         </div>
     </nav>
-    <!--success message-->
+        <!--success message-->
 
     <?php if(session('success')): ?>
       <div class="container">

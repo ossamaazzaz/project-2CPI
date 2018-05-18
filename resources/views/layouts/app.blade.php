@@ -126,7 +126,7 @@
             </div>
         </div>
     </nav>
-    <!--success message-->
+        <!--success message-->
 
     @if(session('success'))
       <div class="container">
