@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="<?php echo e(asset('css/comments.css')); ?>" rel="stylesheet">
-
     <!--end commennts css -->
+    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">

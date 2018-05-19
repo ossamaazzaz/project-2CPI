@@ -24,7 +24,7 @@ class CommentsController extends Controller
 
     public function updateComment(Request $req,$id){
       $comment=Comment::find($id);
-      $comment->body=$req->body ;
+      $comment->body = $req->body;
       $comment->save();
       return back();
     }

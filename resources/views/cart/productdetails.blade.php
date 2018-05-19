@@ -83,10 +83,10 @@
                   <div class="col-md-10 container" style='margin-bottom: 10px;font-family: "Raleway", sans-serif'>
                     <h4>  {{$comment->user->username }} </h4>
                     <div><p>{{$comment->body}}</p></div>
-                    <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
+                    <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
                     @if (Auth::id() == $comment->user->id )
                     <div class="tools-btns">
-                      <button type="submit"n onclick="cmtToForm(this)" class="btn btn-success">
+                      <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
                             <i class="fa fa-edit"></i>
                       </button>
                       <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
@@ -99,8 +99,8 @@
 
                   </div>
                 </div>
-              </hr>
-              @endforeach
+               @endforeach
+
               <!--did we forgot raiting system -->
               <!--Add a comment -->
 
@@ -117,6 +117,7 @@
                   </form>
                 </div>
               </div>
+
             </div>
           </div>
         </div>

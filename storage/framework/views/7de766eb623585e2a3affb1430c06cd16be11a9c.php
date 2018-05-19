@@ -189,24 +189,6 @@
 
       });  
     });
-      var ctxx = document.getElementById('users-chart').getContext('2d');
-      var chart = new Chart(ctxx, {
-          // The type of chart we want to create
-          type: 'line',
-          // The data for our dataset
-          data: {
-              labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
-              datasets: [{
-                  label: "Users registrations this year",
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: [0, 10, 5, 2, 20, 30, 12,15, 10, 5, 2, 20, 30, 45],
-              }]
-          },
-          // Configuration options go here
-          options: {}
-      });
-     
     </script>
     <script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>
