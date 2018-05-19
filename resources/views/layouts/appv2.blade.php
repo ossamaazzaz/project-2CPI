@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home | E-Shop</title>
+    <title>Home </title>
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
@@ -23,11 +23,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+
 </head><!--/head-->
 
 <body>
@@ -46,97 +42,130 @@
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
 							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook-f"></i></a></li>
+								<li><a href=""><i class="fa fa-facebook"></i></a></li>
 								<li><a href=""><i class="fa fa-twitter"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus-g "></i></a></li>
+								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header_top-->
-		<nav class="navbar navbar-default navbar-back-color" role="navigation">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<a class="navbar-brand navbar-brand-centered" href="#">Brand Logo</a>
+		<div class="header-middle"><!--header-middle-->
+			<div class="col-sm-13">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+						</div>
+					
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								
+								@if (Auth::guest())
+				                    <li><a class="nav-link" href="{{ route('login') }}">
+				                    	<i class="fa fa-sign-in"></i>&nbsp;Connecter
+				                    </a></li>
+				                        <li><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user"></i>&nbsp;Register</a></li>
+				                @else
+				                	<li><a class="nav-link dropdown-toggle" href="/profile"><i class="fa fa-user"></i> Compte</a></li>
+				                	<li><a class="nav-link dropdown-toggle" href="/wishlist"><i class="fa fa-star"></i> Favories</a></li>
+								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+				                	<li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i> Panier</a></li>
+				                	@endif
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
+		</div><!--/header-middle-->
+		<nav class="navbar navbar-default navbar-back-color" role="navigation">
+		<div class="container" style="padding-right: 0px;padding-left: 0px; ">
+			
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/home">Home</a></li>
+					<li class="dropdown"><a href="#">Categories<i class="fa fa-angle-down"></i></a>
+	                    <ul role="menu" class="sub-menu">
+	                    	@foreach($categories as $category)
+	                        <li><a href="">{{$category->name}}</a></li>
+	                        @endforeach
+	                    </ul>
+                    </li> 
 					<li><a href="/contact">Contact</a></li>
+					<li><a href="/contact">termes et conditions</a></li>
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-exclamation-circle"></i> Notification <b class="caret"></b></a>
-						<ul class="dropdown-menu">
+					
+					
+				
+					@if (!Auth::guest())
+
+						<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>
+						<ul class="dropdown-menu" id="notif-dropdown">
+
 							@if((!Request::is('home/edit','login','register','password/reset')))
+							@if(count($notifications) == 0)
+								<li>khrraaaa</li>
+								<hr style="margin: 5px 0 5px 0;">
+								<li>khrraaaa</li>
+							@else
                           @foreach ($notifications as $notif)
                             @if($notif != null)
                             <li>
-                              <dev class="notif">
+                              <div class="notif">
                                 @if($notif->type == 'missingproduct')
                                   <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
                                 @else
                                   <a href="{{ 'facture/' . $notif->data }}">Your code is : {{ $notif->data }}</a>
                                 @endif
-                              </dev>
+                              </div>
+                              <hr>
                             </li>
                             @endif
                           @endforeach
                           @endif
+                          @endif
 						</ul>
 					</li>
-					<li><a class="nav-link dropdown-toggle" href="/profile"><i class="fa fa-user"></i> Compte</a></li>
-					<li><a class="nav-link dropdown-toggle" href="/wishlist"><i class="fa fa-star"></i> Favories</a></li>
-					@if (Auth::guest())
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Connecter') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                    @else
-                    	<li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i> Panier</a></li>
-                    <li class="dropdown">
-						<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+					<li style="margin-top: 7px;">
 
-                                    <img src="{{ Auth::user()->avatar }}" height="40px" width="40px">
-
-                                    {{ Auth::user()->firstName . " " .Auth::user()->lastName }} <span class="caret"></span>
-
+						<a href="/home/edit" style="color: white;display: inline;">
+                        	{{ Auth::user()->firstName . " " .Auth::user()->lastName }}
                         </a>
-						<ul class="dropdown-menu">
-							<li><a href="/home/edit">Edit</a></li>
-							<li><a href="/orders">Orders </a></li>
-							<li class="divider"></li>
-							<li><a href="{{ route('logout') }}"
+                        <img src="{{ asset('photodeprofile.jpg') }}" height="40px" width="40px" style="border-radius: 50%;">
+
+                                    
+
+						
+					</li>
+					<li style="font-size: 15px;color: white">
+						<a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fa fa-sign-out"></i>&nbsp;logout
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                     </form>
-                                  </a></li>
-						</ul>
+                                     	</form>
+                                  </a>
+						
 					</li>
-                    @endif
+                   
 
 				</ul>
-                <form method="GET" action="/search" role="search">
-					<div class="input-group">
-						<input id="term" name="term" type="search" value="" placeholder="Enter here" aria-describedby="ddlsearch" class="form-control" placeholder="Search">
-						<span class="input-group-btn">
-							<button type="reset" class="btn btn-default">
-								<span class="fa fa-times">
-									<span class="sr-only">Close</span>
-								</span>
-							</button>
-							<button type="submit" class="btn btn-default">
-								<span class="fa fa-search">
-									<span class="sr-only">Search</span>
-								</span>
-							</button>
-						</span>
-					</div>
-				</form>
+				<div class="col-sm-3" style="margin-top: 7px;float: right;">
+					<form method="GET" action="/search" >
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Search"/>
+						</div>
+					</form>
+				</div>
+                 @endif
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
@@ -171,7 +200,7 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>e</span>-shop</h2>
+							<h2><span>7anoo</span>Tech</h2>
 							<p>plateforme de vente à distance partielle adaptée aux contraintes du marché Algérien</p>
 						</div>
 					</div>
@@ -240,17 +269,15 @@
 						<div class="single-widget">
 							<h2>Service</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="">Online Help</a></li>
+								
 								<li><a href="">Contact Us</a></li>
-								<li><a href="">Order Status</a></li>
-								<li><a href="">Change Location</a></li>
-								<li><a href="">FAQ’s</a></li>
+								
 							</ul>
 						</div>
 					</div>
 					<div class="col-sm-2">
 						<div class="single-widget">
-							<h2>Quock Shop</h2>
+							<h2>Quick Shop</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">T-Shirt</a></li>
 								<li><a href="">Mens</a></li>
@@ -266,9 +293,7 @@
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Terms of Use</a></li>
 								<li><a href="">Privecy Policy</a></li>
-								<li><a href="">Refund Policy</a></li>
-								<li><a href="">Billing System</a></li>
-								<li><a href="">Ticket System</a></li>
+								
 							</ul>
 						</div>
 					</div>
@@ -277,9 +302,6 @@
 							<h2>About Shopper</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Company Information</a></li>
-								<li><a href="">Careers</a></li>
-								<li><a href="">Store Location</a></li>
-								<li><a href="">Affillate Program</a></li>
 								<li><a href="">Copyright</a></li>
 							</ul>
 						</div>
@@ -313,11 +335,8 @@
   	
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
-    <script src="{{ asset('js/datatables-init.js') }}"></script>
-    <script src="{{ asset('js/th3hpbt.js')}}"></script>
     <script src="{{ asset('js/searchresult.js') }}"></script>
     <script src="{{ asset('js/pagination.js') }}"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
 	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>

@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index(Request $req)
     {
         $products = Product::where('deleted',0)->get();
-        $categories = Category::get();
+        $categories = Category::all();
         $notifications = Product::getnotifications();
         $p = $req->has('page') ? $req->all()['page']  : null;
         $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
@@ -37,7 +37,12 @@ class HomeController extends Controller
         $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        return view('homev2',compact("result","categories","lastPage","currentPage","notifications"));
+        $i = 0;
+        $j =0;
+
+          
+
+        return view('homev2',compact("result","categories","lastPage","currentPage","notifications","i","j"));
     }
     /**
     * Show the edit page
