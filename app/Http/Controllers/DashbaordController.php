@@ -25,6 +25,7 @@ class DashbaordController extends Controller
 			}
 		}
 
+
         $Total_Products = DB::table('products')->count();
         $Total_users = DB::table('users')->count();
 
@@ -42,7 +43,22 @@ class DashbaordController extends Controller
         }
 
 
-    	return view('admin.admin', compact('shop','comments','orders','revenues','Total_Revenue','Total_Products','Total_users','Completed_Orders'));
+        $SortedCategories = \App\Category::all()->sortBy(function ($cat) {
+            return $cat->products->count();
+        });
+        
+        //dd($SortedCategories);
+
+        for ($i=0; $i < min(5,count($SortedCategories)) ; $i++) { 
+            $CategoriesNames[$i] = $SortedCategories[$i]->name;
+            $CategoriesValues[$i] = $SortedCategories[$i]->products->count();
+        }
+
+   
+
+
+
+    	return view('admin.admin', compact('shop','comments','orders','revenues','Total_Revenue','Total_Products','Total_users','Completed_Orders','CategoriesValues','CategoriesNames'));
     }
 
 

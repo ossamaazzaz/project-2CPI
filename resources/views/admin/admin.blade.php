@@ -71,12 +71,14 @@
                         </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <h3>Top 5 products</h3>
+                    <div class="col-lg-4">
+                        <div style="padding-top: 0px; position: relative; height:100%; widht:100%;" class="card">
+                            <h4><center>TOP 5 Categories</center></h4>
+                            <canvas id="pie-chart"></canvas>
                         </div>
                     </div>
-                    <div class="col-lg-9">
+
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-title">
                                 <h4>Recent Orders </h4>
@@ -131,16 +133,14 @@
 
 
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12   ">
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             <div class="card">
                                 <div class="card-title">
                                     <h4>Recent comments </h4>
                                 </div>
                                 <div class="recent-comment">
-
-
                                     @foreach ($comments as $comment)
                                     <div class="media">
                                         <div class="media-left">
@@ -153,15 +153,12 @@
                                         </div>
                                     </div>
                                     @endforeach
-
-
-
                                 </div>
                             </div>
                             <!-- /# card -->
                         </div>
                         <!-- /# column -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="year-calendar"></div>
@@ -173,19 +170,50 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                cardknlk
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
 <script src="{{ asset('js/Chart.min.js') }}"></script>
+
 <script type="text/javascript">
-      
+
+    var names = @json($CategoriesNames); 
+    var values = {{json_encode($CategoriesValues)}};
+
+    new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+        labels: names,   
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #CD5C5C "],
+        data: values,
+      }]
+    },
+    options: {
+        responsive: true,
+    legend: {
+        display: true,
+        position: 'bottom',
+
+        labels: {
+                boxWidth: 20,
+                fontSize: 9,
+        }
+        
+    }
+
+    }
+});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
       var ctxx = document.getElementById('users-chart').getContext('2d');
 
       var rev = {{json_encode($revenues)}};
@@ -198,15 +226,15 @@
               labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
               datasets: [{
                   label: "Total Revenue of this month",
-                  backgroundColor: 'rgb(150, 99, 132)',
-                  borderColor: 'rgb(100, 99, 132)',
-                  data: [1000,1200,1500,1800,2500,3000,2600,2000,1900,1800,1900],
+                  backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #2e4053 "," #2ecc71 "," #CD5C5C ", "#85929e"," #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "],
+
+                  data: [1965,4453,5348,6546,9200,7668,8884,7689,6200,5500,5800,4900],
                   //data: rev,
               }]
           },
           // Configuration options go here
           options: {
-            scales: {
+           scales: {
                 yAxes: [{
                     display: true,
                     ticks: {
@@ -215,9 +243,11 @@
                     }
                 }]
             }
-
-
           }
+
+
+
+
       });
      
 </script>

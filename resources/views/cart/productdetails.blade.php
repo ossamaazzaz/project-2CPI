@@ -67,8 +67,9 @@
                     <p class="card-text">{{$productDetails->description}}</p>
                 </div>
             </div>
-        </div>
 
+            <center><div class="sharethis-inline-share-buttons " style="float: center;"></div></center>
+        </div>
         <!-- Reviews -->
         <div class="col-12" id="reviews">
           <div class="card border-light mb-3">
@@ -183,4 +184,7 @@
         $("#comment-box-container").css("display","flex");
       }
 </script>
+
+
+
 @endsection
