@@ -122,8 +122,6 @@ class ProductController extends Controller {
 		// add its details
 		$product->productDetails->description =  $req->all()['desc'];
 
-		$product->productDetails->save();
-
 		// deleting the images
 		// there is an issue
 		if (count($delOldImgs)>0) {
@@ -140,7 +138,8 @@ class ProductController extends Controller {
 		$dirname = 'images/' . 'products/' . $product->id . '/';
 		$relurl = '/storage/' . $dirname;
 		$dirname = 'public/' . $dirname;
-		
+		$product->productDetails->imgs = $relurl;
+		$product->productDetails->save();
 		// saving the principale image of product 
 		if ($req->hasFile('pimg')) {
 			
@@ -151,7 +150,7 @@ class ProductController extends Controller {
 			$product->image = $relurl . '0' .'.'. $pimg->getClientOriginalExtension();
 			$product->save();
 		}
-		dd($product);
+
 		$id = $imgNum+1;
 		foreach ($index as $i) {
 			if ($req->hasFile($i)) {
