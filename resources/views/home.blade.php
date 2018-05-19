@@ -49,7 +49,7 @@
             @foreach ($result as $pro)
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <a href="/home/{{$pro->id}}"><img class="card-img-top" src="{{ $pro->image }}" alt=""></a>
+                <a href="/home/{{$pro->id}}"><img class="card-img-top" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
                     <a href="/home/{{$pro->id}}">{{ $pro->name }}</a>

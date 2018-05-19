@@ -13,5 +13,10 @@ class Category extends Model
         return $this->hasMany('App\Product','categoryId');
     }
 
+    public function NbProducts()
+    {
+    	return $this->products->count();
+    }
+
    
 }

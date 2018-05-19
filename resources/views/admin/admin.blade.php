@@ -15,7 +15,7 @@
                                     <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="568120">0</div></h2>
+                                    <h2><div class="counter" data-count="{{$Total_Revenue}}">0</div></h2>
                                     <p class="m-b-0">Total Revenue</p>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                     <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="1178">0</div></h2>
+                                    <h2><div class="counter" data-count="{{$Completed_Orders}}">0</div></h2>
                                     <p class="m-b-0">Completed orders</p>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                     <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="25">0</div></h2>
+                                    <h2><div class="counter" data-count="{{$Total_Products}}">0</div></h2>
                                     <p class="m-b-0">Total products</p>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                     <span><i class="fa fa-user f-s-40 color-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="847">0</div></h2>
+                                    <h2><div class="counter" data-count="{{$Total_users}}">0</div></h2>
                                     <p class="m-b-0">Total users</p>
                                 </div>
                             </div>
@@ -71,15 +71,17 @@
                         </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <h3>Top 5 products</h3>
+                    <div class="col-lg-4">
+                        <div style="padding-top: 0px; position: relative; height:100%; widht:100%;" class="card">
+                            <h4><center>TOP 5 Categories</center></h4>
+                            <canvas id="pie-chart"></canvas>
                         </div>
                     </div>
-                    <div class="col-lg-9">
+
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-title">
-                                <h4>Recent Orders </h4>
+                     Kacem           <h4>Recent Orders </h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -87,58 +89,40 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
-                                                <th>Product</th>
-                                                <th>quantity</th>
-                                                <th>Status</th>
+                                                <th>Client Name</th>
+                                                <th>Total to pay</th>
+                                                <th>State</th>
+                                                <th>More details</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
+                                            @foreach ($orders as $order)
                                             <tr>
                                                 <td>
                                                     <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
+                                                        <a href=""><img src="{{$order->user->avatar}}" alt=""></a>
                                                     </div>
                                                 </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
+                                                <td>{{$order->user->firstName}} {{$order->user->lastName}}</td>
+                                                <td><span>{{$order->total_paid}}</span></td>  
+                                                @if($order->state == 0)
+                                                    <td><span class="badge badge-success">pending</span></td>
+                                                @else
+                                                    @if($order->state == 0)
+                                                        <td><span class="badge badge-success">Accepted</span></td>
+                                                    @else
+                                                        <td><span class="badge badge-danger">Refused</span></td>
+                                                    @endif
+                                                @endif
+
+                                                <td><a href="/facture/{{$order->code}}"><span><u>Go to PDF</u></span></a></td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iPhone</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iMac</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
+                                            @endforeach
+
+
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -147,64 +131,33 @@
                     </div>
                 </div>
 
-
-
-
+                <div class="row">
+                    <div class="col-lg-12   ">
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             <div class="card">
                                 <div class="card-title">
                                     <h4>Recent comments </h4>
                                 </div>
                                 <div class="recent-comment">
+                                    @foreach ($comments as $comment)
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
+                                            <img alt="..." src="{{$comment->User->avatar}}" class="media-object">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
+                                            <h4 class="media-heading">{{$comment->User->firstName}} {{$comment->User->lastName}}</h4>
+                                            <p>{{$comment->body}}</p>
+                                            <p class="comment-date">{{$comment->created_at}}</p>
                                         </div>
                                     </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="media no-border">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Mr. Michael</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <div class="comment-date">October 21, 2018</div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- /# card -->
                         </div>
                         <!-- /# column -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="year-calendar"></div>
@@ -214,5 +167,86 @@
 
 
                         </div>
+
+                </div>
+
+<script src="{{ asset('js/Chart.min.js') }}"></script>
+
+<script type="text/javascript">
+
+    var names = @json($CategoriesNames); 
+    var values = {{json_encode($CategoriesValues)}};
+
+    new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+        labels: names,   
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #CD5C5C "],
+        data: values,
+      }]
+    },
+    options: {
+        responsive: true,
+    legend: {
+        display: true,
+        position: 'bottom',
+
+        labels: {
+                boxWidth: 20,
+                fontSize: 9,
+        }
+        
+    }
+
+    }
+});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+      var ctxx = document.getElementById('users-chart').getContext('2d');
+
+      var rev = {{json_encode($revenues)}};
+
+      var chart = new Chart(ctxx, {
+          // The type of chart we want to create
+          type: 'bar',
+          // The data for our dataset
+          data: {
+              labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+              datasets: [{
+                  label: "Total Revenue of this month",
+                  backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #2e4053 "," #2ecc71 "," #CD5C5C ", "#85929e"," #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "],
+
+                  data: [1965,4453,5348,6546,9200,7668,8884,7689,6200,5500,5800,4900],
+                  //data: rev,
+              }]
+          },
+          // Configuration options go here
+          options: {
+           scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,    // minimum will be 0.
+                        suggestedMax: 10000,
+                    }
+                }]
+            }
+          }
+
+
+
+
+      });
+     
+</script>
 
 @stop

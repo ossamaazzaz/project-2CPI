@@ -10,7 +10,7 @@
               <div class="card bg-light mb-3">
                   <div class="card-body">
                       <a href="" data-toggle="modal" data-target="#productModal">
-                          <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
+                          <img src="" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
                           <!--ps: must to add a slide show-->
                       </a>
                   </div>
@@ -67,8 +67,9 @@
                     <p class="card-text">{{$productDetails->description}}</p>
                 </div>
             </div>
-        </div>
 
+            <center><div class="sharethis-inline-share-buttons " style="float: center;"></div></center>
+        </div>
         <!-- Reviews -->
         <div class="col-12" id="reviews">
           <div class="card border-light mb-3">
@@ -183,4 +184,7 @@
         $("#comment-box-container").css("display","flex");
       }
 </script>
+
+
+
 @endsection
