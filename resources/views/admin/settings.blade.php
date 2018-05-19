@@ -44,7 +44,7 @@
             <label for="tab4" class="tabs-label">other</label>
            
             <section id="content1">
-              <form method="POST" action="{{action('SettingsController@editText')}}" enctype="multipart/form-data">
+              <form method="POST" action="{{ action('SettingsController@editText') }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
                   <label for="name" class="col-md-4 col-form-label text-md-right">Name :</label>
@@ -202,44 +202,81 @@
               
             <section id="content2">
                <!-- Visual Part -->
+               <form method="POST" action="{{action('SettingsController@editVisual')}}" enctype="multipart/form-data">
                <div class="container">
+
                  <div class="row">
                    <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
                      <h4>Logo</h4>
-                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="logo-img">
-                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('logoInput')" >
+                     <img src="{{ $shop->logo }}" class="settings-img" id="logo-img">
+                     <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('logoInput')" >
                          change logo
-                     </button>  
-                     <input type="file" accept="image/*" class="hidden" id="logoInput" onchange="loadImage(event,'logo-img')">
+                     </a>  
+                     <input type="file" accept="image/*" class="hidden" id="logoInput" onchange="loadImage(event,'logo-img')" class="hidden{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}">
+
+                    @if ($errors->has('logo'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('logo') }}</strong>
+                        </span>
+                     @endif
                    </div>
 
 
                    <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
                      <h4>Slide 1</h4>
-                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide1-img">
-                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn1')">
+                     @if (count($slides)>=1)
+                     <img src="{{ $slides[0] }}" class="settings-img" id="slide1-img">
+                     @else
+                     <img src="" class="settings-img" id="slide1-img">
+                     @endif
+                     <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide1')">
                          change slide
-                     </button>  
-                     <input type="file" accept="image/*" class="hidden" id="slideIn1" onchange="loadImage(event,'slide1-img')">
+                     </a>  
+                     <input type="file" id="slide1" accept="image/*" class="hidden{{ $errors->has("slide1") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide1-img')" name="slide1" value="{{ old("slide3") }}">
+                      @if ($errors->has("slide1"))
+                              <span class="invalid-feedback">
+                                  <strong>{{ $errors->first("slide1") }}</strong>
+                              </span>
+                      @endif
                    </div>
 
 
                    <div class="col-md-3" style="border-right: 3px dotted #ccc;" class="img-cont">
                      <h4>Slide 2</h4>
-                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide2-img">
-                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn2')">
+                     @if (count($slides)>=2)
+                     <img src="{{ $slides[1] }}" class="settings-img" id="slide2-img">
+                     @else
+                     <img src="" class="settings-img" id="slide2-img">
+                     @endif
+                     <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide2')">
                          change slide
-                     </button>  
-                     <input type="file" accept="image/*" class="hidden" id="slideIn2" onchange="loadImage(event,'slide2-img')">
+                     </a>  
+                     <input type="file" id="slide2" accept="image/*" class="hidden{{ $errors->has("slide2") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide2-img')" name="slide2" value="{{ old("slide2") }}">
+                      @if ($errors->has("slide2"))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first("slide2") }}</strong>
+                                    </span>
+                      @endif
                    </div>
 
                    <div class="col-md-3" class="img-cont">
                      <h4>Slide 3</h4>
-                     <img src="{{ asset('photodeprofile.jpg')}}" class="settings-img" id="slide3-img">
-                     <button class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slideIn3')">
+                     @if (count($slides)>=3)
+                     <img src="{{ $slides[2] }}" class="settings-img" id="slide3-img">
+                     @else
+                     <img src="" class="settings-img" id="slide3-img">
+                     @endif
+                     <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide3')">
                          change slide
-                     </button>  
-                     <input type="file" accept="image/*" class="hidden" id="slideIn3" onchange="loadImage(event,'slide3-img')">
+                     </a>  
+                     <input type="file" id="slide3" accept="image/*" class="hidden{{ $errors->has("slide3") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide3-img')" name="slide3" value="{{ old("slide3") }}">
+                      @if ($errors->has("slide3"))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first("slide3") }}</strong>
+                                    </span>
+                      @endif
+
+                                
                    </div>
                  
                  </div>
@@ -249,8 +286,7 @@
                       sauvgarder
                   </button>
                <!--
-              <form method="POST" action="{{action('SettingsController@editVisual')}}" enctype="multipart/form-data">
-                  @csrf
+              
                   <div class="form-group row">
                    
                         <label for="logo" class="col-md-4 col-form-label text-md-right"> logo </label>
@@ -336,9 +372,6 @@
 
             </section>
               
-            <section id="content4">
-              maybe someother content
-            </section>
            </center>   
           </div>
           

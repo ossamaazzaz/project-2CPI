@@ -56,7 +56,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png" alt="" /></a>
+							<a href="index.html"><img src="{{ $shop->logo }}" alt="" /></a>
 						</div>
 					
 					</div>
@@ -70,7 +70,7 @@
 				                    </a></li>
 				                        <li><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user"></i>&nbsp;Register</a></li>
 				                @else
-				                	<li><a class="nav-link dropdown-toggle" href="/profile"><i class="fa fa-user"></i> Compte</a></li>
+				                	<li><a class="nav-link dropdown-toggle" href="/home/edit"><i class="fa fa-user"></i> Compte</a></li>
 				                	<li><a class="nav-link dropdown-toggle" href="/wishlist"><i class="fa fa-star"></i> Favories</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 				                	<li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i> Panier</a></li>
@@ -101,21 +101,13 @@
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					
-					
-				
+					   
 					@if (!Auth::guest())
 
 						<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>
+						<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>
 						<ul class="dropdown-menu" id="notif-dropdown">
-
-							@if((!Request::is('home/edit','login','register','password/reset')))
-							@if(count($notifications) == 0)
-								<li>khrraaaa</li>
-								<hr style="margin: 5px 0 5px 0;">
-								<li>khrraaaa</li>
-							@else
+						@if((!Request::is('home/edit','login','register','password/reset')))
                           @foreach ($notifications as $notif)
                             @if($notif != null)
                             <li>
@@ -130,7 +122,6 @@
                             </li>
                             @endif
                           @endforeach
-                          @endif
                           @endif
 						</ul>
 					</li>
@@ -161,8 +152,18 @@
 				<div class="col-sm-3" style="margin-top: 7px;float: right;">
 					<form method="GET" action="/search" >
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch"/>
+							<button class="btn btn-default hidden" type="submit"></button>
 						</div>
+						<dev class="dropdown">
+							<a data-toggle="dropdown"><i class="fa fa-bars"></i><b class="caret"></b></a>
+							<label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
+							<ul class="dropdown-menu" id="selectedCategory">
+								@foreach($categories as $cat)
+									<li><a id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</a></li>
+								@endforeach
+							</ul>
+						</dev>
 					</form>
 				</div>
                  @endif
@@ -324,7 +325,7 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p >Copyright © 2018 E-SHOP All rights reserved for Groupe 3 (ESI-SBA)</p>
+					<p >Copyright © 2018 E-SHOP All rights reserved for 7anooTech</p>
 				</div>
 			</div>
 		</div>
@@ -334,15 +335,19 @@
   	<!-- Scripts -->
   	
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/datatables-init.js') }}"></script>
+    <script src="{{ asset('js/th3hpbt.js')}}"></script>
     <script src="{{ asset('js/searchresult.js') }}"></script>
     <script src="{{ asset('js/pagination.js') }}"></script>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
 	<script src="{{ asset('js/price-range.js') }}"></script>
-    <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-    <script type="text/javascript" src="{{ asset('js/navbar.js')}}"></script>
+    
+
+
 </body>
 </html>

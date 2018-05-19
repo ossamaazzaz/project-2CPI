@@ -150,7 +150,7 @@ jQuery(document).ready(function (){
     var brand = document.getElementById('brand');
     var minprice = document.getElementById('minprice');
     var maxprice = document.getElementById('maxprice');
-
+    console.log(category.value)
     keyvalue = '';
     current = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
     for (var i = current.length - 1; i >= 0; i--) {
@@ -208,11 +208,11 @@ jQuery(document).ready(function (){
         var brandlist = document.getElementById("brand");
         var brandindex = brandlist.selectedIndex;
         var brand  = brandlist.options[brandlist.selectedIndex].text;
-        
+        console.log(category.value);
         // get price 
         var minprice = document.getElementById('minprice').value;
         var maxprice = document.getElementById('maxprice').value;
-    
+        data = {};
         if (category.value != null) {
             data = {category:category.value};
         }

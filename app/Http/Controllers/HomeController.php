@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Shop;
 class HomeController extends Controller
 {
     /**
@@ -34,15 +35,22 @@ class HomeController extends Controller
         $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
         //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
         $results = $products instanceof Collection ? $products : Collection::make($products);
-        $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
-        $lastPage = $result->lastPage();
-        $currentPage = $result->currentPage();
-        $i = 0;
-        $j =0;
+        $products  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
+        $productsfeactured  = new LengthAwarePaginator($results->forPage($p,3), $results->count(), 3, $p);
+        $lastPage = $products->lastPage();
+        $currentPage = $products->currentPage();
 
-          
+        //get slides 
+        $shop = Shop::find(1);
+        $slides = \Storage::allFiles(str_replace('storage', 'public', $shop->slides));
+        //$slides = implode(" ",str_replace('public', '/storage', $slides ));
+        for ($i=0; $i <count($slides) ; $i++) { 
+            $slides[$i] = str_replace('public', '/storage', $slides[$i] );
+        }
 
-        return view('homev2',compact("result","categories","lastPage","currentPage","notifications","i","j"));
+        
+
+        return view('homev2',compact("shop","slides","products","productsfeactured","categories","lastPage","currentPage","notifications"));
     }
     /**
     * Show the edit page
@@ -117,5 +125,16 @@ class HomeController extends Controller
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
         return view('auth.edit');
+    }
+    public function contactus(Request $req){
+        if ($req->isMethod('get')) {
+            $shop = Shop::find(1);
+            $categories = Category::all();
+            $notifications = Product::getnotifications();
+            return view('widgets.contactus',compact('shop','categories','notifications'));
+        }else{
+            //contact msg 
+            return redirect('/home');
+        }
     }
 }

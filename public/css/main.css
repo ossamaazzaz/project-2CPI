@@ -590,6 +590,8 @@ ul.sub-menu {
 
 .girl {
   margin-left: 0;
+  max-height: 400px;
+  min-height: 400px;
 }
 
 .item h1 {
@@ -834,7 +836,7 @@ h2.title:before{
 
 h2.title {
   color: #0fb9b1;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-sslideerif;
   font-size: 18px;
   font-weight: 700;
   margin: 0 15px;
@@ -2529,4 +2531,32 @@ h2.title {
 #notif-dropdown li{
     text-align: center;
     font-size: 16px;
+}
+
+/****rating ****/
+.srating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.srating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.srating > span:hover:before,
+.srating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: #ffbf00;
+}
+.rating .goldy {
+   display: inline-block;
+   position: relative;
+   width: 1.1em;
+   color: #ffbf00;
+}
+.rating .empty {
+  display: inline-block;
+    position: relative;
+    width: 1.1em;
 }

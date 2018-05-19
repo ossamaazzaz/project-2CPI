@@ -8,6 +8,7 @@ use App\ProductDetails;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Shop;
 class ProductDetailsController extends Controller{
 
     /* ==============simple index function to show up  =================*/
@@ -21,7 +22,9 @@ class ProductDetailsController extends Controller{
       $categories = Category::get();
       //added this line to get notifications
       $notifications = Product::getnotifications();
-      return view("cart.productdetails",compact('product','productDetails','categories','notifications'));
+
+      $shop = Shop::find(1);
+      return view("cart.productdetailsv2",compact('shop','product','productDetails','categories','notifications'));
     }
 
     /* ============== Add element to the cart (mouloud) ================*/

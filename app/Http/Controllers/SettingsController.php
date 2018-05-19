@@ -93,7 +93,7 @@ class SettingsController extends Controller
 	}
 
 	$shop->save();
-	return redirect('/admin');
+	return redirect('/admin/settings');
     }
 
     public function export() {

@@ -108,3 +108,14 @@ Route::post('/admin/settings/editText', 'SettingsController@editText');
 Route::post('/admin/settings/editVisual', 'SettingsController@editVisual');
 Route::get('/admin/settings/export', 'SettingsController@export');
 Route::post('/admin/settings/import', 'SettingsController@import');
+
+
+//contact us
+Route::get('/contactus','HomeController@contactus');
+Route::post('/contactus','HomeController@contactus');
+
+//error
+Route::get('/error',function ()
+{
+	return view('error');
+});

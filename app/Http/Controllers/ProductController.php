@@ -82,7 +82,6 @@ class ProductController extends Controller {
           
     	];
     	$imgNum = $req->imgNum;
-    	$newImgs = json_decode($req->newImgs);
     	if ($req->deletedImgs == null) {
     		$delOldImgs = array();
     	}else{
@@ -152,6 +151,7 @@ class ProductController extends Controller {
 			$product->image = $relurl . '0' .'.'. $pimg->getClientOriginalExtension();
 			$product->save();
 		}
+		dd($product);
 		$id = $imgNum+1;
 		foreach ($index as $i) {
 			if ($req->hasFile($i)) {
