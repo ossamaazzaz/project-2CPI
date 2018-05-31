@@ -37,11 +37,12 @@ class HomeController extends Controller
         $result  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        return view('homev2',compact("result","categories","lastPage","currentPage","notifications"));
+        $i=0;
+        return view('homev2',compact("i ","result","categories","lastPage","currentPage","notifications"));
     }
     /**
     * Show the edit page
-    * 
+    *
     * @return view of auth/edit.blade.php
      */
     public function edit()
@@ -52,9 +53,9 @@ class HomeController extends Controller
 
     /**
     * Apply changes to the user
-    * @param Request $req 
+    * @param Request $req
     * @return  view of auth/edit.blade.php
-    * by renken 
+    * by renken
      */
     public function update(Request $req) {
         $user = \Auth::user();
@@ -79,9 +80,9 @@ class HomeController extends Controller
                 $rules = [
                 'avatar' => 'required|image|mimes:jpeg,jpg,bmp,png',
                 ];
-                 $validator = \Validator::make($req->all(), $rules);  
+                 $validator = \Validator::make($req->all(), $rules);
         }
-        
+
         //validating
 
         if ($validator->fails()) {
@@ -102,11 +103,11 @@ class HomeController extends Controller
 
              $avt = '/storage/' . $dirname . '/' . $user->username .'.'. $req->file("avatar")->getClientOriginalExtension();
 
-            $user->avatar = $avt;   
+            $user->avatar = $avt;
         }
-        $user->firstName = $req->all()['firstName'];   
-        $user->lastName = $req->all()['lastName'];   
-        $user->phoneNum = $req->all()['phoneNum'];   
+        $user->firstName = $req->all()['firstName'];
+        $user->lastName = $req->all()['lastName'];
+        $user->phoneNum = $req->all()['phoneNum'];
 
         $user->adr = $req->all()['adr'];
         $user->password = \Hash::make($req->all()['password']);

@@ -12,8 +12,10 @@
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
-	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
-	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
+	  <link href="{{ asset('css/main.css') }} " rel="stylesheet">
+	  <link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
+    <!-- intro.js css import-->
+    <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
     <!--comments css -->
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -22,7 +24,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -190,7 +192,7 @@
 								<h2>Présentatif</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -205,7 +207,7 @@
 								<h2>Présentatif</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -220,8 +222,8 @@
 								<h2>Présentatif</h2>
 							</div>
 						</div>
-						
-			
+
+
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
@@ -232,7 +234,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -294,11 +296,11 @@
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -306,11 +308,12 @@
 				</div>
 			</div>
 		</div>
-		
-	</footer><!--/Footer-->
+
+	</footer>
 
   	<!-- Scripts -->
-  	
+  	<script src="{{ asset('js/intro.js') }}"></script>
+    <!--intro js -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('js/datatables-init.js') }}"></script>
@@ -319,9 +322,9 @@
     <script src="{{ asset('js/pagination.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
-	<script src="{{ asset('js/price-range.js') }}"></script>
+	  <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	  <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+	  <script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/navbar.js')}}"></script>
