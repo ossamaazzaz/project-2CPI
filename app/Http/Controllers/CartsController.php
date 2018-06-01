@@ -12,6 +12,7 @@ class CartsController extends Controller
 	/* ========================= Show the cart (Kacem )==========================*/
     public function ShowCart()  {
 
+        $shop = \App\Shop::find(1);
         $cart = Cart::where('user_id',\Auth::id())->first();
 
         if(!$cart){
@@ -26,11 +27,12 @@ class CartsController extends Controller
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
-        
+
         $categories = Category::get();
-        //added this line to get notifications 
         $notifications = Product::getnotifications();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
+        //return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
+
+        return view('cart.ShowCartV2',['shop'=>$shop,'Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

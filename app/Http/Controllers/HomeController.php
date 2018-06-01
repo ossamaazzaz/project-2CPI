@@ -137,4 +137,13 @@ class HomeController extends Controller
             return redirect('/home');
         }
     }
+
+    public function TermsAndConditions(){
+        $shop = Shop::find(1);
+        $categories = Category::all();
+        $notifications = Product::getnotifications();
+
+        return view('.terms',compact('shop','categories','notifications'));
+    }
+
 }

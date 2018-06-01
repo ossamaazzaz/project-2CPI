@@ -31,7 +31,7 @@ class CreateShopTable extends Migration
             $table->string('logo')->nullable();
             $table->string('link')->nullable();
             $table->string('email')->nullable();
-            $table->text('terms')->nullable();
+            $table->string('terms')->nullable();
             $table->string('addr')->nullable();
             $table->string('phone_num')->nullable();
             $table->string('fb_link')->nullable();
