@@ -1,11 +1,12 @@
 /*price range*/
 
- jQuery('#sl2').slider();
+jQuery('#sl2').slider();
 
-	var RGBChange = function() {
-	  jQuery('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
-	};	
-		
+var RGBChange = function() {
+  jQuery('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
+
+};
+	
 /*scroll to top*/
 
 jQuery(document).ready(function(){

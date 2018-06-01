@@ -400,17 +400,20 @@ class OrdersController extends Controller
 
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
+
             if ($order) {
+
                 if ($order->state == 3) {
+
                 $order->state = 4;
                 $order->save();
                 return response()->json('Valid');
-                    } else if ($order->state == 4) {
-                        return response()->json('ard');
-                    }
-                    else {
-                        return response()->json('notValid');
-                    }
+                
+                } else if ($order->state == 4) {
+                    return response()->json('ard');
+                } else {
+                    return response()->json('notValid');
+                }
             }else{
                     return response()->json('notValid');
 

@@ -148,14 +148,18 @@ function check(){
             console.log(data);
             if (data=='Valid') {
                 document.getElementById("validMsg").classList.remove("hidden");
+                document.getElementById("notValidMsg").classList.add("hidden");
                 var pdf = document.getElementById("pdfSource");
                 pdf.src = "/facture/"+code;
                 pdf.classList.remove("hidden");
             } else if (data == 'notValid') {
                 document.getElementById("notValidMsg").classList.remove("hidden");
+                document.getElementById("validMsg").classList.add("hidden");
+                document.getElementById("pdfSource").classList.add("hidden");
             } else if (data = 'ard') {
                 document.getElementById("notValidMsg").classList.remove("hidden");
-
+                document.getElementById("validMsg").classList.add("hidden");
+                document.getElementById("pdfSource").classList.add("hidden");
             }
                 
             }
