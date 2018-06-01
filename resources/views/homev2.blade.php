@@ -27,7 +27,7 @@
                   <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
                   @endif
               </div>
-              
+
               <div class="item">
                   @if(count($slides)>=3)
                   <img src="{{ $slides[2]}}" class="girl img-responsive" alt="" />
@@ -35,7 +35,7 @@
                   <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
                   @endif
               </div>
-              
+
             </div>
              <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
               <i class="fa fa-angle-left"></i>
@@ -43,8 +43,6 @@
             <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
               <i class="fa fa-angle-right"></i>
             </a>
-            
-          
         </div>
       </div>
     </div>
@@ -64,9 +62,9 @@
                 </div>
               </div>
               @endforeach
-              
+
             </div><!--/category-products-->
-          
+
             <div class="brands_products"><!--brands_products-->
               <h2>Brands</h2>
               <div class="brands-name">
@@ -81,7 +79,7 @@
                 </ul>
               </div>
             </div><!--/brands_products-->
-            
+
             <div class="price-range"><!--price-range-->
               <h2>Price Range</h2>
               <div class="well text-center">
@@ -89,15 +87,15 @@
                  <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
               </div>
             </div><!--/price-range-->
-            
+
             <div class="shipping text-center"><!--shipping-->
               <h2>Ads</h2>
               <img src="" alt="" />
             </div><!--/shipping-->
-          
+
           </div>
         </div>
-        
+
         <div class="col-sm-9 padding-right">
           <div class="features_items"><!--features_items-->
             <h2 class="title text-center">Produits</h2>
@@ -129,7 +127,7 @@
                 </div>
               </div>
             </div>
-            @endforeach
+            @endfor
           </div><!--features_items-->
           <input type="hidden" id="currentPage" value="{{ $currentPage }}">
           <input type="hidden" id="lastPage" value="{{ $lastPage }}">
@@ -142,7 +140,7 @@
           </ul> 
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">Produits Recommandés</h2>
-            
+
             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
 
@@ -189,10 +187,10 @@
                 </a>
                 <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                 <i class="fa fa-angle-right"></i>
-                </a>      
+                </a>
             </div>
           </div><!--/recommended_items-->
-          
+
         </div>
       </div>
     </div>

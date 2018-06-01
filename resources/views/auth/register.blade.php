@@ -6,12 +6,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
+                <a class="btn btn-large btn-success"  onclick="introJs().start();">Show me how</a>
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
+                        
                         <!-- Make sure to make this more dynamic, refactor it later -->
-                        <div class="form-group row">
+                        <div class="form-group row" data-step="1" data-intro="This is a username" >
                             <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 
                             <div class="col-md-6">
@@ -154,11 +154,12 @@
                             </div>
                         </div>
 
-                        
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="{{ asset('js/intro.js') }}"></script>
 @endsection

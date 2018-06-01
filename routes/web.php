@@ -14,11 +14,12 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 Route::get('/confirm/{id}/{token}','Auth\RegisterController@confirm');
-
+Route::get('/contact','ContactUsController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit','HomeController@edit');
 Route::post('/home/edit','HomeController@update');
+
 Route::get('/home/index2','HomeController@index2');
 //Comments
 Route::post('/home/{product}/comments','CommentsController@addComment');
@@ -79,7 +80,7 @@ Route::get('/orders/{id}', 'OrdersController@index');
 Route::get('/admin/orders', 'OrdersController@AdminPanel')->middleware('auth','admin');
 
 
-//orders validation , preparation , hash code checking 
+//orders validation , preparation , hash code checking
 Route::post('/admin/orders/{id}/validate','OrdersController@validateOrder');
 Route::post('/admin/orders/{id}/refuse','OrdersController@refuseOrder');
 
