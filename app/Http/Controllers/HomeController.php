@@ -40,15 +40,15 @@ class HomeController extends Controller
         $lastPage = $products->lastPage();
         $currentPage = $products->currentPage();
 
-        //get slides 
+        //get slides
         $shop = Shop::find(1);
         $slides = \Storage::allFiles(str_replace('storage', 'public', $shop->slides));
         //$slides = implode(" ",str_replace('public', '/storage', $slides ));
-        for ($i=0; $i <count($slides) ; $i++) { 
+        for ($i=0; $i <count($slides) ; $i++) {
             $slides[$i] = str_replace('public', '/storage', $slides[$i] );
         }
 
-        
+
 
         return view('homev2',compact("shop","slides","products","productsfeactured","categories","lastPage","currentPage","notifications"));
     }
@@ -133,7 +133,7 @@ class HomeController extends Controller
             $notifications = Product::getnotifications();
             return view('widgets.contactus',compact('shop','categories','notifications'));
         }else{
-            //contact msg 
+            //contact msg
             return redirect('/home');
         }
     }

@@ -65,7 +65,7 @@ class RegisterController extends Controller
             'avatar' => 'required|image|mimes:jpeg,bmp,png',
         ]);
     }
-    //==============================(EmailComfirmation)===========================//
+    //==============================(EmailComfirmation)Mouloud===========================//
     /*
     * utiliser le trait RegistersUsers
     * @overRide register(Request $request) function

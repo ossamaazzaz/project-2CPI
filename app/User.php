@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\contactMail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function contactmails()
+    {
+        $this->hasMany(contactMail::class);
+    }
     public function comments()
     {
        return $this->hasMany(Comment::class);
@@ -33,5 +37,5 @@ class User extends Authenticatable
         'password', 'remember_token',
      ];
      */
-    
+
 }

@@ -113,7 +113,7 @@ Route::post('/admin/settings/import', 'SettingsController@import');
 
 //contact us
 Route::get('/contactus','HomeController@contactus');
-Route::post('/contactus','HomeController@contactus');
+Route::post('/contactus','contactUsMailController@sendMail');
 
 //error
 Route::get('/error',function ()
