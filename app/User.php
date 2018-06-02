@@ -14,6 +14,10 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public function rates()
+    {
+      return $this->hasMany(rate::class);
+    }
     public function contactmails()
     {
         $this->hasMany(contactMail::class);
