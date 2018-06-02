@@ -7,6 +7,9 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use \App\Orders;
+use App\Notifications\CustomDbChannel;
+
+use Illuminate\Notifications\Messages\BroadcastMessage;
 class missingproduct extends Notification
 {
     use Queueable;
@@ -29,7 +32,7 @@ class missingproduct extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return [CustomDbChannel::class];
     }
 
     /**
@@ -56,5 +59,24 @@ class missingproduct extends Notification
     {
         
         return $this->order->code;
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+          'data' => $this->order->code, //<-- send the id here
+        ];
+    }
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+     */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data' => $this->order->code,
+        ]);
     }
 }

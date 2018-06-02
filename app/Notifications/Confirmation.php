@@ -7,9 +7,16 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use \App\Orders;
+use App\Notifications\CustomDbChannel;
+use Illuminate\Notifications\Messages\BroadcastMessage;
+
 class Confirmation extends Notification
 {
     use Queueable;
+
+    /**
+    * for every user many notifications
+    */
 
     /**
      * Create a new notification instance.
@@ -29,7 +36,7 @@ class Confirmation extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return [CustomDbChannel::class];
     }
 
     /**
@@ -56,5 +63,26 @@ class Confirmation extends Notification
     public function toArray($notifiable)
     {
         return $this->order->code;
+    }
+    public function toDatabase($notifiable)
+    {
+        return [
+          'data' => $this->order->code, //<-- send the id here
+        ];
+    }
+
+
+
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+     */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data' => $this->order->code,
+        ]);
     }
 }

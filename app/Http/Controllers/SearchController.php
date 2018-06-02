@@ -42,9 +42,8 @@ class SearchController extends Controller
 		//dd($result);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        $notifications = Product::getnotifications();
         $shop = Shop::find(1);
-        return view('searchresultv2',compact('shop','categories','result','term' ,'category','brands','lastPage','currentPage','notifications'));
+        return view('searchresultv2',compact('shop','categories','result','term' ,'category','brands','lastPage','currentPage'));
 
 	} 
 

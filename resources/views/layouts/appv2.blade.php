@@ -12,7 +12,7 @@
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
-	  <link href="{{ asset('css/main.css') }} " rel="stylesheet">
+	 <link href="{{ asset('css/main.css') }} " rel="stylesheet">
 	  <link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
     <!-- intro.js css import-->
     <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
@@ -64,7 +64,9 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
+							@if(!$shop)
 							<a href="index.html"><img src="{{ $shop->logo }}" alt="" /></a>
+							@endif
 						</div>
 					
 					</div>
@@ -121,9 +123,9 @@
                             <li>
                               <div class="notif">
                                 @if($notif->type == 'missingproduct')
-                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
+                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }} <br> click to confirm or delete ! </a>
                                 @else
-                                  <a href="{{ 'facture/' . $notif->data }}">Your code is : {{ $notif->data }}</a>
+                                  <a href="{{ 'facture/' . $notif->data }}"> Your code is : {{ $notif->data }}</a>
                                 @endif
                               </div>
                               <hr>
@@ -337,12 +339,13 @@
 				</div>
 			</div>
 		</div>
-
+	@if (!Auth::guest())
+	<input type="hidden" id="userId" name="userId" value="{{ Auth::user()->id }}">
+	@else
+	<input type="hidden" id="userId" name="userId" value="noId">
+	@endif
 	</footer>
-
-  	<!-- Scripts -->
-  	<script src="{{ asset('js/intro.js') }}"></script>
-    <!--intro js -->
+  	
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
@@ -359,6 +362,8 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-    
+  	<script src="{{ asset('js/intro.js') }}"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="{{ asset('js/notifications.js')}}"></script>
 </body>
 </html>

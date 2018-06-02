@@ -24,9 +24,8 @@ class ProductController extends Controller {
 		if ($req->isMethod('get')) {
 			$products = Product::get();
 			$products = Product::where('deleted',0)->get();
-			$notifications = Product::getnotifications();
 			$shop = Shop::find(1);
-			return view('admin.products',['products' => $products,'notifications' => $notifications,'shop' => $shop]);
+			return view('admin.products',['products' => $products,'shop' => $shop]);
 
 		}
 	}

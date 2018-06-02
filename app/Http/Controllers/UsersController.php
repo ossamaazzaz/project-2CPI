@@ -18,7 +18,7 @@ class UsersController extends Controller
     
    public function index()
    {
-	    $users = User::get();
+	     $users = User::get();
        $shop = Shop::find(1);
 
 	    return view('admin.users',compact('users','shop'));

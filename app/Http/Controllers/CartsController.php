@@ -28,9 +28,7 @@ class CartsController extends Controller
         }
         
         $categories = Category::get();
-        //added this line to get notifications 
-        $notifications = Product::getnotifications();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
+        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories);
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

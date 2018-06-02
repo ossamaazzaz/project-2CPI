@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         $products = Product::where('deleted',0)->get();
         $categories = Category::all();
-        $notifications = Product::getnotifications();
         $p = $req->has('page') ? $req->all()['page']  : null;
         $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
         //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
@@ -50,7 +49,7 @@ class HomeController extends Controller
 
         
 
-        return view('homev2',compact("shop","slides","products","productsfeactured","categories","lastPage","currentPage","notifications"));
+        return view('homev2',compact("shop","slides","products","productsfeactured","categories","lastPage","currentPage"));
     }
     /**
     * Show the edit page

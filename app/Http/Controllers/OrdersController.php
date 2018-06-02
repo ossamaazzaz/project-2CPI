@@ -17,6 +17,8 @@ use App\Notifications\missingproduct;
 use DB;
 use ProductDetailsController;
 
+use App\Events\OrderConfirmed;
+use App\Events\MissingProducts;
 class OrdersController extends Controller
 {
     /*
@@ -65,8 +67,7 @@ class OrdersController extends Controller
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
-        $notifications = Product::getnotifications();
-        return view('order.list',compact('orders','categories','notifications'));
+        return view('order.list',compact('orders','categories'));
     }
     /*
     * to view an order
@@ -79,9 +80,7 @@ class OrdersController extends Controller
     	else
     		$order=Orders::find($id);
         $categories = \App\Category::get();
-        //added this line to get notifications
-        $notifications = Product::getnotifications();
-        return view('order.order',compact('order','categories','notifications'));
+        return view('order.order',compact('order','categories'));
     }
  
     /*
@@ -169,6 +168,7 @@ class OrdersController extends Controller
                 $order->state = 8;
                 $order->save();
                 $order->notify(new missingproduct($order));
+                event(new MissingProducts($order));
                 return response()->json('asked');
             } else {
                 return response()->json('fail');
@@ -348,6 +348,7 @@ class OrdersController extends Controller
                     $order->save();
                     // send email notification 
                     $order = Orders::find($id);
+                    event(new OrderConfirmed($order));
                     $email = $order->user->email;
                     Mail::to($email)->send(new OrderDone($order));
 
