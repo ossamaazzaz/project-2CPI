@@ -103,8 +103,8 @@ Route::post('/orders/{id}/delete','OrdersController@deleteOrder');
 //email
 Route::get('/notification','OrdersController@notifyOnDone');
 // get notifications
-Route::get('/notifications','NotificationsController@index');
-Route::get('/notify','NotificationsController@sendNotification');
+Route::get('/getnotifications','NotificationsController@index');
+Route::get('/showmore','NotificationsController@showMore');
 //settings
 Route::get('/admin/settings', 'SettingsController@index');
 Route::post('/admin/settings/editText', 'SettingsController@editText');

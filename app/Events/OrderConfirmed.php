@@ -25,9 +25,11 @@ class OrderConfirmed extends Event implements ShouldBroadcast
      * @return void
      */
     protected $order;
+    protected $time;
     public function __construct(Orders $orders)
     {
         $this->order = $orders;
+        $this->time = date('Y-m-d H:i:s');
         //Remember to change this with your cluster name.
         $options = array(
             'cluster' => 'eu', 
@@ -42,7 +44,7 @@ class OrderConfirmed extends Event implements ShouldBroadcast
             $options
         );        
         //Send a message to notify channel with an event name of notify-event
-        $pusher->trigger('privateorder.' . $this->order->user->id, 'OrderConfirmed', $this->order);  
+        $pusher->trigger('privateorder.' . $this->order->user->id, 'OrderConfirmed', ['data' => $this->order->code,'created_at' => $this->time]);  
     }
 
     /**

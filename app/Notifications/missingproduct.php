@@ -63,9 +63,8 @@ class missingproduct extends Notification
 
     public function toDatabase($notifiable)
     {
-        return [
-          'data' => $this->order->code, //<-- send the id here
-        ];
+        return $this->order->code; //<-- send the id here
+
     }
     /**
      * Get the broadcastable representation of the notification.

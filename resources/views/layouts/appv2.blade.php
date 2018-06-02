@@ -34,67 +34,6 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <body>
-<<<<<<< HEAD
-	<header id="header"><!--header-->
-		<div class="header_top" ><!--header_top-->
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="contactinfo">
-							<ul class="nav nav-pills">
-								<li><a href="" ><i class="fa fa-phone" ></i> +213 22 22 22</a></li>
-								<li><a href="" ><i class="fa fa-envelope"></i> E-Shop@esi-sba.dz</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="social-icons pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href=""><i class="fa fa-facebook"></i></a></li>
-								<li><a href=""><i class="fa fa-twitter"></i></a></li>
-								<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header_top-->
-		<div class="header-middle"><!--header-middle-->
-			<div class="col-sm-13">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							@if(!$shop)
-							<a href="index.html"><img src="{{ $shop->logo }}" alt="" /></a>
-							@endif
-						</div>
-					
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								
-								@if (Auth::guest())
-				                    <li><a class="nav-link" href="{{ route('login') }}">
-				                    	<i class="fa fa-sign-in"></i>&nbsp;Connecter
-				                    </a></li>
-				                        <li><a class="nav-link" href="{{ route('register') }}"><i class="fa fa-user"></i>&nbsp;Register</a></li>
-				                @else
-				                	<li><a class="nav-link dropdown-toggle" href="/home/edit"><i class="fa fa-user"></i> Compte</a></li>
-				                	<li><a class="nav-link dropdown-toggle" href="/wishlist"><i class="fa fa-star"></i> Favories</a></li>
-								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-				                	<li><a href="/cart" class="active"><i class="fa fa-shopping-cart"></i> Panier</a></li>
-				                	@endif
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-		<nav class="navbar navbar-default navbar-back-color" role="navigation">
-		<div class="container" style="padding-right: 0px;padding-left: 0px; ">
-			
-=======
 	<header>
 		<nav class="navbar navbar-default" role="navigation" style=" margin-bottom: 0px;">
 		  <div class="container-fluid">
@@ -107,8 +46,6 @@
 		        <span class="icon-bar"></span>
 		      </button>
 		    </div>
->>>>>>> azzaz
-
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right:0px !important;">
 		      <ul class="nav navbar-nav" style="height: 75px;">
@@ -154,28 +91,25 @@
                         	</a></li>
 					  </ul>
 			    </li>
-			    <li class="pull-right dropdown" style="margin: -20px 0px 0 0">
+			    <li id="noDrdown" class="pull-right dropdown" style="margin: -20px 0px 0 0">
                   <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div id="ex4">
-					  <span class="p1 fa-stack fa-2x has-badge" data-count="4">
+					  <span id="notificationCounter" class="p1 fa-stack fa-2x has-badge" data-count="0">
 					    <i class="p3 fa fa-bell-o fa-stack-1x xfa-inverse" data-count="4b"></i>
 					  </span>
 					</div>
                   </a>
-                    <ul class="dropdown-menu" style="max-height:500px;overflow-y: scroll;overflow-x:hidden; ">
-                    	
+                    <ul class="dropdown-menu" id="navbarDropdownMenu" style="max-height:500px;overflow-y: scroll;overflow-x:hidden; ">
                       <li class="head text-light" >
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
-                            <span>Notifications ({{count($notifications)}})</span>
+                            <span>Notifications (<span id="notificationListCounter">4</span>)</span>
                           </div>
                       </li>
                       <li class="divider"></li>
                       @if((!Request::is('home/edit','login','register','password/reset')))
-                      @if(count($notifications) == 0)
                       <li class="notification-box" style="width: 400px; "> 
                         <div class="row">  
-
                           <div class="col-lg-12 col-sm-12 col-12">  
                             <div>
                            		Il n'y a pas de notification !
@@ -184,34 +118,7 @@
                         </div>
                       </li>
                       <li class="divider"></li>
-                      @else
-                          @foreach ($notifications as $notif)
-                            @if($notif != null)
-		                      <li class="notification-box" style="width: 400px; ">
-		                      	<strong class="text-info">hehehe</strong> 
-		                        <div class="row">  
-
-		                          <div class="col-lg-12 col-sm-12 col-12">
-		                            
-		                            <div>
-		                              @if($notif->type == 'missingproduct')
-		                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
-		                                @else
-		                                  <a href="{{ 'facture/' . $notif->data }}"> Your code is : {{ $notif->data }}</a>
-		                                @endif
-		                            </div>
-		                            <small class="text-warning">01.06.2018, 08:29</small>
-		                          </div>    
-		                        </div>
-		                      </li>
-                      <li class="divider"></li>
                       @endif
-                      @endforeach
-                      @endif
-                      @endif
-                      <li class="footer bg-dark text-center">
-                        <a href="" class="text-light">View All</a>
-                      </li>
                     </ul>
                 </li>
 			    @endif
@@ -406,11 +313,7 @@
     <script src="{{ asset('js/searchresult.js') }}"></script>
     <script src="{{ asset('js/pagination.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
 	<script src="{{ asset('js/price-range.js') }}"></script>
-    <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
   	<script src="{{ asset('js/intro.js') }}"></script>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>

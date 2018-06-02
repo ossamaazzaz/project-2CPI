@@ -28,7 +28,7 @@ class CartsController extends Controller
         }
         
         $categories = Category::get();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories);
+        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories]);
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

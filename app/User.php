@@ -46,7 +46,7 @@ class User extends Authenticatable
                 $notif->type = 'missingproduct';
                 $notif->data = substr($notif->data,1,strlen($notif->data)-2);
             } else {
-                $notif->data = substr($notif->data,1,strlen($notif->data)-2);
+                $notif->data = substr($notif->data,1,strlen($notif->data)-2);                
             }
         }
         return $notificationsCollection;

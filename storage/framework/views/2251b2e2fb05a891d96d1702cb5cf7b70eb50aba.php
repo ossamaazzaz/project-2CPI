@@ -69,23 +69,6 @@
                        <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="fa fa-bell"></span></button>
-                        <ul class="dropdown-menu">
-                          <?php if((!Request::is('home/edit','login','register','password/reset'))): ?>
-                          <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notif): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php if($notif != null): ?>
-                            <li>
-                              <dev class="notif">
-                                <?php if($notif->type == 'missingproduct'): ?>
-                                  <a onclick="getmissingproduct('<?php echo e($notif->data); ?>')">there is a missing products on your order : <?php echo e($notif->data); ?><br>click to confirm or delete ! </a>
-                                <?php else: ?>
-                                  <a href="<?php echo e('facture/' . $notif->data); ?>">Your code is : <?php echo e($notif->data); ?></a>
-                                <?php endif; ?>
-                              </dev>
-                            </li>
-                            <?php endif; ?>
-                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                          <?php endif; ?>
-                        </ul>
                       </div>
                     </li>
                     <?php if(Auth::guest()): ?>

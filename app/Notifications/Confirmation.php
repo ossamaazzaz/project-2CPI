@@ -66,9 +66,7 @@ class Confirmation extends Notification
     }
     public function toDatabase($notifiable)
     {
-        return [
-          'data' => $this->order->code, //<-- send the id here
-        ];
+        return $this->order->code; //<-- send the id here
     }
 
 
@@ -85,4 +83,6 @@ class Confirmation extends Notification
             'data' => $this->order->code,
         ]);
     }
+
+    
 }

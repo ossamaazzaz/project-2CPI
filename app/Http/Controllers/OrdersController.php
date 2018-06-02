@@ -348,11 +348,11 @@ class OrdersController extends Controller
                     $order->save();
                     // send email notification 
                     $order = Orders::find($id);
-                    event(new OrderConfirmed($order));
                     $email = $order->user->email;
                     Mail::to($email)->send(new OrderDone($order));
 
                     $order->notify(new Confirmation($order));
+                    event(new OrderConfirmed($order));
 
                     return response()->json('confirmed');
                 } else {

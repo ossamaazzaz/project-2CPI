@@ -68,23 +68,6 @@
                        <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="fa fa-bell"></span></button>
-                        <ul class="dropdown-menu">
-                          @if((!Request::is('home/edit','login','register','password/reset')))
-                          @foreach ($notifications as $notif)
-                            @if($notif != null)
-                            <li>
-                              <dev class="notif">
-                                @if($notif->type == 'missingproduct')
-                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
-                                @else
-                                  <a href="{{ 'facture/' . $notif->data }}">Your code is : {{ $notif->data }}</a>
-                                @endif
-                              </dev>
-                            </li>
-                            @endif
-                          @endforeach
-                          @endif
-                        </ul>
                       </div>
                     </li>
                     @if (Auth::guest())
