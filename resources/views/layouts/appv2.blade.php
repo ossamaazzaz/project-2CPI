@@ -33,8 +33,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
 <body>
+<<<<<<< HEAD
 	<header id="header"><!--header-->
 		<div class="header_top" ><!--header_top-->
 			<div class="container">
@@ -94,96 +94,145 @@
 		<nav class="navbar navbar-default navbar-back-color" role="navigation">
 		<div class="container" style="padding-right: 0px;padding-left: 0px; ">
 			
+=======
+	<header>
+		<nav class="navbar navbar-default" role="navigation" style=" margin-bottom: 0px;">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    </div>
+>>>>>>> azzaz
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
-					<li><a href="/home">Home</a></li>
-					<li class="dropdown"><a href="#">Categories<i class="fa fa-angle-down"></i></a>
-	                    <ul role="menu" class="sub-menu">
-	                    	@foreach($categories as $category)
-	                        <li><a href="">{{$category->name}}</a></li>
-	                        @endforeach
-	                    </ul>
-                    </li> 
-					<li><a href="/contact">Contact</a></li>
-					<li><a href="/contact">termes et conditions</a></li>
-				</ul>
-
-				<ul class="nav navbar-nav navbar-right">
-					   
-					@if (!Auth::guest())
-
-						<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>
-						<ul class="dropdown-menu" id="notif-dropdown">
-						@if((!Request::is('home/edit','login','register','password/reset')))
-                          @foreach ($notifications as $notif)
-                            @if($notif != null)
-                            <li>
-                              <div class="notif">
-                                @if($notif->type == 'missingproduct')
-                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }} <br> click to confirm or delete ! </a>
-                                @else
-                                  <a href="{{ 'facture/' . $notif->data }}"> Your code is : {{ $notif->data }}</a>
-                                @endif
-                              </div>
-                              <hr>
-                            </li>
-                            @endif
-                          @endforeach
-                          @endif
-						</ul>
-					</li>
-					<li style="margin-top: 7px;">
-
-						<a href="/home/edit" style="color: white;display: inline;">
-                        	{{ Auth::user()->firstName . " " .Auth::user()->lastName }}
-                        </a>
-                        <img src="{{ asset('photodeprofile.jpg') }}" height="40px" width="40px" style="border-radius: 50%;">
-
-                                    
-
-						
-					</li>
-					<li style="font-size: 15px;color: white">
-						<a href="{{ route('logout') }}"
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right:0px !important;">
+		      <ul class="nav navbar-nav" style="height: 75px;">
+		        <li class="pull-left"><a href="#"><img src="{{asset('logo2.png')}}" id="main-logo"></a></li>
+		        <li class="active">
+		        	<a href="/home" style="margin-left: -155px;">Accueil</a>
+		        </li>
+		        <li class="dropdown">
+					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left: -43px;">Categories
+					  <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+					    @foreach($categories as $category)
+                        	<li><a href="/search?category={{$category->id}}">{{$category->name}}</a></li>
+                        @endforeach
+					  </ul>
+			      </li>
+		        <li><a href="/contactus">Contactez-nous</a></li>
+		        <li><a href="">A propos</a></li>
+		        @if (Auth::guest())
+		        <li class="pull-right" style="margin: 2px 0px 0 0;font-size: 16px">
+		        	<a href="{{ route('login') }}">
+			        <i class="fa fa-user"></i>&nbsp;&nbsp;Connecter / s'inscrire
+			        </a>
+			    </li>
+			    @else
+			    <li class="pull-right" style="margin: -10px 40px 0 0">
+			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ asset('photodeprofile.jpg') }}" height="50px" width="50px" style="border-radius: 50%;">
+					  <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+                        	<li><a href="/edit">
+                        		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
+                        	</a></li>
+                        	<li><a href="/cart">
+                        		<i class="fa fa-shopping-cart"></i>&nbsp;Panier
+                        	</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i>&nbsp;logout
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                     	</form>
-                                  </a>
-						
-					</li>
-                   
+                        		<i class="fa fa-sign-in"></i>&nbsp;logout
+                        		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                </form>
+                        	</a></li>
+					  </ul>
+			    </li>
+			    <li class="pull-right dropdown" style="margin: -20px 0px 0 0">
+                  <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div id="ex4">
+					  <span class="p1 fa-stack fa-2x has-badge" data-count="4">
+					    <i class="p3 fa fa-bell-o fa-stack-1x xfa-inverse" data-count="4b"></i>
+					  </span>
+					</div>
+                  </a>
+                    <ul class="dropdown-menu" style="max-height:500px;overflow-y: scroll;overflow-x:hidden; ">
+                    	
+                      <li class="head text-light" >
+                        <div class="row">
+                          <div class="col-lg-12 col-sm-12 col-12">
+                            <span>Notifications ({{count($notifications)}})</span>
+                          </div>
+                      </li>
+                      <li class="divider"></li>
+                      @if((!Request::is('home/edit','login','register','password/reset')))
+                      @if(count($notifications) == 0)
+                      <li class="notification-box" style="width: 400px; "> 
+                        <div class="row">  
 
-				</ul>
-				<div class="col-sm-3" style="margin-top: 7px;float: right;">
-					<form method="GET" action="/search" >
-						<div class="search_box pull-right">
-							<input id="term" name="term" type="text" value="" placeholder="Enter here" aria-describedby="ddlsearch"/>
-							<button class="btn btn-default hidden" type="submit"></button>
+                          <div class="col-lg-12 col-sm-12 col-12">  
+                            <div>
+                           		Il n'y a pas de notification !
+                            </div>
+                          </div>    
+                        </div>
+                      </li>
+                      <li class="divider"></li>
+                      @else
+                          @foreach ($notifications as $notif)
+                            @if($notif != null)
+		                      <li class="notification-box" style="width: 400px; ">
+		                      	<strong class="text-info">hehehe</strong> 
+		                        <div class="row">  
+
+		                          <div class="col-lg-12 col-sm-12 col-12">
+		                            
+		                            <div>
+		                              @if($notif->type == 'missingproduct')
+		                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
+		                                @else
+		                                  <a href="{{ 'facture/' . $notif->data }}"> Your code is : {{ $notif->data }}</a>
+		                                @endif
+		                            </div>
+		                            <small class="text-warning">01.06.2018, 08:29</small>
+		                          </div>    
+		                        </div>
+		                      </li>
+                      <li class="divider"></li>
+                      @endif
+                      @endforeach
+                      @endif
+                      @endif
+                      <li class="footer bg-dark text-center">
+                        <a href="" class="text-light">View All</a>
+                      </li>
+                    </ul>
+                </li>
+			    @endif
+		        <li class="pull-right" style="margin: 16px 0px 0 0;"> 
+		        	<div class="cntr">
+						<div class="cntr-innr">
+							<form>
+						  <label class="search" for="inpt_search">
+								<input id="inpt_search" type="text" onmouseout="this.value='';this.blur();" />
+							</label>
+							</form>
 						</div>
-						<dev class="dropdown">
-							<a data-toggle="dropdown"><i class="fa fa-bars"></i><b class="caret"></b></a>
-							<label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
-							<ul class="dropdown-menu" id="selectedCategory">
-								@foreach($categories as $cat)
-									<li><a id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</a></li>
-								@endforeach
-							</ul>
-						</dev>
-					</form>
-				</div>
-                 @endif
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
-
+					</div>
+		        </li>
+		       
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
 	</header>
-	    <!--success message-->
-
+	<!--success message-->
     @if(session('success'))
       <div class="container">
         <div class="alert alert-success">
@@ -339,6 +388,7 @@
 				</div>
 			</div>
 		</div>
+
 	@if (!Auth::guest())
 	<input type="hidden" id="userId" name="userId" value="{{ Auth::user()->id }}">
 	@else
@@ -365,5 +415,20 @@
   	<script src="{{ asset('js/intro.js') }}"></script>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
+    <script type="text/javascript">
+
+    	$("#inpt_search").on('focus', function () {
+		$(this).parent('label').addClass('active');
+		});
+
+		$("#inpt_search").on('blur', function () {
+			console.log("great");
+			if($(this).val().length == 0)
+				$(this).parent('label').removeClass('active');
+
+		});
+    </script>
+
+
 </body>
 </html>

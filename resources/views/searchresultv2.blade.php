@@ -81,6 +81,11 @@
 						                </div>
 									</div>
 						</div>
+						@if(count($result)==0)
+						<div class="col-sm-12" style="text-align: center;">
+							<h2>no result found</h2>
+						</div>
+						@else
 						@foreach($result as $product)
 				            <div class="col-sm-4">
 				              <div class="product-image-wrapper">
@@ -111,6 +116,7 @@
 				            </div>
 				            @endforeach
 				            
+				            
 					</div><!--features_items-->
 					<input type="hidden" id="currentPage" value="{{ $currentPage }}">
 		            <input type="hidden" id="lastPage" value="{{ $lastPage }}">
@@ -121,6 +127,7 @@
 		              @endfor
 		              <li><a onclick="nexPage({{ $currentPage }})">&raquo;</a></li>
 		            </ul> 
+		            @endif
 				</div>
 			</div>
 		</div>
