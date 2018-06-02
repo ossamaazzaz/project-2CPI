@@ -24,7 +24,7 @@ class ProductDetailsController extends Controller{
       $notifications = Product::getnotifications();
 
       $shop = Shop::find(1);
-      return view("cart.productdetailsv2",compact('shop','product','productDetails','categories','notifications'));
+      return view("cart.productdetails",compact('shop','product','productDetails','categories','notifications'));
     }
 
     /* ============== Add element to the cart (mouloud) ================*/

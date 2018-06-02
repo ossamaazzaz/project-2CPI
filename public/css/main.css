@@ -568,7 +568,9 @@ ul.sub-menu {
 #slider {
   padding-bottom: 45px;
 }
-
+..carousel-indicators{
+  bottom: 5px;
+}
 .carousel-indicators li {
   background: #C4C4BE;
 }
@@ -2765,5 +2767,65 @@ a{
   background-color: transparent !important;
 }
 
+#toast {
+    display: none;
+    width: 300px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    z-index: 9999;
+}
+#toast.show {
+    display: block;
+    -webkit-animation: bounceInUp 0.5s, shake 0.5s 3.5s;
+    animation: bounceInUp 0.5s, shake 0.5s 3.5s;
+}
+.navbar-nav > li > .dropdown-menu{
+  margin-top: -10px !important;
+}
+#scroll-down {
+  opacity: 1;
+  -webkit-transition: all .5s ease-in 3s;
+  transition: all .5s ease-in 3s;
+}
+
+#scroll-down {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  margin-left: -16px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #FFF;
+  background-size: 14px auto;
+  border-radius: 50%;
+  z-index: 2;
+  -webkit-animation: bounce 2s infinite 2s;
+  animation: bounce 2s infinite 2s;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+#scroll-down:before {
+    position: absolute;
+    top: calc(50% - 8px);
+    left: calc(50% - 6px);
+    transform: rotate(-45deg);
+    display: block;
+    width: 12px;
+    height: 12px;
+    content: "";
+    border: 2px solid white;
+    border-width: 0px 0 2px 2px;
+}
 
 

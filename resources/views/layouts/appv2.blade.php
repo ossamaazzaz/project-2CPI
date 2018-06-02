@@ -13,6 +13,7 @@
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
 	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
+	<!-- <link href="{{ asset('css/app.css') }} " rel="stylesheet"> -->
 	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
     <!--comments css -->
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
@@ -26,6 +27,7 @@
 
 </head><!--/head-->
 <body>
+	<div id="toast" class="">votre ordre est pret</div>
 	<header>
 		<nav class="navbar navbar-default" role="navigation" style=" margin-bottom: 0px;">
 		  <div class="container-fluid">
@@ -47,8 +49,8 @@
 		        	<a href="/home" style="margin-left: -155px;">Accueil</a>
 		        </li>
 		        <li class="dropdown">
-					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left: -43px;">Categories
-					  <span class="caret"></span></a>
+					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left: -43px;">Catégories
+					  </a>
 					  <ul class="dropdown-menu">
 					    @foreach($categories as $category)
                         	<li><a href="/search?category={{$category->id}}">{{$category->name}}</a></li>
@@ -65,10 +67,13 @@
 			    </li>
 			    @else
 			    <li class="pull-right" style="margin: -10px 40px 0 0">
-			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ asset('photodeprofile.jpg') }}" height="50px" width="50px" style="border-radius: 50%;">
+			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;">
 					  <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
-                        	<li><a href="/edit">
+
+					  	<li onclick="showToast('notif shit')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>
+
+                        	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
                         	</a></li>
                         	<li><a href="/cart">
@@ -87,7 +92,7 @@
 			    <li class="pull-right dropdown" style="margin: -20px 0px 0 0">
                   <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div id="ex4">
-					  <span class="p1 fa-stack fa-2x has-badge" data-count="4">
+					  <span class="p1 fa-stack fa-2x has-badge" data-count="6" id="hhhh">
 					    <i class="p3 fa fa-bell-o fa-stack-1x xfa-inverse" data-count="4b"></i>
 					  </span>
 					</div>
@@ -335,7 +340,6 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <script type="text/javascript">
-
     	$("#inpt_search").on('focus', function () {
 		$(this).parent('label').addClass('active');
 		});
@@ -344,8 +348,22 @@
 			console.log("great");
 			if($(this).val().length == 0)
 				$(this).parent('label').removeClass('active');
-
 		});
+    </script>
+    <script type="text/javascript">
+    	function showToast(text) {
+		    var x = document.getElementById("toast");
+		    x.innerHTML = text;
+		    x.className = "show";
+		    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
+		}
+		 jQuery(document).ready(function() {
+		    jQuery('.scroll-down').on('click', function(){
+		        jQuery('html, body').animate({
+		            scrollTop: jQuery('#ok').offset().top-100
+		        }, 500);
+		    });
+		 });
     </script>
 
 
