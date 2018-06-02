@@ -1,3 +1,3 @@
-<p>Your Order validated this the Code: {{ $code }}</p>
-<a href="{{ $url }}"> this ur Bill</a>
-<p>Thank You</p>
+<p>Code de validation de votre commande : {{ $code }}</p>
+<a href="{{ $url }}"> bon de commande</a>
+<p>Merci</p>

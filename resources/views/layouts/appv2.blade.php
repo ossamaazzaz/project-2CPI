@@ -24,7 +24,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
 
     <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
@@ -66,12 +66,12 @@
 						<div class="logo pull-left">
 							<a href="index.html"><img src="{{ $shop->logo }}" alt="" /></a>
 						</div>
-					
+
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
-								
+
 								@if (Auth::guest())
 				                    <li><a class="nav-link" href="{{ route('login') }}">
 				                    	<i class="fa fa-sign-in"></i>&nbsp;Connecter
@@ -91,7 +91,7 @@
 		</div><!--/header-middle-->
 		<nav class="navbar navbar-default navbar-back-color" role="navigation">
 		<div class="container" style="padding-right: 0px;padding-left: 0px; ">
-			
+
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,13 +103,13 @@
 	                        <li><a href="">{{$category->name}}</a></li>
 	                        @endforeach
 	                    </ul>
-                    </li> 
+                    </li>
 					<li><a href="/contact">Contact</a></li>
 					<li><a href="/contact">termes et conditions</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					   
+
 					@if (!Auth::guest())
 
 						<li class="dropdown">
@@ -140,9 +140,9 @@
                         </a>
                         <img src="{{ asset('photodeprofile.jpg') }}" height="40px" width="40px" style="border-radius: 50%;">
 
-                                    
 
-						
+
+
 					</li>
 					<li style="font-size: 15px;color: white">
 						<a href="{{ route('logout') }}"
@@ -152,9 +152,9 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                      	</form>
                                   </a>
-						
+
 					</li>
-                   
+
 
 				</ul>
 				<div class="col-sm-3" style="margin-top: 7px;float: right;">
@@ -278,9 +278,9 @@
 						<div class="single-widget">
 							<h2>Service</h2>
 							<ul class="nav nav-pills nav-stacked">
-								
+
 								<li><a href="">Contact Us</a></li>
-								
+
 							</ul>
 						</div>
 					</div>
@@ -302,7 +302,7 @@
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="">Terms of Use</a></li>
 								<li><a href="">Privecy Policy</a></li>
-								
+
 							</ul>
 						</div>
 					</div>
@@ -359,6 +359,6 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-    
+
 </body>
 </html>

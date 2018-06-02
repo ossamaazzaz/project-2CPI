@@ -14,7 +14,7 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes();
 Route::get('/confirm/{id}/{token}','Auth\RegisterController@confirm');
-Route::get('/contact','ContactUsController@index');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit','HomeController@edit');
