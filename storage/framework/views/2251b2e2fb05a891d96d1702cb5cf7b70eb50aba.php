@@ -15,7 +15,7 @@
     <link href="<?php echo e(asset('css/comments.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/introjs.css')); ?> " rel="stylesheet">
     <!--end commennts css -->
-    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
+    
     
 </head>
 <body>
@@ -138,16 +138,43 @@
        <div class="row">
               <!-- model of confirmed by ossama azzaz-->
                <input type="hidden" id="code" name="">
+               <div class="modal-bg animated fadeIn"></div>
+                  <div class="confir-modal animated jackInTheBox" id="missingProducts">
+                   <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Deleting an order</h5>
+                      <button type="button" class="close" onclick="closeConfModal()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label>The mistake of who ?</label>
+                      <div class="radio">
+                        <label><input type="radio" id="sellerRadio" name="optradio">Seller mistake</label>
+                      </div>
+                      <div class="radio">
+                        <label><input type="radio" id="buyerRadio" name="optradio">Buyer mistake</label>
+                      </div>
+                      <label for="cmt">Missing Products :</label>
+                      <h2 id="missingproducts"></h2>
+                      <br>
+                      <label for="cmt">Available Products :</label>
+                      <h2 id="availableproducts"></h2>
+                      <br>
+                      <dev>
+                        <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                        <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
+                        <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                      </dev>
+                      <div class="btn btn-info" onclick="closeConfModal()">Close</div>
+                    </div>
+                  </div>
+                </div>
                <div id="cmodale" class="cmodale canimated jackInTheBox">
                     <h1>Missing Products :</h1>
-                    <h2 id="missingproducts"></h2>
+                    
                     <h1>Available Products :</h1>
-                    <h2 id="availableproducts"></h2>
-                    <dev>
-                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
-                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
-                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
-                    </dev>
+                    
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <span class="logo">LOGO</span>

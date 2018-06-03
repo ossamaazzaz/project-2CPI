@@ -51,7 +51,7 @@
                 <td>{{ $delOrder->created_at }}</td>
                 <td>{{ $delOrder->user->username }}</td>
                 <td>{{ $delOrder->total_paid }}</td>
-                <td>
+                <td id="row{{ $delOrder->id }}">
                     <p>
                       <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#userComment" aria-expanded="false" aria-controls="userComment">
                         <i class="fa fa-chevron-circle-down" aria-hidden="true"></i>

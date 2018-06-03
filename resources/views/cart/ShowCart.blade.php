@@ -51,7 +51,7 @@
 
           <td style="text-align: right;">
             <a onclick="this.parentElement.parentElement.remove()" href="/cart/delete/{{$Item->id}}" class="btn btn-danger a-btn-slide-text">
-             <span class="fa fa-trash" aria-hidden="true"></span>        
+             <span class="fa fa-times" aria-hidden="true"></span>        
             </a>
           </td>
         </tr> 

@@ -184,6 +184,11 @@ function ask(id){
     }
 }
 function getmissingproduct(code){
+    document.getElementById('orderid').value = id;
+    if (!(who=='user')) {
+        bg.style.display = 'block';
+        modal.style.display = 'block';
+    }
     if (code!=null) {
         var data = new FormData();
         data.append("code",code);

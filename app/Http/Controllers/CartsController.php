@@ -20,9 +20,9 @@ class CartsController extends Controller
             $cart->save();
         }
 
-        $items = $cart->cartItems;
+        $Items = $cart->cartItems;
         $total=0;
-        foreach($items as $item){
+        foreach($Items as $item){
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
@@ -31,7 +31,7 @@ class CartsController extends Controller
         $shop=\App\Shop::find(1);
         $categories = Category::all();
         //-------------------------------------------
-        return view('cart.ShowCartV2',compact('items','total','shop','categories'));
+        return view('cart.ShowCartV2',compact('Items','total','shop','categories'));
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/
@@ -39,8 +39,6 @@ class CartsController extends Controller
     public function UpdateCart(Request $req)
     {
         $input = $req->post();
-
-
         $cart = Cart::where('user_id',\Auth::id())->first();
         $items = $cart->cartItems;
 

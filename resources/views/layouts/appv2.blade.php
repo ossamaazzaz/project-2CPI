@@ -76,11 +76,14 @@
 			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{\Auth::User()->avatar}}" height="50px" width="50px" style="border-radius: 50%;">
 					  <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
-                        	<li><a href="/edit">
+                        	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
                         	</a></li>
                         	<li><a href="/cart">
                         		<i class="fa fa-shopping-cart"></i>&nbsp;Panier
+                        	</a></li>
+                        	<li><a href="/orders">
+                        		<i class="fa fa-shopping-cart"></i>&nbsp;Les commandes
                         	</a></li>
                         	<li class="divider"></li>
                         	<li><a href="{{ route('logout') }}"
@@ -160,7 +163,46 @@
 
 
     @yield('content')
-
+    	<!-- model of confirmed by ossama azzaz-->
+               <input type="hidden" id="code" name="">
+                <div class="modal fade" id="missingProducts" tabindex="-1" role="dialog">
+      			<div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Missing Products</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <label for="cmt">Missing Products :</label>
+                      <h2 id="missingproducts"></h2>
+                      <br>
+                      <label for="cmt">Available Products :</label>
+                      <h2 id="availableproducts"></h2>
+                      <br>
+                      <div>
+                        <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                        <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
+                        <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                        <div class="btn btn-info" data-dismiss="modal">Close</div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+            	</div>
+               <div id="cmodale" class="cmodale canimated jackInTheBox">
+                    <h1>Missing Products :</h1>
+                    <h2 id="missingproducts"></h2>
+                    <h1>Available Products :</h1>
+                    <h2 id="availableproducts"></h2>
+                    <dev>
+                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
+                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                    </dev>
+                </div>
 		<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
@@ -316,8 +358,8 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
   	<script src="{{ asset('js/intro.js') }}"></script>
-    <!--<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-    <script src="{{ asset('js/notifications.js')}}"></script>-->
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
 
     	$("#inpt_search").on('focus', function () {

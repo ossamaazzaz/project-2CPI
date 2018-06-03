@@ -51,7 +51,8 @@
 
                             </tbody>
                         </table>
-                    	<input type="submit" id="sub" value="Save" class="btn btn-primary">
+                        <br>
+                    	<input type="submit" id="sub" value=" Save " class="btn btn-primary">
                 </div>
         </div>
 </div>
@@ -95,9 +96,6 @@
 										<td><?php echo e($user->idCard); ?></td>
                                         <td><span class="badge badge-success">approved</span></td>
                                         <td class="users-tools">
-                                            <button class="btn btn-info active" id="<?php echo e($user->id); ?>" onclick="addApprovedUser(this,<?php echo e($user->id); ?>,'<?php echo e($user->approveState); ?>')">
-                                                <i class="fa fa-calendar-check-o"></i>
-                                            </button>
                                             <button  class="btn btn-danger" id="delete<?php echo e($user->id); ?>" onclick="deleteUser(<?php echo e($user->id); ?>)">
                                                 <i class="fa fa-times"></i>
                                             </button>
@@ -109,7 +107,8 @@
 
                             </tbody>
                         </table>
-                        <input type="submit" id="sub" value="Save" class="btn btn-primary">
+                        <br>
+                        <input type="submit" id="sub" value=" Save " class="btn btn-primary">
                     </div>
                 </div>
 </div>

@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.appv2')
 
 @section('content')
 
- <div class="card">
+ <div>
     <input type="hidden" id="orderid" name="">
     <div class="modal fade" id="deleteorderModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -34,7 +34,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                 <tr>
                     <th class="col-sm-2">Id</th>
@@ -56,7 +56,7 @@
             </table>
         </div>
          <div class="col-md-6">
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                 <tr>
                     <th class="col-sm-2">Id</th>

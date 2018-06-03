@@ -67,7 +67,8 @@ class OrdersController extends Controller
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
-        return view('order.list',compact('orders','categories'));
+        $shop = Shop::find(1);
+        return view('order.list',compact('orders','categories','shop'));
     }
     /*
     * to view an order
@@ -80,7 +81,8 @@ class OrdersController extends Controller
     	else
     		$order=Orders::find($id);
         $categories = \App\Category::get();
-        return view('order.order',compact('order','categories'));
+        $shop = Shop::find(1);
+        return view('order.order',compact('order','categories','shop'));
     }
  
     /*

@@ -1,4 +1,4 @@
-@extends('layouts.appV2')
+@extends('layouts.appv2')
 @section('title','SupperetteCom| Votre Panier')
 
 
@@ -27,30 +27,43 @@
   </thead>
 
   <tbody>
-    @foreach ($items as $Item)
+    <form method="POST" action="/cart" >
+    @foreach ($Items as $Item)
     <tr>
       <td class="cart_product">
         <a href=""><img style="height: 100px; width: 100px;" src="{{$Item->product->image}}" alt="{{$Item->product->name}}"></a>
       </td>
       <td class="cart_description">
         <h4><a href="">{{$Item->product->name}}</a></h4>
-        <p>Web ID: 1089772</p>
       </td>
       <td class="cart_price">
-        <p>$59</p>
+        <p>{{ $Item->price }}</p>
       </td>
       <td class="cart_quantity">
-        <div class="cart_quantity_button">
-          <a class="cart_quantity_up" href=""> + </a>
-          <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-          <a class="cart_quantity_down" href=""> - </a>
-        </div>
+        <div class="row" style="width: 150px"> 
+                      <div class="input-group number-spinner">
+                        <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="dwn"
+                          onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1">
+                          <span class="fa fa-minus"></span></button></span>
+
+
+                        <input id="{{'quantity'.$Item->id}}" type="text" class="form-control text-center"
+                               value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
+
+
+                        <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="up"
+                          onclick="quantity{{$Item->id}}.value=parseInt(quantity{{$Item->id}}.value)+1">
+                          <span class="fa fa-plus"></span></button></span>
+                      </div>
+          </div>
       </td>
       <td class="cart_total">
-        <p class="cart_total_price">$59</p>
+        <p class="cart_total_price"></p>
       </td>
-      <td class="cart_delete">
-        <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+      <td >
+        <a onclick="this.parentElement.parentElement.remove()" href="/cart/delete/{{$Item->id}}" class="btn btn-danger a-btn-slide-text">
+             <span class="fa fa-times" aria-hidden="true"></span>        
+            </a>
       </td>
     </tr>
     @endforeach
@@ -68,11 +81,13 @@
         <div class="col-sm-6" style="float: right">
           <div class="total_area">
             <ul>
-              <li>Totale <span>$61</span></li>
+              <li>Totale <span>{{$total}} DA</span></li>
             </ul>
-              <a class="btn btn-default update" href="" style="background-color: #F13A;">Revenir Au Magasin</a>
-              <a class="btn btn-default update" href="">Calculer</a>
-              <a class="btn btn-default check_out" href="" style="float: right">Check Out</a>
+              <button class="btn btn-default update" href="/home" style="background-color: #F13A;">Revenir Au Magasin</button>
+              <button type="submit" class="btn btn-default update">Calculer</button></form>
+              <form method="POST" action="/checkout">
+              <button type="submit" class="btn btn-default check_out" style="float: right">Check Out</button>
+              </form>
           </div>
         </div>
       </div>

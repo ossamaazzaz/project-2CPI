@@ -80,7 +80,8 @@ function MakeAndRouteNotification(notification) {
     var to = '';
     var code = notification.data;
     if (notification.type === NOTIFICATION_TYPES.MissingProducts || notification.type === NOTIFICATION_TYPES_RT.MissingProducts) {
-        to = `onclick="getmissingproduct('{{$notif->data }}')"`;
+        to = `onclick="getmissingproduct('`+code+`')" data-toggle="modal" data-target="#missingProducts"`;
+        console.log(code);
     } else if (notification.type === NOTIFICATION_TYPES.Confirmation || notification.type === NOTIFICATION_TYPES_RT.Confirmation) {
         to = `href="facture/` + code+`"`;
     }
