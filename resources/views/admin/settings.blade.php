@@ -32,13 +32,13 @@
         <div class="main-settings">
           <center>
             <input id="tab1" type="radio" name="tabs" checked class="tabs-input">
-            <label for="tab1" class="tabs-label" >generale settings</label>
+            <label for="tab1" class="tabs-label" >générale</label>
               
             <input id="tab2" type="radio" name="tabs" class="tabs-input">
-            <label for="tab2" class="tabs-label">visual part</label>
+            <label for="tab2" class="tabs-label">apparence </label>
               
             <input id="tab3" type="radio" name="tabs" class="tabs-input">
-            <label for="tab3" class="tabs-label" >import/export</label>
+            <label for="tab3" class="tabs-label" >importer/exporter</label>
               
             <input id="tab4" type="radio" name="tabs" class="tabs-input">
             <label for="tab4" class="tabs-label">other</label>
@@ -175,18 +175,7 @@
                   </div>
               </div>
 
-              <div class="form-group row">
-                  <label for="terms" class="col-md-4 col-form-label text-md-right">terms :</label>
-                  <div class="col-md-6">
-                       <textarea id="terms" class="form-control{{ $errors->has('terms') ? ' is-invalid' : '' }}" name="terms" required autofocus  rows="3">{{$shop->terms}}</textarea>
-                       
-                      @if ($errors->has('terms'))
-                          <span class="invalid-feedback">
-                              <strong>{{ $errors->first('terms') }}</strong>
-                          </span>
-                      @endif
-                  </div>
-              </div>
+              
 
             
               <div class="form-group row mb-0">
@@ -371,7 +360,20 @@
           </form>
 
             </section>
-              
+              <section id="content4">
+                  <div class="form-group row">
+                    <label for="terms" class="col-md-3 col-form-label">terms :</label>
+                    <div class="col-md-8">
+                         <textarea id="terms" class="form-control{{ $errors->has('terms') ? ' is-invalid' : '' }}" name="terms" required autofocus  rows="15" style="width:100%">{{$shop->terms}}</textarea>
+                         
+                        @if ($errors->has('terms'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('terms') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+              </section>
            </center>   
           </div>
           

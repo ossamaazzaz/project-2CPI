@@ -6,19 +6,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@yield('title')</title>
+    <link href="{{ asset('css/app.css') }} " rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
 	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
+	
 	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
     <!-- intro.js css import-->
     <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
     <!--comments css -->
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet"> 
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/navbar.css') }}">
     <!--[if lt IE 9]>
@@ -34,7 +36,8 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
 <body>
-	<header>
+	<div id="toast" class="">votre ordre est pret</div>
+	<header style="margin-bottom: 30px">
 		<nav class="navbar navbar-default" role="navigation" style=" margin-bottom: 0px;">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,8 +57,8 @@
 		        	<a href="/home" style="margin-left: -155px;">Accueil</a>
 		        </li>
 		        <li class="dropdown">
-					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left: -43px;">Categories
-					  <span class="caret"></span></a>
+					  <a class="dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left: -43px;">Catégories
+					  </a>
 					  <ul class="dropdown-menu">
 					    @foreach($categories as $category)
                         	<li><a href="/search?category={{$category->id}}">{{$category->name}}</a></li>
@@ -73,9 +76,12 @@
 			    @else
 
 			    <li class="pull-right" style="margin: -10px 40px 0 0">
-			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{\Auth::User()->avatar}}" height="50px" width="50px" style="border-radius: 50%;">
-					  <span class="caret"></span></a>
+
+			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
+
+					  	<li onclick="showToast('notif shit')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>
+
                         	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
                         	</a></li>
@@ -98,7 +104,9 @@
 			    <li id="noDrdown" class="pull-right dropdown" style="margin: -20px 0px 0 0">
                   <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div id="ex4">
+
 					  <span id="notificationCounter" class="p1 fa-stack fa-2x has-badge" data-count="0">
+
 					    <i class="p3 fa fa-bell-o fa-stack-1x xfa-inverse" data-count="4b"></i>
 					  </span>
 					</div>
@@ -361,7 +369,6 @@
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
-
     	$("#inpt_search").on('focus', function () {
 		$(this).parent('label').addClass('active');
 		});
@@ -369,8 +376,25 @@
 		$("#inpt_search").on('blur', function () {
 			if($(this).val().length == 0)
 				$(this).parent('label').removeClass('active');
-
 		});
     </script>
+
+    <script type="text/javascript">
+    	function showToast(text) {
+		    var x = document.getElementById("toast");
+		    x.innerHTML = text;
+		    x.className = "show";
+		    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
+		}
+		 jQuery(document).ready(function() {
+		    jQuery('.scroll-down').on('click', function(){
+		        jQuery('html, body').animate({
+		            scrollTop: jQuery('#ok').offset().top-100
+		        }, 500);
+		    });
+		 });
+    </script>
+
+
 </body>
 </html>

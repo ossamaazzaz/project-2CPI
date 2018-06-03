@@ -1,7 +1,7 @@
 @extends('layouts.appv2')
 @section('title','SupperetteCom| Home')
 @section('content')
-<section id="slider"><!--slider-->
+<section id="slider" style="margin-top: -34px"><!--slider-->
           <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="width: 100%">
             <ol class="carousel-indicators">
               <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
@@ -14,21 +14,25 @@
               <div class="item active parallax" style="width: 100%;    background-image: url('{{asset('1.jpg')}}');">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">Welcome to superrete</h1>
-                    <h3>mouloud khra</h3>
+                    <h3>mouloud text</h3>
                   </div>
+                  <a id="scroll-down" class="scroll-down"></a>
               </div>
 
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('2.jpg')}}');">
                   <div class="caption ">
-                    <h1 style="color: white" class="animated rollIn">Mouloud is khra aussi</h1>
+                    <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
                     <h2 style="color: black">yes he is</h2>
                   </div>
-              </div>     
+                  <a id="scroll-down"></a>
+              </div>
+              
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('3.jpg')}}');">
                   <div class="caption animated rollIn">
-                    <h1 style="color: white">get the fuck out of here</h1>
-                    <h3>wow cool hehe</h3>
+                    <h1 style="color: white">thanks get out of here</h1>
+                    <h3>some other text </h3>
                   </div>
+                  <a id="scroll-down"></a>
               </div>
 
              <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -41,7 +45,7 @@
       </div>
   </section><!--/slider-->
 
-    <section>
+<section id="ok">
     <div class="container">
       <div class="row">
         <div class="col-sm-3">

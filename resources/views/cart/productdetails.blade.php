@@ -1,161 +1,275 @@
-@extends('layouts.app')
+@extends('layouts.appv2')
 
 @section('content')
+
 <!---Product Details-->
+<style>
+  body{
+    overflow-x: hidden;
+  }
+  .product-img {
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-</br>
+.product-img:hover{
+    opacity: 0.5;
+}
+
+
+.img-modal-bg{
+    display: none; 
+    position: fixed;
+    z-index: 99999;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+.img-modal-content {
+    margin: auto;
+    display: block;
+    width: 60%;
+    max-width: 700px;
+    height: 80%;
+}
+
+.img-modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.img-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.img-modal-close:hover,
+.img-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* responsive with small screen devices */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+</style>
 <div class="container">
-    <div class="row">
-        <!-- Image -->
-          <div class="col-4 col-lg-7">
-              <div class="card bg-light mb-3">
-                  <div class="card-body">
-                      <a href="" data-toggle="modal" data-target="#productModal">
-                          <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
-                          <!--ps: must to add a slide show-->
-                      </a>
-                  </div>
+  <div class="row">
+    <div class="col-sm-3">
+          <div class="left-sidebar">
+            <h2>Categories</h2>
+            <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+              @foreach ($categories as $cat)
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a onclick="leftcategorylist(this)" id="{{ $cat->id }}">{{ $cat->name }}</a></h4>
+                </div>
               </div>
+              @endforeach
+              
+            </div><!--/category-products-->
+          
+            <div class="brands_products"><!--brands_products-->
+              <h2>Brands</h2>
+              <div class="brands-name">
+                <ul class="nav nav-pills nav-stacked">
+                  <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
+                  <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
+                  <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
+                  <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
+                  <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
+                  <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
+                  <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
+                </ul>
+              </div>
+            </div><!--/brands_products-->
+            
+            <div class="price-range"><!--price-range-->
+              <h2>Price Range</h2>
+              <div class="well text-center">
+                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+              </div>
+            </div><!--/price-range-->
+            
+            <div class="shipping text-center"><!--shipping-->
+              <h2>Ads</h2>
+              <img src="" alt="" />
+            </div><!--/shipping-->
+          
           </div>
-      <!-- Add to cart -->
-
-        <div class="col-12 col-lg-5 add_to_cart_block">
-            <div class="card bg-light mb-3">
-                <div class="card-body">
-                    <h3 class="card-title" style="text-align: center;"><strong> {{$product->name}} </strong></h3>
-                    <h5 ><strong>Price  : {{$product->price}} DZD</strong> </h5>
-
-                    <form method="POST"  action="{{ action('ProductDetailsController@addItemToCart') }}" enctype="multipart/form-data">
-                      <h5>
-                        <strong>Quantity : <input id="Quantity" type="text" name="Quantity" value="1" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"  style="width: 50px" /> </strong>
-                      </h5>
-
-                    <h5>
-                      <input name="id" id="productId" value="{{$product->id}}" type="hidden"/>
-                      <strong> Availability: {{ $product->quantitySale }} </strong>
-                    </h5> <!--add function for that to say if the product still available-->
-                        <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
-                            <i class="fa fa-shopping-cart"></i> Add To Cart
-                        </button>
-                    </form>
-                    <div>
-                        3 reviews <!-- it will be dynamic soon (kacem)-->
-                        @for($i = 0; $i <$productDetails->rating; $i++)
-                          <i class="fa fa-star" style="color: gold"></i>
-                        @endfor
-                        @for($i = $productDetails->rating; $i < 5; $i++)
-                        <i class="fa fa-star" style="color: black"></i>
-                        @endfor
-                        <!-- La moyenne des stars from reviews-->
-
-                        ({{$productDetails->rating}}/5)
-                        <a class="pull-right" href="#reviews">View all reviews</a>
+        </div>
+    <div class="col-sm-9 padding-right">
+      <h2 class="title text-center">Produits</h2>
+      <div class="container">
+          <div class="row">
+              <!-- Image -->
+                <div class="col-4 col-lg-5">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <a>
+                                <img src="{{$product->image}}" alt="Product Picture" class="img-fluid product-img" onclick="showImgModal(this)" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
+                                <!--ps: must to add a slide show-->
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-     <div class="row">
-            <!-- Description -->
+            <!-- Add to cart -->
 
-        <div class="col-12">
-            <div class="card card-outline-secondary my-4">
-                <div class="card-header">
-                  <i class="fa fa-align-justify"></i>Description</div>
-                <div class="card-body">
-                    <p class="card-text">{{$productDetails->description}}</p>
-                </div>
-            </div>
+              <div class="col-12 col-lg-4 add_to_cart_block">
+                  <div class="card mb-3">
+                      <div class="card-body">
+                          <div><p><h3 style="text-align: center;"> {{$product->name}} </h3></p>
+                            <br></div>
+                          <div><p ><strong>Price  : {{$product->price}} DZD</strong> </p></div>
 
-            <center><div class="sharethis-inline-share-buttons " style="float: center;"></div></center>
-        </div>
-        <!-- Reviews -->
-        <div class="col-12" id="reviews">
-          <div class="card border-light mb-3">
-            <div class="card-header"><i class="fa fa-comment"></i> Commentaires</div>
-            <div class="container ">
-              @foreach ($productDetails->comments as $comment)
-                <div class="row">
-                  <div class="col-md-2" style="margin-bottom: 20px;">
-                    <img class="comment-img" src="{{ $comment->user->avatar }}">
+                          <form method="POST"  action="{{ action('ProductDetailsController@addItemToCart') }}" enctype="multipart/form-data">
+                            <div>
+                              <strong>Quantity : <input id="Quantity" type="text" name="Quantity" value="1" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"  style="width: 50px" /> </strong>
+                            </div>
+
+                          <div>
+                            <input name="id" id="productId" value="{{$product->id}}" type="hidden"/>
+                            <strong> Availability: In Stock/In Market </strong>
+                            <br><br>
+                          </div> <!--add function for that to say if the product still available-->
+                              <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
+                                  <i class="fa fa-shopping-cart"></i> Add To Cart
+                              </button>
+                          </form>
+                          <div>
+
+
+                              3 reviews <!-- it will be dynamic soon (kacem)-->
+                              @for($i = 0; $i <$productDetails->rating; $i++)
+                                <i class="fa fa-star" style="color: gold"></i>
+                              @endfor
+                              @for($i = $productDetails->rating; $i < 5; $i++)
+                              <i class="fa fa-star" style="color: black"></i>
+                              @endfor
+                              <!-- La moyenne des stars from reviews-->
+
+                              ({{$productDetails->rating}}/5)
+                              <a class="pull-right" href="#reviews">View all reviews</a>
+                          </div>
+                      </div>
                   </div>
-                  <div class="col-md-10 container" style='margin-bottom: 10px;font-family: "Raleway", sans-serif'>
-                    <h4>  {{$comment->user->username }} </h4>
-                    <div><p>{{$comment->body}}</p></div>
-                    <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
-                    @if (Auth::id() == $comment->user->id )
-                    <div class="tools-btns">
-                      <button type="submit" id="{{$comment->id }}" onclick="cmtToForm(this)" class="btn btn-success">
-                            <i class="fa fa-edit"></i>
-                      </button>
-                      <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
-                         <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-window-close" aria-hidden="true"></i>
-                         </button>
-                      </a>
-                     </div>
-                    @endif
+              </div>
+          </div>
+           <div class="row">
+                  <!-- Description -->
 
+              <div class="col-9">
+                  <div class="card border-light mb-3">
+                      <div class="card-header bg-primary text-white text-uppercase">
+                        <i class="fa fa-align-justify"></i> Description</div>
+                      <div class="card-body">
+                          <p class="card-text" style="padding-left: 15px">
+                            {{$productDetails->description}}
+                          </p>
+                      </div>
                   </div>
-                </div>
-               @endforeach
+              </div>
 
-              <!--did we forgot raiting system -->
-              <!--Add a comment -->
+              <!-- Reviews -->
+              <div class="col-9" >
+                <div class="card border-light mb-3">
+                  <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Commentaires</div>
+                  
+                  <div class="container">
+                     @foreach ($productDetails->comments as $comment)
+                      <div class="row" style="margin-top: 20px;">
+                        <div class="col-md-2" style="margin-bottom: 20px;">
+                          <img class="comment-img" src="{{ $comment->user->avatar }}">
+                        </div>
+                        <div class="col-md-10 container" style='margin: 0 0 10px -50px;font-family: "Raleway", sans-serif'>
+                          <h4>  {{$comment->user->username }} </h4>
+                          <div><p>{{$comment->body}}</p></div>
+                          <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
+                          @if (Auth::id() == $comment->user->id )
+                          <div class="tools-btns">
+                            <button type="submit"n onclick="cmtToForm(this)" class="btn btn-success">
+                                  <i class="fa fa-edit"></i>
+                            </button>
+                            <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
+                               <button type="submit" class="btn btn-danger">
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                               </button>
+                            </a>
+                           </div>
+                          @endif
 
-              <div class="row" id="comment-box-container" >
-                <div class="col-md-2" style='margin-bottom: 20px;font-family: "Raleway", sans-serif'>
-                  <img class="comment-img" src="{{ Auth::user()->avatar }}">
-                </div>
-                <div class="col-md-10 container" style="margin-bottom: 20px;">
-                  <form method="POST" action="/home/{{$productDetails->product_id}}/comments">
-                    {{ csrf_field() }}
-                    <textarea name="body" class="comment-input" rows='1' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required></textarea>
-                    <i class="glyphicon glyphicon-remove"></i>
-                    <button type="submit" class="btn btn-success">Envoyer<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                  </form>
+                        </div>
+                      </div>
+
+                    @endforeach
+                    <!--did we forgot raiting system -->
+                    <!--Add a comment -->
+                    <div class="row" id="comment-box-container" style="margin-top: 30px;" >
+                      <div class="col-md-2" style='margin-bottom: 20px;font-family: "Raleway", sans-serif'>
+                        <img class="comment-img" src="{{ Auth::user()->avatar }}">
+                      </div>
+                      <div class="col-md-10 container" style="margin: 0 0 20px -50px;">
+                        <form method="POST" action="/home/{{$productDetails->product_id}}/comments">
+                          {{ csrf_field() }}
+                          <textarea name="body" class="comment-input" rows='2' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required></textarea>
+                          <button type="submit" class="btn btn-success">Envoyer <i class="glyphicon glyphicon-send" aria-hidden="true"></i></button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
             </div>
           </div>
-        </div>
       </div>
     </div>
+  </div>
 </div>
 
 
-
-
 <!-- Modal image -->
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Product title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img class="img-fluid" src="{{ $product->image }}" style="display:block;margin-left: auto;margin-right: auto;height=1200px; width:1200px;"/>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
+<div id="img-modal" class="img-modal-bg">
+  <span class="img-modal-close" onclick="imgModal.style.display = 'none'">&times;</span>
+  <img class="img-modal-content">
 </div>
 <!--Scripts-->
 <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
 <script type="text/javascript">
       var commentCont,comment,lngth,btns,cmtValue,btns1,el;
       //----------------------------------------------------------------------//
-      function autosize(){
-        el = this;
+      function autosize(object){
         setTimeout(function(){
-          el.style.cssText = 'height:auto; padding:0';
-          el.style.cssText = 'height:' + el.scrollHeight + 'px';
+          object.style.cssText = 'height:auto; padding:0';
+          object.style.cssText = 'height:' + object.scrollHeight + 'px';
         },0);
       }
       //----------------------------------------------------------------------//
@@ -184,6 +298,15 @@
         }
         $("#comment-box-container").css("display","flex");
       }
+      /*---------------------------------------------*/
+      var imgModal = document.getElementById('img-modal');
+
+        var modalImg = imgModal.childNodes[3];
+        function showImgModal(object){
+            imgModal.style.display = "block";
+            modalImg.src = object.src;
+        }
+
 </script>
 
 
