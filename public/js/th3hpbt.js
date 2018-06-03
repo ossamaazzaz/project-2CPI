@@ -364,7 +364,9 @@ jQuery(document).ready(function (){
             processData: false,
             contentType: false,
             success : function(data){
-                console.log(data); }
+                console.log("Approved");
+                window.location.href = "/admin/users";
+                 }
         });
     });
 

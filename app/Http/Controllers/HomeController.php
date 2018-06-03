@@ -46,8 +46,7 @@ class HomeController extends Controller
         for ($i=0; $i <count($slides) ; $i++) { 
             $slides[$i] = str_replace('public', '/storage', $slides[$i] );
         }
-
-        
+    
 
         return view('homev2',compact("shop","slides","products","productsfeactured","categories","lastPage","currentPage"));
     }
@@ -58,8 +57,11 @@ class HomeController extends Controller
      */
     public function edit()
     {
+        //informations needed in the appv2
+        $shop=\App\Shop::find(1);
         $categories = Category::all();
-        return view('auth.edit',compact('categories'));
+        
+        return view('auth.edit',compact('shop','user','categories'));
     }
 
     /**
@@ -129,12 +131,39 @@ class HomeController extends Controller
     
     public function contactus(Request $req){
         if ($req->isMethod('get')) {
-            $shop = Shop::find(1);
+            //informations needed in the appv2
+            $shop=\App\Shop::find(1);
+            $user= \Auth::User();
             $categories = Category::all();
-            return view('widgets.contactus',compact('shop','categories'));
+
+            //-------------------------------------------
+            return view('widgets.contactus',compact('shop','user','categories'));
         }else{
             //contact msg 
             return redirect('/home');
         }
     }
+
+    public function TermsAndConditions(){
+
+        //informations needed in the appv2
+        $shop=\App\Shop::find(1);
+        $categories = Category::all();
+        $notifications = Product::getnotifications();
+        //-------------------------------------------
+
+        return view('terms',compact('shop','categories','notifications'));
+    }
+
+    public function About(){
+
+        //informations needed in the appv2
+        $shop=\App\Shop::find(1);
+        $categories = Category::all();
+        $notifications = Product::getnotifications();
+        //-------------------------------------------
+
+        return view('about',compact('shop','categories','notifications'));
+    }
+
 }

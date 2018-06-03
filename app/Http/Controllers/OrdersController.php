@@ -31,32 +31,32 @@ class OrdersController extends Controller
         //Retrieve cart information
         $cart = Cart::where('user_id',Auth::user()->id)->first();
         $items = $cart->cartItems;
-        $total=0;
-        foreach($items as $item){
-            $total+= $item->product->price * $item->quantity;
-        }
+        if (count($items)>0) {
+            $total=0;
+            foreach($items as $item){
+                $total+= $item->product->price * $item->quantity;
+            }
 
-        $order = new Orders();
-        $order->total_paid= $total;
-        $order->user_id=Auth::user()->id;
-        $code = str_random((6));
-        while(!Orders::where('code','=',$code)->get()->isEmpty()) {
+            $order = new Orders();
+            $order->total_paid= $total;
+            $order->user_id=Auth::user()->id;
             $code = str_random((6));
-        }
-        $order->code = $code;
-        $order->save();
+            while(!Orders::where('code','=',$code)->get()->isEmpty()) {
+                $code = str_random((6));
+            }
+            $order->code = $code;
+            $order->save();
 
-        foreach($items as $item){
-            $orderItem = new OrderItem();
-            $orderItem->order_id=$order->id;
-            $orderItem->product_id=$item->product->id;
-            $orderItem->quantity=$item->quantity;         
-            $orderItem->save();
-            CartItem::destroy($item->id);
-    	}
-        
-
-        return redirect('orders/'.$order->id);
+            foreach($items as $item){
+                $orderItem = new OrderItem();
+                $orderItem->order_id=$order->id;
+                $orderItem->product_id=$item->product->id;
+                $orderItem->quantity=$item->quantity;         
+                $orderItem->save();
+                CartItem::destroy($item->id);
+        	}
+            return redirect('orders/'.$order->id);
+        }else return redirect('cart');
     }
 
     /*

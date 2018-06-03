@@ -28,7 +28,7 @@ class ProductDetailsController extends Controller{
       $productDetails->rating = $rateMoy;
       $productDetails->save();
       $categories = Category::get();
-
+      
       $shop = Shop::find(1);
       return view("cart.productdetailsv2",compact('shop','product','productDetails','categories'));
     }
@@ -54,7 +54,5 @@ class ProductDetailsController extends Controller{
       $cartItem->save();
       return redirect("/cart");
     }
-
-    /* Rating */
 
 }

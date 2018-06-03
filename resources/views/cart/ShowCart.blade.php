@@ -1,5 +1,5 @@
-@extends('layouts.app')
-
+@extends('layouts.appv2')
+@section('title','SupperettecCom| Votre Panier')
 @section('content')
 <div class="container" style=" margin-left: auto; margin-right: auto;">
     <div class="row">

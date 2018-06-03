@@ -26,9 +26,12 @@ class CartsController extends Controller
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
-        
-        $categories = Category::get();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories]);
+
+        //informations needed in the appv2
+        $shop=\App\Shop::find(1);
+        $categories = Category::all();
+        //-------------------------------------------
+        return view('cart.ShowCartV2',compact('items','total','shop','categories'));
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

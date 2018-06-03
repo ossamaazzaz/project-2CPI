@@ -27,7 +27,7 @@ class DashbaordController extends Controller
 
 
         $Total_Products = DB::table('products')->count();
-        $Total_users = DB::table('users')->count();
+        $Total_users = DB::table('users')->where('approveState','Approved')->count();
 
         $Total_Revenue = 0;
         for ($i=0; $i < count($orders); $i++) { 
@@ -42,21 +42,15 @@ class DashbaordController extends Controller
             }
         }
 
-
+        //Never mind this categories shit, i'm using it just for the charts
         $SortedCategories = \App\Category::all()->sortBy(function ($cat) {
             return $cat->products->count();
         });
         
-        //dd($SortedCategories);
-
         for ($i=0; $i < min(5,count($SortedCategories)) ; $i++) { 
             $CategoriesNames[$i] = $SortedCategories[$i]->name;
             $CategoriesValues[$i] = $SortedCategories[$i]->products->count();
         }
-
-   
-
-
 
     	return view('admin.admin', compact('shop','comments','orders','revenues','Total_Revenue','Total_Products','Total_users','Completed_Orders','CategoriesValues','CategoriesNames'));
     }

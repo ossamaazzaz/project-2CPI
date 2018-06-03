@@ -64,6 +64,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Rate' => $baseDir . '/app/Rate.php',
     'App\\Shop' => $baseDir . '/app/Shop.php',
+    'App\\TermArticle' => $baseDir . '/app/TermArticle.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Barryvdh\\Snappy\\Facades\\SnappyImage' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
     'Barryvdh\\Snappy\\Facades\\SnappyPdf' => $vendorDir . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home </title>
+    <title>@yield('title')</title>
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> 
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
@@ -49,7 +49,7 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right:0px !important;">
 		      <ul class="nav navbar-nav" style="height: 75px;">
-		        <li class="pull-left"><a href="#"><img src="{{asset('logo2.png')}}" id="main-logo"></a></li>
+		        <li class="pull-left"><a href="#"><img src="{{$shop->logo}}" id="main-logo"></a></li>
 		        <li class="active">
 		        	<a href="/home" style="margin-left: -155px;">Accueil</a>
 		        </li>
@@ -63,7 +63,7 @@
 					  </ul>
 			      </li>
 		        <li><a href="/contactus">Contactez-nous</a></li>
-		        <li><a href="">A propos</a></li>
+		        <li><a href="/about">A propos</a></li>
 		        @if (Auth::guest())
 		        <li class="pull-right" style="margin: 2px 0px 0 0;font-size: 16px">
 		        	<a href="{{ route('login') }}">
@@ -71,8 +71,9 @@
 			        </a>
 			    </li>
 			    @else
+
 			    <li class="pull-right" style="margin: -10px 40px 0 0">
-			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ asset('photodeprofile.jpg') }}" height="50px" width="50px" style="border-radius: 50%;">
+			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{\Auth::User()->avatar}}" height="50px" width="50px" style="border-radius: 50%;">
 					  <span class="caret"></span></a>
 					  <ul class="dropdown-menu">
                         	<li><a href="/edit">
@@ -117,7 +118,6 @@
                           </div>    
                         </div>
                       </li>
-                      <li class="divider"></li>
                       @endif
                     </ul>
                 </li>
@@ -302,7 +302,7 @@
 	<input type="hidden" id="userId" name="userId" value="noId">
 	@endif
 	</footer>
-  	
+  	<!-- Scripts -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
@@ -325,13 +325,10 @@
 		});
 
 		$("#inpt_search").on('blur', function () {
-			console.log("great");
 			if($(this).val().length == 0)
 				$(this).parent('label').removeClass('active');
 
 		});
     </script>
-
-
 </body>
 </html>

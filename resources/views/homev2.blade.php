@@ -1,5 +1,5 @@
 @extends('layouts.appv2')
-
+@section('title','SupperetteCom| Home')
 @section('content')
 <section id="slider"><!--slider-->
           <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="width: 100%">
@@ -81,7 +81,6 @@
               <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-                      <img src="{{ $product->image }}" alt="" />
                       <h2>{{ $product->price }} DA</h2>
                       <p> {{ $product->name }}  </p>
                       

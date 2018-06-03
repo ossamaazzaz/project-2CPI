@@ -401,6 +401,7 @@ class ComposerStaticInit5f72456cb2d56e7b88eab23a689c4843
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Rate' => __DIR__ . '/../..' . '/app/Rate.php',
         'App\\Shop' => __DIR__ . '/../..' . '/app/Shop.php',
+        'App\\TermArticle' => __DIR__ . '/../..' . '/app/TermArticle.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Barryvdh\\Snappy\\Facades\\SnappyImage' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyImage.php',
         'Barryvdh\\Snappy\\Facades\\SnappyPdf' => __DIR__ . '/..' . '/barryvdh/laravel-snappy/src/Facades/SnappyPdf.php',
