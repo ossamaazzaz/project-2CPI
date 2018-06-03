@@ -17,21 +17,6 @@
 			              @endforeach
 			              
 			            </div><!--/category-products-->
-					
-						<div class="brands_products"><!--brands_products-->
-							<h2>Brands</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href=""> <span class="pull-right">(50)</span>Acne</a></li>
-									<li><a href=""> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-									<li><a href=""> <span class="pull-right">(27)</span>Albiro</a></li>
-									<li><a href=""> <span class="pull-right">(32)</span>Ronhill</a></li>
-									<li><a href=""> <span class="pull-right">(5)</span>Oddmolly</a></li>
-									<li><a href=""> <span class="pull-right">(9)</span>Boudestijn</a></li>
-									<li><a href=""> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
 						
 						<div class="price-range"><!--price-range-->
 							<h2>Price Range</h2>
@@ -58,37 +43,6 @@
 								</a>
 								
 							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides -->
-								    <div class="carousel-inner">
-										<div class="item active" >
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/product-details/similar1.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar2.jpg" alt=""></a>
-										  <a href=""><img src="images/product-details/similar3.jpg" alt=""></a>
-										</div>
-										
-									</div>
-
-								  <!-- Controls -->
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div>
-
 						</div>
 						<center><div class="sharethis-inline-share-buttons " style="float: center;"></div></center>
 						<div class="col-sm-7">
@@ -108,8 +62,8 @@
 									</button>
 								</form>
 								</span>
-								<p><b>Disponibilité :</b> @if($product->quantitySale>0) <p>In Stock</p>
-														  @else <p>Not In Stock </p>
+								<p><b>Disponibilité :</b> @if($product->quantitySale>0) <p style="color: green;">In Stock</p>
+														  @else <p style="color: red;">Not In Stock </p>
 														  @endif</p>
 								<p><b>Marque:</b> {{ $product->brand }}</p>
 								<div>
@@ -125,79 +79,36 @@
                         ({{$productDetails->rating}}/5)
                         <a class="pull-right" href="#reviews" style="color: black"> View all reviews </a>
                     </div>
-								
+                    <hr>
+                    <div id="ratingTab">
+                    <label class="pull-left" style="display: inline;">Rating : </label>
+                   	<div class="srating pull-left" style="margin-right:  10px;">
+			                <span id="star5" onclick="rating(5)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+			                <span id="star4" onclick="rating(4)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+			                <span id="star3" onclick="rating(3)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+			                <span id="star2" onclick="rating(2)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+			                <span id="star1" onclick="rating(1)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+						</div>
+					<button class="btn btn-success" onclick="saveRate({{ $product->id }})">Rate !</button>
+                    </div>
+					<label id="afterRating" class="hidden" style="display: inline;">Thanks !</label>		
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
 					
 					<div class="category-tab shop-details-tab"><!--category-tab-->
-						<div class="col-sm-12">
+						<div class="col-sm-6">
 							<ul class="nav nav-tabs">
-								<li><a href="#details" data-toggle="tab">Description</a></li>
-								<li><a href="#tag" data-toggle="tab">Tag</a></li>
-								<li class="active"><a href="#reviews" data-toggle="tab">Commentaires(5)</a></li>
+								<li><a class="active" href="#details" data-toggle="tab">Description</a></li>
+								<li><a href="#reviews" data-toggle="tab">Commentaires(5)</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div class="tab-pane fade" id="details" >
 							<p >{{$productDetails->description}}</p>	
 							</div>
-						</div>
-							
-							
-							<div class="tab-pane fade" id="tag" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/gallery4.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-							<div class="tab-pane fade active in" id="reviews" >
-								<div class="col-sm-6">
+														<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
 									<div class="container ">
 						              @foreach ($productDetails->comments as $comment)
 						                <div class="row">
@@ -210,7 +121,7 @@
 						                    <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
 						                    @if (Auth::id() == $comment->user->id )
 						                    <div class="tools-btns">
-						                      <button type="submit" id="{{ $comment->user->id }}" onclick="cmtToForm(this)" class="btn btn-success">
+						                      <button type="submit" id="{{ $comment->id }}" onclick="cmtToForm(this)" class="btn btn-success">
 						                            <i class="fa fa-edit"></i>
 						                      </button>
 						                      <a type="submit" class="btn btn-danger" onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
@@ -234,117 +145,28 @@
 						                  <form method="POST" action="/home/{{$productDetails->product_id}}/comments">
 						                    {{ csrf_field() }}
 						                    <textarea name="body" class="comment-input" rows='1' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required></textarea>
-						                    <i class="glyphicon glyphicon-remove"></i>
+						                    <div class="col-md-6">
+											<button class="btn btn-warning"><i class="glyphicon glyphicon-remove"></i></button>
 						                    <button type="submit" class="btn btn-success">Envoyer<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+							            	</div>
+						                    
+
 						                  </form>
 						                </div>
 						              </div>
 						              
 						            </div>
-
-									
 								</div>
 							</div>
-							
+						</div>
 						</div>
 					</div><!--/category-tab-->
-					
-					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
-						
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
-						</div>
-					</div><!--/recommended_items-->
-					
 				</div>
 			</div>
 		</div>
 	</section>
 <!-- Modal image -->
+<input type="hidden" id="productId" value="{{$product->id}}">
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -378,7 +200,6 @@
       var comment,lngth,btns,cmtValue,btns1;
       function cmtToForm(object){
         comment = object.parentNode.parentNode.childNodes[3];
-        console.log(comment.innerHTML);
         lngth = comment.parentNode.parentNode.parentNode.childNodes.length;
         btns = document.getElementsByClassName("tools-btns");
         jQuery("#comment-box-container").css("display","none");
@@ -386,7 +207,13 @@
         commentCont = comment.childNodes[1];
         // get id (fixing a bug)
         id = object.id;
-        comment.innerHTML ='<form method="POST" action="/home/'+id+'/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
+        comment.innerHTML =`<form method="POST" action="/home/`+id+`/update">
+						                    <textarea name="body" class="comment-input" rows='1' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required>`+cmtValue+`</textarea>
+											<input type="hidden" id="ratingStore" name="rating">
+											<button class="btn btn-warning"><i class="glyphicon glyphicon-remove"></i></button>
+						                    <button type="submit" class="btn btn-success">Envoyer<i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+							            	</div>
+						                  </form>`;
         for (var i = 0; i < btns.length; i++) {
           btns[i].style.display = 'none';
         }

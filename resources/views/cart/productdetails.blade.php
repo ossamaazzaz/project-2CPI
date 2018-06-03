@@ -1,4 +1,4 @@
-@extends('layouts.appv2')
+@extends('layouts.app')
 
 @section('content')
 <!---Product Details-->
@@ -21,25 +21,23 @@
         <div class="col-12 col-lg-5 add_to_cart_block">
             <div class="card bg-light mb-3">
                 <div class="card-body">
-                    <div><p style="text-align: center;"><strong> {{$product->name}} </strong></p></div>
-                    <div><p ><strong>Price  : {{$product->price}} DZD</strong> </p></div>
+                    <h3 class="card-title" style="text-align: center;"><strong> {{$product->name}} </strong></h3>
+                    <h5 ><strong>Price  : {{$product->price}} DZD</strong> </h5>
 
                     <form method="POST"  action="{{ action('ProductDetailsController@addItemToCart') }}" enctype="multipart/form-data">
-                      <div>
+                      <h5>
                         <strong>Quantity : <input id="Quantity" type="text" name="Quantity" value="1" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"  style="width: 50px" /> </strong>
-                      </div>
+                      </h5>
 
-                    <div>
+                    <h5>
                       <input name="id" id="productId" value="{{$product->id}}" type="hidden"/>
-                      <strong> Availability: In Stock/In Market </strong>
-                    </div> <!--add function for that to say if the product still available-->
+                      <strong> Availability: {{ $product->quantitySale }} </strong>
+                    </h5> <!--add function for that to say if the product still available-->
                         <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
                             <i class="fa fa-shopping-cart"></i> Add To Cart
                         </button>
                     </form>
                     <div>
-
-
                         3 reviews <!-- it will be dynamic soon (kacem)-->
                         @for($i = 0; $i <$productDetails->rating; $i++)
                           <i class="fa fa-star" style="color: gold"></i>
@@ -60,9 +58,9 @@
             <!-- Description -->
 
         <div class="col-12">
-            <div class="card border-light mb-3">
-                <div class="card-header bg-primary text-white text-uppercase">
-                  <i class="fa fa-align-justify"></i> Description</div>
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                  <i class="fa fa-align-justify"></i>Description</div>
                 <div class="card-body">
                     <p class="card-text">{{$productDetails->description}}</p>
                 </div>
@@ -73,7 +71,7 @@
         <!-- Reviews -->
         <div class="col-12" id="reviews">
           <div class="card border-light mb-3">
-            <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Commentaires</div>
+            <div class="card-header"><i class="fa fa-comment"></i> Commentaires</div>
             <div class="container ">
               @foreach ($productDetails->comments as $comment)
                 <div class="row">
@@ -86,7 +84,7 @@
                     <span class="comment-date">{{ $comment->created_at->diffForHumans() }}</span>
                     @if (Auth::id() == $comment->user->id )
                     <div class="tools-btns">
-                      <button type="submit" onclick="cmtToForm(this)" class="btn btn-success">
+                      <button type="submit" id="{{$comment->id }}" onclick="cmtToForm(this)" class="btn btn-success">
                             <i class="fa fa-edit"></i>
                       </button>
                       <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >

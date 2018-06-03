@@ -58,8 +58,8 @@ class HomeController extends Controller
      */
     public function edit()
     {
-        $notifications = Product::getnotifications();
-        return view('auth.edit',compact('notifications'));
+        $categories = Category::all();
+        return view('auth.edit',compact('categories'));
     }
 
     /**
@@ -125,12 +125,12 @@ class HomeController extends Controller
         $user->save();
         return view('auth.edit');
     }
+    
     public function contactus(Request $req){
         if ($req->isMethod('get')) {
             $shop = Shop::find(1);
             $categories = Category::all();
-            $notifications = Product::getnotifications();
-            return view('widgets.contactus',compact('shop','categories','notifications'));
+            return view('widgets.contactus',compact('shop','categories'));
         }else{
             //contact msg 
             return redirect('/home');

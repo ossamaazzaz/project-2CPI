@@ -25,7 +25,8 @@ Route::get('/home/index2','HomeController@index2');
 Route::post('/home/{product}/comments','CommentsController@addComment');
 Route::get('/home/{comment}/delete','CommentsController@removeComment');
 Route::post('/home/{comment}/update','CommentsController@updateComment');
-
+Route::post('/home/{product}/rate','RateController@create');
+Route::post('/home/{product}/checkrate','RateController@index');
 //Dashbaord route
 Route::get('/admin/users', 'UsersController@index' ); //Users manager route
 Route::post('/admin/users','UsersController@save');

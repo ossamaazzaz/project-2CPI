@@ -1,18 +1,36 @@
 var ratingvalue = 0;
-
 function rating(number){
     ratingvalue = number;
     for (var i = 1; i <= number; i++) {
         var star = document.getElementById('star'+i);
-        star.innerHTML = "★";
+        star.innerHTML = `<i class="fa fa-star" style="color: gold"></i>`;
         star.style.color = "#ffbf00";
     }
     for (var i = number+1; i <= 5; i++) {
         var star = document.getElementById('star'+i);
-        star.innerHTML = "☆";
+        star.innerHTML = `<i class="fa fa-star" style="color: black"></i>`;
 
     }
-
+}
+function saveRate(id) {
+if (id) {
+        var data = new FormData();
+        data.append("id",id);
+        data.append("rating",ratingvalue);
+        jQuery.ajax({
+                type : "POST",
+                url : "/home/"+id+"/rate",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="rated") {
+                        document.getElementById('ratingTab').remove();
+                        document.getElementById('afterRating').classList.remove('hidden');
+                    }
+                    }});
+    }
 }
 function addToCart(id) {
     var Quantity = 1;
@@ -145,12 +163,27 @@ jQuery(document).ready(function (){
 //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
 
     //show the value of termand category
+    var iiddd = document.getElementById("productId").value;
+    var d = document.getElementById('ratingTab');
+    var data = new FormData();
+    data.append("id",iiddd);
+    jQuery.ajax({
+                type : "POST",
+                url : "/home/"+iiddd+"/checkrate",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="rated") {
+                        d.remove();
+                    }
+                    }});    
     var terminput  = document.getElementById('term');
     var category = document.getElementById('category');
     var brand = document.getElementById('brand');
     var minprice = document.getElementById('minprice');
     var maxprice = document.getElementById('maxprice');
-    console.log(category.value)
     keyvalue = '';
     current = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
     for (var i = current.length - 1; i >= 0; i--) {

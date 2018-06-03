@@ -12,8 +12,8 @@
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
-	 <link href="{{ asset('css/main.css') }} " rel="stylesheet">
-	  <link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
+	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
+	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
     <!-- intro.js css import-->
     <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
     <!--comments css -->
@@ -316,8 +316,8 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
   	<script src="{{ asset('js/intro.js') }}"></script>
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-    <script src="{{ asset('js/notifications.js')}}"></script>
+    <!--<script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="{{ asset('js/notifications.js')}}"></script>-->
     <script type="text/javascript">
 
     	$("#inpt_search").on('focus', function () {

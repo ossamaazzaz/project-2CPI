@@ -41,11 +41,6 @@
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </dev>
                             <div class="dropdown-menu" id="selectedCategory">
-                              @if((!Request::is('home/edit','login','register','password/reset')))
-                                @foreach ($categories as $cat)
-                                    <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
-                                @endforeach
-                              @endif
                             </div>
                             </div>
 

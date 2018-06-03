@@ -22,7 +22,10 @@ class User extends Authenticatable
        return $this->hadMany(App\Comment);
        */
     }
-
+    public function rate()
+    {
+        return $this->hasMany('\App\Rate','user_id');
+    }
     public function getNotifications()
     {
         $notificationsCollection = DB::table('notifications')->where("user_id",\Auth::id())->get();

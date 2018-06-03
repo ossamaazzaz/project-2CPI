@@ -66,9 +66,10 @@
 						                </div>
 						                <div class="col-md-3">
 							                <label>Rating : </label>
-							                <div class="srating" style="display: inline;">
-							                  <span id="star5" onclick="rating(5)">☆</span><span id="star4" onclick="rating(4)">☆</span><span id="star3" onclick="rating(3)">☆</span><span id="star2" onclick="rating(2)">☆</span><span id="star1" onclick="rating(1)">☆</span>
-							                </div>
+								            <div class="srating" style="display: inline;">
+								                  <span id="star5" onclick="rating(5)">☆</span><span id="star4" onclick="rating(4)">☆</span><span id="star3" onclick="rating(3)">☆</span><span id="star2" onclick="rating(2)">☆</span><span id="star1" onclick="rating(1)">☆</span>
+											</div>
+											<input type="hidden" id="ratingStore">
 							            </div>
 							            <div class="col-md-5"> 
 						                  <label>Prix : </label>

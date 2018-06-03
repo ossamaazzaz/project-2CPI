@@ -16,9 +16,17 @@ class ProductDetailsController extends Controller{
     public function index($id){
       $product=Product::find($id);
       //$productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
-
+      $rates  = $product->rate()->get();
+      $rateMoy = 0;
+      foreach ($rates as $rate) {
+        $rateMoy = $rateMoy + $rate->rate;
+      }
+      if ($rateMoy>0) {
+          $rateMoy = $rateMoy/$rates->count(); 
+      }
       $productDetails=ProductDetails::find($id);
-
+      $productDetails->rating = $rateMoy;
+      $productDetails->save();
       $categories = Category::get();
 
       $shop = Shop::find(1);
@@ -47,5 +55,6 @@ class ProductDetailsController extends Controller{
       return redirect("/cart");
     }
 
+    /* Rating */
 
 }

@@ -42,11 +42,6 @@
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </dev>
                             <div class="dropdown-menu" id="selectedCategory">
-                              <?php if((!Request::is('home/edit','login','register','password/reset'))): ?>
-                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option class="dropdown-item" id="<?php echo e($cat->id); ?>" onclick="selectedCategory(this)"><?php echo e($cat->name); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                              <?php endif; ?>
                             </div>
                             </div>
 
