@@ -215,7 +215,7 @@
                           <span class="comment-date">{{$comment->created_at->diffForHumans() }}</span>
                           @if (Auth::id() == $comment->user->id )
                           <div class="tools-btns">
-                            <button type="submit"n onclick="cmtToForm(this)" class="btn btn-success">
+                            <button type="submit" id="{{ $product->id }}" onclick="cmtToForm(this)" class="btn btn-success">
                                   <i class="fa fa-edit"></i>
                             </button>
                             <a onclick="this.parentElement.parentElement.parentElement.remove()" href="/home/{{$comment->id}}/delete" >
@@ -279,12 +279,12 @@
         console.log(comment.innerHTML);
         lngth = comment.parentNode.parentNode.parentNode.childNodes.length;
         btns = document.getElementsByClassName("tools-btns");
-        $("#comment-box-container").css("display","none");
+        jQuery("#comment-box-container").css("display","none");
         cmtValue = (comment.innerHTML).substring(3,comment.innerHTML.length-4);
         commentCont = comment.childNodes[1];
         // get id (fixing a bug)
         id = object.id;
-        comment.innerHTML ='<form method="POST" action="/home/'+id+'/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> </form><button class="btn btn-danger" onclick="cancelComment(this,cmtValue)">cancel</button>';
+        comment.innerHTML ='<form method="POST" action="/home/'+id+'/update"><textarea name="body" class="comment-input" rows="1"  onkeydown="autosize(this)" placeholder="Votre commentaire . . ." required>'+cmtValue+'</textarea><button type="submit" class="btn btn-success" style="display:inline;"> Envoyer <i class="fa fa-paper-plane" aria-hidden="true"></i></button> <button class="btn btn-danger" onclick="cancelComment(this,cmtValue)" style="display:inline;">cancel</button></form>';
         for (var i = 0; i < btns.length; i++) {
           btns[i].style.display = 'none';
         }
@@ -296,7 +296,7 @@
         for (var i = 0; i < btns.length; i++) {
           btns1[i].style.display = 'block';
         }
-        $("#comment-box-container").css("display","flex");
+        jQuery("#comment-box-container").css("display","flex");
       }
       /*---------------------------------------------*/
       var imgModal = document.getElementById('img-modal');

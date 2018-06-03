@@ -30,7 +30,7 @@ class ProductDetailsController extends Controller{
       $categories = Category::get();
       
       $shop = Shop::find(1);
-      return view("cart.productdetailsv2",compact('shop','product','productDetails','categories'));
+      return view("cart.productdetails",compact('shop','product','productDetails','categories'));
     }
 
     /* ============== Add element to the cart (mouloud) ================*/
