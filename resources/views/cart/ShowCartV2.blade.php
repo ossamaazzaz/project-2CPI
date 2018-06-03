@@ -1,5 +1,5 @@
 @extends('layouts.appV2')
-@section('title','SupperetCom | Votre Panier')
+@section('title','SupperetteCom| Votre Panier')
 
 
 @section('content')
@@ -7,10 +7,10 @@
 <div class="container">
       <div class="breadcrumbs" style="margin-bottom: -45px;">
         <ol class="breadcrumb">
-          <li><a href="#">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li class="active">Shopping Cart</li>
         </ol>
-    </div>    
+      </div>    
    
 <div class="table-responsive cart_info">
 
@@ -27,7 +27,7 @@
   </thead>
 
   <tbody>
-    @foreach ($Items as $Item)
+    @foreach ($items as $Item)
     <tr>
       <td class="cart_product">
         <a href=""><img style="height: 100px; width: 100px;" src="{{$Item->product->image}}" alt="{{$Item->product->name}}"></a>

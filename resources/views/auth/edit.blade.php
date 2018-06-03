@@ -1,4 +1,5 @@
 @extends('layouts.appv2')
+@section('title','SupperetteCom| Editer le profile')
 @section('content')
   <center>
   <div class="container" style="border-style: dashed ;margin: 50px; color: black ">

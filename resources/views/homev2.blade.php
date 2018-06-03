@@ -1,5 +1,5 @@
 @extends('layouts.appv2')
-
+@section('title','SupperetteCom| Home')
 @section('content')
 <section id="slider"><!--slider-->
           <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="width: 100%">

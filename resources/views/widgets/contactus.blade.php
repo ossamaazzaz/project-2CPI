@@ -1,5 +1,5 @@
 @extends('layouts.appv2')
-
+@section('title','SupperetCom| Contact')
 @section('content')
 <div id="contact-page" class="container">
     	<div class="bg">

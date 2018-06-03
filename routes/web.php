@@ -22,6 +22,7 @@ Route::post('/home/edit','HomeController@update');
 
 Route::get('/home/index2','HomeController@index2');
 Route::get('/terms','HomeController@TermsAndConditions');
+Route::get('/about','HomeController@About');
 
 
 //Comments
@@ -112,18 +113,12 @@ Route::post('/admin/settings/editText', 'SettingsController@editText');
 Route::post('/admin/settings/editVisual', 'SettingsController@editVisual');
 Route::get('/admin/settings/export', 'SettingsController@export');
 Route::post('/admin/settings/import', 'SettingsController@import');
-//Route::post('/admin/terms','SettingsController@edit');
 
 
 //contact us
 Route::get('/contactus','HomeController@contactus');
 Route::post('/contactus','HomeController@contactus');
 
-//test
-Route::get('/test',function ()
-{
-	return view('cart.ShowCartV2');
-});
 
 
 

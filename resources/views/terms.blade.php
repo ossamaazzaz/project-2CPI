@@ -1,6 +1,13 @@
 @extends('layouts.appv2')
+@section('title','SupperetteCom| Notre terms et conditions')
 @section('content')
 <div id="terms-page" class="container">
+      <div class="breadcrumbs" style="margin-bottom: -45px;">
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li class="active">Notre terms et conditions</li>
+        </ol>
+      </div> 
   	<div class="bg">
     	<div class="row">
     		<div class="col-sm-12">
@@ -61,7 +68,7 @@
 
       <h3 style="text-align:center; weight:bold;" class='sub-heading section-heading'>Article 10 Relations clients – Service après-vente</h3>
       <div class='constrain-width'>
-        <p>Pour toute information, question ou réclamation, le client peut s’adresser du lundi au vendredi, de 9 h à 18 h au service Relations Clients de la société.</p>
+        <p>Pour toute information, question ou réclamation, le client peut s’adresser du Samedi au Jeudi, de 9 h à 18 h au service Relations Clients de magazin.</p>
 
         <p>Ou nous contacter: <a href="/contactus">depuis ce lien!</a></p>
       </div>

@@ -2,6 +2,7 @@
 
 @section('content')
 <!---Product Details-->
+
 </br>
 <div class="container">
     <div class="row">
@@ -10,7 +11,7 @@
               <div class="card bg-light mb-3">
                   <div class="card-body">
                       <a href="" data-toggle="modal" data-target="#productModal">
-                          <img src="" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
+                          <img src="{{$product->image}}" alt="Product Picture" class="img-fluid" style="display: block;margin-left: auto;margin-right: auto; height=500px; width:500px;"/>
                           <!--ps: must to add a slide show-->
                       </a>
                   </div>
@@ -148,6 +149,7 @@
     </div>
 </div>
 <!--Scripts-->
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
 <script type="text/javascript">
       var commentCont,comment,lngth,btns,cmtValue,btns1,el;
       //----------------------------------------------------------------------//

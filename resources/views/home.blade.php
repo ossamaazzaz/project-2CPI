@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','SupperetteCom| Home')
 @section('content')
 <div class="container">
     <div class="row">

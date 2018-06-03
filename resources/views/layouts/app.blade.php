@@ -15,7 +15,7 @@
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
     <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
     <!--end commennts css -->
-    <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
+    
     
 </head>
 <body>
