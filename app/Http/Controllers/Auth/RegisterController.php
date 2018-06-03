@@ -92,7 +92,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
         //apres que l utilisateur est connecter je le redirige vers son compte
         //le redirectPath suit protected $redirectTo = '/home';
-        return redirect($this->redirectPath())->with('success','Votre compte a été bien confirmer');
+        return redirect($this->redirectPath())->with('success','Votre compte a été bien confirmer');//sesouvenir de son implementation
 
 
       } else {

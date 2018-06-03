@@ -23,16 +23,16 @@
 
               <div>
 
-                <input type="file" id="avatar" accept="image/*" capture style="display:none" onchange="loadImage(event)" class="login-input{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}"  required/>
+                <input type="file" id="avatar" accept="image/*" capture style="display:none" onchange="loadImage(event)" class="login-input{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}"  />
                 <center>
-                  <img src="photo profile.jpg" id="userImage" style="cursor:pointer" />
+                  <img src="/storage/images/users/photo_profile.jpg" id="userImage" style="cursor:pointer" />
                 </center>
               </div>
 
 
               <div class="field-wrap">
                 <label for="username">Nom d'utilisateur<span class="req">*</span></label>
-                <input id="username" type="email" name="username"   autocomplete="off" class="login-input{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" required autofocus />
+                <input id="username" type="text" name="username"   autocomplete="off" class="login-input{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" required autofocus />
                 @if ($errors->has('username'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('username') }}</strong>
@@ -74,7 +74,7 @@
 
               <div class="field-wrap">
                 <label for="phoneNum">Numéro de mobile<span class="req">*</span></label>
-                <input id="phoneNum" type="text" class="login-input{{ $errors->has('phoneNum') ? ' is-invalid' : '' }}" name="phoneNum" value="{{ old('phoneNum') }}" autocomplete="off" required autofocus />
+                <input maxlength="10" id="phoneNum" type="text" class="login-input{{ $errors->has('phoneNum') ? ' is-invalid' : '' }}" name="phoneNum" value="{{ old('phoneNum') }}" autocomplete="off" required autofocus />
                 @if ($errors->has('phoneNum'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('phoneNum') }}</strong>
@@ -114,7 +114,7 @@
 
               <div class="field-wrap">
                   <label for="password-confirm">{{ __('Comfirmer le mot de passe') }}<span class="req">*</span></label>
-                  <input id="password-confirm" type="password" class="login-input" name="password_confirmation"  autocomplete="off" required autofocus />
+                  <input id="password-confirm" type="password" class="login-input" name="password_confirmation"  autocomplete="off" required autofocus/>
               </div>
 
               <input type="checkbox" required id="remember-me" style="margin:0px 5px 5px 0px;"/>En appuyant sur Inscription, vous acceptez <a href=""><b>nos Conditions générales</b></a> , notre Politique d'utilisation des données et notre Politique d'utilisation des cookies.

@@ -3,11 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Sign-Up/Login Form</title>
+  <title>Sign-Up/Login Title</title>
   <!--Link-->
   <link href="{{ asset('css/normalize.min.css')     }} " rel="stylesheet">
-  <link href="{{ asset('css/login_signup.css')      }} " rel="stylesheet">
   <link href="{{ asset('css/font-awesome.min.css')  }} " rel="stylesheet">
+  <link href="{{ asset('css/login_signup.css')      }} " rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
 </head>
