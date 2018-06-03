@@ -149,10 +149,9 @@ class HomeController extends Controller
         //informations needed in the appv2
         $shop=\App\Shop::find(1);
         $categories = Category::all();
-        $notifications = Product::getnotifications();
         //-------------------------------------------
 
-        return view('terms',compact('shop','categories','notifications'));
+        return view('terms',compact('shop','categories'));
     }
 
     public function About(){
@@ -160,10 +159,9 @@ class HomeController extends Controller
         //informations needed in the appv2
         $shop=\App\Shop::find(1);
         $categories = Category::all();
-        $notifications = Product::getnotifications();
         //-------------------------------------------
 
-        return view('about',compact('shop','categories','notifications'));
+        return view('about',compact('shop','categories'));
     }
 
 }

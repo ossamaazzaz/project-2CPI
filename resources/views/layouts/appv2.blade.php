@@ -61,7 +61,7 @@
 					  </a>
 					  <ul class="dropdown-menu">
 					    @foreach($categories as $category)
-                        	<li><a href="/search?category={{$category->id}}">{{$category->name}}</a></li>
+                        	<li><a id="{{ $category->id }}" onclick="leftcategorylist(this)">{{$category->name}}</a></li>
                         @endforeach
 					  </ul>
 			      </li>
@@ -80,7 +80,7 @@
 			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
 
-					  	<li onclick="showToast('notif shit')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>
+					  	<li onclick="showToast('notification')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>
 
                         	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
@@ -136,11 +136,11 @@
 		        <li class="pull-right" style="margin: 16px 0px 0 0;"> 
 		        	<div class="cntr">
 						<div class="cntr-innr">
-							<form>
+						<form method="GET" action="/search">
 						  <label class="search" for="inpt_search">
-								<input id="inpt_search" type="text" onmouseout="this.value='';this.blur();" />
+								<input id="inpt_search" type="text" name="term" onmouseout="this.value='';this.blur();" />
 							</label>
-							</form>
+						</form>
 						</div>
 					</div>
 		        </li>
@@ -369,13 +369,13 @@
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
-    	$("#inpt_search").on('focus', function () {
-		$(this).parent('label').addClass('active');
+    	jQuery("#inpt_search").on('focus', function () {
+		jQuery(this).parent('label').addClass('active');
 		});
 
-		$("#inpt_search").on('blur', function () {
-			if($(this).val().length == 0)
-				$(this).parent('label').removeClass('active');
+		jQuery("#inpt_search").on('blur', function () {
+			if(jQuery(this).val().length == 0)
+				jQuery(this).parent('label').removeClass('active');
 		});
     </script>
 

@@ -17,21 +17,6 @@
 					              @endforeach
 					              
 					            </div><!--/category-products-->
-					          
-					            <div class="brands_products"><!--brands_products-->
-					              <h2>Brands</h2>
-					              <div class="brands-name">
-					                <ul class="nav nav-pills nav-stacked">
-					                  <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-					                  <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-					                  <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-					                  <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-					                  <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-					                  <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-					                  <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-					                </ul>
-					              </div>
-					            </div><!--/brands_products-->
 					            
 					            <div class="price-range"><!--price-range-->
 					              <h2>Price Range</h2>
@@ -48,19 +33,27 @@
 					          
 					          </div>
 				</div>
-				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items" ><!--features_items-->
 						<h2 class="title text-center">Search Result</h2>
  						
  						<div class="col-sm-12" style="margin-bottom: 100px;">
 									<div class="productinfo text-left">						
-										<div class="col-md-4">
+										<div class="col-md-3">
 						                    <label>Brand : </label>
 						                    <select id="brand" style="display: inline;">
 						                      <option>All</option>
 						                      @foreach ($brands as $brand)
 						                        <option>{{ $brand }}</option>
+						                      @endforeach
+						                    </select>                
+						                </div>
+						                <div class="col-md-3">
+						                    <label>Category : </label>
+						                    <select id="category">
+						                      <option>All</option>
+						                      @foreach ($categories as $c)
+						                        <option id="{{ $cat->id }}" >{{ $c->name }}</option>
 						                      @endforeach
 						                    </select>                
 						                </div>
@@ -77,9 +70,7 @@
 						                  -
 						                  <input type="text" name="max" placeholder="max" id="maxprice" style="width: 60px;">
 						                </div>
-						                <div class="col-md-3">
-											<button id="filter" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> recherche </button>
-						                </div>
+										<button id="Apply" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> Apply </button>
 									</div>
 						</div>
 						@if(count($result)==0)
@@ -107,10 +98,9 @@
 				                </div>
 				                <div class="choose">
 				                  <ul class="nav nav-pills nav-justified">
-				                    <li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Detailles</a></li>
+				                  	<center><li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Detailles</a></li></center>
+				                    
 				                    <!-- here we put a form for quic view-->
-
-				                    <li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Voir le produit</a></li>
 				                  </ul>
 				                </div>
 				              </div>

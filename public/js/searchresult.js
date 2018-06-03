@@ -194,7 +194,11 @@ jQuery(document).ready(function (){
                     switch(key.valueOf()){
                         case "term":terminput.value = keyvalue;
                             break;
-                        case "category":category.value = keyvalue;
+                        case "category":for (var i = 0; i < category.options.length  ; i++) {
+                            if (category.options[i].text==keyvalue) {
+                                category.selectedIndex = i;};}
+                            break;
+
                             break;
                         case "brand":for (var i = 0; i < brand.options.length  ; i++) {
                             if (brand.options[i].text==keyvalue) {
@@ -236,24 +240,28 @@ jQuery(document).ready(function (){
     //         }
     // });
     // });
-    jQuery("#filter").click( function(){
+    jQuery("#Apply").click( function(){
         //get selected brand
+        console.log("dddddddddddd");
         var brandlist = document.getElementById("brand");
         var brandindex = brandlist.selectedIndex;
         var brand  = brandlist.options[brandlist.selectedIndex].text;
-        console.log(category.value);
+        //get selected category
+        var categorylist = document.getElementById("category");
+        var categoryindex = categorylist.selectedIndex;
+        var category  = categorylist.options[categorylist.selectedIndex].text;
         // get price 
         var minprice = document.getElementById('minprice').value;
         var maxprice = document.getElementById('maxprice').value;
         data = {};
-        if (category.value != null) {
-            data = {category:category.value};
-        }
         if (term.value != null) {
             data = Object.assign(data,{term:term.value});
             }
         if (brand != 'All') {
             data = Object.assign(data,{brand:brand});
+        }
+        if (category != 'All') {
+            data = Object.assign(data,{category:category});
         }
         if (ratingvalue != 0) {
             data = Object.assign(data,{rating:ratingvalue});
@@ -264,16 +272,12 @@ jQuery(document).ready(function (){
         if (maxprice != 0) {
             data = Object.assign(data,{maxprice:maxprice});
         }
-        console.log(data);
-            jQuery.ajax({
-
-                type : "GET",
-                url : "/search",
-                data : data,
-                success : function(data){
-                        window.location=this.url;
-
-            }
-        });       
+        jQuery.ajax({
+            type : "GET",
+            url : "/search",
+            data : data,
+            success : function(data){
+                    window.location=this.url;
+                }});       
     });
 });

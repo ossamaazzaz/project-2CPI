@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div>
+@if (sizeof($Items) > 0)
 <section id="cart_items">
 <div class="container">
       <div class="breadcrumbs" style="margin-bottom: -45px;">
@@ -42,24 +42,24 @@
       </td>
       <td class="cart_quantity">
         <div class="row" style="width: 150px"> 
-                      <div class="input-group number-spinner">
-                        <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="dwn"
-                          onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1">
-                          <span class="fa fa-minus"></span></button></span>
+            <div class="input-group number-spinner">
+              <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="dwn"
+                onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1">
+                <span class="fa fa-minus"></span></button></span>
 
 
-                        <input id="{{'quantity'.$Item->id}}" type="text" class="form-control text-center"
-                               value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
+              <input id="{{'quantity'.$Item->id}}" type="text" class="form-control text-center"
+                     value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
 
 
-                        <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="up"
-                          onclick="quantity{{$Item->id}}.value=parseInt(quantity{{$Item->id}}.value)+1">
-                          <span class="fa fa-plus"></span></button></span>
-                      </div>
+              <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="up"
+                onclick="quantity{{$Item->id}}.value=parseInt(quantity{{$Item->id}}.value)+1">
+                <span class="fa fa-plus"></span></button></span>
+            </div>
           </div>
       </td>
       <td class="cart_total">
-        <p class="cart_total_price"></p>
+        <p class="cart_total_price">{{$total}} DA</p>
       </td>
       <td >
         <a onclick="this.parentElement.parentElement.remove()" href="/cart/delete/{{$Item->id}}" class="btn btn-danger a-btn-slide-text">
@@ -95,4 +95,24 @@
     </div>
   </section><!--/#do_action-->
 </div>
+@else
+<section id="cart_items">
+<div class="container">
+      <div class="breadcrumbs" style="margin-bottom: -45px;">
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li class="active">Shopping Cart</li>
+        </ol>
+      </div>    
+   <div class="table-responsive cart_info">
+      <br>
+      <center style="margin-left: auto;margin-right: auto;padding: 10px;">
+      <h3>You have no items in your shopping cart</h3>
+      <a href="{{ url('/home') }}" class="btn btn-primary btn-lg">Continue Shopping</a>
+      </center>
+    </div>
+  </div>
+</section> <!--/#cart_items-->
+</div>
+@endif
 @endsection
