@@ -3,6 +3,7 @@
 
 
 @section('content')
+<div>
 <section id="cart_items">
 <div class="container">
       <div class="breadcrumbs" style="margin-bottom: -45px;">
@@ -70,9 +71,9 @@
   </tbody>  
 
 </table>
-      </div>
     </div>
-  </section> <!--/#cart_items-->
+  </div>
+</section> <!--/#cart_items-->
 
   <section id="do_action">
     <div class="container">
@@ -80,17 +81,18 @@
       <div class="row">
         <div class="col-sm-6" style="float: right">
           <div class="total_area">
-            <ul>
-              <li>Totale <span>{{$total}} DA</span></li>
-            </ul>
+              <ul>
+                <li>Totale <span>{{$total}} DA</span></li>
+              </ul>
               <button class="btn btn-default update" href="/home" style="background-color: #F13A;">Revenir Au Magasin</button>
               <button type="submit" class="btn btn-default update">Calculer</button></form>
               <form method="POST" action="/checkout">
-              <button type="submit" class="btn btn-default check_out" style="float: right">Check Out</button>
+              <button type="submit" class="btn btn-default check_out">Check Out</button>
               </form>
           </div>
         </div>
       </div>
     </div>
   </section><!--/#do_action-->
+</div>
 @endsection
