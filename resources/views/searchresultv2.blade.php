@@ -70,7 +70,9 @@
 						                  -
 						                  <input type="text" name="max" placeholder="max" id="maxprice" style="width: 60px;">
 						                </div>
-										<button id="Apply" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> Apply </button>
+						             	<div class="col-md-1">
+										<button id="filter" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> Apply </button>
+										</div>
 									</div>
 						</div>
 						@if(count($result)==0)
@@ -123,4 +125,6 @@
 			</div>
 		</div>
 	</section>
+<input type="hidden" id="productId">
+
 @endsection

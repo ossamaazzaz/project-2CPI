@@ -163,6 +163,7 @@ jQuery(document).ready(function (){
 //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
 
     //show the value of termand category
+
     var iiddd = document.getElementById("productId").value;
     var d = document.getElementById('ratingTab');
     var data = new FormData();
@@ -179,7 +180,7 @@ jQuery(document).ready(function (){
                         d.remove();
                     }
                     }});    
-    var terminput  = document.getElementById('term');
+    var terminput  = document.getElementById('inpt_search');
     var category = document.getElementById('category');
     var brand = document.getElementById('brand');
     var minprice = document.getElementById('minprice');
@@ -240,9 +241,8 @@ jQuery(document).ready(function (){
     //         }
     // });
     // });
-    jQuery("#Apply").click( function(){
+    jQuery("#filter").on('click', function(){
         //get selected brand
-        console.log("dddddddddddd");
         var brandlist = document.getElementById("brand");
         var brandindex = brandlist.selectedIndex;
         var brand  = brandlist.options[brandlist.selectedIndex].text;
@@ -254,8 +254,8 @@ jQuery(document).ready(function (){
         var minprice = document.getElementById('minprice').value;
         var maxprice = document.getElementById('maxprice').value;
         data = {};
-        if (term.value != null) {
-            data = Object.assign(data,{term:term.value});
+        if (terminput.value != '') {
+            data = Object.assign(data,{term:terminput.value});
             }
         if (brand != 'All') {
             data = Object.assign(data,{brand:brand});
