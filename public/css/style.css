@@ -7130,9 +7130,11 @@ label[for*='4']:before {
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
-.blue-btn{
+a.blue-btn{
   background-color: #1976d2;
+  color: white !important;
 }
-.blue-btn:hover{
+a.blue-btn:hover{
   background-color: #1976d2;
+  color: white !important;
 }

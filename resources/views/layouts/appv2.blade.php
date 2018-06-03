@@ -6,18 +6,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home </title>
+    <link href="{{ asset('css/app.css') }} " rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
-
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
 	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
-	<!-- <link href="{{ asset('css/app.css') }} " rel="stylesheet"> -->
+	
 	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
     <!--comments css -->
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet"> 
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/navbar.css') }}">
     <!--[if lt IE 9]>
@@ -28,7 +29,7 @@
 </head><!--/head-->
 <body>
 	<div id="toast" class="">votre ordre est pret</div>
-	<header>
+	<header style="margin-bottom: 30px">
 		<nav class="navbar navbar-default" role="navigation" style=" margin-bottom: 0px;">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,8 +68,7 @@
 			    </li>
 			    @else
 			    <li class="pull-right" style="margin: -10px 40px 0 0">
-			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;">
-					  <span class="caret"></span></a>
+			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
 
 					  	<li onclick="showToast('notif shit')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>

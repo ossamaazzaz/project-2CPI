@@ -1,7 +1,7 @@
 @extends('layouts.appv2')
 
 @section('content')
-<section id="slider"><!--slider-->
+<section id="slider" style="margin-top: -34px"><!--slider-->
           <div id="slider-carousel" class="carousel slide" data-ride="carousel" style="width: 100%">
             <ol class="carousel-indicators">
               <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
@@ -45,7 +45,7 @@
             
   </section><!--/slider-->
 
-    <section id="ok">
+<section id="ok">
     <div class="container">
       <div class="row">
         <div class="col-sm-3">

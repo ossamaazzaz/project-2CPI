@@ -839,7 +839,7 @@ h2.title:before{
 
 
 h2.title {
-  color: #0fb9b1;
+  color: #222f3e;
   font-family: 'Roboto', sans-sslideerif;
   font-size: 18px;
   font-weight: 700;
@@ -2730,7 +2730,7 @@ a{
 }
 /**/
 .parallax {
-    min-height: 89vh;
+    min-height: 91vh;
     height: 100%;
     background-attachment: fixed;
     background-position: center;
@@ -2785,8 +2785,8 @@ a{
 }
 #toast.show {
     display: block;
-    -webkit-animation: bounceInUp 0.5s, shake 0.5s 3.5s;
-    animation: bounceInUp 0.5s, shake 0.5s 3.5s;
+    -webkit-animation: bounceInUp 0.5s, bounceOutDown 0.5s 3.5s;
+    animation: bounceInUp 0.5s, bounceOutDown 0.5s 3.5s;
 }
 .navbar-nav > li > .dropdown-menu{
   margin-top: -10px !important;
