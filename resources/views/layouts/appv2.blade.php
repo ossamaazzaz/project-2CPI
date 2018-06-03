@@ -360,6 +360,7 @@
     <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('js/datatables-init.js') }}"></script>
     <script src="{{ asset('js/th3hpbt.js')}}"></script>
+    <script src="{{ asset('js/searchresult.js') }}"></script>
     <script src="{{ asset('js/pagination.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
 	<script src="{{ asset('js/price-range.js') }}"></script>
@@ -368,7 +369,6 @@
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
-    	var v = document.getElementById('inpt_search').value;
     	jQuery("#inpt_search").on('focus', function () {
 			jQuery(this).parent('label').addClass('active');
 		});
@@ -377,8 +377,6 @@
 			if(jQuery(this).val().length == 0){
 				jQuery(this).parent('label').removeClass('active');
 			}
-
-		}
 		});
     </script>
 
@@ -397,7 +395,7 @@
 		    });
 		 });
     </script>
-    <script src="{{ asset('js/searchresult.js') }}"></script>
+    
 
 
 </body>

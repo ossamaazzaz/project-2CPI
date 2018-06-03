@@ -66,6 +66,7 @@ function showNotifications(notifications, target) {
                       <li class="divider"></li>`);
         jQuery(target).removeClass('has-notifications');
     }
+
 }
 
 // create a notification li element
@@ -111,7 +112,7 @@ function MakeAndRouteNotification(notification) {
     text += '</li>'
     return text;
 }
-function notifyMe() {
+function notifyMe(n) {
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
     alert("This browser does not support desktop notification");
@@ -120,7 +121,7 @@ function notifyMe() {
   // Let's check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
-    var notification = new Notification("There is new Notifications check it out !");
+    var notification = new Notification("There is new Notifications check it out !"+n);
   }
 
   // Otherwise, we need to ask the user for permission
@@ -128,7 +129,7 @@ function notifyMe() {
     Notification.requestPermission(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        var notification = new Notification("There is new Notifications check it out !");
+        var notification = new Notification("There is new Notifications check it out !"+n);
       }
     });
   }
@@ -137,8 +138,8 @@ function notifyMe() {
   // want to be respectful there is no need to bother them any more.
 }
 Notification.requestPermission().then(function(result) {
-  console.log(result);
-});function spawnNotification(body, icon, title) {
+});
+function spawnNotification(body, icon, title) {
   var options = {
       body: body,
       icon: icon
@@ -158,11 +159,9 @@ jQuery(document).ready(function (){
     });
 	window.onfocus = function () { 
 	  	isActive = true;
-	  	console.log("isActive")
 	}; 
 	window.onblur = function () { 
 		isActive = false;
-		console.log("isNotActive")
 	};
     //dealing with real time notifications
     Pusher.logToConsole = true;
@@ -177,21 +176,23 @@ jQuery(document).ready(function (){
 	}else { 
 	    var channelConfirmation = pusher.subscribe('privateorder.'+UserId);
 	   	channelConfirmation.bind('OrderConfirmed', function(data) {
-	   			c++;
-	   			counterNewN.setAttribute("data-count",c);
+	   			
 	    		addNotifications({data:data.data,type:'OrderConfirmed',created_at:data.created_at}, '#navbarDropdown');
-				if (window.isActive == false){
-					notifyMe();
-				}
+  				c++;
+          counterNewN.setAttribute("data-count",c);
+          showToast('You have '+c+' Notifications');
+          if (window.isActive == false){
+  					  notifyMe(n);
+  				}
 						
 	    });
 	    var channelMissingProducts = pusher.subscribe('privateorder.'+UserId);
 	    channelMissingProducts.bind('MissingProducts', function(data) {
-	    		c++;
-	   			counterNewN.setAttribute("data-count",c);
-	    		addNotifications({data:data.data,type:'MissingProducts',created_at:data.created_at}, '#navbarDropdown');
-	    		console.log(data);
-	    });
+	    	  addNotifications({data:data.data,type:'MissingProducts',created_at:data.created_at}, '#navbarDropdown');
+          c++;
+          counterNewN.setAttribute("data-count",c);
+          showToast('You have '+c+' Notifications');
+      });
 	}
 	jQuery("#noDrdown").click(function() {
 		c=0;
