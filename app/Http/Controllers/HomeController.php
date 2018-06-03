@@ -123,7 +123,8 @@ class HomeController extends Controller
         $user->adr = $req->all()['adr'];
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
-        return view('auth.edit');
+        $categories = Category::all();
+        return view('auth.edit',compact('categories'));
     }
     
     public function contactus(Request $req){
