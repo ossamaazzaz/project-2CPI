@@ -6,8 +6,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@yield('title')</title>
-    <link href="{{ asset('css/app.css') }} " rel="stylesheet">
+
     <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
+    <link href="{{ asset('css/app.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
@@ -15,14 +16,11 @@
 	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
 	
 	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
-    <!-- intro.js css import-->
-    <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
+
     <!--comments css -->
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet"> 
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/navbar.css') }}">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -352,7 +350,6 @@
     <script src="{{ asset('js/cart.js') }}"></script>
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-  	<script src="{{ asset('js/intro.js') }}"></script>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
