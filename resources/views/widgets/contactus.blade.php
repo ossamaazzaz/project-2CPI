@@ -3,30 +3,35 @@
 @section('content')
 <div id="contact-page" class="container">
     	<div class="bg">
-	    	<div class="row">    		
-	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>    			    				    				
-					
-				</div>			 		
-			</div>    	
-    		<div class="row">  	
+	    	<div class="row">
+	    		<div class="col-sm-12">
+					<h2 class="title text-center">Contact <strong>Us</strong></h2>
+
+				</div>
+			</div>
+    		<div class="row">
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
 	    				<h2 class="title text-center">Rester En Contact</h2>
 	    				<div class="status alert alert-success" style="display: none"></div>
-				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
-				            <div class="form-group col-md-6">
-				                <input type="text" name="name" class="form-control" required="required" placeholder="Nom">
-				            </div>
-				            <div class="form-group col-md-6">
-				                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
-				            </div>
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="POST" action="{{ action('contactUsMailController@sendMail') }}">
+                  @csrf
 				            <div class="form-group col-md-12">
-				                <input type="text" name="subject" class="form-control" required="required" placeholder="Sujet">
-				            </div>
+				                <input id="subject "type="text" name="subject" class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}"  placeholder="Sujet" required autofocus>
+                        @if ($errors->has('subject'))
+                              <span class="invalid-feedback">
+                                <strong>{{ $errors->first('subject') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 				            <div class="form-group col-md-12">
-				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Vos Message Ici"></textarea>
-				            </div>                        
+				                <textarea name="body" id="body"  class="form-control{{ $errors->has('subject') ? ' is-invalid' : '' }}" rows="8" placeholder="Vos Message Ici" required autofocus></textarea>
+                        @if ($errors->has('body'))
+                              <span class="invalid-feedback">
+                                <strong>{{ $errors->first('body') }}</strong>
+                            </span>
+                        @endif
+                    </div>
 				            <div class="form-group col-md-12">
 				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Envoyer">
 				            </div>
@@ -56,13 +61,13 @@
 								<li>
 									<a href="#"><i class="fa fa-google-plus"></i></a>
 								</li>
-							
+
 							</ul>
 	    				</div>
 	    			</div>
-    			</div>    			
-	    	</div>  
-    	</div>	
+    			</div>
+	    	</div>
+    	</div>
     </div><!--/#contact-page-->
 
 @endsection

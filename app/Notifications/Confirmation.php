@@ -49,9 +49,10 @@ class Confirmation extends Notification
     {
         $url = url('facture/'. $this->order->code);
         return (new MailMessage)
-                    ->line('Your orders valitated')
-                    ->action('Your Bill', $url)
-                    ->line('Thank you for using our application!');
+                    ->line('hey !')
+                    ->line('ton ordre a etait tres bien valider ,veuillez consulter le lien suivant : ')
+                    ->action('Ton bon de commande :', $url)
+                    ->line('merci !');
     }
 
     /**
