@@ -1,19 +1,19 @@
 <br>
 <div class="card" style="margin: 10px;">
     <div class="card-title">
-       <h2 style="text-align: center;">Pending Orders</h2>
+       <h2 style="text-align: center;">Commandes en attente</h2>
     </div>
          <div class="card-body">
                 <div class="table-responsive">
                     <table id="PendingOrdersTable" class="table">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Order Date</th>
-                                <th>User name</th>
-                                <th>Total to pay</th>
-                                <th>Tools</th>
-                                <th>State</th>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Username</th>
+                                <th>Total à payer</th>
+                                <th>Outils</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,18 +36,18 @@
                       <div class="collapse" id="userDetails">
                         <div class="card card-body">
                           <dl>
-                                <dt class="detailsMenu"> User Details : </dt>
-                                <dt class="detailsMenu"> User Name : </dt>
+                                <dt class="detailsMenu"> Détails sur l'utilisateur </dt>
+                                <dt class="detailsMenu"> Username : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->username}} </dd>
-                                <dt class="detailsMenu"> Family Name : </dt>
+                                <dt class="detailsMenu"> Nom : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->firstName}} </dd>
-                                <dt class="detailsMenu"> First Name : </dt>
+                                <dt class="detailsMenu"> Prénom : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->lastName}} </dd>
-                                <dt class="detailsMenu"> Address : </dt>
+                                <dt class="detailsMenu"> Addresse : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->adr}} </dd>
-                                <dt class="detailsMenu"> Phone Number : </dt>
+                                <dt class="detailsMenu"> Tél : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->phoneNum}} </dd>
-                                <dt class="detailsMenu"> Group : </dt>
+                                <dt class="detailsMenu"> Groupe : </dt>
                                 <dd class="detailsMenu"> {{$pendingOrder->user->groupId}} </dd>
                           </dl> 
                         </div>

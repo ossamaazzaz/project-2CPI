@@ -1,23 +1,24 @@
 @extends('layouts.dashboard')
-
+@section('title','Vérifier commandes')
+@section('page_heading','Vérifier commandes')
 @section('section')
 <div class="card" style="height: 180px;">
-<center><h2>Enter the code here :</h2></center><br>
+<center><h2>Entrer le code ici: </h2></center><br>
 <div class="register">
   <div class="field">
     <input id="codeinput" maxlength="6" type="text"  autocomplete="off" />
-    <button onclick="check()">CHECK</button>
+    <button onclick="check()">Vérifier</button>
   </div>
 </div>
 </div>
 <div class="card">
     <div id="validMsg" class="alert alert-success fadeIn hidden" >
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Order exists !</strong>&nbsp;and here is the PDF file
+      <strong>Commande existe</strong>&nbsp;Le PDF ci-dessous
     </div>
     <div id="notValidMsg" class="alert alert-danger fadeIn hidden" id="order-no-exists" >
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>Order doesn't exist !</strong>
+      <strong>Commande n'existe pas</strong>
     </div>
     <iframe id="pdfSource" class="hidden" style="min-height: 600px"></iframe>
 </div>

@@ -96,6 +96,7 @@ class OrdersController extends Controller
     */
     public function AdminPanel(){
 
+        // pending, confirmeddeletion, asked
         $Pending_Orders = Orders::where('state',0)->orderBy('created_at')->get();
 
         $Accepted_Orders = Orders::where('state',1)->orderBy('created_at')->get();

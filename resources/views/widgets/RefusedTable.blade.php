@@ -1,18 +1,18 @@
 <br>
 <div class="card" style="margin: 10px;">
     <div class="card-title">
-       <h2 style="text-align: center;">Refused Orders</h2>
+       <h2 style="text-align: center;">Commandes Refusées</h2>
     </div>
          <div class="card-body">
                 <div class="table-responsive">
     <table id="PendingOrdersTable" class="table">
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>User name</th>
-                <th>Total to pay</th>
-                <th>State</th>
+                <th>#</th>
+                <th>Date</th>
+                <th>Username</th>
+                <th>Total à payer</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>

@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
-@section('page_heading','Settings')
+@section('page_heading','Paramètres')
+@section('title','Paramètres')
 @section('section')
 <style type="text/css">
    .center-text-image{
@@ -32,22 +33,20 @@
         <div class="main-settings">
           <center>
             <input id="tab1" type="radio" name="tabs" checked class="tabs-input">
-            <label for="tab1" class="tabs-label" >générale</label>
+            <label for="tab1" class="tabs-label" >Générale</label>
               
             <input id="tab2" type="radio" name="tabs" class="tabs-input">
-            <label for="tab2" class="tabs-label">apparence </label>
+            <label for="tab2" class="tabs-label">Apparence </label>
               
             <input id="tab3" type="radio" name="tabs" class="tabs-input">
-            <label for="tab3" class="tabs-label" >importer/exporter</label>
+            <label for="tab3" class="tabs-label" >Importe-Exporte</label>
               
-            <input id="tab4" type="radio" name="tabs" class="tabs-input">
-            <label for="tab4" class="tabs-label">other</label>
            
             <section id="content1">
               <form method="POST" action="{{ action('SettingsController@editText') }}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-right">Name :</label>
+                  <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
                   <div class="col-md-6">
                       <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$shop->name}}"  required autofocus>
 
@@ -60,7 +59,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="description" class="col-md-4 col-form-label text-md-right">Description :</label>
+                  <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
                   <div class="col-md-6">
                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required autofocus  rows="3">{{$shop->description}}</textarea>
                        
@@ -73,7 +72,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="link" class="col-md-4 col-form-label text-md-right">link :</label>
+                  <label for="link" class="col-md-4 col-form-label text-md-right">Lien</label>
                   <div class="col-md-6">
                       <input id="link" type="text" class="form-control{{ $errors->has('link') ? ' is-invalid' : '' }}" name="link" value="{{$shop->link}}"  required autofocus>
 
@@ -86,7 +85,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="email" class="col-md-4 col-form-label text-md-right">email :</label>
+                  <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                   <div class="col-md-6">
                       <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{$shop->email}}"  required autofocus>
 
@@ -99,7 +98,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="addr" class="col-md-4 col-form-label text-md-right">addr :</label>
+                  <label for="addr" class="col-md-4 col-form-label text-md-right">Addresse</label>
                   <div class="col-md-6">
                       <input id="addr" type="text" class="form-control{{ $errors->has('addr') ? ' is-invalid' : '' }}" name="addr" value="{{$shop->addr}}"  required autofocus>
 
@@ -112,7 +111,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="phone_num" class="col-md-4 col-form-label text-md-right">phone_num :</label>
+                  <label for="phone_num" class="col-md-4 col-form-label text-md-right">Tél</label>
                   <div class="col-md-6">
                       <input id="phone_num" type="text" class="form-control{{ $errors->has('phone_num') ? ' is-invalid' : '' }}" name="phone_num" value="{{$shop->phone_num}}"  required autofocus>
 
@@ -125,7 +124,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="fb_link" class="col-md-4 col-form-label text-md-right">fb_link :</label>
+                  <label for="fb_link" class="col-md-4 col-form-label text-md-right">Facebook</label>
                   <div class="col-md-6">
                       <input id="fb_link" type="text" class="form-control{{ $errors->has('fb_link') ? ' is-invalid' : '' }}" name="fb_link" value="{{$shop->fb_link}}"  required autofocus>
 
@@ -138,7 +137,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="insta_link" class="col-md-4 col-form-label text-md-right">insta_link :</label>
+                  <label for="insta_link" class="col-md-4 col-form-label text-md-right">Instagram</label>
                   <div class="col-md-6">
                       <input id="insta_link" type="text" class="form-control{{ $errors->has('insta_link') ? ' is-invalid' : '' }}" name="insta_link" value="{{$shop->insta_link}}"  required autofocus>
 
@@ -151,7 +150,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="twitter_link" class="col-md-4 col-form-label text-md-right">twitter_link :</label>
+                  <label for="twitter_link" class="col-md-4 col-form-label text-md-right">Twitter</label>
                   <div class="col-md-6">
                       <input id="twitter_link" type="text" class="form-control{{ $errors->has('twitter_link') ? ' is-invalid' : '' }}" name="twitter_link" value="{{$shop->twitter_link}}"  required autofocus>
 
@@ -164,7 +163,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="quotes" class="col-md-4 col-form-label text-md-right">quotes :</label>
+                  <label for="quotes" class="col-md-4 col-form-label text-md-right">Quotes</label>
                   <div class="col-md-6">
                        <textarea id="quotes" class="form-control{{ $errors->has('quotes') ? ' is-invalid' : '' }}" name="quotes" required autofocus  data-role="tagsinput" rows="3">{{$shop->quotes}}</textarea>
                       @if ($errors->has('quotes'))
@@ -176,13 +175,26 @@
               </div>
 
               
+                  <div class="form-group row">
+                    <label for="terms" class="col-md-3 col-form-label">Terms and Conditions</label>
+                    <div class="col-md-8">
+                         <textarea id="terms" class="form-control{{ $errors->has('terms') ? ' is-invalid' : '' }}" name="terms" required autofocus  rows="15" style="width:100%">{{$shop->terms}}</textarea>
+                         
+                        @if ($errors->has('terms'))
+                            <span class="invalid-feedback">
+                                <strong>{{ $errors->first('terms') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+        
 
             
               <div class="form-group row mb-0">
                   <div class="col-md-6 offset-md-4">
                       <button type="submit" class="btn btn-primary">
                         <i class="fa fa-check-square-o" style="font-size:18px"></i>
-                          {{ __('Edit!') }}
+                          Modifier
                       </button>
                   </div>
               </div>
@@ -199,7 +211,7 @@
                      <h4>Logo</h4>
                      <img src="{{ $shop->logo }}" class="settings-img" id="logo-img">
                      <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('logoInput')" >
-                         change logo
+                         Changement du Logo
                      </a>  
                      <input type="file" accept="image/*" class="hidden" id="logoInput" onchange="loadImage(event,'logo-img')" class="hidden{{ $errors->has('logo') ? ' is-invalid' : '' }}" name="logo" value="{{ old('logo') }}">
 
@@ -219,7 +231,7 @@
                      <img src="" class="settings-img" id="slide1-img">
                      @endif
                      <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide1')">
-                         change slide
+                         Changement du Slide
                      </a>  
                      <input type="file" id="slide1" accept="image/*" class="hidden{{ $errors->has("slide1") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide1-img')" name="slide1" value="{{ old("slide3") }}">
                       @if ($errors->has("slide1"))
@@ -238,7 +250,7 @@
                      <img src="" class="settings-img" id="slide2-img">
                      @endif
                      <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide2')">
-                         change slide
+                         Changement du Slide
                      </a>  
                      <input type="file" id="slide2" accept="image/*" class="hidden{{ $errors->has("slide2") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide2-img')" name="slide2" value="{{ old("slide2") }}">
                       @if ($errors->has("slide2"))
@@ -256,7 +268,7 @@
                      <img src="" class="settings-img" id="slide3-img">
                      @endif
                      <a class="btn btn-primary center-text-image blue-btn" onclick="clickInput('slide3')">
-                         change slide
+                         Changement du Slide
                      </a>  
                      <input type="file" id="slide3" accept="image/*" class="hidden{{ $errors->has("slide3") ? ' is-invalid' : '' }}" onchange="loadImage(event,'slide3-img')" name="slide3" value="{{ old("slide3") }}">
                       @if ($errors->has("slide3"))
@@ -272,7 +284,7 @@
                </div><br><br>
                   <button type="submit" class="btn btn-primary blue-btn">
                     <i class="fa fa-check-square-o" style="font-size:18px"></i>
-                      sauvgarder
+                      Enregistrer
                   </button>
                <!--
               
@@ -352,7 +364,7 @@
                   <div class="form-group col-md-1">
                     <button type="submit" class="btn btn-primary">
                       <i class="fa fa-check-square-o" style="font-size:18px"></i>
-                        submit
+                        Importer
                     </button>
                   </div>
               </div>
@@ -360,20 +372,7 @@
           </form>
 
             </section>
-              <section id="content4">
-                  <div class="form-group row">
-                    <label for="terms" class="col-md-3 col-form-label">terms :</label>
-                    <div class="col-md-8">
-                         <textarea id="terms" class="form-control{{ $errors->has('terms') ? ' is-invalid' : '' }}" name="terms" required autofocus  rows="15" style="width:100%">{{$shop->terms}}</textarea>
-                         
-                        @if ($errors->has('terms'))
-                            <span class="invalid-feedback">
-                                <strong>{{ $errors->first('terms') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-                </div>
-              </section>
+              
            </center>   
           </div>
           
