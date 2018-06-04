@@ -165,6 +165,20 @@
                               ({{$productDetails->rating}}/5)
                               <a class="pull-right" href="#reviews">View all reviews</a>
                           </div>
+
+                          <div id="ratingTab">
+                          <hr>
+                          <label class="pull-left" style="display: inline;">Rating : </label>
+                          <div class="srating pull-left" style="margin-right:  10px;">
+                            <span id="star5" onclick="rating(5)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+                            <span id="star4" onclick="rating(4)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+                            <span id="star3" onclick="rating(3)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+                            <span id="star2" onclick="rating(2)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+                            <span id="star1" onclick="rating(1)" style="display: inline;"><i class="fa fa-star" style="color: black"></i></span>
+                  </div>
+                <button class="btn btn-success" onclick="saveRate({{ $product->id }})">Rate !</button>
+                          </div>
+                <label id="afterRating" class="hidden" style="display: inline;">Thanks !</label>
                       </div>
                   </div>
               </div>

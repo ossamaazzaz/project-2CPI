@@ -1,3 +1,8 @@
+/*
+* Js scritps
+* By Oussama Messabih
+*/
+
 var approvedUsers = [];
 var deletedUsers = [];
 function addApprovedUser(id,userId,userState) {
@@ -26,9 +31,11 @@ function selected(element) {
 function edit(element){
         window.location.href= "products/"+element.value+"/edit";
 }
+//redirect to add product 
 function goadd(){
         window.location = "/admin/products/add";
 }
+
 function selectedCategory(element) {
     var item = document.getElementById(element.id);
     if (element.value!="all") {
@@ -69,6 +76,7 @@ function deleteOneProduct(){
                 closeConfModal();
                 console.log(data); }});
 }
+//order validation request
 function validate(id,state){
     if (state==0) {
         var data = new FormData();
@@ -92,6 +100,7 @@ function validate(id,state){
                 }});
     }
 }
+//order refuse request
 function refuse(id,state){
     if (state==0) {
         var data = new FormData();
@@ -108,6 +117,7 @@ function refuse(id,state){
                 }});
     }
 }
+//order confirmation request
 function confirm(id){
     if (id>=0) {
         var data = new FormData();
@@ -127,12 +137,14 @@ function confirm(id){
                 }});
     }
 }
+//redirect to product details
 function details(code){
     if (code!=null) {
         window.location.href = "/facture/"+code;
     }
     
 }
+//check request of order code
 function check(){
     var code = document.getElementById('codeinput').value;
     var data = new FormData();
@@ -167,6 +179,7 @@ function check(){
 
     
 }
+//ask request of order in case in out of stock
 function ask(id){
     if (id>=0) {
         var data = new FormData();
@@ -183,6 +196,7 @@ function ask(id){
                 }});
     }
 }
+//work with missing products notification to show the missing products
 function getmissingproduct(code){
     document.getElementById('orderid').value = id;
     if (!(who=='user')) {
@@ -229,6 +243,8 @@ function hidemodel(){
     modal.style.display = 'none';
     document.body.style.backgroundColor = "#f5f8fa";
 }
+
+//confirm cart and delete missing orders request
 function confirmissingproduct(){
     code = document.getElementById('code').value;
     if (code!=null) {
@@ -247,6 +263,7 @@ function confirmissingproduct(){
                 }});
     }
 }
+//back items to cart
 function backToCart(){
     code = document.getElementById('code').value;
     if (code!=null) {
@@ -265,6 +282,7 @@ function backToCart(){
                 }});
     }
 }
+//delete order request in case of missing products
 function deleteorder(){
     var code = document.getElementById('code').value;
     if (code!=null) {
@@ -290,6 +308,7 @@ function wantdel(id,who){
     }
     
 }
+//delete orders request
 function deleteOrders(who){
     var id = document.getElementById('orderid').value;
     if (id>=0) {
@@ -328,6 +347,7 @@ function deleteOrders(who){
         }
     }
 }
+// retrieve products in case of deleting order
 function Retrieved(id){
     if (id) {
         var data = new FormData();
@@ -398,6 +418,7 @@ jQuery(document).ready(function (){
 
                         }});
     });
+    // just to check all items in products manager
     jQuery("#checkboxAll").click(function(){
         
            var page = table.page();

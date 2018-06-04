@@ -41,7 +41,7 @@
             <label for="tab3" class="tabs-label" >importer/exporter</label>
               
             <input id="tab4" type="radio" name="tabs" class="tabs-input">
-            <label for="tab4" class="tabs-label">other</label>
+            <label for="tab4" class="tabs-label">Terms</label>
            
             <section id="content1">
               <form method="POST" action="{{ action('SettingsController@editText') }}" enctype="multipart/form-data">

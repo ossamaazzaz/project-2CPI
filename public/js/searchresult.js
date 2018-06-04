@@ -1,4 +1,10 @@
+/*
+* search scripts
+* By Oussama Messabih
+*/
+
 var ratingvalue = 0;
+//get rate value from frontend 
 function rating(number){
     ratingvalue = number;
     for (var i = 1; i <= number; i++) {
@@ -12,6 +18,7 @@ function rating(number){
 
     }
 }
+//send the rate value to the controller 
 function saveRate(id) {
 if (id) {
         var data = new FormData();
@@ -32,6 +39,7 @@ if (id) {
                     }});
     }
 }
+//add product to cart
 function addToCart(id) {
     var Quantity = 1;
     var data = new FormData();
@@ -48,6 +56,7 @@ function addToCart(id) {
                 window.location.href = "/cart";
                 }});
 }
+//get function of search
 function getfun(data) {
     data = Object.assign(data,extracturl());
     jQuery.ajax({
@@ -59,6 +68,7 @@ function getfun(data) {
             }
     });
 }
+//extract old url and build a list
 function extracturl(){
     data = {};
     keyvalue = '';
@@ -100,6 +110,7 @@ function extracturl(){
     }
     return data;
 }
+// category filter for menus
 function leftcategorylist(element) {
     data = {};
     data = extracturl();
@@ -114,6 +125,7 @@ function leftcategorylist(element) {
                 }
         });
 }
+// filters bar
 function toggleTriangle(object,n) {
     object.classList.add("active");
     object.parentNode.getElementsByClassName('triangle')[n].classList.remove("active");
@@ -162,8 +174,7 @@ jQuery(document).ready(function (){
 //     headers: {
 //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
 
-    //show the value of termand category
-
+    // this code work just in product detals page and its resonsable on hide rating form 
     var iiddd = document.getElementById("productId").value;
     var d = document.getElementById('ratingTab');
     var data = new FormData();
@@ -180,6 +191,7 @@ jQuery(document).ready(function (){
                         d.remove();
                     }
                     }});    
+    // search filter retrieve the values 
     var terminput  = document.getElementById('inpt_search');
     var category = document.getElementById('category');
     var brand = document.getElementById('brand');
@@ -241,6 +253,8 @@ jQuery(document).ready(function (){
     //         }
     // });
     // });
+
+    //send filtring request
     jQuery("#filter").on('click', function(){
         //get selected brand
         var brandlist = document.getElementById("brand");

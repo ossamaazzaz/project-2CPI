@@ -57,7 +57,7 @@ dashboard prinicpale view
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
                         <!-- Comment -->
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
                                 <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
                             </a>
@@ -83,7 +83,7 @@ dashboard prinicpale view
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- End Comment -->
                         <!-- Messages -->
                         <li class="nav-item dropdown">

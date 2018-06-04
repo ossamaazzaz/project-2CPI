@@ -1,3 +1,6 @@
+/*
+* Notifications script By Oussama Messabih
+*/
 // Enable pusher logging - don't include this in production
 var c=0;
 var isActive = false;
@@ -112,6 +115,7 @@ function MakeAndRouteNotification(notification) {
     text += '</li>'
     return text;
 }
+//desktop notification
 function notifyMe(n) {
   // Let's check if the browser supports notifications
   if (!("Notification" in window)) {
@@ -157,22 +161,25 @@ jQuery(document).ready(function (){
             	addNotifications(data, "#navbarDropdown");
             }
     });
+  //check if the window is active
 	window.onfocus = function () { 
 	  	isActive = true;
 	}; 
+  //check if the window is inactive
 	window.onblur = function () { 
 		isActive = false;
 	};
-    //dealing with real time notifications
-    Pusher.logToConsole = true;
-    var counterNewN = document.getElementById('notificationCounter');
+  //dealing with real time notifications
+  Pusher.logToConsole = false;
+  var counterNewN = document.getElementById('notificationCounter');
 	var pusher = new Pusher('1f6e9b9676f948197518', {
 	  cluster: 'eu',
 	  encrypted: true
 	});
+  //Listening on the events of notifications using pusher api and add it to dropdown
 	var UserId = document.getElementById("userId").value;
 	if (UserId == "noId") {
-		console.log("guest");
+		  console.log("guest");
 	}else { 
 	    var channelConfirmation = pusher.subscribe('privateorder.'+UserId);
 	   	channelConfirmation.bind('OrderConfirmed', function(data) {
@@ -195,6 +202,7 @@ jQuery(document).ready(function (){
       });
 	}
 	jQuery("#noDrdown").click(function() {
+    // in case click in drop down to see the notifications
 		c=0;
 		counterNewN.setAttribute("data-count",c);
 	});

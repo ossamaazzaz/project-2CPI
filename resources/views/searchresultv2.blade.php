@@ -74,6 +74,31 @@
 										<button id="filter" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> Apply </button>
 										</div>
 									</div>
+									      <div class="sort-element" style="border:none;margin-right: 6px;">
+									              Sorted by 
+									            </div>
+									            <div class="sort-element" style="border-top-left-radius: 10px;border-bottom-left-radius: 10px">
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Name </div>
+									              <div style="float: left;display: block;">
+									                <div class="triangle triangle-up" id="nametoggleup" onclick="toggleTriangle(this,1)" ></div>
+									                <div class="triangle triangle-down" id="nametoggledown" onclick="toggleTriangle(this,0)" ></div>
+									              </div>
+									            </div>
+									             <div class="sort-element">
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Price </div>
+									              <div style="float: left;display: block;">
+									                <div class="triangle triangle-up" id="pricetoggleup" onclick="toggleTriangle(this,1)" ></div>
+									                <div class="triangle triangle-down" id="pricetoggledown" onclick="toggleTriangle(this,0)" ></div>
+									              </div>
+									            </div>
+									             <div class="sort-element" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px">
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Rate </div>
+									              <div style="float: left;display: block;">
+									                <div class="triangle triangle-up" id="ratetoggleup" onclick="toggleTriangle(this,1)" ></div>
+									                <div class="triangle triangle-down" id="ratetoggledown" onclick="toggleTriangle(this,0)" ></div>
+									              </div>
+									            </div>
+									            
 						</div>
 						@if(count($result)==0)
 						<div class="col-sm-12" style="text-align: center;">

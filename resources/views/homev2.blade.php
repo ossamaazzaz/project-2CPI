@@ -10,7 +10,15 @@
             </ol>
 
             <div class="carousel-inner" style="width: 100%">
-
+            @if(count($slides)>0)  
+              <div class="item active parallax" style="width: 100%;    background-image: url('{{$slides[0]}}');">
+                  <div class="caption animated rollIn">
+                    <h1 style="color: white">Welcome to superrete</h1>
+                    <h3>mouloud text</h3>
+                  </div>
+                  <a id="scroll-down" class="scroll-down"></a>
+              </div>
+              @else
               <div class="item active parallax" style="width: 100%;    background-image: url('{{asset('1.jpg')}}');">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">Welcome to superrete</h1>
@@ -18,7 +26,16 @@
                   </div>
                   <a id="scroll-down" class="scroll-down"></a>
               </div>
-
+              @endif
+              @if(count($slides)>1) 
+              <div class="item parallax" style="width: 100%;background-image: url('{{$slides[1]}}');">
+                  <div class="caption ">
+                    <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
+                    <h2 style="color: black">yes he is</h2>
+                  </div>
+                  <a id="scroll-down"></a>
+              </div>
+              @else
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('2.jpg')}}');">
                   <div class="caption ">
                     <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
@@ -26,7 +43,16 @@
                   </div>
                   <a id="scroll-down"></a>
               </div>
-              
+              @endif
+              @if(count($slides)>2) 
+              <div class="item parallax" style="width: 100%;background-image: url('{{$slides[2]}}');">
+                  <div class="caption animated rollIn">
+                    <h1 style="color: white">thanks get out of here</h1>
+                    <h3>some other text </h3>
+                  </div>
+                  <a id="scroll-down"></a>
+              </div>
+              @else
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('3.jpg')}}');">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">thanks get out of here</h1>
@@ -34,6 +60,7 @@
                   </div>
                   <a id="scroll-down"></a>
               </div>
+              @endif
 
              <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
               <i class="fa fa-angle-left"></i>
@@ -69,9 +96,9 @@
               </div>
             </div><!--/price-range-->
 
-            <div class="shipping text-center"><!--shipping-->
+            <div class="price-range"><!--shipping-->
               <h2>Ads</h2>
-              <img src="" alt="" />
+              <img src="{{ asset('ads.jpg') }}" alt="" style="width: 265px;" />
             </div><!--/shipping-->
 
           </div>
@@ -99,10 +126,9 @@
                 </div>
                 <div class="choose">
                   <ul class="nav nav-pills nav-justified">
-                    <li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Detailles</a></li>
+                    <center><li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Detailles</a></li></center>
+                   
                     <!-- here we put a form for quic view-->
-
-                    <li><a href="/home/{{$product->id}}"><i class="fa fa-plus-square"></i>Voir le produit</a></li>
                   </ul>
                 </div>
               </div>
@@ -123,42 +149,53 @@
 
             <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner">
-
-                <div class="item active"> 
-                  @foreach($productsfeactured as $product)
+              <div class="item active">  
+                @for($i=0;$i<3;$i++)   
                   <div class="col-sm-4">
                     <div class="product-image-wrapper">
                       <div class="single-products">
                         <div class="productinfo text-center">
-                          <img src="{{ $product->image }}" alt="" />
-                          <h2>{{ $product->price }} DZD</h2>
-                          <p>{{ $product->name }}</p>
-                          <a class="btn btn-default add-to-cart" onclick="addToCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                        </div>
-                        
-                      </div>
-                    </div>
-                    </div>
-                    @endforeach
-
-                 
-                </div>
-                
-                <div class="item">  
-                @foreach($productsfeactured as $product)   
-                  <div class="col-sm-4">
-                    <div class="product-image-wrapper">
-                      <div class="single-products">
-                        <div class="productinfo text-center">
-                          <img src="{{ $product->image }}" alt="" />
-                          <h2>{{ $product->price }} DZD</h2>
-                          <p>{{ $product->name }}</p>
-                          <a class="btn btn-default add-to-cart" onclick="addToCart({{ $product->id }})"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                          <img src="{{ $productsfeactured[$i]->image }}" alt="" />
+                          <h2>{{ $productsfeactured[$i]->price }} DZD</h2>
+                          <p>{{ $productsfeactured[$i]->name }}</p>
+                          <a class="btn btn-default add-to-cart" onclick="addToCart({{ $productsfeactured[$i]->id }})"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>               
                       </div>
                     </div>
                   </div>    
-                @endforeach
+                @endfor
+              </div>
+                <div class="item">  
+                @for($i=3;$i<6;$i++)   
+                  <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                      <div class="single-products">
+                        <div class="productinfo text-center">
+                          <img src="{{ $productsfeactured[$i]->image }}" alt="" />
+                          <h2>{{ $productsfeactured[$i]->price }} DZD</h2>
+                          <p>{{ $productsfeactured[$i]->name }}</p>
+                          <a class="btn btn-default add-to-cart" onclick="addToCart({{ $productsfeactured[$i]->id }})"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>               
+                      </div>
+                    </div>
+                  </div>    
+                @endfor
+              </div>
+              <div class="item">  
+                @for($i=6;$i<9;$i++)   
+                  <div class="col-sm-4">
+                    <div class="product-image-wrapper">
+                      <div class="single-products">
+                        <div class="productinfo text-center">
+                          <img src="{{ $productsfeactured[$i]->image }}" alt="" />
+                          <h2>{{ $productsfeactured[$i]->price }} DZD</h2>
+                          <p>{{ $productsfeactured[$i]->name }}</p>
+                          <a class="btn btn-default add-to-cart" onclick="addToCart({{ $productsfeactured[$i]->id }})"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        </div>               
+                      </div>
+                    </div>
+                  </div>    
+                @endfor
               </div>
                  
               </div>
@@ -170,7 +207,6 @@
                 </a>
             </div>
           </div><!--/recommended_items-->
-
         </div>
       </div>
     </div>

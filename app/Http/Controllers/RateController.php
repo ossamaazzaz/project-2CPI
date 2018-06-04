@@ -11,8 +11,8 @@ use App\Product;
 class RateController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * to get check if the user rated that product or not.
+     * Oussama Messabih
      * @return Response
      */
     public function index(Request $req)
@@ -25,8 +25,8 @@ class RateController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
+     * to create a rate when a user rate a product
+     * Oussama messabih
      * @return Response
      */
     public function create(Request $req)
