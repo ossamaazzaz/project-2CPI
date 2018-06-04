@@ -42,6 +42,7 @@ class HomeController extends Controller
         //get slides
         $shop = Shop::find(1);
         $slides = \Storage::allFiles(str_replace('storage', 'public', $shop->slides));
+        //dd($slides);
         //$slides = implode(" ",str_replace('public', '/storage', $slides ));
         for ($i=0; $i <count($slides) ; $i++) {
             $slides[$i] = str_replace('public', '/storage', $slides[$i] );

@@ -80,8 +80,6 @@
 			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
 
-					  	<li onclick="showToast('notification')"><a><i class="fa fa-bell"></i>&nbsp;show toast</a></li>
-
                         	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
                         	</a></li>

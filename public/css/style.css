@@ -2628,20 +2628,20 @@ table.dataTable thead .sorting_desc_disabled {
   background: transparent none repeat scroll 0 0;
 }
 table.dataTable thead .sorting_asc::after {
-  content: "";
+  content: "ïƒž";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting_desc::after {
-  content: "";
+  content: "ïƒ";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting::after {
   color: rgba(50, 50, 50, 0.5);
-  content: "";
+  content: "ïƒœ";
   cursor: pointer;
   font-family: fontawesome !important;
   margin-left: 10px;
@@ -4276,7 +4276,7 @@ table.dataTable thead .sorting::after {
 .invoice-edit .tax:before,
 .invoice-edit #total_price:before,
 .invoice-edit #total_tax:before {
-  content: '€';
+  content: 'â‚¬';
 }
 .invoice-edit .me,
 .invoice-edit .info,
@@ -6812,7 +6812,7 @@ tbody tr td:last-child {
 /*-------- css code for responsive layout  --------*/
 /*  To make Responsive
 ---------------------------------------------------------------------- /
-*	1 - media screen and (max-width: 1750px)
+* 1 - media screen and (max-width: 1750px)
 *   2 - media screen and (max-width: 1680px)
 *   3 - media screen and (max-width: 1280px)
 *   4 - media screen and (max-width: 1199px)
