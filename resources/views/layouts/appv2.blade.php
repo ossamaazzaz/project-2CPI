@@ -15,8 +15,6 @@
     <link href="{{ asset('css/animate.css') }} " rel="stylesheet">
 	<link href="{{ asset('css/main.css') }} " rel="stylesheet">
 	
-	<link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
-
     <!--comments css -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet"> 
