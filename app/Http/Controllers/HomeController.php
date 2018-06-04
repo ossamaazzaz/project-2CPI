@@ -126,7 +126,8 @@ class HomeController extends Controller
         $user->password = \Hash::make($req->all()['password']);
         $user->save();
         $categories = Category::all();
-        return view('auth.edit',compact('categories'));
+        $shop=\App\Shop::find(1);
+        return view('auth.edit',compact('categories','shop'));
     }
     
     public function contactus(Request $req){

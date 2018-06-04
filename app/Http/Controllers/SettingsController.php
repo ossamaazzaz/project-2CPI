@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  \App\Shop;
 use \App\User;
+use \App\Product;
 use Illuminate\Support\Facades\File;
+use ZipArchive;
 class SettingsController extends Controller
 {
 
@@ -99,6 +101,23 @@ class SettingsController extends Controller
     public function export() {
     	$users = User::all()->toJson(JSON_PRETTY_PRINT);
     	\Storage::put('backup/users/users.json', $users);
+    	$products = Product::all()->toJson(JSON_PRETTY_PRINT);
+    	\Storage::put('backup/products/products.json', $products);
+    	//$files = array(storage_path('app/backup/users/users.json'), storage_path('app/backup/products/products.json'));
+    	$files = $arrayName = array(storage_path('app/backup/users/users.json') => 'users.json',
+    	 storage_path('app/backup/products/products.json') => 'products.json');
+    	$zipname = storage_path('app/backup/backup.zip');
+    	$zip = new ZipArchive;
+    	if ($zip->open($zipname,ZipArchive::CREATE)) {
+    		foreach ($files as $path => $file) {
+    			$zip->addFile($path,$file);
+    		}
+    		// foreach ($files as $file) {
+    		// 	$zip->addFile($file);
+    		// }
+    		$zip->close();
+    		return \Storage::download('backup/backup.zip');
+    	}
     	return \Storage::download('backup/users/users.json');
     }
 

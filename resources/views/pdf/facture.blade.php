@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Facture</title>
+    <title>Facture {{$order->code}} </title>
     
     <style>
     .invoice-box {
@@ -101,13 +101,14 @@
                     <table>
                         <tr>
                             <td>
-                                <img src="" style="width:100%; max-width:200px;">
+                                <img src="{{ $shop->logo }}" width="100" height="50" />
                             </td>
                             <td>
-                                Shop Name<br>
-                                Shop Website<br>
-                                Address<br>
-                                Phone Number
+                                {{$shop->name}}<br>
+                                {{$shop->link}}<br>
+                                {{$shop->email}}<br>
+                                {{$shop->addr}}<br>
+                                {{$shop->phone_num}}
                             </td>
                             
                         </tr>

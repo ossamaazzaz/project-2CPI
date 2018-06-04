@@ -9,6 +9,10 @@ use App\Category;
 use App\Product;
 class CartsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	/* ========================= Show the cart (Kacem )==========================*/
     public function ShowCart()  {
 
