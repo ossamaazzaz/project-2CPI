@@ -232,6 +232,7 @@
                     @endforeach
                     <!--did we forgot raiting system -->
                     <!--Add a comment -->
+                    @if (Auth::user())
                     <div class="row" id="comment-box-container" style="margin-top: 30px;" >
                       <div class="col-md-2" style='margin-bottom: 20px;font-family: "Raleway", sans-serif'>
                         <img class="comment-img" src="{{ Auth::user()->avatar }}">
@@ -244,6 +245,7 @@
                         </form>
                       </div>
                     </div>
+                    @endif
                   </div>
                 </div>
               </div>

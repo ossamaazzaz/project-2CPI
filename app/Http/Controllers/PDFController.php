@@ -7,6 +7,7 @@ use PDF;
 use \App\Orders;
 use \App\OrderItems;
 use \Auth;
+use App\Shop;
 class PDFController extends Controller
 {
 
@@ -24,11 +25,12 @@ class PDFController extends Controller
         if(!$order) {
         return redirect('home');
         }
+        $shop = Shop::find(1);
         if (Auth::user()->groupId == 0 ) {
-            $pdf = PDF::loadView('pdf.facture',compact('order'));
+            $pdf = PDF::loadView('pdf.facture',compact('order','shop'));
         }
         else if (Auth::user()->id == $order->user->id) {
-            $pdf = PDF::loadView('pdf.factureuser',compact('order'));
+            $pdf = PDF::loadView('pdf.factureuser',compact('order','shop'));
         }
         else {
             return redirect('/home');

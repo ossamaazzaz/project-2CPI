@@ -21,6 +21,10 @@ use App\Events\OrderConfirmed;
 use App\Events\MissingProducts;
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /*
     * checkout function 
     * by kacem

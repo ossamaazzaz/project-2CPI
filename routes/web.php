@@ -50,7 +50,7 @@ Route::get('/admin/products/{id?}/edit','ProductController@show');
 Route::post('/admin/products/update','ProductController@update');
 
 Route::get('/home/{id?}','ProductDetailsController@index');
-Route::post('/home/{id?}','ProductDetailsController@addItemToCart');
+Route::post('/home/{id?}','ProductDetailsController@addItemToCart')->middleware('auth');
 
 Route::resource('resource', 'ProductController');
 //Category Controller
