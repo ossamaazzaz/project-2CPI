@@ -2,6 +2,7 @@
 Orders
 */
 -->
+
 @extends('layouts.dashboard')
 @section('title','Orders')
 @section('page_heading','Orders Manager')

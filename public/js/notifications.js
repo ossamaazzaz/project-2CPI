@@ -50,7 +50,7 @@ function showNotifications(notifications, target) {
         counter = `<li class="head text-light" >
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
-                            <span>Notifications (<span id="notificationListCounter">`+ notifications.length +`</span>)</span>
+                            <center><span style="color : black;">Notifications (<span id="notificationListCounter">`+ notifications.length +`</span>)</span></center>
                           </div>
                       </li>`;
         htmlElements.unshift(counter);
@@ -92,12 +92,12 @@ function MakeAndRouteNotification(notification) {
     // make the content
     var text = '';
     text += '<li class="divider"></li>'
-    text += '<li class="notification-box" style="width: 400px; ">'
+    text += '<li class="notification-box" style="width: 400px;padding : 5px 5px 5px 5px "><center>'
     if (notification.type === NOTIFICATION_TYPES.MissingProducts || notification.type === NOTIFICATION_TYPES_RT.MissingProducts) {
         text += '<strong class="text-info">Produits manquants</strong>';
         text += '<div class="row"><div class="col-lg-12 col-sm-12 col-12">';
         text += '<a '+ to+ '>';
-        text += "il y a un manque de produits dans ta panier: "+code;
+        text += "il y a un manque de produits dans ton panier: "+code;
         text += '<br>cliquez pour comfirmer,annulez ou changer!'
         text += '</a>';
         text += '</div>'
@@ -110,9 +110,9 @@ function MakeAndRouteNotification(notification) {
         text += '</a>';
         text += '</div>';
     }
-    text += `<small class="text-warning">`+notification.created_at+`</small>`;
+    text += `<small class="text-warning" style="margin: 0 0 0 153px;">`+notification.created_at+`</small>`;
     text += '</div>';
-    text += '</li>'
+    text += '</center></li>'
     return text;
 }
 //desktop notification

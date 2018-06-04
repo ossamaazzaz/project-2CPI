@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$Total_Products}}">0</div></h2>
-                                    <p class="m-b-0">Total products</p>
+                                    <p class="m-b-0">Produits</p>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$Total_users}}">0</div></h2>
-                                    <p class="m-b-0">Total users</p>
+                                    <p class="m-b-0">Utilisateur</p>
                                 </div>
                             </div>
                         </div>
@@ -65,14 +65,14 @@
                 <div class="bg-white m-l-0 m-r-0 box-shadow ">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Extra Area Chart</h4>
+                                <h4 class="card-title">Revenue cet année</h4>
                                 <canvas id="users-chart"></canvas>
                             </div>
                         </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
-                        <div style="padding-top: 0px; position: relative; height:100%; widht:100%;" class="card">
+                        <div style="padding-top: 0px; position: relative;" class="card">
                             <h4><center>TOP 5 Categories</center></h4>
                             <canvas id="pie-chart"></canvas>
                         </div>
@@ -109,7 +109,7 @@
                                                 @if($order->state == 0)
                                                     <td><span class="badge badge-success">pending</span></td>
                                                 @else
-                                                    @if($order->state == 0)
+                                                    @if($order->state == 1)
                                                         <td><span class="badge badge-success">Accepted</span></td>
                                                     @else
                                                         <td><span class="badge badge-danger">Refused</span></td>

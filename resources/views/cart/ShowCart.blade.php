@@ -6,17 +6,18 @@
 @if (sizeof($Items) > 0)
 <!---------cart table------------>  
 <div class="col-sm-8 card" style="margin-left: auto;margin-right: auto;padding: 10px;">
-  <h2 style="text-align: center;">Cart Table</h2>
+  <h2 style="text-align: center;">Mon panier</h2>
   <div class="table-responsive ">
+    <hr>
     <table class="table">
       <thead>
         <tr>
-          <th>Brand</th>
-          <th>Item</th>
-          <th>Price</th>
-          <th style="width: 200px">Quantity</th>
-          <th>Total</th>
-          <th style="text-align: right;">Delete</th>
+          <th>La marque</th>
+          <th>Produit</th>
+          <th>Prix</th>
+          <th style="width: 200px">Quantité</th>
+          <th>Totale</th>
+          <th style="text-align: right;">supprimé</th>
         </tr>
       </thead>
       <tbody>
@@ -30,17 +31,15 @@
           <td>
                <div class="row" style="width: 150px"> 
                       <div class="input-group number-spinner">
-                        <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="dwn"
-                          onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1">
-                          <span class="fa fa-minus"></span></button></span>
-
+                        <span class="input-group-btn" ><button type="button" class="btn btn-default" data-dir="dwn"
+                          onclick="quantity{{$Item->id}}.value=quantity{{$Item->id}}.value-1" style="background-color: #2d3436;color: white">
+                          <span class="fa fa-minus" ></span></button></span>
 
                         <input id="{{'quantity'.$Item->id}}" type="text" class="form-control text-center"
                                value="{{$Item->quantity}}" name="{{'quantity'.$Item->id}}" >
 
-
                         <span class="input-group-btn"><button type="button" class="btn btn-default" data-dir="up"
-                          onclick="quantity{{$Item->id}}.value=parseInt(quantity{{$Item->id}}.value)+1">
+                          onclick="quantity{{$Item->id}}.value=parseInt(quantity{{$Item->id}}.value)+1" style="background-color: #2d3436;color: white">
                           <span class="fa fa-plus"></span></button></span>
                       </div>
                 </div>
@@ -63,17 +62,17 @@
           <th ></th>
           <th ></th>  
           <th ></th>
-          <th> Total  :</th>
+          <th> Totale  :</th>
           <th >{{$total}} DA</th>
         </strong></tr>
       </tfoot>
     </table>
 
-          <a href="/home"><button type="button" class="btn btn-warning">Back To Store </button></a>
-          <button type="submit" class="btn btn-primary">Apply Changes and refresh</a></form> 
+          <a href="/home"><button type="button" class="btn btn-warning">revenir</button></a>
+          <button type="submit" class="btn btn-primary">sauvgarder</a></form> 
 
           <form method="POST" action="/checkout">  
-          <button type="submit" class="btn btn-success" style="float:right;">Check Out</button>
+          <button type="submit" class="btn btn-success" style="float:right;">Check-Out</button>
           </form>
 
 

@@ -16,15 +16,15 @@
                     <h1 style="color: white">Welcome to superrete</h1>
                     <h3>mouloud text</h3>
                   </div>
-                  <a id="scroll-down" class="scroll-down"></a>
+                  <a id="scroll-down1" class="scroll-down"></a>
               </div>
               @else
-              <div class="item active parallax" style="width: 100%;    background-image: url('{{asset('1.jpg')}}');">
+              <div class="item active parallax" style="width: 100%;background-image: url('{{asset('1.jpg')}}');">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">Welcome to superrete</h1>
                     <h3>mouloud text</h3>
                   </div>
-                  <a id="scroll-down" class="scroll-down"></a>
+                  <a id="scroll-down1" class="scroll-down"></a>
               </div>
               @endif
               @if(count($slides)>1) 
@@ -33,7 +33,7 @@
                     <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
                     <h2 style="color: black">yes he is</h2>
                   </div>
-                  <a id="scroll-down"></a>
+                  <a id="scroll-down2" class="scroll-down"></a>
               </div>
               @else
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('2.jpg')}}');">
@@ -41,7 +41,7 @@
                     <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
                     <h2 style="color: black">yes he is</h2>
                   </div>
-                  <a id="scroll-down"></a>
+                  <a id="scroll-down2" class="scroll-down"></a>
               </div>
               @endif
               @if(count($slides)>2) 
@@ -50,7 +50,7 @@
                     <h1 style="color: white">thanks get out of here</h1>
                     <h3>some other text </h3>
                   </div>
-                  <a id="scroll-down"></a>
+                  <a id="scroll-down3" class="scroll-down"></a>
               </div>
               @else
               <div class="item parallax" style="width: 100%;background-image: url('{{asset('3.jpg')}}');">
@@ -58,7 +58,7 @@
                     <h1 style="color: white">thanks get out of here</h1>
                     <h3>some other text </h3>
                   </div>
-                  <a id="scroll-down"></a>
+                  <a id="scroll-down3" class="scroll-down"></a>
               </div>
               @endif
             </div>
@@ -110,13 +110,13 @@
               <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
+                      <img src="{{ $product->image }}" alt="" />
                       <h2>{{ $product->price }} DA</h2>
                       <p> {{ $product->name }}  </p>
                       
                     </div>
-                    <div class="product-overlay">
+                    <div class="product-overlay" style="background-image: url('{{asset('1.jpg')}}')">
                       <div class="overlay-content">
-                        <h2>{{ $product->price }} DA</h2>
                         <p>{{ $product->desc }}</p>
                         <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
                       </div>
@@ -135,6 +135,7 @@
           </div><!--features_items-->
           <input type="hidden" id="currentPage" value="{{ $currentPage }}">
           <input type="hidden" id="lastPage" value="{{ $lastPage }}">
+          <center>
            <ul class="pagination">
             <li><a onclick="prePage({{ $currentPage }})">&laquo;</a></li>
             @for ($i = 1;$i<=$lastPage;$i++)
@@ -142,6 +143,7 @@
             @endfor
             <li><a onclick="nexPage({{ $currentPage }})">&raquo;</a></li>
           </ul> 
+          </center>
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">Produits Recommandés</h2>
 
