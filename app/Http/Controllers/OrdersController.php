@@ -44,9 +44,10 @@ class OrdersController extends Controller
             $order = new Orders();
             $order->total_paid= $total;
             $order->user_id=Auth::user()->id;
-            $code = str_random((6));
-            while(!Orders::where('code','=',$code)->get()->isEmpty()) {
-                $code = str_random((6));
+            //Order's codification added by renken
+            $code = 'CMD' . date('z') . sprintf('%03d', Orders::count());;
+            while (!Orders::where('code','=',$code)->get()->isEmpty()) {
+                $code = 'CMD' . date('z') . sprintf('%03d', Orders::count());;
             }
             $order->code = $code;
             $order->save();
