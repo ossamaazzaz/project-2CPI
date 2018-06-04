@@ -69,7 +69,7 @@
 								<div>
 						<!-- it will be dynamic soon (kacem)-->
                         @for($i = 0; $i <$productDetails->rating; $i++)
-                          <i class="fa fa-star" style="color: gold"></i>
+                        <i class="fa fa-star" style="color: gold"></i>
                         @endfor
                         @for($i = $productDetails->rating; $i < 5; $i++)
                         <i class="fa fa-star" style="color: black"></i>

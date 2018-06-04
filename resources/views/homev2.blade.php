@@ -110,6 +110,7 @@
               <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
+                      <img src="{{ $product->image }}" alt="" />
                       <h2>{{ $product->price }} DA</h2>
                       <p> {{ $product->name }}  </p>
                       
@@ -117,7 +118,17 @@
                     <div class="product-overlay">
                       <div class="overlay-content">
                         <h2>{{ $product->price }} DA</h2>
-                        <p>{{ $product->desc }}</p>
+                        <!-- it will be dynamic soon (kacem)-->
+                        <div>
+                          <label>Rating : </label>
+                           @for($i = 0; $i <$product->productDetails->rating; $i++)
+                          <i class="fa fa-star" style="color: gold"></i>
+                          @endfor
+                          @for($i = $product->productDetails->rating; $i < 5; $i++)
+                          <i class="fa fa-star" style="color: black"></i>
+                          @endfor
+                        </div>
+                       
                         <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
                       </div>
                     </div>
