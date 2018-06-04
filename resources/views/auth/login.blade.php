@@ -16,22 +16,25 @@
       color: white;
       font-size: 18px;
     }
+    .checkbox{
+      color: white;
+    }
   </style>
 </head>
 
 <body>
 
   <a id="return-home" style="color:white" href="/home"><i class="fa fa-home"></i></a>
-  <div class="form" method="POST" action="{{ route('login') }}">
+  <div class="form" >
       <div class="tab-content">
-        {{-- @if(session()->has('success')) --}}
+        @if(session()->has('success'))
             <div class="alert alert-success"  role="alert">
-                {{ session()->get('success') }}sqkjsnhij
+                {{ session()->get('success') }}
             </div>
-        {{-- @endif --}}
+        @endif
         <h1>Bienvenue !</h1>
         <form method="POST" action="{{ route('login') }}">
-             @csrf
+
             <div class="field-wrap">
               <label for="email">{{ __('Adresse E-mail') }}<span class="req">*</span></label>
               <input id="email" type="email" value="{{ old('email') }}" name="email" class="login-input{{ $errors->has('email') ? ' is-invalid' : '' }}" autocomplete="off" required autofocus/>
@@ -42,18 +45,19 @@
               @endif
             </div>
             <div class="field-wrap">
-              <labelfor="password" >{{ __('Mot de passe') }}<span class="req">*</span></label>
-              <input id="password"  type="password" required autocomplete="off" class="login-input{{ $errors->has('password') ? ' is-invalid' : '' }}"/>
+              <label for="password" >{{ __('Mot de passe') }}<span class="req">*</span></label>
+              <input id="password" name="password" type="password"  class="login-input{{ $errors->has('password') ? ' is-invalid' : '' }}" required autocomplete="off"/>
               @if ($errors->has('password'))
                   <span class="invalid-feedback">
                       <strong>{{ $errors->first('password') }}</strong>
                   </span>
               @endif
             </div>
-            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="remember-me" style="margin-right:5px;"/> {{ __('Se souvenir de moi') }}
+            <p class="checkbox"><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} id="remember-me" style="margin-right:5px;"/>
+               {{ __('Se souvenir de moi') }}
+            </p>
             <p class="forgot"><a href="{{ route('password.request') }}">{{ __('Mot de passe oublié ?') }} </a></p>
             <button type="submit" class="button button-block"/>{{ __('Connection') }}</button>
-
         </form>
       </div><!-- tab-content -->
 </div> <!-- /form -->
