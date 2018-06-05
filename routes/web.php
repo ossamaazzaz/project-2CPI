@@ -95,8 +95,9 @@ Route::get('/admin/check','OrdersController@check')->middleware('auth');
 Route::post('/admin/check/{code}','OrdersController@check')->middleware('auth');
 Route::post('/admin/orders/{id}/retrieve','OrdersController@retrieve');
 //android app
-Route::post('/admin/preparationapp/{id}/confirm','OrdersController@confirmApp');
-Route::get('/admin/preparationapp','OrdersController@confirmApp');
+Route::post('/admin/preparationapp/{id}/confirm','ConfirmationAppController@confirmApp');
+Route::get('/admin/preparationapp','ConfirmationAppController@confirmApp');
+Route::post('/admin/preparationapp/{id}/retrieve','ConfirmationAppController@retrieve');
 
 //orders missing products
 Route::post('/admin/orders/{id}/ask','OrdersController@missingProduct');
