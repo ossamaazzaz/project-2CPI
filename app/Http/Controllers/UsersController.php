@@ -38,6 +38,7 @@ class UsersController extends Controller
         }
       }
       if ($req->deleteIds!=null) {
+        dd($req->deleteIds);
         $ids = array_map('intval', explode(',', $req->deleteIds));
         User::destroy($ids);
       }

@@ -82,7 +82,7 @@
                       <p> {{ $product->name }}  </p>
                       
                     </div>
-                    <div class="product-overlay" style="background-image: url({{$product->category['picture']}})">
+                    <div class="product-overlay" style="background-image: url('{{$product->category->picture}}')">
                       <div class="overlay-content">
                         <!-- it will be dynamic soon (kacem)-->
                         <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
