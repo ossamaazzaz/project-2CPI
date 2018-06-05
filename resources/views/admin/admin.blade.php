@@ -68,7 +68,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                    <span><i class="fa fa-check-square f-s-40 color-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$acceptedOrders}}">0</div></h2>
@@ -82,7 +82,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                    <span><i class="fa fa-spinner f-s-40 color-warning"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$prepOrders}}">0</div></h2>
@@ -96,7 +96,7 @@
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
-                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                    <span><i class="fa fa-bullhorn f-s-40 color-primary"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$askedOrders}}">0</div></h2>

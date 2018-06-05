@@ -111,7 +111,7 @@
             <li><a onclick="nexPage({{ $currentPage }})">&raquo;</a></li>
           </ul> 
           </center>
-          @if(count($productsfeactured)>1)
+          @if(count($productsfeactured)>9)
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">Produits Recommandés</h2>
 

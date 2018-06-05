@@ -36,7 +36,7 @@ class HomeController extends Controller
         $results = $products instanceof Collection ? $products : Collection::make($products);
         $products  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
         $productsfeactured = array('');
-        if (count($results)) {
+        if (count($results)>9) {
             $productsfeactured  = $results->random(9);
         }
         

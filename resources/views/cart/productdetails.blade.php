@@ -196,8 +196,9 @@
                           </p>
                       </div>
                   </div>
+                  <div class="sharethis-inline-share-buttons"  style="width: 833px;"></div>
               </div>
-
+              
               <!-- Reviews -->
               <div class="col-9" >
                 <div class="card border-light mb-3">
@@ -241,6 +242,7 @@
                         <form method="POST" action="/home/{{$productDetails->product_id}}/comments">
                           {{ csrf_field() }}
                           <textarea name="body" class="comment-input" rows='2' onkeydown="autosize(this)" placeholder='Votre commentaire . . .' required></textarea>
+                          <br>
                           <button type="submit" class="btn btn-success">Envoyer <i class="glyphicon glyphicon-send" aria-hidden="true"></i></button>
                         </form>
                       </div>
@@ -265,6 +267,7 @@
 </div>
 <!--Scripts-->
 <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5af0df9065adf70011389756&product=sticky-share-buttons' async='async'></script>
+
 <script type="text/javascript">
       var commentCont,comment,lngth,btns,cmtValue,btns1,el;
       //----------------------------------------------------------------------//
