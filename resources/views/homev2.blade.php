@@ -13,24 +13,24 @@
 
               <div class="item active parallax" style="width: 100%;    background-image: url({{$slides[0]}});">
                   <div class="caption animated rollIn">
-                    <h1 style="color: white">Welcome to superrete</h1>
-                    <h3>mouloud text</h3>
+                    <h1 style="color: white">Decouvrez Nous Produits</h1>
+                    <h3></h3>
                   </div>
                   <a id="scroll-down1" class="scroll-down"></a>
               </div>
 
               <div class="item parallax" style="width: 100%;background-image: url({{$slides[1]}});">
                   <div class="caption ">
-                    <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
-                    <h2 style="color: black">yes he is</h2>
+                    <h1 style="color: white" class="animated rollIn">Soyez les bienvenue chez nous</h1>
+                    <h2 style="color: black"></h2>
                   </div>
                   <a id="scroll-down2" class="scroll-down"></a>
               </div>
               
               <div class="item parallax" style="width: 100%;background-image: url({{$slides[2]}});">
                   <div class="caption animated rollIn">
-                    <h1 style="color: white">thanks get out of here</h1>
-                    <h3>some other text </h3>
+                    <h1 style="color: white"></h1>
+                    <h3></h3>
                   </div>
                   <a id="scroll-down3" class="scroll-down"></a>
               </div>
