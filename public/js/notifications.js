@@ -81,7 +81,7 @@ function MakeAndRouteNotification(notification) {
     var to = '';
     var code = notification.data;
     if (notification.type === NOTIFICATION_TYPES.MissingProducts || notification.type === NOTIFICATION_TYPES_RT.MissingProducts) {
-        to = `data-toggle="modal" data-target="#missingProducts"`;
+        to = `onclick="getmissingproduct('`+code+`','user')" data-toggle="modal"`;
     } else if (notification.type === NOTIFICATION_TYPES.Confirmation || notification.type === NOTIFICATION_TYPES_RT.Confirmation) {
         to = `href="facture/` + code+`"`;
     }
@@ -195,32 +195,32 @@ jQuery(document).ready(function (){
           c++;
           counterNewN.setAttribute("data-count",c);
           showToast('You have '+c+' Notifications');
-          var data = new FormData();
-          data.append("code",data.data);
-          document.getElementById('code').value = data.data;
-          jQuery.ajax({
-              type : "POST",
-              url : "/orders/"+code+"/get",
-              data : data,
-              cache: false,             // To unable request pages to be cached
-              processData: false,
-              contentType: false,
-              success : function(data){
-                  if ((data == 'noCode') || (data == 'noOrder')) {
-                      console.log('fail');
-                  } else {
-                      console.log(data);
-                      ms = document.getElementById('missingproducts');
-                      av = document.getElementById('availableproducts');
-                      for (var i = 1; i < data[0].length; i++) {
-                          ms.innerHTML = ms.innerHTML +" "+ data[0][i].name+" ,";
-                      }
-                      for (var i = 1; i < data[1].length; i++) {
-                          av.innerHTML = av.innerHTML +" "+ data[1][i].name+" ,"
-                      }
-                  }
+          // var data = new FormData();
+          // data.append("code",data.data);
+          // document.getElementById('code').value = data.data;
+          // jQuery.ajax({
+          //     type : "POST",
+          //     url : "/orders/"+code+"/get",
+          //     data : data,
+          //     cache: false,             // To unable request pages to be cached
+          //     processData: false,
+          //     contentType: false,
+          //     success : function(data){
+          //         if ((data == 'noCode') || (data == 'noOrder')) {
+          //             console.log('fail');
+          //         } else {
+          //             console.log(data);
+          //             ms = document.getElementById('missingproducts');
+          //             av = document.getElementById('availableproducts');
+          //             for (var i = 1; i < data[0].length; i++) {
+          //                 ms.innerHTML = ms.innerHTML +" "+ data[0][i].name+" ,";
+          //             }
+          //             for (var i = 1; i < data[1].length; i++) {
+          //                 av.innerHTML = av.innerHTML +" "+ data[1][i].name+" ,"
+          //             }
+          //         }
                           
-                  }});
+          //         }});
       });
 	}
 	jQuery("#noDrdown").click(function() {

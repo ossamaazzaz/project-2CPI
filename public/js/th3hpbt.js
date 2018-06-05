@@ -197,8 +197,8 @@ function ask(id){
     }
 }
 //work with missing products notification to show the missing products
-function getmissingproduct(code){
-    document.getElementById('orderid').value = id;
+function getmissingproduct(code,who){
+    //document.getElementById('orderid').value = id;
     if (!(who=='user')) {
         bg.style.display = 'block';
         modal.style.display = 'block';

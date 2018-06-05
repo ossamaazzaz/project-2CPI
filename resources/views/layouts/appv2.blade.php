@@ -173,12 +173,13 @@
     @yield('content')
     	<!-- model of confirmed by ossama azzaz-->
                <input type="hidden" id="code" name="">
-                <div class="modal fade" id="missingProducts" tabindex="-1" role="dialog">
-      			<div class="modal-dialog" role="document">
-                   <div class="modal-content">
+               <div id="cmodale" class="cmodale canimated jackInTheBox">
+                <div >
+      			<div >
+                   <div >
                     <div class="modal-header">
                       <h5 class="modal-title">Missing Products</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <button type="button" class="close" onclick="closeConfModal()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -193,13 +194,15 @@
                         <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
                         <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
                         <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
-                        <div class="btn btn-info" data-dismiss="modal">Close</div>
-                        <button class="btn btn-success" onclick="">get data</button>
+                        <div class="btn btn-info" onclick="closeConfModal()">Close</div>
+                        <br>
+                        <br>
                       </div>
                       
                     </div>
                   </div>
                 </div>
+            	</div>
             	</div>
                <div id="cmodale" class="cmodale canimated jackInTheBox">
                     <h1>Missing Products :</h1>
@@ -212,6 +215,17 @@
                       <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
                     </dev>
                 </div>
+{{--                <div id="cmodale" class="cmodale canimated jackInTheBox">
+                    <h1>Missing Products :</h1>
+                    <h2 id="missingproducts"></h2>
+                    <h1>Available Products :</h1>
+                    <h2 id="availableproducts"></h2>
+                    <dev>
+                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
+                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
+                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
+                    </dev>
+                </div> --}}
 		<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
