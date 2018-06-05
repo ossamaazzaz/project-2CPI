@@ -3,8 +3,8 @@ Orders
 */
 -->
 @extends('layouts.dashboard')
-@section('title','Orders')
-@section('page_heading','Orders Manager')
+@section('title','Commandes')
+@section('page_heading','Commandes')
 @section('section')
 <div class="col-sm-50"> 
 <div class="row">
@@ -13,7 +13,7 @@ Orders
 
 <!--  /* Pending table */ --> 
 
-            @section ('atable_panel_title','From here you can manage all users orders')
+            
             @section ('atable_panel_body')
             @include('widgets.pendingTable')
 

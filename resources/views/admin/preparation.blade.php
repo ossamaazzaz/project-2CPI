@@ -3,7 +3,8 @@ Orders
 */
 -->
 @extends('layouts.dashboard')
-@section('page_heading','Orders Manager')
+@section('page_heading','Préparation')
+@section('title','Préparation')
 @section('section')
 <div class="col-md-12"> 
 <div class="row">

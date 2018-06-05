@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('page_heading','Modifier le produit')
+@section('title','Modifier le produit')
 @section('section')
 <style type="text/css">
 
@@ -84,7 +85,7 @@ h1{
 
 <label class="custom-file-upload btn btn-primary blue-btn">
 <input type="file" id="pimg" accept="image/*" name="pimage" onchange="loadFile(event)">
-Upload a pic
+Uploader une image
 </label>
 </div>
 
@@ -92,18 +93,18 @@ Upload a pic
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<label>Name :</label>
+			<label>Nom</label>
 			<input type="text" id="name" value="{{ $product->name }}" class="form-control">
 		</div>
 		<div class="col-md-4">
-			<label>Brand :</label>
+			<label>Marque </label>
 			<input type="text" id="brand" value="{{ $product->brand }}" class="form-control">
 		</div>
 	</div>
 
 	<div>
 		 <div class="dropdown">
-		  <button class="btn btn-primary dropdown-toggle blue-btn" type="button" data-toggle="dropdown">Categories
+		  <button class="btn btn-primary dropdown-toggle blue-btn" type="button" data-toggle="dropdown">Catégories
 		  <span class="caret"></span></button>
 		  <ul class="dropdown-menu">
 		    <li><a href="#">1</a></li>
@@ -114,18 +115,18 @@ Upload a pic
 	</div><br>
 		
 		<div >
-			<label>Price :</label>
+			<label>Prix</label>
 			<input type="text" value="{{ $product->price }}" id="price" class="form-control inline" style="width: 200px">
 			<span class="inline">DZD</span>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Quantity :</label>
+					<label>Quantité</label>
 					<input type="text" name="" id="quantity" value="{{ $product->quantity }}" class="form-control">
 				</div>
 				<div class="col-md-4">
-					<label>Quantity for sale :</label>
+					<label>Quantité à vendre</label>
 					<input type="text" name="" id="quantitySale" value="{{ $product->quantitySale }}" class="form-control">
 				</div>
 				
@@ -133,7 +134,7 @@ Upload a pic
 			
 		</div>
 		<div>
-	<label>Description :</label>
+	<label>Description</label>
 	<textarea id="desc" value="{{ $product->productDetails->desc }}" class="form-control" rows="4"></textarea>
 </div>
 </div>
@@ -145,7 +146,7 @@ Upload a pic
 <div style="overflow:auto;">
 <div style="float:right;">
 <button type="button" id="nextBtn" onclick="showTab(2)" class="btn btn-info">
-	Next&nbsp;<i class="fa fa-arrow-right"></i>
+	Suivant&nbsp;<i class="fa fa-arrow-right"></i>
 </button>
 </div>
 </div>
@@ -155,11 +156,11 @@ Upload a pic
 
 <div id="tab2">
 	
-	<center><h3>Adding pictures</h3>
+	<center><h3>L'ajout des images</h3>
 		<div class="container">
 			<label class="custom-file-upload btn btn-primary blue-btn" >
 			<input type="file" accept="image/*" id="addPic" name="images[]" onchange="addPicFun(event)" >
-			+ Uplaod new image <br>
+			+ Uploader nouvelle image <br>
 			</label>
 			<div class="container">
 
@@ -172,10 +173,10 @@ Upload a pic
 			<div style="overflow:auto;">
 				  <div style="float:right;">
 				    <button type="button" id="prevBtn" onclick="showTab(1)" class="btn btn-info">
-				    	<i class="fa fa-arrow-left"></i>&nbsp;Previous
+				    	<i class="fa fa-arrow-left"></i>&nbsp;Précedent
 				    </button>
 				    <button type="submit" id="update" class="btn btn-success">
-				    	submit
+				    	Valider
 				    </button>
 				  </div>
 			</div>

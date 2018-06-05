@@ -10,57 +10,30 @@
             </ol>
 
             <div class="carousel-inner" style="width: 100%">
-            @if(count($slides)>0)  
-              <div class="item active parallax" style="width: 100%;    background-image: url('{{$slides[0]}}');">
+
+              <div class="item active parallax" style="width: 100%;    background-image: url({{$slides[0]}});">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">Welcome to superrete</h1>
                     <h3>mouloud text</h3>
                   </div>
                   <a id="scroll-down" class="scroll-down"></a>
               </div>
-              @else
-              <div class="item active parallax" style="width: 100%;    background-image: url('{{asset('1.jpg')}}');">
-                  <div class="caption animated rollIn">
-                    <h1 style="color: white">Welcome to superrete</h1>
-                    <h3>mouloud text</h3>
-                  </div>
-                  <a id="scroll-down" class="scroll-down"></a>
-              </div>
-              @endif
-              @if(count($slides)>1) 
-              <div class="item parallax" style="width: 100%;background-image: url('{{$slides[1]}}');">
+
+              <div class="item parallax" style="width: 100%;background-image: url({{$slides[1]}});">
                   <div class="caption ">
                     <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
                     <h2 style="color: black">yes he is</h2>
                   </div>
                   <a id="scroll-down"></a>
               </div>
-              @else
-              <div class="item parallax" style="width: 100%;background-image: url('{{asset('2.jpg')}}');">
-                  <div class="caption ">
-                    <h1 style="color: white" class="animated rollIn">Mouloud is text aussi</h1>
-                    <h2 style="color: black">yes he is</h2>
-                  </div>
-                  <a id="scroll-down"></a>
-              </div>
-              @endif
-              @if(count($slides)>2) 
-              <div class="item parallax" style="width: 100%;background-image: url('{{$slides[2]}}');">
+              
+              <div class="item parallax" style="width: 100%;background-image: url({{$slides[2]}});">
                   <div class="caption animated rollIn">
                     <h1 style="color: white">thanks get out of here</h1>
                     <h3>some other text </h3>
                   </div>
                   <a id="scroll-down"></a>
               </div>
-              @else
-              <div class="item parallax" style="width: 100%;background-image: url('{{asset('3.jpg')}}');">
-                  <div class="caption animated rollIn">
-                    <h1 style="color: white">thanks get out of here</h1>
-                    <h3>some other text </h3>
-                  </div>
-                  <a id="scroll-down"></a>
-              </div>
-              @endif
             </div>
              <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
               <i class="fa fa-angle-left"></i>

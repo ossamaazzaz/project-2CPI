@@ -6,7 +6,7 @@
           <form method="POST" action="/admin/categories/edit/{{$id}}" enctype="multipart/form-data">
               @csrf
               <div class="form-group row">
-                  <label for="name" class="col-md-4 col-form-label text-md-right">Nom :</label>
+                  <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
                   <div class="col-md-6">
                       <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{$cat->name}}"  required autofocus>
 
@@ -19,7 +19,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="description" class="col-md-4 col-form-label text-md-right">Description :</label>
+                  <label for="description" class="col-md-4 col-form-label text-md-right">Description</label>
                   <div class="col-md-6">
                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" required autofocus  rows="5">{{$cat->description}}</textarea>
                        
@@ -47,7 +47,7 @@
             !-->
             <div class="form-group ">
                 <div class="form-group row">
-                  <label for="picture" class="col-md-4 col-form-label text-md-right">Photo :</label>
+                  <label for="picture" class="col-md-4 col-form-label text-md-right">Photo</label>
 
                   <div class="col-md-6">
                       <input id="picture" type="file" class="{{ $errors->has('picture') ? ' is-invalid' : '' }}" name="picture" value="{{ old('picture') }}" accept="image/*">

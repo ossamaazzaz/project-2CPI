@@ -3,13 +3,13 @@
 @section('content')
 <div id="contact-page" class="container">
     	<div class="bg">
-	    	<div class="row">
-	    		<div class="col-sm-12">
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>
-
-				</div>
-			</div>
-    		<div class="row">
+	    	<div class="row">    		
+	    		<div class="col-sm-12">    			   			
+					<h2 class="title text-center">Contacez <strong>Nous</strong></h2>    			    				    				
+					
+				</div>			 		
+			</div>    	
+    		<div class="row">  	
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
 	    				<h2 class="title text-center">Rester En Contact</h2>

@@ -3,7 +3,8 @@ procusts
 */
 -->
 @extends('layouts.dashboard')
-@section('page_heading','Products Manager')
+@section('page_heading','Produits')
+@section('title','Produits')
 @section('section')
 <div class="col-md-12"> 
 <div class="row">

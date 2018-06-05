@@ -156,7 +156,7 @@ jQueryform.on('keyup', 'input', function (e) {
         jQueryinput = jQuerythis.val();
     if (jQueryinput.length > 0) {
         jQueryform.find('label').addClass('active');
-        if (jQueryinput.length == 6) {
+        if (jQueryinput.length == 9) {
             jQueryform.find('button').addClass('active');
             console.log(e);
             if (e.which === 13) {

@@ -1,14 +1,14 @@
 <br>
 <div class="card" style="margin: 10px;">
     <div class="card-title">
-       <h2 style="text-align: center;">Retrieve Orders</h2>
+       <h2 style="text-align: center;">Commandes Récuperées</h2>
     </div>
 <table id="deletedOrdersTable" class="table">
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>Details</th>
+                <th>#</th>
+                <th>Date</th>
+                <th>Détails</th>
                 <th></th>
             </tr>
         </thead>
