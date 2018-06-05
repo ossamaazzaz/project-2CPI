@@ -59,12 +59,11 @@ function showNotifications(notifications, target) {
                         <div class="row">  
                           <div class="col-lg-12 col-sm-12 col-12">  
                             <div>
-                           		Il n'y a pas de notification !
+                           		<center><h5> Il n'y a pas de notification ! </h5></center>
                             </div>
                           </div>    
                         </div>
-                      </li>
-                      <li class="divider"></li>`);
+                      </li>`);
         jQuery(target).removeClass('has-notifications');
     }
 
