@@ -142,7 +142,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @if(count($orders) > 0)
 
                                             @php
@@ -250,6 +249,9 @@
 
     var names = @json($CategoriesNames); 
     var values = {{json_encode($CategoriesValues)}};
+
+
+    
 
     new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
