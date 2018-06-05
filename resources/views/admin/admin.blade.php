@@ -141,8 +141,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if(count($orders) > 0)
 
-                                            @for($i=0;$i<5;$i++)
+                                            @php
+                                            $i = 0;
+                                            @endphp
+                                            
+                                            @while($i < count($orders) && $i < 5)
                                             <tr>
                                                 <td>
                                                     <div class="round-img">
@@ -183,8 +188,11 @@
                                                 @endswitch
                                                 <td><a href="/facture/{{$orders[$i]->code}}"><span><u>Aller au PDF</u></span></a></td>
                                             </tr>
-                                            @endfor
-
+                                            @php
+                                            $i++;
+                                            @endphp
+                                            @endwhile
+                                            @endif
 
 
 
@@ -238,9 +246,12 @@
 <script src="{{ asset('js/Chart.min.js') }}"></script>
 
 <script type="text/javascript">
+    <?php
+        // var names = @json($CategoriesNames); 
+    // var values = {{json_encode($CategoriesValues)}};
 
-    var names = @json($CategoriesNames); 
-    var values = {{json_encode($CategoriesValues)}};
+    ?>
+    
 
     new Chart(document.getElementById("pie-chart"), {
     type: 'pie',
