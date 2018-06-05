@@ -35,7 +35,11 @@ class HomeController extends Controller
         //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
         $results = $products instanceof Collection ? $products : Collection::make($products);
         $products  = new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
-        $productsfeactured  = $results->random(9);
+        $productsfeactured = array('');
+        if (count($results)) {
+            $productsfeactured  = $results->random(9);
+        }
+        
         $lastPage = $products->lastPage();
         $currentPage = $products->currentPage();
 

@@ -8,7 +8,7 @@
 								'<div class="slider-handle"></div>'+
 								'<div class="slider-handle"></div>'+
 							'</div>'+
-							'<div class="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'+
+							'<div class="tooltip"><div class="tooltip-arrow"></div><div id="tooltipInner" class="tooltip-inner"></div></div>'+
 						'</div>')
 							.insertBefore(this.element)
 							.append(this.element);
@@ -308,8 +308,9 @@
 			if (this.range) {
 				return this.value;
 			}
-			return this.value[0];
+			console.log(this.value);
 		},
+
 
 		setValue: function(val) {
 			this.value = val;

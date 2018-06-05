@@ -116,7 +116,7 @@
               </div>
             </div>
             @endforeach
-          </div><!--features_items-->
+          </div>
           <input type="hidden" id="currentPage" value="{{ $currentPage }}">
           <input type="hidden" id="lastPage" value="{{ $lastPage }}">
           <center>
@@ -128,6 +128,7 @@
             <li><a onclick="nexPage({{ $currentPage }})">&raquo;</a></li>
           </ul> 
           </center>
+          @if(count($productsfeactured)>1)
           <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">Produits Recommandés</h2>
 
@@ -191,6 +192,7 @@
                 </a>
             </div>
           </div><!--/recommended_items-->
+          @endif
         </div>
       </div>
     </div>

@@ -193,10 +193,18 @@ jQuery(document).ready(function (){
                     }});    
     // search filter retrieve the values 
     var terminput  = document.getElementById('inpt_search');
+    var terminput2  = document.getElementById('text-filter');
     var category = document.getElementById('category');
     var brand = document.getElementById('brand');
-    var minprice = document.getElementById('minprice');
-    var maxprice = document.getElementById('maxprice');
+    var priceRange = document.getElementById('tooltipInner').innerHTML.split(' : ');
+
+    var minprice = '';
+    var maxprice = '';
+    if (priceRange != null) {
+        minprice = priceRange[0];
+        maxprice = priceRange[1];
+    }
+
     keyvalue = '';
     current = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
     for (var i = current.length - 1; i >= 0; i--) {
@@ -205,7 +213,9 @@ jQuery(document).ready(function (){
             for (var j = i - 1; j >= 0; j--) {
                 if (current[j]=='&' || current[j]=='?') {
                     switch(key.valueOf()){
-                        case "term":terminput.value = keyvalue;
+                        case "term":
+                            terminput.value = keyvalue;
+                            terminput2.value = keyvalue;
                             break;
                         case "category":for (var i = 0; i < category.options.length  ; i++) {
                             if (category.options[i].text==keyvalue) {
@@ -265,11 +275,14 @@ jQuery(document).ready(function (){
         var categoryindex = categorylist.selectedIndex;
         var category  = categorylist.options[categorylist.selectedIndex].text;
         // get price 
-        var minprice = document.getElementById('minprice').value;
-        var maxprice = document.getElementById('maxprice').value;
+        var priceRange = document.getElementById('tooltipInner').innerHTML.split(' : ');
+
+        minprice = priceRange[0];
+        mixprice = priceRange[1];
+
         data = {};
-        if (terminput.value != '') {
-            data = Object.assign(data,{term:terminput.value});
+        if (terminput2.value != '') {
+            data = Object.assign(data,{term:terminput2.value});
             }
         if (brand != 'All') {
             data = Object.assign(data,{brand:brand});
