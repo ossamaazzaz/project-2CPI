@@ -17,7 +17,6 @@ const NOTIFICATION_TYPES_RT = {
 
 //dealing with show more
 function getAllNotifications() {
-	console.log("clicked");
 	jQuery.ajax({
             type : "GET",
             url : "/showmore",
@@ -44,7 +43,6 @@ function addNotifications(newNotifications, target) {
 function showNotifications(notifications, target) {
     if (notifications.length) {
         var htmlElements = notifications.map(function (notification) {
-        	console.log(notifications.length);
             return makeNotification(notification);
         });
         counter = `<li class="head text-light" >
@@ -85,7 +83,6 @@ function MakeAndRouteNotification(notification) {
     var code = notification.data;
     if (notification.type === NOTIFICATION_TYPES.MissingProducts || notification.type === NOTIFICATION_TYPES_RT.MissingProducts) {
         to = `onclick="getmissingproduct('`+code+`')" data-toggle="modal" data-target="#missingProducts"`;
-        console.log(code);
     } else if (notification.type === NOTIFICATION_TYPES.Confirmation || notification.type === NOTIFICATION_TYPES_RT.Confirmation) {
         to = `href="facture/` + code+`"`;
     }
@@ -189,7 +186,7 @@ jQuery(document).ready(function (){
           counterNewN.setAttribute("data-count",c);
           showToast('You have '+c+' Notifications');
           if (window.isActive == false){
-  					  notifyMe(n);
+  					  notifyMe(c);
   				}
 						
 	    });

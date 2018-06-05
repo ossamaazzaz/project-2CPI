@@ -350,7 +350,7 @@
     <script src="{{ asset('js/cart.js') }}"></script>
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
-    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="{{ asset('js/pusher.min.js')}}"></script>
     <script src="{{ asset('js/notifications.js')}}"></script>
     <script type="text/javascript">
     	jQuery("#inpt_search").on('focus', function () {
