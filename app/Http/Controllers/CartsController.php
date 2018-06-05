@@ -9,6 +9,10 @@ use App\Category;
 use App\Product;
 class CartsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	/* ========================= Show the cart (Kacem )==========================*/
     public function ShowCart()  {
 
@@ -20,17 +24,18 @@ class CartsController extends Controller
             $cart->save();
         }
 
-        $items = $cart->cartItems;
+        $Items = $cart->cartItems;
         $total=0;
-        foreach($items as $item){
+        foreach($Items as $item){
         	$item->price = $item->product->price * $item->quantity;
             $total+=$item->price;
         }
-        
-        $categories = Category::get();
-        //added this line to get notifications 
-        $notifications = Product::getnotifications();
-        return view('cart.ShowCart' ,['Items'=>$items,'total'=>$total ,'categories' => $categories,'notifications' => $notifications]);
+
+        //informations needed in the appv2
+        $shop=\App\Shop::find(1);
+        $categories = Category::all();
+        //-------------------------------------------
+        return view('cart.ShowCart',compact('Items','total','shop','categories'));
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/
@@ -38,8 +43,6 @@ class CartsController extends Controller
     public function UpdateCart(Request $req)
     {
         $input = $req->post();
-
-
         $cart = Cart::where('user_id',\Auth::id())->first();
         $items = $cart->cartItems;
 

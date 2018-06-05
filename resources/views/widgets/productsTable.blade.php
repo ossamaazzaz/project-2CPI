@@ -2,57 +2,57 @@
 <div class="confir-modal animated jackInTheBox" id="myDiv">
     <div class="confir-modal-text">
         <span class="close-confmodal" onclick="closeConfModal()">&times;</span>
-        Are you sure ?
+        Étes-vous sur?
     </div>
-    <div class="btn yes" onclick="deleteOneProduct()">yes,i'm sure</div>
-    <div class="btn no" onclick="closeConfModal()">no</div>
+    <div class="btn yes" onclick="deleteOneProduct()">Oui</div>
+    <div class="btn no" onclick="closeConfModal()">Non</div>
 </div>
-<button class="btn btn-primary" id="addnew" onclick="goadd()">add new</button>
-<form id="products" action="">
-    <select id="selectList">
-        <option id="delete" value="delete" selected="selected">delete</option>
-         <option id="compare" value="compare">compare</option>
-    </select>
-    <input type="button" value="execute" id="execute">
+<div class="card">
+<div id="products" class="container">
+    <button title="Ajouter un nouveau produit" class="btn btn-primary" id="addnew" style="max-width: 150px;display: inline;" onclick="goadd()">Ajouter</button>  
+    <button title="Supprimer tous les produits" type="button" class="btn btn-danger" style="max-width: 100px;display: inline;" id="delete">Supprimer</button>
     <input type="hidden" id="productid">
-    <table id="productsDataTable" class="table {{ $class }}">
+    <div class="table-responsive">
+    <table id="productsDataTable" class="table">
         <thead>
             <tr>
+                
+                <th>#</th>
                 <th><input id="checkboxAll" type="checkbox" value=""></th>
-                <th>ID</th>
-                <th>Name</th>
                 <th>Photo</th>
-                <th>Brand</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>quantity</th>
-                <th>quantitySale</th>
-                <th>Rate</th>
+                <th>Nom</th>
+                <th>Marque</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Quantité</th>
+                <th title="Quantité à vendre">Q.A.V</th>
+                <th>Évaluation</th>
+                <th>Outils</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($products as $product)
                 <tr id="{{ $product->id }}">
+                    <td>{{ $product->id }}</td>
                     <td>
                       <input type="checkbox" class="custom-checkbox" value="{{ $product->id }}" onchange="selected(this)">
                     </td>
-                    <td class="showTools"> {{ $product->id }}
-                        <div class="tools">
-                            <button type="button" class="fa fa-edit" value="{{ $product->id }}" onclick="edit(this)"></button>
-                            <button type="button" class="fa fa-times" value="{{ $product->id }}" onclick="showConfModal('{{ $product->id }}')"></button>
-                        </div>
-                    </td>
-                   
+                    <td><img src="{{ $product->image }}" width="50px"></td>
                     <td>{{ $product->name }}</td>
-                    <td>image</td>
                     <td>{{ $product->brand }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->categoryId }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>{{ $product->quantitySale }}</td>
-                    <td>rate</td>
+                    <td>{{ $product->productDetails->rating }}</td>
+                    <td class="showTools">
+                            <button type="button" class="btn btn-primary" value="{{ $product->id }}" onclick="edit(this)"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger" value="{{ $product->id }}" onclick="showConfModal('{{ $product->id }}')"><i class="fa fa-times"></i></button>
+                    </td>
                 </tr>
                 @endforeach 
         </tbody>
     </table>
-</form>
+</div>
+</div>  
+</div>

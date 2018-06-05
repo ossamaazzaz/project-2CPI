@@ -1,164 +1,131 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="fr" >
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+  <meta charset="UTF-8">
+  <title>Sign-Up/Login Form</title>
+  <link href="{{ asset('css/normalize.min.css')     }} " rel="stylesheet">
+  <link href="{{ asset('css/login_signup.css')      }} " rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link href="{{ asset('css/font-awesome.min.css')  }} " rel="stylesheet">
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
-                        <!-- Make sure to make this more dynamic, refactor it later -->
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+<body>
+  <div id="return-home"><i class="fa fa-home"></i></div>
 
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+  <div class="form" method="POST" action="{{ route('login') }}">
 
-                                @if ($errors->has('username'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+      <div class="tab-content">
 
-                        <div class="form-group row">
-                            <label for="firstName" class="col-md-4 col-form-label text-md-right">First  Name</label>
+            <h1>Inscription</h1>
 
-                            <div class="col-md-6">
-                                <input id="firstName" type="text" class="form-control{{ $errors->has('firstName') ? ' is-invalid' : '' }}" name="firstName" value="{{ old('firstName') }}" required autofocus>
+          <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
 
-                                @if ($errors->has('firstName'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('firstName') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+              <div>
 
-                        <div class="form-group row">
-                            <label for="lastName" class="col-md-4 col-form-label text-md-right">Last  Name</label>
-
-                            <div class="col-md-6">
-                                <input id="lastName" type="text" class="form-control{{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" required autofocus>
-
-                                @if ($errors->has('lastName'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('lastName') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                <input type="file" id="avatar" accept="image/*" capture style="display:none" onchange="loadImage(event)" class="login-input{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}"  />
+                <center>
+                  <img src="/storage/images/users/photo_profile.jpg" id="userImage" style="cursor:pointer" />
+                </center>
+              </div>
 
 
-                         <div class="form-group row">
-                            <label for="phoneNum" class="col-md-4 col-form-label text-md-right">Phone Number</label>
+              <div class="field-wrap">
+                <label for="username">Nom d'utilisateur<span class="req">*</span></label>
+                <input id="username" type="text" name="username"   autocomplete="off" class="login-input{{ $errors->has('username') ? ' is-invalid' : '' }}" value="{{ old('username') }}" required autofocus />
+                @if ($errors->has('username'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </span>
+                @endif
+              </div>
 
-                            <div class="col-md-6">
-                                <input id="phoneNum" type="text" class="form-control{{ $errors->has('phoneNum') ? ' is-invalid' : '' }}" name="phoneNum" value="{{ old('phoneNum') }}" required autofocus>
-
-                                @if ($errors->has('phoneNum'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('phoneNum') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="adr" class="col-md-4 col-form-label text-md-right">Address</label>
-
-                            <div class="col-md-6">
-                                <input id="adr" type="text" class="form-control{{ $errors->has('adr') ? ' is-invalid' : '' }}" name="adr" value="{{ old('adr') }}" required autofocus>
-
-                                @if ($errors->has('adr'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('adr') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="idCard" class="col-md-4 col-form-label text-md-right">Identity Card Number</label>
-
-                            <div class="col-md-6">
-                                <input id="idCard" type="text" class="form-control{{ $errors->has('idCard') ? ' is-invalid' : '' }}" name="idCard" value="{{ old('idCard') }}" required autofocus>
-
-                                @if ($errors->has('idCard'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('idCard') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right"> Avatar </label>
-
-                            <div class="col-md-6">
-                                <input id="avatar" type="file" class="form-control{{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar" value="{{ old('avatar') }}" required>
-
-                                @if ($errors->has('avatar'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-
-                        
-                    </form>
+              <div class="top-row">
+                <div class="field-wrap">
+                  <label for="firstName">Nom<span class="req">*</span></label>
+                  <input id="firstName" type="text" name="firstName" class="login-input{{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName') }}" autocomplete="off" required autofocus />
+                  @if ($errors->has('firstName'))
+                      <span class="invalid-feedback">
+                          <strong>{{ $errors->first('firstName') }}</strong>
+                      </span>
+                  @endif
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+                <div class="field-wrap">
+                  <label for="lastName">Prénom<span class="req">*</span></label>
+                  <input id="lastName" type="text" class="login-input{{ $errors->has('lastName') ? ' is-invalid' : '' }}" name="lastName" value="{{ old('lastName') }}" autocomplete="off" required autofocus/>
+                  @if ($errors->has('lastName'))
+                      <span class="invalid-feedback">
+                          <strong>{{ $errors->first('lastName') }}</strong>
+                      </span>
+                  @endif
+                </div>
+              </div>
+
+              <div class="field-wrap">
+                <label for="adr">Address<span class="req">*</span></label>
+                <input id="adr" type="text" class="login-input{{ $errors->has('adr') ? ' is-invalid' : '' }}" name="adr" value="{{ old('adr') }}" autocomplete="off" required autofocus />
+                @if ($errors->has('adr'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('adr') }}</strong>
+                    </span>
+                @endif
+              </div>
+
+              <div class="field-wrap">
+                <label for="phoneNum">Numéro de mobile<span class="req">*</span></label>
+                <input maxlength="10" id="phoneNum" type="text" class="login-input{{ $errors->has('phoneNum') ? ' is-invalid' : '' }}" name="phoneNum" value="{{ old('phoneNum') }}" autocomplete="off" required autofocus />
+                @if ($errors->has('phoneNum'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('phoneNum') }}</strong>
+                    </span>
+                @endif
+              </div>
+
+              <div class="field-wrap">
+                <label for="idCard">Numéro de carte d'identité<span class="req">*</span></label>
+                <input id="idCard" type="text" class="login-input{{ $errors->has('idCard') ? ' is-invalid' : '' }}" name="idCard" value="{{ old('idCard') }}" autocomplete="off" required autofocus />
+                @if ($errors->has('idCard'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('idCard') }}</strong>
+                    </span>
+                @endif
+              </div>
+
+              <div class="field-wrap">
+                  <label for="adr">Adresse E-mail<span class="req">*</span></label>
+                  <input id="email" type="email" class="login-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autocomplete="off" required autofocus />
+                  @if ($errors->has('email'))
+                      <span class="invalid-feedback">
+                          <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                  @endif
+              </div>
+
+              <div class="field-wrap">
+                  <label for="password">{{ __('Mot de passe') }}<span class="req">*</span></label>
+                  <input id="password" type="password" class="login-input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"  autocomplete="off" required autofocus />
+                  @if ($errors->has('password'))
+                      <span class="invalid-feedback">
+                          <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                  @endif
+              </div>
+
+              <div class="field-wrap">
+                  <label for="password-confirm">{{ __('Comfirmer le mot de passe') }}<span class="req">*</span></label>
+                  <input id="password-confirm" type="password" class="login-input" name="password_confirmation"  autocomplete="off" required autofocus/>
+              </div>
+
+              <input type="checkbox" required id="remember-me" style="margin:0px 5px 5px 0px;"/>En appuyant sur Inscription, vous acceptez <a href=""><b>nos Conditions générales</b></a> , notre Politique d'utilisation des données et notre Politique d'utilisation des cookies.
+              <br>
+              <button type="submit" class="button button-block"/>{{ __('Inscription') }}</button>
+          </form>
+      </div><!-- tab-content -->
+    </div> <!-- /form -->
+    <!--script-->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/login_signup.js') }}"></script>
+    <script src="{{ asset('js/intro.js') }}"></script>
+  </body>
+</html>

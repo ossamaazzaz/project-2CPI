@@ -8,7 +8,7 @@ namespace App;
 use DB;
 trait Notif{
 	static public function getnotifications(){
-		$notificationsCollection = DB::table('notifications')->latest()->get();
+		$notificationsCollection = DB::table('notifications')->where("user_id",\Auth::id())->limit(5)->get();
         $notifications = array('');
         foreach ($notificationsCollection as $notif) {
         	if ($notif->type == 'App\Notifications\missingproduct') {

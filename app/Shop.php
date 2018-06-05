@@ -17,4 +17,9 @@ class Shop extends Model
         'name', 'description', 'logo', 'link', 'email', 'terms', 'addr', 'phone_num', 'fb_link', 'insta_link', 'twitter_link', 'quotes', 'slides'   
          ];
 
+    public function Terms()
+    {
+        return $this->hasMany('App\TermArticle','shop_id');
+    }
+
 }

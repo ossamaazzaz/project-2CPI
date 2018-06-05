@@ -18,7 +18,7 @@ class UsersController extends Controller
     
    public function index()
    {
-	    $users = User::get();
+	     $users = User::get();
        $shop = Shop::find(1);
 
 	    return view('admin.users',compact('users','shop'));
@@ -41,7 +41,7 @@ class UsersController extends Controller
         $ids = array_map('intval', explode(',', $req->deleteIds));
         User::destroy($ids);
       }
-      return "Done";
+      return response()->json("Done");
    }
 
 }

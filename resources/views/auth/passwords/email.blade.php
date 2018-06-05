@@ -1,47 +1,38 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="fr" >
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Sign-Up/Login Title</title>
+  <!--Link-->
+  <link href="{{ asset('css/normalize.min.css')     }} " rel="stylesheet">
+  <link href="{{ asset('css/font-awesome.min.css')  }} " rel="stylesheet">
+  <link href="{{ asset('css/login_signup.css')      }} " rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+  <link href="{{ asset('css/responsive.css') }} " rel="stylesheet">
+</head>
+  <body>
+    <div id="return-home"><i class="fa fa-home"></i></div>
+      <div class="form" method="POST" action="{{ route('login') }}">
+      <div class="tab-content">
+           <h1>Réinitialiser le mot de pass</h1>
+           <form method="POST" action="{{ route('password.email') }}">
+               @csrf
+              <div class="field-wrap">
+                <label for="email">{{ __('Adresse E-mail') }}<span class="req">*</span></label>
+                <input id="email" type="email" class="login-input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"   autocomplete="off"  required></input>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+              </div>
+              <button type="submit" class="button button-block" style="font-size: 24px;text-transform: none;" />{{ __('Envoyer lien de réinitialisation') }}</button>
+            </form>
+      </div><!-- tab-content -->
     </div>
-</div>
-@endsection
+    <!--script-->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/login_signup.js') }}"></script>
+  </body>
+</html>

@@ -1,19 +1,45 @@
-var ratingvalue = 0;
+/*
+* search scripts
+* By Oussama Messabih
+*/
 
+var ratingvalue = 0;
+//get rate value from frontend 
 function rating(number){
     ratingvalue = number;
     for (var i = 1; i <= number; i++) {
         var star = document.getElementById('star'+i);
-        star.innerHTML = "★";
+        star.innerHTML = `<i class="fa fa-star" style="color: gold"></i>`;
         star.style.color = "#ffbf00";
     }
     for (var i = number+1; i <= 5; i++) {
         var star = document.getElementById('star'+i);
-        star.innerHTML = "☆";
+        star.innerHTML = `<i class="fa fa-star" style="color: black"></i>`;
 
     }
-
 }
+//send the rate value to the controller 
+function saveRate(id) {
+if (id) {
+        var data = new FormData();
+        data.append("id",id);
+        data.append("rating",ratingvalue);
+        jQuery.ajax({
+                type : "POST",
+                url : "/home/"+id+"/rate",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="rated") {
+                        document.getElementById('ratingTab').remove();
+                        document.getElementById('afterRating').classList.remove('hidden');
+                    }
+                    }});
+    }
+}
+//add product to cart
 function addToCart(id) {
     var Quantity = 1;
     var data = new FormData();
@@ -30,6 +56,7 @@ function addToCart(id) {
                 window.location.href = "/cart";
                 }});
 }
+//get function of search
 function getfun(data) {
     data = Object.assign(data,extracturl());
     jQuery.ajax({
@@ -41,6 +68,7 @@ function getfun(data) {
             }
     });
 }
+//extract old url and build a list
 function extracturl(){
     data = {};
     keyvalue = '';
@@ -82,6 +110,7 @@ function extracturl(){
     }
     return data;
 }
+// category filter for menus
 function leftcategorylist(element) {
     data = {};
     data = extracturl();
@@ -96,6 +125,7 @@ function leftcategorylist(element) {
                 }
         });
 }
+// filters bar
 function toggleTriangle(object,n) {
     object.classList.add("active");
     object.parentNode.getElementsByClassName('triangle')[n].classList.remove("active");
@@ -144,12 +174,36 @@ jQuery(document).ready(function (){
 //     headers: {
 //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
 
-    //show the value of termand category
-    var terminput  = document.getElementById('term');
+    // this code work just in product detals page and its resonsable on hide rating form 
+    var iiddd = document.getElementById("productId").value;
+    var d = document.getElementById('ratingTab');
+    var data = new FormData();
+    data.append("id",iiddd);
+    jQuery.ajax({
+                type : "POST",
+                url : "/home/"+iiddd+"/checkrate",
+                data : data,
+                cache: false,             // To unable request pages to be cached
+                processData: false,
+                contentType: false,
+                success : function(data){
+                    if (data=="rated") {
+                        d.remove();
+                    }
+                    }});    
+    // search filter retrieve the values 
+    var terminput  = document.getElementById('inpt_search');
+    var terminput2  = document.getElementById('text-filter');
     var category = document.getElementById('category');
     var brand = document.getElementById('brand');
-    var minprice = document.getElementById('minprice');
-    var maxprice = document.getElementById('maxprice');
+    var priceRange = document.getElementById('tooltipInner').innerHTML.split(' : ');
+
+    var minprice = '';
+    var maxprice = '';
+    if (priceRange != null) {
+        minprice = priceRange[0];
+        maxprice = priceRange[1];
+    }
 
     keyvalue = '';
     current = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
@@ -159,9 +213,15 @@ jQuery(document).ready(function (){
             for (var j = i - 1; j >= 0; j--) {
                 if (current[j]=='&' || current[j]=='?') {
                     switch(key.valueOf()){
-                        case "term":terminput.value = keyvalue;
+                        case "term":
+                            terminput.value = keyvalue;
+                            terminput2.value = keyvalue;
                             break;
-                        case "category":category.value = keyvalue;
+                        case "category":for (var i = 0; i < category.options.length  ; i++) {
+                            if (category.options[i].text==keyvalue) {
+                                category.selectedIndex = i;};}
+                            break;
+
                             break;
                         case "brand":for (var i = 0; i < brand.options.length  ; i++) {
                             if (brand.options[i].text==keyvalue) {
@@ -203,24 +263,32 @@ jQuery(document).ready(function (){
     //         }
     // });
     // });
-    jQuery("#filter").click( function(){
+
+    //send filtring request
+    jQuery("#filter").on('click', function(){
         //get selected brand
         var brandlist = document.getElementById("brand");
         var brandindex = brandlist.selectedIndex;
         var brand  = brandlist.options[brandlist.selectedIndex].text;
-        
+        //get selected category
+        var categorylist = document.getElementById("category");
+        var categoryindex = categorylist.selectedIndex;
+        var category  = categorylist.options[categorylist.selectedIndex].text;
         // get price 
-        var minprice = document.getElementById('minprice').value;
-        var maxprice = document.getElementById('maxprice').value;
-    
-        if (category.value != null) {
-            data = {category:category.value};
-        }
-        if (term.value != null) {
-            data = Object.assign(data,{term:term.value});
+        var priceRange = document.getElementById('tooltipInner').innerHTML.split(' : ');
+
+        minprice = priceRange[0];
+        mixprice = priceRange[1];
+
+        data = {};
+        if (terminput2.value != '') {
+            data = Object.assign(data,{term:terminput2.value});
             }
         if (brand != 'All') {
             data = Object.assign(data,{brand:brand});
+        }
+        if (category != 'All') {
+            data = Object.assign(data,{category:category});
         }
         if (ratingvalue != 0) {
             data = Object.assign(data,{rating:ratingvalue});
@@ -231,16 +299,12 @@ jQuery(document).ready(function (){
         if (maxprice != 0) {
             data = Object.assign(data,{maxprice:maxprice});
         }
-        console.log(data);
-            jQuery.ajax({
-
-                type : "GET",
-                url : "/search",
-                data : data,
-                success : function(data){
-                        window.location=this.url;
-
-            }
-        });       
+        jQuery.ajax({
+            type : "GET",
+            url : "/search",
+            data : data,
+            success : function(data){
+                    window.location=this.url;
+                }});       
     });
 });

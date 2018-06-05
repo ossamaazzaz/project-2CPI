@@ -4,7 +4,8 @@ its used to show up the users table
 */
 ?>
 @extends('layouts.dashboard')
-@section('page_heading','Users Manager')
+@section('page_heading','Utilisateurs')
+@section('title','Utilisateurs')
 @section('section')
 <div class="col-sm-50">	
 <div class="row">
@@ -14,7 +15,7 @@ its used to show up the users table
 			i used here a widget table /widget/table.blade.php
 			*/
 			?>
-			@include('widgets.table', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+			@include('widgets.table')
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'atable'))
 		</div>

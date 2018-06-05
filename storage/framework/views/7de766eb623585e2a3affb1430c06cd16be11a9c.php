@@ -9,12 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="">
-    <title>dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e($shop->logo); ?>">
+    <title><?php echo $__env->yieldContent('title'); ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo e(asset('css/lib/bootstrap/bootstrap.min.css')); ?>" rel="stylesheet">
     <!-- Custom CSS -->
-
+    <link href="<?php echo e(asset('css/font-awesome.min.css')); ?> " rel="stylesheet">
     <link href="<?php echo e(asset('css/lib/calendar2/semantic.ui.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/lib/calendar2/pignose.calendar.min.css')); ?>" rel="stylesheet">
     
@@ -149,11 +149,6 @@
     <!--Custom JavaScript -->
 
 
-    <!-- Amchart -->
-     <script src="<?php echo e(asset('js/lib/morris-chart/raphael-min.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/lib/morris-chart/morris.js')); ?>"></script>
-    <script src="<?php echo e(asset('js/lib/morris-chart/dashboard1-init.js')); ?>"></script>
-
 
 	<script src="<?php echo e(asset('js/lib/calendar-2/moment.latest.min.js')); ?>"></script>
     <!-- scripit init-->
@@ -194,24 +189,6 @@
 
       });  
     });
-        var ctxx = document.getElementById('users-chart').getContext('2d');
-      var chart = new Chart(ctxx, {
-          // The type of chart we want to create
-          type: 'line',
-          // The data for our dataset
-          data: {
-              labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
-              datasets: [{
-                  label: "Users registrations this year",
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: [0, 10, 5, 2, 20, 30, 12,15, 10, 5, 2, 20, 30, 45],
-              }]
-          },
-          // Configuration options go here
-          options: {}
-      });
-     
     </script>
     <script src="<?php echo e(asset('js/datatables.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/datatables-init.js')); ?>"></script>

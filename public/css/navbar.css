@@ -1,0 +1,30 @@
+.navbar-back-color{
+	background: #0fb9b1;
+}
+.navbar-collapse {
+	position: relative;
+	padding-top: 30px !important;
+	max-height: 270px;
+}
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+@media (min-width: 768px) {
+	.navbar-collapse {
+		padding-top: 0px !important;
+		padding-right: 38px !important;
+	}
+	.navbar-brand-centered {
+        position: absolute;
+        left: 50%;
+        display: block;
+        width: 160px;
+        text-align: center;
+        background-color: #eee;
+    }
+    .navbar>.container .navbar-brand-centered, 
+    .navbar>.container-fluid .navbar-brand-centered {
+        margin-left: -250px;
+    }
+}

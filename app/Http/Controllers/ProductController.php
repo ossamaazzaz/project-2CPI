@@ -24,9 +24,8 @@ class ProductController extends Controller {
 		if ($req->isMethod('get')) {
 			$products = Product::get();
 			$products = Product::where('deleted',0)->get();
-			$notifications = Product::getnotifications();
 			$shop = Shop::find(1);
-			return view('admin.products',['products' => $products,'notifications' => $notifications,'shop' => $shop]);
+			return view('admin.products',['products' => $products,'shop' => $shop]);
 
 		}
 	}
@@ -63,7 +62,7 @@ class ProductController extends Controller {
 		}
 		
 		$shop = Shop::find(1);
-		return view('admin.addProduct',compact('product','imgs','shop'));
+		return view('admin.editProduct',compact('product','imgs','shop'));
 	
 		}
 	/*
@@ -82,7 +81,6 @@ class ProductController extends Controller {
           
     	];
     	$imgNum = $req->imgNum;
-    	$newImgs = json_decode($req->newImgs);
     	if ($req->deletedImgs == null) {
     		$delOldImgs = array();
     	}else{
@@ -123,8 +121,6 @@ class ProductController extends Controller {
 		// add its details
 		$product->productDetails->description =  $req->all()['desc'];
 
-		$product->productDetails->save();
-
 		// deleting the images
 		// there is an issue
 		if (count($delOldImgs)>0) {
@@ -141,7 +137,8 @@ class ProductController extends Controller {
 		$dirname = 'images/' . 'products/' . $product->id . '/';
 		$relurl = '/storage/' . $dirname;
 		$dirname = 'public/' . $dirname;
-		
+		$product->productDetails->imgs = $relurl;
+		$product->productDetails->save();
 		// saving the principale image of product 
 		if ($req->hasFile('pimg')) {
 			
@@ -152,6 +149,7 @@ class ProductController extends Controller {
 			$product->image = $relurl . '0' .'.'. $pimg->getClientOriginalExtension();
 			$product->save();
 		}
+
 		$id = $imgNum+1;
 		foreach ($index as $i) {
 			if ($req->hasFile($i)) {
@@ -171,7 +169,7 @@ class ProductController extends Controller {
 	* @return  view page [<description>]
 	* by renken
 	*/
-	public function add(Request $req) {
+	public function add(request $req) {
 		$categories = Category::get();
 		$shop = Shop::find(1);
 		if ($req->isMethod('get')) {

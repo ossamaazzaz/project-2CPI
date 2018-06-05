@@ -1,19 +1,20 @@
-<?php  /*
+<!--/*
 procusts
 */
-?>
+-->
 @extends('layouts.dashboard')
-@section('page_heading','Products Manager')
+@section('page_heading','Produits')
+@section('title','Produits')
 @section('section')
-<div class="col-sm-50"> 
+<div class="col-md-12"> 
 <div class="row">
-            <div class="col-sm-10">
+            <div class="col-md-12">
             @section ('atable_panel_body')
-            <?php  /*
+            <!--
             i used here a widget table /widget/table.blade.php
             */
-            ?>
-            @include('widgets.productsTable', array('class'=>'table-condensed table-bordered table-striped table table-responsive'))
+            -->
+            @include('widgets.productsTable')
             @endsection
             @include('widgets.panel', array('header'=>true, 'as'=>'atable'))
         </div>

@@ -8,6 +8,7 @@ use App\ProductDetails;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Shop;
 class ProductDetailsController extends Controller{
 
     /* ==============simple index function to show up  =================*/
@@ -15,13 +16,21 @@ class ProductDetailsController extends Controller{
     public function index($id){
       $product=Product::find($id);
       //$productDetails=DB::table('product_details')->where('product_id','=',$id)->get();
-
+      $rates  = $product->rate()->get();
+      $rateMoy = 0;
+      foreach ($rates as $rate) {
+        $rateMoy = $rateMoy + $rate->rate;
+      }
+      if ($rateMoy>0) {
+          $rateMoy = $rateMoy/$rates->count(); 
+      }
       $productDetails=ProductDetails::find($id);
-
+      $productDetails->rating = $rateMoy;
+      $productDetails->save();
       $categories = Category::get();
-      //added this line to get notifications
-      $notifications = Product::getnotifications();
-      return view("cart.productdetails",compact('product','productDetails','categories','notifications'));
+      
+      $shop = Shop::find(1);
+      return view("cart.productdetails",compact('shop','product','productDetails','categories'));
     }
 
     /* ============== Add element to the cart (mouloud) ================*/
@@ -45,6 +54,5 @@ class ProductDetailsController extends Controller{
       $cartItem->save();
       return redirect("/cart");
     }
-
 
 }

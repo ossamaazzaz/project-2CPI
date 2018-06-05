@@ -67,7 +67,7 @@
   box-sizing: border-box;
   outline: none;
 }
-#register{
+#codeinput{
   text-align: center;
   padding: 5px;
 }
@@ -121,7 +121,7 @@
   background: rgba(0, 0, 0, 0.3);
   right: 0;
   border: 0;
-  width: 115px;
+  width: 120px;
   border-radius: 6px;
   font-size: 25px;
   cursor: pointer;
@@ -2628,20 +2628,20 @@ table.dataTable thead .sorting_desc_disabled {
   background: transparent none repeat scroll 0 0;
 }
 table.dataTable thead .sorting_asc::after {
-  content: "";
+  content: "";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting_desc::after {
-  content: "";
+  content: "\f0dd";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting::after {
   color: rgba(50, 50, 50, 0.5);
-  content: "";
+  content: "\f0d8";
   cursor: pointer;
   font-family: fontawesome !important;
   margin-left: 10px;
@@ -4276,7 +4276,7 @@ table.dataTable thead .sorting::after {
 .invoice-edit .tax:before,
 .invoice-edit #total_price:before,
 .invoice-edit #total_tax:before {
-  content: '€';
+  content: 'â‚¬';
 }
 .invoice-edit .me,
 .invoice-edit .info,
@@ -4950,7 +4950,6 @@ footer p {
   margin-bottom: 20px;
 }
 .form-control {
-  height: 42px;
   border-radius: 0;
   box-shadow: none;
   border-color: #e7e7e7;
@@ -6813,7 +6812,7 @@ tbody tr td:last-child {
 /*-------- css code for responsive layout  --------*/
 /*  To make Responsive
 ---------------------------------------------------------------------- /
-*	1 - media screen and (max-width: 1750px)
+* 1 - media screen and (max-width: 1750px)
 *   2 - media screen and (max-width: 1680px)
 *   3 - media screen and (max-width: 1280px)
 *   4 - media screen and (max-width: 1199px)
@@ -7094,4 +7093,48 @@ label[for*='4']:before {
     padding: 15px;
   }
 }
+/*categories overlay*/
+  .categorie-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin-bottom: 25px;
+  text-align: center;
+  font-family: arial;
+  height: 400px;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2f3542;
+  overflow-y: scroll;
+  width: 100%;
+  height:0;
+  transition: .3s ease;
+}
 
+.categorie-card:hover .overlay {
+  top: 0;
+  height: 230px;
+}
+
+.categorie-des{
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+a.blue-btn{
+  background-color: #1976d2;
+  color: white !important;
+}
+a.blue-btn:hover{
+  background-color: #1976d2;
+  color: white !important;
+}

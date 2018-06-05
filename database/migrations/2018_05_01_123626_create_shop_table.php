@@ -31,7 +31,7 @@ class CreateShopTable extends Migration
             $table->string('logo')->nullable();
             $table->string('link')->nullable();
             $table->string('email')->nullable();
-            $table->text('terms')->nullable();
+            $table->string('terms')->nullable();
             $table->string('addr')->nullable();
             $table->string('phone_num')->nullable();
             $table->string('fb_link')->nullable();
@@ -42,6 +42,12 @@ class CreateShopTable extends Migration
             $table->double('revenue')->default(0);
             $table->timestamps();
         });
+        Storage::makeDirectory('public/images/slides/');
+        for ($i=1; $i <= 3; $i++) { 
+            
+            File::copy(public_path() . '/defaults/slides/slide' . $i . '.jpg', storage_path() . '/app/public/images/slides/slide' . $i . '.jpg');
+        }
+        
         Shop::create([
             'name' => 'Eshop',
             'description' => 'the description of our website ,
@@ -51,6 +57,8 @@ some words',
             'terms' => 'Our terms of Service are simple.',
             'addr' => 'Address',
             'phone_num' => '1234567890',
+            'slides' => '/storage/images/slides/',
+            'logo' => '/defaults/logo.jpg',
         ]);
     }
 

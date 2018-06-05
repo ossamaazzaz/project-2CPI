@@ -15,10 +15,13 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\Event' => [
             'App\Listeners\EventListener',
-            'App\Listeners\CreateProduct'
-        ],
-    ];
+            'App\Listeners\CreateProduct',
 
+        ],
+
+        'App\Events\OrderConfirmed' => [],
+        'App\Events\MissingOrders' => [],
+    ];
     /**
      * Register any events for your application.
      *

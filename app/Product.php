@@ -9,7 +9,6 @@ class Product extends Model
     
     //using the trait of searching 
     use FullTextSearch;
-    use Notif;
 	/**
     * Get the details record associated with the Product.
     */
@@ -18,6 +17,10 @@ class Product extends Model
     }
     public function category(){
         return $this->belongsTo('App\Category','categoryId');
+    }
+    public function rate()
+    {
+        return $this->hasMany('\App\Rate','product_id');
     }
     protected $fillable = [
         'name', 'brand','price','categoryId','quantity','quantitySale',

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appv2')
 
 @section('content')
 <div class="container" style=" margin-left: auto; margin-right: auto;">

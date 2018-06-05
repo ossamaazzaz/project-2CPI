@@ -1,10 +1,9 @@
 @extends('layouts.dashboard')
 
-
-@section('page_heading','Dashboard')
+@section('title','Tableau de bord')
+@section('page_heading','Tableau de bord')
 
 @section('section')
-
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
@@ -15,8 +14,8 @@
                                     <span><i class="fa fa-usd f-s-40 color-primary"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="568120">0</div></h2>
-                                    <p class="m-b-0">Total Revenue</p>
+                                    <h2><div class="counter" data-count="{{$Total_Revenue}}">0</div></h2>
+                                    <p class="m-b-0">Total des Revenus</p><br>
                                 </div>
                             </div>
                         </div>
@@ -28,8 +27,8 @@
                                     <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="1178">0</div></h2>
-                                    <p class="m-b-0">Completed orders</p>
+                                    <h2><div class="counter" data-count="{{$Completed_Orders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes Complètes</p>
                                 </div>
                             </div>
                         </div>
@@ -41,8 +40,10 @@
                                     <span><i class="fa fa-archive f-s-40 color-warning"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="25">0</div></h2>
-                                    <p class="m-b-0">Total products</p>
+                                    <h2><div class="counter" data-count="{{$Total_Products}}">0</div></h2>
+
+                                    <p class="m-b-0">Total des produits</p><br>
+
                                 </div>
                             </div>
                         </div>
@@ -54,8 +55,52 @@
                                     <span><i class="fa fa-user f-s-40 color-danger"></i></span>
                                 </div>
                                 <div class="media-body media-text-right">
-                                    <h2><div class="counter" data-count="847">0</div></h2>
-                                    <p class="m-b-0">Total users</p>
+                                    <h2><div class="counter" data-count="{{$Total_users}}">0</div></h2>
+                                    <p class="m-b-0">Nombre Total d'utilisateurs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-check-square f-s-40 color-success"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$acceptedOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes Acceptées</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-spinner f-s-40 color-warning"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$prepOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes en Prépration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-bullhorn f-s-40 color-primary"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$askedOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes Gelées</p>
                                 </div>
                             </div>
                         </div>
@@ -65,21 +110,24 @@
                 <div class="bg-white m-l-0 m-r-0 box-shadow ">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Extra Area Chart</h4>
+                                <!-- <h4 class="card-title">Graph</h4> -->
+                                {{-- <h4 class="card-title">Revenue cet année</h4> --}}
                                 <canvas id="users-chart"></canvas>
                             </div>
                         </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <h3>Top 5 products</h3>
+                    <div class="col-lg-4">
+                        <div style="padding-top: 0px; position: relative; height:100%; widht:100%;" class="card">
+                            <h4><center>Catégories: TOP 5</center></h4>
+                            <canvas id="pie-chart"></canvas>
                         </div>
                     </div>
-                    <div class="col-lg-9">
+
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-title">
-                                <h4>Recent Orders </h4>
+                            <h4>Dernières commandes</h4>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -87,58 +135,67 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
-                                                <th>Product</th>
-                                                <th>quantity</th>
+                                                <th>Nom d'Utilisateur</th>
+                                                <th>Total à payer</th>
                                                 <th>Status</th>
+                                                <th>Plus de détails</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if(count($orders) > 0)
 
+                                            @php
+                                            $i = 0;
+                                            @endphp
+                                            
+                                            @while($i < count($orders) && $i < 5)
                                             <tr>
                                                 <td>
                                                     <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
+                                                        <a href=""><img src="{{$orders[$i]->user->avatar}}" alt=""></a>
                                                     </div>
                                                 </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
+                                                <td>{{$orders[$i]->user->firstName}} {{$orders[$i]->user->lastName}}</td>
+                                                <td><span>{{$orders[$i]->total_paid}}</span></td>  
+
+                                                @switch($orders[$i]->state)
+                                                @case(0)
+                                                    <td><span class="badge badge-warning">En attendant</span></td>
+                                                    @break
+                                                @case(1)
+                                                    <td><span class="badge badge-success">Accéptée</span></td>
+                                                    @break
+                                                @case(2)
+                                                    <td><span class="badge badge-danger">Refusée</span></td>
+                                                    @break
+                                                @case(3)
+                                                    <td><span class="badge badge-info">En préparation</span></td>
+                                                    @break
+                                                @case(4)
+                                                    <td><span class="badge badge-primary">Terminée</span></td>
+                                                    @break
+                                                @case(5)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(6)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(7)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(8)
+                                                    <td><span class="badge badge-warning">En attendant</span></td>
+                                                    @break
+                                                @endswitch
+                                                <td><a href="/facture/{{$orders[$i]->code}}"><span><u>Aller au PDF</u></span></a></td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iPhone</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iMac</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>John Abraham</td>
-                                                <td><span>iBook</span></td>
-                                                <td><span>456 pcs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
+                                            @php
+                                            $i++;
+                                            @endphp
+                                            @endwhile
+                                            @endif
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -146,65 +203,34 @@
                         </div>
                     </div>
                 </div>
-
-
+                <br>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-12   ">
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             <div class="card">
                                 <div class="card-title">
-                                    <h4>Recent comments </h4>
+                                    <h4>Dernières commentaires</h4>
                                 </div>
                                 <div class="recent-comment">
+                                    @foreach ($comments as $comment)
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
+                                            <img alt="..." src="{{$comment->User->avatar}}" class="media-object">
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
+                                            <h4 class="media-heading">{{$comment->User->firstName}} {{$comment->User->lastName}}</h4>
+                                            <p>{{$comment->body}}</p>
+                                            <p class="comment-date">{{$comment->created_at}}</p>
                                         </div>
                                     </div>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">john doe</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <p class="comment-date">October 21, 2018</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="media no-border">
-                                        <div class="media-left">
-                                            <a href="#"><img alt="..." src="images/avatar/1.jpg" class="media-object"></a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Mr. Michael</h4>
-                                            <p>Cras sit amet nibh libero, in gravida nulla. </p>
-                                            <div class="comment-date">October 21, 2018</div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- /# card -->
                         </div>
                         <!-- /# column -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="year-calendar"></div>
@@ -214,15 +240,89 @@
 
 
                         </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-body">
-                                cardknlk
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
+
+<script src="{{ asset('js/Chart.min.js') }}"></script>
+
+<script type="text/javascript">
+
+    var names = @json($CategoriesNames); 
+    var values = {{json_encode($CategoriesValues)}};
+
+
+    
+
+    new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+        labels: names,   
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #CD5C5C "],
+        data: values,
+      }]
+    },
+    options: {
+        responsive: true,
+    legend: {
+        display: true,
+        position: 'bottom',
+
+        labels: {
+                boxWidth: 20,
+                fontSize: 9,
+        }
+        
+    }
+
+    }
+});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+      var ctxx = document.getElementById('users-chart').getContext('2d');
+
+      var rev = {{json_encode($revenues)}};
+
+      var chart = new Chart(ctxx, {
+          // The type of chart we want to create
+          type: 'bar',
+          // The data for our dataset
+          data: {
+              labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet","Août","Septembre","Octobre","Novembre","Décembre"],
+              datasets: [{
+                  label: "Total des Revenus par mois",
+                  backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #2e4053 "," #2ecc71 "," #CD5C5C ", "#85929e"," #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "],
+
+                  //data: [1965,4453,5348,6546,9200,7668,8884,7689,6200,5500,5800,4900],
+                  data: rev,
+              }]
+          },
+          // Configuration options go here
+          options: {
+           scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,    // minimum will be 0.
+                        suggestedMax: 10000,
+                    }
+                }]
+            }
+          }
+
+
+
+
+      });
+     
+</script>
+
 @stop

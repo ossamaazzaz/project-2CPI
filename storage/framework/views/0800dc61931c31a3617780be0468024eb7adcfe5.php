@@ -20,7 +20,9 @@ dashboard prinicpale view
   border-radius: 50%;
   background-color: rgb(25,34,45); 
 }
-
+.detailsMenu{
+    display: inline;
+}
 </style>
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
@@ -38,7 +40,7 @@ dashboard prinicpale view
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <!-- Logo -->
                 <div class="navbar-header dark">
-                    <a class="navbar-brand" href="<?php echo e(url ('/admin')); ?>">
+                    <a class="navbar-brand" href="<?php echo e(url ('/home')); ?>">
                         <!-- Logo icon -->
                         <b><img src="<?php echo e($shop->logo); ?>" class="dark-logo" width="100" height="50" /></b>
                         <!--End Logo icon -->
@@ -51,75 +53,18 @@ dashboard prinicpale view
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
                         <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
-
                     </ul>
                     <!-- User profile and search -->
                     <ul class="navbar-nav my-lg-0">
-                        <!-- Comment -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
-                                <ul>
-                                    <li>
-                                        <div class="drop-title">Notifications</div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>This is title</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- End Comment -->
+
                         <!-- Messages -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
-                                <ul>
-                                    <li>
-                                        <div class="drop-title">You have 4 new messages</div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="user-img"> <img src="<?php echo e(Auth::user()->avatar); ?>" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                                <div class="mail-contnet">
-                                                    <h5>Michael Qin</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all e-Mails</strong> <i class="fa fa-angle-right"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+
                         <!-- End Messages -->
                         <!-- Profile -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo e(Auth::user()->avatar); ?>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
                                     <li><a class="fa fa-power-off" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -149,40 +94,40 @@ dashboard prinicpale view
                         <?php if(\Auth::user()->groupId == 0): ?>
                         </li>
                         <li <?php echo e((Request::is('admin') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin')); ?>"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+                            <a href="<?php echo e(url ('admin')); ?>"><i class="fa fa-tachometer"></i><span class="hide-menu">Tableau de bord</span></a>
                         </li>
 
                         <li <?php echo e((Request::is('*users') ? 'class=active' : '')); ?>>
-                             <a href="<?php echo e(url ('admin/users')); ?>" ><i class="fa fa-user"></i><span class="hide-menu">Users</span></a>
+                             <a href="<?php echo e(url ('admin/users')); ?>" ><i class="fa fa-user"></i><span class="hide-menu">Utilisateurs</span></a>
                                     <!-- /.nav-second-level -->
                         </li>
                         <li <?php echo e((Request::is('*products') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/products')); ?>"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Products</span></a>
+                            <a href="<?php echo e(url ('admin/products')); ?>"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Produits</span></a>
                                     <!-- /.nav-second-level -->
                         </li>
 
                         <li <?php echo e((Request::is('*categories') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/categories')); ?>" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">Categories</span></a>
+                            <a href="<?php echo e(url ('admin/categories')); ?>" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">Catégories</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <li <?php echo e((Request::is('*orders') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/orders')); ?>"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Orders</span></a>
+                            <a href="<?php echo e(url ('admin/orders')); ?>"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Commandes</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         
 
                         <li <?php echo e((Request::is('*settings') ? 'class=active' : '')); ?>>
 
-                            <a href="<?php echo e(url ('admin/settings')); ?>"><i class="ti-settings"></i><span class="hide-menu">Settings</span></a>
+                            <a href="<?php echo e(url ('admin/settings')); ?>"><i class="ti-settings"></i><span class="hide-menu">Paramètres</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <?php endif; ?>
                         <li <?php echo e((Request::is('*check') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/check')); ?>"><i class="fa fa-calendar-check-o"></i><span class="hide-menu">Check Order</span></a>
+                            <a href="<?php echo e(url ('admin/check')); ?>"><i class="fa fa-calendar-check-o"></i><span class="hide-menu">Vérifier commandes</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <li <?php echo e((Request::is('*preparation') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/preparation')); ?>"><i class="fa fa-archive"></i><span class="hide-menu">Preparation</span></a>
+                            <a href="<?php echo e(url ('admin/preparation')); ?>"><i class="fa fa-archive"></i><span class="hide-menu">Préparation</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                     </ul>

@@ -1,3 +1,8 @@
+/*
+* Js scritps
+* By Oussama Messabih
+*/
+
 var approvedUsers = [];
 var deletedUsers = [];
 function addApprovedUser(id,userId,userState) {
@@ -26,9 +31,11 @@ function selected(element) {
 function edit(element){
         window.location.href= "products/"+element.value+"/edit";
 }
+//redirect to add product 
 function goadd(){
-        window.location.href= "products/add";
+        window.location = "/admin/products/add";
 }
+
 function selectedCategory(element) {
     var item = document.getElementById(element.id);
     if (element.value!="all") {
@@ -69,6 +76,7 @@ function deleteOneProduct(){
                 closeConfModal();
                 console.log(data); }});
 }
+//order validation request
 function validate(id,state){
     if (state==0) {
         var data = new FormData();
@@ -92,6 +100,7 @@ function validate(id,state){
                 }});
     }
 }
+//order refuse request
 function refuse(id,state){
     if (state==0) {
         var data = new FormData();
@@ -108,6 +117,7 @@ function refuse(id,state){
                 }});
     }
 }
+//order confirmation request
 function confirm(id){
     if (id>=0) {
         var data = new FormData();
@@ -127,12 +137,14 @@ function confirm(id){
                 }});
     }
 }
+//redirect to product details
 function details(code){
     if (code!=null) {
         window.location.href = "/facture/"+code;
     }
     
 }
+//check request of order code
 function check(){
     var code = document.getElementById('codeinput').value;
     var data = new FormData();
@@ -148,13 +160,18 @@ function check(){
             console.log(data);
             if (data=='Valid') {
                 document.getElementById("validMsg").classList.remove("hidden");
+                document.getElementById("notValidMsg").classList.add("hidden");
                 var pdf = document.getElementById("pdfSource");
                 pdf.src = "/facture/"+code;
                 pdf.classList.remove("hidden");
             } else if (data == 'notValid') {
                 document.getElementById("notValidMsg").classList.remove("hidden");
+                document.getElementById("validMsg").classList.add("hidden");
+                document.getElementById("pdfSource").classList.add("hidden");
             } else if (data = 'ard') {
-
+                document.getElementById("notValidMsg").classList.remove("hidden");
+                document.getElementById("validMsg").classList.add("hidden");
+                document.getElementById("pdfSource").classList.add("hidden");
             }
                 
             }
@@ -162,6 +179,7 @@ function check(){
 
     
 }
+//ask request of order in case in out of stock
 function ask(id){
     if (id>=0) {
         var data = new FormData();
@@ -178,7 +196,13 @@ function ask(id){
                 }});
     }
 }
-function getmissingproduct(code){
+//work with missing products notification to show the missing products
+function getmissingproduct(code,who){
+    //document.getElementById('orderid').value = id;
+    if (!(who=='user')) {
+        bg.style.display = 'block';
+        modal.style.display = 'block';
+    }
     if (code!=null) {
         var data = new FormData();
         data.append("code",code);
@@ -219,6 +243,8 @@ function hidemodel(){
     modal.style.display = 'none';
     document.body.style.backgroundColor = "#f5f8fa";
 }
+
+//confirm cart and delete missing orders request
 function confirmissingproduct(){
     code = document.getElementById('code').value;
     if (code!=null) {
@@ -233,10 +259,11 @@ function confirmissingproduct(){
             contentType: false,
             success : function(data){
                 console.log(data);
-                hidemodel();
+                //window.location = 'cart';
                 }});
     }
 }
+//back items to cart
 function backToCart(){
     code = document.getElementById('code').value;
     if (code!=null) {
@@ -251,10 +278,11 @@ function backToCart(){
             contentType: false,
             success : function(data){
                 console.log(data);
-                hidemodel();
+                window.location = '/cart';
                 }});
     }
 }
+//delete order request in case of missing products
 function deleteorder(){
     var code = document.getElementById('code').value;
     if (code!=null) {
@@ -268,7 +296,7 @@ function deleteorder(){
             processData: false,
             contentType: false,
             success : function(data){
-                hidemodel();
+                window.location = 'orders';
                 }});
     }
 }
@@ -280,6 +308,7 @@ function wantdel(id,who){
     }
     
 }
+//delete orders request
 function deleteOrders(who){
     var id = document.getElementById('orderid').value;
     if (id>=0) {
@@ -318,6 +347,7 @@ function deleteOrders(who){
         }
     }
 }
+// retrieve products in case of deleting order
 function Retrieved(id){
     if (id) {
         var data = new FormData();
@@ -359,16 +389,34 @@ jQuery(document).ready(function (){
             processData: false,
             contentType: false,
             success : function(data){
-                console.log(data); }
+                console.log("Approved");
+                window.location.href = "/admin/users";
+                 }
+        });
+    });
+    jQuery('#sub2').click(function(){
+        var data = new FormData();
+        data.append("approveIds",approvedUsers);
+        data.append("deleteIds",deletedUsers);
+        console.log(deletedUsers);
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/users",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log("deleted");
+                window.location.href = "/admin/users";
+                 }
         });
     });
 
     // this about products its execute a command in the lits like delete so its delete the selected items
-    jQuery("#execute").click( function(){
+    jQuery("#delete").click( function(){
             var data = new FormData();
             data.append("ids",selectedProducts);
-            var list = document.getElementById("selectList");
-            if (list.options[list.selectedIndex].text=="delete") {
                  jQuery.ajax({
                     type : "POST",
                     url : "/admin/products",
@@ -383,12 +431,12 @@ jQuery(document).ready(function (){
                             productRow.remove();
                         }
                         document.getElementById("checkboxAll").checked = false;
-                        window.location.href= "products/";
+                        window.location = "/admin/products/";
                         console.log(data);
 
                         }});
-            }            
     });
+    // just to check all items in products manager
     jQuery("#checkboxAll").click(function(){
         
            var page = table.page();

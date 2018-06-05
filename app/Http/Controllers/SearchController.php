@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use App\Product;
 use App\ProductDetails;
 use DB;
+use App\Shop;
 use App\Category;
 class SearchController extends Controller
 {
@@ -41,8 +42,9 @@ class SearchController extends Controller
 		//dd($result);
         $lastPage = $result->lastPage();
         $currentPage = $result->currentPage();
-        $notifications = Product::getnotifications();
-        return view('searchresult',compact('categories','result','term' ,'category','brands','lastPage','currentPage','notifications'));
+        $shop = Shop::find(1);
+
+        return view('searchresultv2',compact('shop','categories','result','term' ,'category','brands','lastPage','currentPage'));
 
 	} 
 
@@ -126,6 +128,6 @@ class SearchController extends Controller
             $p = $p ?: (Paginator::resolveCurrentPage() ?: 1);
             //$results clearly is instanceof Collection but this will  make it work regardless of the given data.
             $results = $results instanceof Collection ? $results : Collection::make($results); 
-            return new LengthAwarePaginator($results->forPage($p,15), $results->count(), 15, $p);
+            return new LengthAwarePaginator($results->forPage($p,9), $results->count(),9, $p);
     }
 }

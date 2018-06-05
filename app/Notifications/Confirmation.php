@@ -7,9 +7,16 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use \App\Orders;
+use App\Notifications\CustomDbChannel;
+use Illuminate\Notifications\Messages\BroadcastMessage;
+
 class Confirmation extends Notification
 {
     use Queueable;
+
+    /**
+    * for every user many notifications
+    */
 
     /**
      * Create a new notification instance.
@@ -29,7 +36,7 @@ class Confirmation extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return [CustomDbChannel::class];
     }
 
     /**
@@ -42,9 +49,10 @@ class Confirmation extends Notification
     {
         $url = url('facture/'. $this->order->code);
         return (new MailMessage)
-                    ->line('Your orders valitated')
-                    ->action('Your Bill', $url)
-                    ->line('Thank you for using our application!');
+                    ->line('hey !')
+                    ->line('ton ordre a etait tres bien valider ,veuillez consulter le lien suivant : ')
+                    ->action('Ton bon de commande :', $url)
+                    ->line('merci !');
     }
 
     /**
@@ -57,4 +65,25 @@ class Confirmation extends Notification
     {
         return $this->order->code;
     }
+    public function toDatabase($notifiable)
+    {
+        return $this->order->code; //<-- send the id here
+    }
+
+
+
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+     */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'data' => $this->order->code,
+        ]);
+    }
+
+    
 }

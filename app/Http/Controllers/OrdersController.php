@@ -17,8 +17,14 @@ use App\Notifications\missingproduct;
 use DB;
 use ProductDetailsController;
 
+use App\Events\OrderConfirmed;
+use App\Events\MissingProducts;
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /*
     * checkout function 
     * by kacem
@@ -29,32 +35,33 @@ class OrdersController extends Controller
         //Retrieve cart information
         $cart = Cart::where('user_id',Auth::user()->id)->first();
         $items = $cart->cartItems;
-        $total=0;
-        foreach($items as $item){
-            $total+= $item->product->price * $item->quantity;
-        }
+        if (count($items)>0) {
+            $total=0;
+            foreach($items as $item){
+                $total+= $item->product->price * $item->quantity;
+            }
 
-        $order = new Orders();
-        $order->total_paid= $total;
-        $order->user_id=Auth::user()->id;
-        $code = str_random((6));
-        while(!Orders::where('code','=',$code)->get()->isEmpty()) {
-            $code = str_random((6));
-        }
-        $order->code = $code;
-        $order->save();
+            $order = new Orders();
+            $order->total_paid= $total;
+            $order->user_id=Auth::user()->id;
+            //Order's codification added by renken
+            $code = 'CMD' . date('z') . sprintf('%03d', Orders::count());;
+            while (!Orders::where('code','=',$code)->get()->isEmpty()) {
+                $code = 'CMD' . date('z') . sprintf('%03d', Orders::count());;
+            }
+            $order->code = $code;
+            $order->save();
 
-        foreach($items as $item){
-            $orderItem = new OrderItem();
-            $orderItem->order_id=$order->id;
-            $orderItem->product_id=$item->product->id;
-            $orderItem->quantity=$item->quantity;         
-            $orderItem->save();
-            CartItem::destroy($item->id);
-    	}
-        
-
-        return redirect('orders/'.$order->id);
+            foreach($items as $item){
+                $orderItem = new OrderItem();
+                $orderItem->order_id=$order->id;
+                $orderItem->product_id=$item->product->id;
+                $orderItem->quantity=$item->quantity;         
+                $orderItem->save();
+                CartItem::destroy($item->id);
+        	}
+            return redirect('orders/'.$order->id);
+        }else return redirect('cart');
     }
 
     /*
@@ -65,8 +72,8 @@ class OrdersController extends Controller
     public function OrdersList(){
         $orders = Orders::where('user_id',Auth::user()->id)->get();
         $categories = \App\Category::get();
-        $notifications = Product::getnotifications();
-        return view('order.list',compact('orders','categories','notifications'));
+        $shop = Shop::find(1);
+        return view('order.list',compact('orders','categories','shop'));
     }
     /*
     * to view an order
@@ -79,9 +86,8 @@ class OrdersController extends Controller
     	else
     		$order=Orders::find($id);
         $categories = \App\Category::get();
-        //added this line to get notifications
-        $notifications = Product::getnotifications();
-        return view('order.order',compact('order','categories','notifications'));
+        $shop = Shop::find(1);
+        return view('order.order',compact('order','categories','shop'));
     }
  
     /*
@@ -90,6 +96,7 @@ class OrdersController extends Controller
     */
     public function AdminPanel(){
 
+        // pending, confirmeddeletion, asked
         $Pending_Orders = Orders::where('state',0)->orderBy('created_at')->get();
 
         $Accepted_Orders = Orders::where('state',1)->orderBy('created_at')->get();
@@ -169,6 +176,7 @@ class OrdersController extends Controller
                 $order->state = 8;
                 $order->save();
                 $order->notify(new missingproduct($order));
+                event(new MissingProducts($order));
                 return response()->json('asked');
             } else {
                 return response()->json('fail');
@@ -352,6 +360,7 @@ class OrdersController extends Controller
                     Mail::to($email)->send(new OrderDone($order));
 
                     $order->notify(new Confirmation($order));
+                    event(new OrderConfirmed($order));
 
                     return response()->json('confirmed');
                 } else {
@@ -360,32 +369,7 @@ class OrdersController extends Controller
             }
         }
     }
-    public function confirmApp(Request $req){
-        if ($req->isMethod('get')) {
-            $Orders = Orders::where('state',1)->orderBy('created_at')->get();
-            $dOrders = Orders::where('state',6)->orderBy('created_at')->get();
-            return ['Orders' => $Orders,'dOrders' => $dOrders];
-        } else if ($req->isMethod('post')){
-            $id = $req->All()['id'];
-            if ($id >= 0) {
-                $order = Orders::find($id);
-                if ($order->state != 3) {
-                    $order->state = 3;
-                    $order->save();
-                    // send email notification 
-                    $order = Orders::find($id);
-                    $email = $order->user->email;
-                    Mail::to($email)->send(new OrderDone($order));
 
-                    $order->notify(new Confirmation($order));
-
-                    return response()->json('confirmed');
-                } else {
-                    return response()->json('notconfirmed');
-                }    
-            }
-        }
-    }
 
     /**
     * Check order hash code function
@@ -400,15 +384,23 @@ class OrdersController extends Controller
 
             if ($code!=null) {
             $order = Orders::where('code',$code)->get()->first();
-            if ($order->state == 3) {
+
+            if ($order) {
+
+                if ($order->state == 3) {
+
                 $order->state = 4;
                 $order->save();
                 return response()->json('Valid');
-            } else if ($order->state == 4) {
-                return response()->json('ard');
-            }
-            else {
-                return response()->json('notValid');
+                
+                } else if ($order->state == 4) {
+                    return response()->json('ard');
+                } else {
+                    return response()->json('notValid');
+                }
+            }else{
+                    return response()->json('notValid');
+
             }
         }
         }

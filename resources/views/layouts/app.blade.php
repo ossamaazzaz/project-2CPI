@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E-COM</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
@@ -12,8 +13,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/comments.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/introjs.css') }} " rel="stylesheet">
     <!--end commennts css -->
+    
+    
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -38,11 +41,6 @@
                             <label id="chosed"><input type="text" id="category" name="category" hidden="true" value=""></label>
                               </dev>
                             <div class="dropdown-menu" id="selectedCategory">
-                              @if((!Request::is('home/edit','login','register','password/reset')))
-                                @foreach ($categories as $cat)
-                                    <option class="dropdown-item" id="{{ $cat->id }}" onclick="selectedCategory(this)">{{ $cat->name }}</option>
-                                @endforeach
-                              @endif
                             </div>
                             </div>
 
@@ -65,24 +63,7 @@
                        <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                         <span class="fa fa-bell"></span></button>
-                        <ul class="dropdown-menu">
-                          @if((!Request::is('home/edit','login','register','password/reset')))
-                          @foreach ($notifications as $notif)
-                            @if($notif != null)
-                            <li>
-                              <dev class="notif">
-                                @if($notif->type == 'missingproduct')
-                                  <a onclick="getmissingproduct('{{ $notif->data }}')">there is a missing products on your order : {{ $notif->data }}<br>click to confirm or delete ! </a>
-                                @else
-                                  <a href="{{ 'facture/' . $notif->data }}">Your code is : {{ $notif->data }}</a>
-                                @endif
-                              </dev>
-                            </li>
-                            @endif
-                          @endforeach
-                          @endif
-                        </ul>
-                      </div> 
+                      </div>
                     </li>
                     @if (Auth::guest())
                         <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -126,7 +107,7 @@
             </div>
         </div>
     </nav>
-    <!--success message-->
+        <!--success message-->
 
     @if(session('success'))
       <div class="container">
@@ -155,14 +136,9 @@
                <input type="hidden" id="code" name="">
                <div id="cmodale" class="cmodale canimated jackInTheBox">
                     <h1>Missing Products :</h1>
-                    <h2 id="missingproducts"></h2>
+                    
                     <h1>Available Products :</h1>
-                    <h2 id="availableproducts"></h2>
-                    <dev>
-                      <button class="btn btn-success" onclick="confirmissingproduct()">Confirm and delete Missing Products</button>
-                      <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
-                      <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
-                    </dev>
+                    
                 </div>
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <span class="logo">LOGO</span>
@@ -212,7 +188,7 @@
         </div>
     </footer>
 
-
+    <script src="{{ asset('js/intro.js') }}"></script>
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>

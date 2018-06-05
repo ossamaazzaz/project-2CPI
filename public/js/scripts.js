@@ -156,7 +156,7 @@ jQueryform.on('keyup', 'input', function (e) {
         jQueryinput = jQuerythis.val();
     if (jQueryinput.length > 0) {
         jQueryform.find('label').addClass('active');
-        if (jQueryinput.length == 6) {
+        if (jQueryinput.length == 9) {
             jQueryform.find('button').addClass('active');
             console.log(e);
             if (e.which === 13) {
@@ -177,7 +177,7 @@ jQueryform.on('keyup', 'input', function (e) {
 
 
 //don't accept spaces and special chars in input
-jQuery('#register').on('input', function() {
+jQuery('#codeinput').on('input', function() {
   jQuery(this).val(jQuery(this).val().replace(/[^a-z0-9]/gi, ''));
 });
 

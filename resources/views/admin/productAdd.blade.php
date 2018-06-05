@@ -1,11 +1,12 @@
 @extends('layouts.dashboard')
-@section('page_heading','Add Product')
+@section('page_heading','Ajouter Un Produit')
+@section('title','Ajouter Un Produit')
 @section('section')
 <div class="card-body">
                     <form method="POST" action="{{ action('ProductController@add') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nom</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -19,7 +20,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="brand" class="col-md-4 col-form-label text-md-right">brand  Name</label>
+                            <label for="brand" class="col-md-4 col-form-label text-md-right">Marque</label>
 
                             <div class="col-md-6">
                                 <input id="brand" type="text" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" name="brand" value="{{ old('brand') }}" required autofocus>
@@ -33,7 +34,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">price</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-right">Prix</label>
 
                             <div class="col-md-6">
                                 <input id="price" type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="price" value="{{ old('price') }}" required autofocus>
@@ -46,7 +47,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="quantity" class="col-md-4 col-form-label text-md-right">quantity </label>
+                            <label for="quantity" class="col-md-4 col-form-label text-md-right">Quantité </label>
 
                             <div class="col-md-6">
                                 <input id="quantity" type="text" class="form-control{{ $errors->has('quantity') ? ' is-invalid' : '' }}" name="quantity" value="{{ old('quantity') }}" required autofocus>
@@ -59,7 +60,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="quantitySale" class="col-md-4 col-form-label text-md-right">quantity Sale </label>
+                            <label for="quantitySale" class="col-md-4 col-form-label text-md-right">Quantité à vendre </label>
 
                             <div class="col-md-6">
                                 <input id="quantitySale" type="text" class="form-control{{ $errors->has('quantitySale') ? ' is-invalid' : '' }}" name="quantitySale" value="{{ old('quantitySale') }}" required autofocus>
@@ -74,7 +75,7 @@
                         
 
                         <div class="form-group row">
-		               <label for="desc" class="col-md-4 col-form-label text-md-right">Description :</label>
+		               <label for="desc" class="col-md-4 col-form-label text-md-right">Description</label>
 		                  <div class="col-md-6">
 		                       <textarea id="desc" class="form-control{{ $errors->has('desc') ? ' is-invalid' : '' }}" name="desc"  required autofocus  rows="3"></textarea>
 		                      @if ($errors->has('desc'))
@@ -86,12 +87,12 @@
               	</div>
 
               	<div class="form-group row">
-                            <label for="categoryId" class="col-md-4 col-form-label text-md-right">Category </label>
+                            <label for="categoryId" class="col-md-4 col-form-label text-md-right">Catégorie </label>
 
                             <div class="col-md-6">
                             	<!-- to be changed by category dudes-->
                 <select name="categoryId">
-                    <option value="" selected="selected">Chose category </option>
+                    <option value="" selected="selected">Choisir une catégorie</option>
                     @foreach ($categories as $cat)
 					  <option value="{{ $cat->id }}" >{{ $cat->name }}</option>
                     @endforeach
@@ -126,7 +127,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Update') }}
+                                    Valider
                                 </button>
                             </div>
                         </div>

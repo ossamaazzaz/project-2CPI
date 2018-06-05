@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\ProductDetails;
 use App\Comment;
 use Illuminate\Http\Request;
-
+use App\Rate;
+use App\Product;
 class CommentsController extends Controller
 {
     public function addComment(Request $req,ProductDetails $product){
@@ -24,8 +25,10 @@ class CommentsController extends Controller
 
     public function updateComment(Request $req,$id){
       $comment=Comment::find($id);
-      $comment->body=$req->body ;
-      $comment->save();
+      if ($comment) {
+          $comment->body = $req->body;
+          $comment->save();
+      }
       return back();
     }
 }

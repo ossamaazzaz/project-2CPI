@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Edit Product</title>
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+@extends('layouts.dashboard')
+@section('page_heading','Modifier le produit')
+@section('title','Modifier le produit')
+@section('section')
 <style type="text/css">
-body{
-	font-size: 17px;
-	padding: 0px;
-	background-color: #f2f2f2;
-	margin: 0;
-	overflow-x: hidden
-}
+
 #images{
 	min-width: 400px;
 	min-height: 400px;
 }
 .rmImgBtn{
-	background-color: red;
-	color: white;
-	font-size: 15px;
+	position: absolute;
+	color: #e55039;
+	font-size: 35px;
+	top: 15px;
+	right: 15px;
+	cursor: pointer;
 }
 .step {
   height: 15px;
@@ -43,7 +39,7 @@ input[type=text] {
 }
 .div{
 		height: 402px;
-		max-width: 302px;
+		max-width: 402px;
 		border-style: dotted;
 
 	}
@@ -71,45 +67,44 @@ h1{
 
 </style>
 
-</head>
 
 
 
-<body>
+<div class="card">
 <form method="POST" id="updateform" enctype="multipart/form-data" accept-charset="utf-8" action="javascript:;">
 @csrf	
-<h1>Edit product</h1>
+
 
 <div class="container" id="tab1">
 	<div class="row">
 <div class="col-md-4">
+
 <div class="div">
-<img id="output" height="395" width="295" src="{{ $product->image }}" />
-</div>
-<label class="custom-file-upload btn btn-primary">
-<input type="file" id="pimg" accept="image/*" name="pimage" onchange="loadFile(event)">
-Upload a pic
-</label>
+<img id="output" height="395" width="277" src="{{ $product->image }}" />
 </div>
 
+<label class="custom-file-upload btn btn-primary blue-btn">
+<input type="file" id="pimg" accept="image/*" name="pimage" onchange="loadFile(event)">
+Uploader une image
+</label>
+</div>
 
 <div class="col-md-8">
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<label>Name :</label>
+			<label>Nom</label>
 			<input type="text" id="name" value="{{ $product->name }}" class="form-control">
 		</div>
 		<div class="col-md-4">
-			<label>Brand :</label>
+			<label>Marque </label>
 			<input type="text" id="brand" value="{{ $product->brand }}" class="form-control">
 		</div>
 	</div>
 
 	<div>
-		<label>Categories :</label>
 		 <div class="dropdown">
-		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Categories
+		  <button class="btn btn-primary dropdown-toggle blue-btn" type="button" data-toggle="dropdown">Catégories
 		  <span class="caret"></span></button>
 		  <ul class="dropdown-menu">
 		    <li><a href="#">1</a></li>
@@ -117,49 +112,55 @@ Upload a pic
 		    <li><a href="#">3</a></li>
 		  </ul>
 		</div> 
-	</div>
+	</div><br>
 		
 		<div >
-			<label>Price :</label>
+			<label>Prix</label>
 			<input type="text" value="{{ $product->price }}" id="price" class="form-control inline" style="width: 200px">
 			<span class="inline">DZD</span>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<label>Quantity :</label>
+					<label>Quantité</label>
 					<input type="text" name="" id="quantity" value="{{ $product->quantity }}" class="form-control">
 				</div>
 				<div class="col-md-4">
-					<label>Quantity for sale :</label>
+					<label>Quantité à vendre</label>
 					<input type="text" name="" id="quantitySale" value="{{ $product->quantitySale }}" class="form-control">
 				</div>
 				
 			</div>
 			
 		</div>
+		<div>
+	<label>Description</label>
+	<textarea id="desc" value="{{ $product->productDetails->desc }}" class="form-control" rows="4"></textarea>
 </div>
-<div>
-	<label>Description :</label>
-	<input type="text" name="" id="desc" value="{{ $product->productDetails->desc }}" class="form-control">
 </div>
 </div>
+
+
+
 </div>
 <div style="overflow:auto;">
 <div style="float:right;">
-<button type="button" id="nextBtn" onclick="showTab(2)" >Next</button>
+<button type="button" id="nextBtn" onclick="showTab(2)" class="btn btn-info">
+	Suivant&nbsp;<i class="fa fa-arrow-right"></i>
+</button>
 </div>
 </div>
 </div>
 </form>
 
+
 <div id="tab2">
 	
-	<center><h3>Adding pictures</h3>
+	<center><h3>L'ajout des images</h3>
 		<div class="container">
-			<label class="custom-file-upload btn btn-primary" >
+			<label class="custom-file-upload btn btn-primary blue-btn" >
 			<input type="file" accept="image/*" id="addPic" name="images[]" onchange="addPicFun(event)" >
-			+ Uplaod new image <br>
+			+ Uploader nouvelle image <br>
 			</label>
 			<div class="container">
 
@@ -171,14 +172,17 @@ Upload a pic
 
 			<div style="overflow:auto;">
 				  <div style="float:right;">
-				    <button type="button" id="prevBtn" onclick="showTab(1)">Previous</button>
-				    <button type="submit" id="update" >submit</button>
+				    <button type="button" id="prevBtn" onclick="showTab(1)" class="btn btn-info">
+				    	<i class="fa fa-arrow-left"></i>&nbsp;Précedent
+				    </button>
+				    <button type="submit" id="update" class="btn btn-success">
+				    	Valider
+				    </button>
 				  </div>
 			</div>
 		</div>
 
 	</center>	
-
 </div>
 
 
@@ -188,7 +192,7 @@ Upload a pic
 </div>
 <input type="hidden" id="imgs" name="imgs" value="{{ $imgs }}">
 <input type="hidden" id="productId" name="productid" value="{{ $product->id }}">
-
+</div>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script>
 	var images = [];
@@ -202,7 +206,7 @@ Upload a pic
 		imgs[src] = $('#addPic').prop('files')[0];3
 		NewImgsSrc.push(src);
 		console.log(imgs);
-		document.getElementById("images").innerHTML += '<div class="col-md-4"><div class="btn rmImgBtn" id="'+imgNbr+'" onclick="rm(this)">X</div><br><img id="img'+imgNbr+'" height="395" width="295" src="'+src+'"/></div>';
+		document.getElementById("images").innerHTML += '<div class="col-md-4"><div class="rmImgBtn" id="'+imgNbr+'" onclick="rm(this)"><b>&times;</b></div><br><img id="img'+imgNbr+'" height="395" width="295" src="'+src+'"/></div>';
 		images[imgNbr] = event.target.files[0];
 		imgNbr++;
 		if (imgNbr > 5) {
@@ -215,12 +219,12 @@ Upload a pic
 		if(tab == 1){
 			document.getElementById("tab1").style.display = "block";
 			document.getElementById("tab2").style.display = "none";
-			document.getElementsByClassName("step")[0].style.backgroundColor = "#2ecc71";
+			document.getElementsByClassName("step")[0].style.backgroundColor = "#26dad2";
 			document.getElementsByClassName("step")[1].style.backgroundColor = "#bbbbbb";
 		}else{
 			document.getElementById("tab1").style.display = "none";
 			document.getElementById("tab2").style.display = "block";
-			document.getElementsByClassName("step")[1].style.backgroundColor = "#2ecc71";
+			document.getElementsByClassName("step")[1].style.backgroundColor = "#26dad2";
 			document.getElementsByClassName("step")[0].style.backgroundColor = "#bbbbbb";
 		}
 
@@ -298,6 +302,7 @@ $(document).ready(function(){
 		        	
 		        }
 		        data.append("newImgIndex",index);
+		        console.log(data);
                 $.ajax({
                 type : "POST",
                 url : "/admin/products/update",
@@ -306,8 +311,8 @@ $(document).ready(function(){
                 processData: false,
     			contentType: false,
                 success : function(data){
-                	window.location.pathname = '/admin/products';
-                	window.location.href='/admin/products';
+                	//window.location.pathname = '/admin/products';
+                	//window.location.href='/admin/products';
                     console.log(data); }});
         
 	});
@@ -315,5 +320,4 @@ $(document).ready(function(){
 
 </script>
 
-</body>
-</html>
+@stop
