@@ -301,8 +301,8 @@
                   label: "Total des Revenus par mois",
                   backgroundColor: [" #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "," #2e4053 "," #2ecc71 "," #CD5C5C ", "#85929e"," #e74c3c ", " #2471a3 "," #1abc9c "," #f1c40f "],
 
-                  data: [1965,4453,5348,6546,9200,7668,8884,7689,6200,5500,5800,4900],
-                  //data: rev,
+                  //data: [1965,4453,5348,6546,9200,7668,8884,7689,6200,5500,5800,4900],
+                  data: rev,
               }]
           },
           // Configuration options go here

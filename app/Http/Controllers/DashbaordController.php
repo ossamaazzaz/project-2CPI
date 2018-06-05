@@ -46,7 +46,8 @@ class DashbaordController extends Controller
         $SortedCategories = \App\Category::all()->sortBy(function ($cat) {
             return $cat->products->count();
         });
-        
+        $CategoriesNames = array();
+        $CategoriesValues = array();
         for ($i=0; $i < min(5,count($SortedCategories)) ; $i++) { 
             $CategoriesNames[$i] = $SortedCategories[$i]->name;
             $CategoriesValues[$i] = $SortedCategories[$i]->products->count();

@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo e(asset('css/lib/bootstrap/bootstrap.min.css')); ?>" rel="stylesheet">
     <!-- Custom CSS -->
-
+    <link href="<?php echo e(asset('css/font-awesome.min.css')); ?> " rel="stylesheet">
     <link href="<?php echo e(asset('css/lib/calendar2/semantic.ui.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('css/lib/calendar2/pignose.calendar.min.css')); ?>" rel="stylesheet">
     
