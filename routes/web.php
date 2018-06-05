@@ -66,6 +66,8 @@ Route::post('/admin/categories/edit/{id}','CategoriesController@submit');	 //Sub
 
 Route::get('/admin/categories/delete/{id}','CategoriesController@destroy'); //Delete
 
+Route::post('/admin/users/AddPrepa','DashbaordController@AddPrepa'); //Ajouter preparateur
+
 //search
 Route::get('/search','SearchController@search');
 

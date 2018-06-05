@@ -61,5 +61,22 @@ class DashbaordController extends Controller
             'acceptedOrders','prepOrders','askedOrders'));
     }
 
+    public function AddPrepa(Request $req){
+        
+        $id = $req->input;
+        $user = \App\User::find($id);
+
+        $user->groupId = 2;
+
+        $users = \App\User::get();
+        $shop = Shop::find(1);
+
+        return view('admin.users',compact('users','shop'));
+
+         
+    }
+
+
+
 
 }
