@@ -394,6 +394,24 @@ jQuery(document).ready(function (){
                  }
         });
     });
+    jQuery('#sub2').click(function(){
+        var data = new FormData();
+        data.append("approveIds",approvedUsers);
+        data.append("deleteIds",deletedUsers);
+        console.log(deletedUsers);
+        jQuery.ajax({
+            type : "POST",
+            url : "/admin/users",
+            data : data,
+            cache: false,             // To unable request pages to be cached
+            processData: false,
+            contentType: false,
+            success : function(data){
+                console.log("deleted");
+                window.location.href = "/admin/users";
+                 }
+        });
+    });
 
     // this about products its execute a command in the lits like delete so its delete the selected items
     jQuery("#delete").click( function(){

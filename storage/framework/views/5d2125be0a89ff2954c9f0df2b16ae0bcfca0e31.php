@@ -96,9 +96,17 @@
 										<td><?php echo e($user->idCard); ?></td>
                                         <td><span class="badge badge-success">Accepté</span></td>
                                         <td class="users-tools">
+                                            <form method="POST" action="/admin/users/AddPrepa">
+                                               <input type="hidden" id="input" value="<?php echo e($user->id); ?>" name="input"> 
+                                               <button type="submit" class="btn btn-primary" alt="Make praparator" id="AddPrepa">
+                                                    <i class="fa fa-user"></i>                           
+                                                </button>                                               
+                                            </form>
+
                                             <button  class="btn btn-danger" id="delete<?php echo e($user->id); ?>" onclick="deleteUser(<?php echo e($user->id); ?>)">
                                                 <i class="fa fa-times"></i>
                                             </button>
+
                                         </td>
                                     </tr>
                                     <?php endif; ?>
@@ -108,7 +116,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <input type="submit" id="sub" value=" Save " class="btn btn-primary">
+                        <input type="submit" id="sub2" value=" Save " class="btn btn-primary">
                     </div>
                 </div>
 </div>

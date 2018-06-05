@@ -67,13 +67,9 @@ class DashbaordController extends Controller
         $user = \App\User::find($id);
 
         $user->groupId = 2;
+        $user->save();
 
-        $users = \App\User::get();
-        $shop = Shop::find(1);
-
-        return view('admin.users',compact('users','shop'));
-
-         
+        return redirect('/admin/users');         
     }
 
 

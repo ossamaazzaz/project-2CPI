@@ -116,7 +116,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <input type="submit" id="sub" value=" Save " class="btn btn-primary">
+                        <input type="submit" id="sub2" value=" Save " class="btn btn-primary">
                     </div>
                 </div>
 </div>
