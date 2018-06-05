@@ -169,7 +169,7 @@ class ProductController extends Controller {
 	* @return  view page [<description>]
 	* by renken
 	*/
-	public function add(Request $req) {
+	public function add(request $req) {
 		$categories = Category::get();
 		$shop = Shop::find(1);
 		if ($req->isMethod('get')) {

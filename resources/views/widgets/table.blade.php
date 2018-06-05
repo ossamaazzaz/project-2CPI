@@ -96,9 +96,17 @@
 										<td>{{ $user->idCard }}</td>
                                         <td><span class="badge badge-success">Accepté</span></td>
                                         <td class="users-tools">
+                                            <form method="POST" action="/admin/users/AddPrepa">
+                                               <input type="hidden" id="input" value="{{$user->id}}" name="input"> 
+                                               <button type="submit" class="btn btn-primary" alt="Make praparator" id="AddPrepa">
+                                                    <i class="fa fa-user"></i>                           
+                                                </button>                                               
+                                            </form>
+
                                             <button  class="btn btn-danger" id="delete{{ $user->id }}" onclick="deleteUser({{$user->id}})">
                                                 <i class="fa fa-times"></i>
                                             </button>
+
                                         </td>
                                     </tr>
                                     @endif
