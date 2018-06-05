@@ -6,7 +6,7 @@
 <center><h2>Entrer le code ici: </h2></center><br>
 <div class="register">
   <div class="field">
-    <input id="codeinput" maxlength="6" type="text"  autocomplete="off" />
+    <input id="codeinput" maxlength="9" type="text"  autocomplete="off" />
     <button onclick="check()">Vérifier</button>
   </div>
 </div>

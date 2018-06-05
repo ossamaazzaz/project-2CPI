@@ -28,10 +28,13 @@ class SettingsController extends Controller
 	            'terms' => 'required',
 	            'addr' => 'required|max:255',
 	            'phone_num' => 'required|max:15',
-	            'fb_link' => 'url',
+	            
+      ]);
+	/*
+	'fb_link' => 'url',
 	            'insta_link' => 'url',
 	            'twitter_link' => 'url',
-      ]);
+	*/
 	if ($validator->fails()) {
 		return back()->withErrors($validator)->withInput();
 	}

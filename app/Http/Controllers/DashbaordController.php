@@ -52,7 +52,12 @@ class DashbaordController extends Controller
             $CategoriesValues[$i] = $SortedCategories[$i]->products->count();
         }
 
-    	return view('admin.admin', compact('shop','comments','orders','revenues','Total_Revenue','Total_Products','Total_users','Completed_Orders','CategoriesValues','CategoriesNames'));
+        $acceptedOrders = DB::table('orders')->where('state','1')->count();
+        $prepOrders = DB::table('orders')->where('state','3')->count();
+        $askedOrders = DB::table('orders')->where('state','8')->count();
+
+    	return view('admin.admin', compact('shop','comments','orders','revenues','Total_Revenue','Total_Products','Total_users','Completed_Orders','CategoriesValues','CategoriesNames',
+            'acceptedOrders','prepOrders','askedOrders'));
     }
 
 

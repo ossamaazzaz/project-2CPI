@@ -126,7 +126,7 @@
               <div class="form-group row">
                   <label for="fb_link" class="col-md-4 col-form-label text-md-right">Facebook</label>
                   <div class="col-md-6">
-                      <input id="fb_link" type="text" class="form-control{{ $errors->has('fb_link') ? ' is-invalid' : '' }}" name="fb_link" value="{{$shop->fb_link}}"  required autofocus>
+                      <input id="fb_link" type="text" class="form-control{{ $errors->has('fb_link') ? ' is-invalid' : '' }}" name="fb_link" value="{{$shop->fb_link}}" autofocus>
 
                       @if ($errors->has('fb_link'))
                           <span class="invalid-feedback">
@@ -139,7 +139,7 @@
               <div class="form-group row">
                   <label for="insta_link" class="col-md-4 col-form-label text-md-right">Instagram</label>
                   <div class="col-md-6">
-                      <input id="insta_link" type="text" class="form-control{{ $errors->has('insta_link') ? ' is-invalid' : '' }}" name="insta_link" value="{{$shop->insta_link}}"  required autofocus>
+                      <input id="insta_link" type="text" class="form-control{{ $errors->has('insta_link') ? ' is-invalid' : '' }}" name="insta_link" value="{{$shop->insta_link}}"  autofocus>
 
                       @if ($errors->has('insta_link'))
                           <span class="invalid-feedback">
@@ -152,7 +152,7 @@
               <div class="form-group row">
                   <label for="twitter_link" class="col-md-4 col-form-label text-md-right">Twitter</label>
                   <div class="col-md-6">
-                      <input id="twitter_link" type="text" class="form-control{{ $errors->has('twitter_link') ? ' is-invalid' : '' }}" name="twitter_link" value="{{$shop->twitter_link}}"  required autofocus>
+                      <input id="twitter_link" type="text" class="form-control{{ $errors->has('twitter_link') ? ' is-invalid' : '' }}" name="twitter_link" value="{{$shop->twitter_link}}"  autofocus>
 
                       @if ($errors->has('twitter_link'))
                           <span class="invalid-feedback">
@@ -165,7 +165,7 @@
               <div class="form-group row">
                   <label for="quotes" class="col-md-4 col-form-label text-md-right">Quotes</label>
                   <div class="col-md-6">
-                       <textarea id="quotes" class="form-control{{ $errors->has('quotes') ? ' is-invalid' : '' }}" name="quotes" required autofocus  data-role="tagsinput" rows="3">{{$shop->quotes}}</textarea>
+                       <textarea id="quotes" class="form-control{{ $errors->has('quotes') ? ' is-invalid' : '' }}" name="quotes" autofocus  data-role="tagsinput" rows="3">{{$shop->quotes}}</textarea>
                       @if ($errors->has('quotes'))
                           <span class="invalid-feedback">
                               <strong>{{ $errors->first('quotes') }}</strong>

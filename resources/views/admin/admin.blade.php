@@ -62,6 +62,51 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$acceptedOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes Acceptées</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$prepOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes en Prépration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card p-30">
+                            <div class="media">
+                                <div class="media-left meida media-middle">
+                                    <span><i class="fa fa-shopping-cart f-s-40 color-success"></i></span>
+                                </div>
+                                <div class="media-body media-text-right">
+                                    <h2><div class="counter" data-count="{{$askedOrders}}">0</div></h2>
+                                    <p class="m-b-0">Commandes Gelées</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="bg-white m-l-0 m-r-0 box-shadow ">
                         <div class="card">
                             <div class="card-body">
@@ -97,30 +142,48 @@
                                         </thead>
                                         <tbody>
 
-                                            @foreach ($orders as $order)
+                                            @for($i=0;$i<5;$i++)
                                             <tr>
                                                 <td>
                                                     <div class="round-img">
-                                                        <a href=""><img src="{{$order->user->avatar}}" alt=""></a>
+                                                        <a href=""><img src="{{$orders[$i]->user->avatar}}" alt=""></a>
                                                     </div>
                                                 </td>
-                                                <td>{{$order->user->firstName}} {{$order->user->lastName}}</td>
-                                                <td><span>{{$order->total_paid}}</span></td>  
-                                                @if($order->state == 0)
-                                                    <td><span class="badge badge-success">En attendant</span></td>
-                                                @else
-                                                    @if($order->state == 1)
-                                                        <td><span class="badge badge-success">Acceptée</span></td>
-                                                    @else
-                                                        @if($order->state == 2)
-                                                        <td><span class="badge badge-danger">Refusée</span></td>
-                                                        @endif
-                                                    @endif
-                                                @endif
+                                                <td>{{$orders[$i]->user->firstName}} {{$orders[$i]->user->lastName}}</td>
+                                                <td><span>{{$orders[$i]->total_paid}}</span></td>  
 
-                                                <td><a href="/facture/{{$order->code}}"><span><u>Aller au PDF</u></span></a></td>
+                                                @switch($orders[$i]->state)
+                                                @case(0)
+                                                    <td><span class="badge badge-warning">En attendant</span></td>
+                                                    @break
+                                                @case(1)
+                                                    <td><span class="badge badge-success">Accéptée</span></td>
+                                                    @break
+                                                @case(2)
+                                                    <td><span class="badge badge-danger">Refusée</span></td>
+                                                    @break
+                                                @case(3)
+                                                    <td><span class="badge badge-info">En préparation</span></td>
+                                                    @break
+                                                @case(4)
+                                                    <td><span class="badge badge-primary">Terminée</span></td>
+                                                    @break
+                                                @case(5)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(6)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(7)
+                                                    <td><span class="badge badge-default">Suprimée</span></td>
+                                                    @break
+                                                @case(8)
+                                                    <td><span class="badge badge-warning">En attendant</span></td>
+                                                    @break
+                                                @endswitch
+                                                <td><a href="/facture/{{$orders[$i]->code}}"><span><u>Aller au PDF</u></span></a></td>
                                             </tr>
-                                            @endforeach
+                                            @endfor
 
 
 
