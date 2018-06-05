@@ -259,7 +259,7 @@ function confirmissingproduct(){
             contentType: false,
             success : function(data){
                 console.log(data);
-                hidemodel();
+                //window.location = 'cart';
                 }});
     }
 }
@@ -278,7 +278,7 @@ function backToCart(){
             contentType: false,
             success : function(data){
                 console.log(data);
-                hidemodel();
+                window.location = '/cart';
                 }});
     }
 }
@@ -296,7 +296,7 @@ function deleteorder(){
             processData: false,
             contentType: false,
             success : function(data){
-                hidemodel();
+                window.location = 'orders';
                 }});
     }
 }

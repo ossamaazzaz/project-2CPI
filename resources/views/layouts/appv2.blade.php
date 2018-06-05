@@ -183,10 +183,10 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <label for="cmt">Missing Products :</label>
+                      <label for="missingproducts">Missing Products :</label>
                       <h2 id="missingproducts"></h2>
                       <br>
-                      <label for="cmt">Available Products :</label>
+                      <label for="availableproducts">Available Products :</label>
                       <h2 id="availableproducts"></h2>
                       <br>
                       <div>
@@ -194,6 +194,7 @@
                         <button class="btn btn-primary" onclick="backToCart()">Add to Cart</button>
                         <button class="btn btn-warning" onclick="deleteorder()">Delete</button>
                         <div class="btn btn-info" data-dismiss="modal">Close</div>
+                        <button class="btn btn-success" onclick="">get data</button>
                       </div>
                       
                     </div>
