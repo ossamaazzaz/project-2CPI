@@ -59,13 +59,6 @@
               @endforeach
 
             </div><!--/category-products-->
-            <div class="price-range"><!--price-range-->
-              <h2>Price Range</h2>
-              <div class="well text-center">
-                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-              </div>
-            </div><!--/price-range-->
 
             <div class="price-range"><!--shipping-->
               <h2>Ads</h2>
@@ -79,29 +72,19 @@
           <div class="features_items"><!--features_items-->
             <h2 class="title text-center">Produits</h2>
             @foreach($products as $product)
+
             <div class="col-sm-4">
               <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
                       <img src="{{ $product->image }}" alt="" />
-                      <h2>{{ $product->price }} DA</h2>
+                      <h2>{{ $product->price}} DA</h2>
                       <p> {{ $product->name }}  </p>
                       
                     </div>
-                    <div class="product-overlay" style="background-image: url('{{asset('1.jpg')}}')">
+                    <div class="product-overlay" style="background-image: url({{$product->category['picture']}})">
                       <div class="overlay-content">
-                        <h2>{{ $product->price }} DA</h2>
                         <!-- it will be dynamic soon (kacem)-->
-                        <div>
-                          <label>Rating : </label>
-                           @for($i = 0; $i <$product->productDetails->rating; $i++)
-                          <i class="fa fa-star" style="color: gold"></i>
-                          @endfor
-                          @for($i = $product->productDetails->rating; $i < 5; $i++)
-                          <i class="fa fa-star" style="color: black"></i>
-                          @endfor
-                        </div>
-                       
                         <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
                       </div>
                     </div>

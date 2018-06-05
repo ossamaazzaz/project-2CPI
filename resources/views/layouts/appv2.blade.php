@@ -77,7 +77,11 @@
 
 			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
-
+					  		@if(Auth::user()->groupId==0)
+					  		<li><a href="/admin">
+                        		<i class="fa fa-dashboard"></i>&nbsp;Tableau de bord
+                        	</a></li>
+                        	@endif
                         	<li><a href="/home/edit">
                         		<i class="fa fa-pencil"></i>&nbsp;Modifier profile
                         	</a></li>
@@ -370,7 +374,7 @@
 		    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
 		}
 		 jQuery(document).ready(function() {
-		    jQuery('scroll-down').on('click', function(){
+		    jQuery('#scroll-down1,#scroll-down2,#scroll-down3').on('click', function(){
 		        jQuery('html, body').animate({
 		            scrollTop: jQuery('#ok').offset().top-100
 		        }, 500);
