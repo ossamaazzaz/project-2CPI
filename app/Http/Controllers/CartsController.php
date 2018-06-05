@@ -35,7 +35,7 @@ class CartsController extends Controller
         $shop=\App\Shop::find(1);
         $categories = Category::all();
         //-------------------------------------------
-        return view('cart.ShowCartV2',compact('Items','total','shop','categories'));
+        return view('cart.ShowCart',compact('Items','total','shop','categories'));
     }
 
 	/* ========================= Edit the cart (Kacem)==========================*/

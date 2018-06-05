@@ -93,7 +93,6 @@ dashboard prinicpale view
                             <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="<?php echo e(Auth::user()->avatar); ?>" alt="user" class="profile-pic" /></a>
                             <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
                                     <li><a class="fa fa-power-off" href="<?php echo e(route('logout')); ?>"
                                        onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -123,11 +122,11 @@ dashboard prinicpale view
                         <?php if(\Auth::user()->groupId == 0): ?>
                         </li>
                         <li <?php echo e((Request::is('admin') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin')); ?>"><i class="fa fa-tachometer"></i><span class="hide-menu">tableau de bord</span></a>
+                            <a href="<?php echo e(url ('admin')); ?>"><i class="fa fa-tachometer"></i><span class="hide-menu">Tableau de bord</span></a>
                         </li>
 
                         <li <?php echo e((Request::is('*users') ? 'class=active' : '')); ?>>
-                             <a href="<?php echo e(url ('admin/users')); ?>" ><i class="fa fa-user"></i><span class="hide-menu">utilisateurs</span></a>
+                             <a href="<?php echo e(url ('admin/users')); ?>" ><i class="fa fa-user"></i><span class="hide-menu">Utilisateurs</span></a>
                                     <!-- /.nav-second-level -->
                         </li>
                         <li <?php echo e((Request::is('*products') ? 'class=active' : '')); ?>>
@@ -136,18 +135,18 @@ dashboard prinicpale view
                         </li>
 
                         <li <?php echo e((Request::is('*categories') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/categories')); ?>" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">catégories</span></a>
+                            <a href="<?php echo e(url ('admin/categories')); ?>" aria-expanded="false"><i class="fa fa-list"></i><span class="hide-menu">Catégories</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <li <?php echo e((Request::is('*orders') ? 'class=active' : '')); ?>>
-                            <a href="<?php echo e(url ('admin/orders')); ?>"><i class="fa fa-shopping-cart"></i><span class="hide-menu">les commandes</span></a>
+                            <a href="<?php echo e(url ('admin/orders')); ?>"><i class="fa fa-shopping-cart"></i><span class="hide-menu">Commandes</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         
 
                         <li <?php echo e((Request::is('*settings') ? 'class=active' : '')); ?>>
 
-                            <a href="<?php echo e(url ('admin/settings')); ?>"><i class="ti-settings"></i><span class="hide-menu">paramètres</span></a>
+                            <a href="<?php echo e(url ('admin/settings')); ?>"><i class="ti-settings"></i><span class="hide-menu">Paramètres</span></a>
                                     <!-- /.nav-theird-level -->
                         </li>
                         <?php endif; ?>

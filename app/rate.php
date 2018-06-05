@@ -4,10 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class rate extends Model
+class Rate extends Model
 {
-  public function user()
-  {
-    return $this->hasOne(User::class);
-  }
+	public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+    public function product()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }

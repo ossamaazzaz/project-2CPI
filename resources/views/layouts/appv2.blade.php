@@ -6,9 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@yield('title')</title>
-
-    <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/app.css') }} " rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }} " rel="stylesheet">
     <link href="{{ asset('css/prettyPhoto.css') }} " rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }} " rel="stylesheet">
@@ -47,8 +46,8 @@
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding-right:0px !important;">
-		      <ul class="nav navbar-nav" style="height: 75px;">
-		        <li class="pull-left"><a href="#"><img src="{{$shop->logo}}" id="main-logo"></a></li>
+		      <ul class="nav navbar-nav " style="height: 75px;">
+		        <li class="pull-left visible-xs-block hidden-xs"><a href="#"><img src="{{$shop->logo}}" id="main-logo"></a></li>
 		        <li class="active">
 		        	<a href="/home" style="margin-left: -155px;">Accueil</a>
 		        </li>
@@ -64,14 +63,17 @@
 		        <li><a href="/contactus">Contactez-nous</a></li>
 		        <li><a href="/about">A propos</a></li>
 		        @if (Auth::guest())
-		        <li class="pull-right" style="margin: 2px 0px 0 0;font-size: 16px">
-		        	<a href="{{ route('login') }}">
-			        <i class="fa fa-user"></i>&nbsp;&nbsp;Connecter / s'inscrire
+		        <li class="pull-right" style="margin: -10px 9px 0 0;font-size: 16px">
+		        	<a href="{{ route('register') }}">
+			        <i class="fa fa-user"></i>&nbsp;&nbsp;S'inscrire
+			        </a>
+			        <a href="{{ route('login') }}" style="margin: -23px 0 0 4px">
+			        <i class="fa fa-key"></i>&nbsp;&nbsp;Connecter
 			        </a>
 			    </li>
 			    @else
 
-			    <li class="pull-right" style="margin: -10px 40px 0 0">
+			    <li class="pull-right visible-xs-block hidden-xs" style="margin: -10px 40px 0 0">
 
 			    	<a class="dropdown-toggle" type="button" data-toggle="dropdown" ><img src="{{ Auth::user()->avatar }}" height="50px" width="50px" style="border-radius: 50%;"></a>
 					  <ul class="dropdown-menu">
@@ -95,7 +97,7 @@
                         	</a></li>
 					  </ul>
 			    </li>
-			    <li id="noDrdown" class="pull-right dropdown" style="margin: -20px 0px 0 0">
+			    <li id="noDrdown" class="pull-right dropdown visible-xs-block hidden-xs" style="margin: -20px 0px 0 0">
                   <a class="nav-link text-light" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div id="ex4">
 
@@ -118,7 +120,7 @@
                         <div class="row">  
                           <div class="col-lg-12 col-sm-12 col-12">  
                             <div>
-                           		Il n'y a pas de notification !
+                            	<center><h3>Il n'y a pas de notification !</h3></center>
                             </div>
                           </div>    
                         </div>
@@ -127,7 +129,7 @@
                     </ul>
                 </li>
 			    @endif
-		        <li class="pull-right" style="margin: 16px 0px 0 0;"> 
+		        <li class="pull-right visible-xs-block hidden-xs" style="margin: 16px 0px 0 0;"> 
 		        	<div class="cntr">
 						<div class="cntr-innr">
 						<form method="GET" action="/search">
@@ -360,9 +362,7 @@
 				jQuery(this).parent('label').removeClass('active');
 			}
 		});
-    </script>
 
-    <script type="text/javascript">
     	function showToast(text) {
 		    var x = document.getElementById("toast");
 		    x.innerHTML = text;
@@ -370,12 +370,14 @@
 		    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
 		}
 		 jQuery(document).ready(function() {
-		    jQuery('.scroll-down').on('click', function(){
+		    jQuery('scroll-down').on('click', function(){
 		        jQuery('html, body').animate({
 		            scrollTop: jQuery('#ok').offset().top-100
 		        }, 500);
 		    });
 		 });
+
+
     </script>
     
 

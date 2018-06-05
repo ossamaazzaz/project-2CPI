@@ -42,7 +42,9 @@
                                 </div>
                                 <div class="media-body media-text-right">
                                     <h2><div class="counter" data-count="{{$Total_Products}}">0</div></h2>
+
                                     <p class="m-b-0">Total des produits</p><br>
+
                                 </div>
                             </div>
                         </div>
@@ -111,6 +113,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Graph</h4> -->
+                                {{-- <h4 class="card-title">Revenue cet année</h4> --}}
                                 <canvas id="users-chart"></canvas>
                             </div>
                         </div>

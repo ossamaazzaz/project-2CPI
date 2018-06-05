@@ -1,6 +1,7 @@
 @extends('layouts.appv2')
 
 @section('content')
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -18,13 +19,7 @@
 					              
 					            </div><!--/category-products-->
 					            
-					            <div class="price-range"><!--price-range-->
-					              <h2>Price Range</h2>
-					              <div class="well text-center">
-					                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-					                 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-					              </div>
-					            </div><!--/price-range-->
+					        
 					            
 					            <div class="shipping text-center"><!--shipping-->
 					            	<h2>Ads</h2>
@@ -35,12 +30,13 @@
 				</div>
 				<div class="col-sm-9 padding-right">
 					<div class="features_items" ><!--features_items-->
-						<h2 class="title text-center">Search Result</h2>
+						<h2 class="title text-center">Filtres de recherche</h2>
  						
- 						<div class="col-sm-12" style="margin-bottom: 100px;">
-									<div class="productinfo text-left">						
-										<div class="col-md-3">
-						                    <label>Brand : </label>
+ 						<div class="col-sm-12 container" style="margin-bottom: 100px;">
+ 							<center>
+									<div class="productinfo text-left row">
+										<div class="col-md-4">
+						                    <center><label>La marque : </label></center>
 						                    <select id="brand" style="display: inline;">
 						                      <option>All</option>
 						                      @foreach ($brands as $brand)
@@ -48,8 +44,8 @@
 						                      @endforeach
 						                    </select>                
 						                </div>
-						                <div class="col-md-3">
-						                    <label>Category : </label>
+						                <div class="col-md-4">
+						                    <center><label>Catégorie : </label></center>
 						                    <select id="category">
 						                      <option>All</option>
 						                      @foreach ($categories as $c)
@@ -57,54 +53,78 @@
 						                      @endforeach
 						                    </select>                
 						                </div>
-						                <div class="col-md-3">
-							                <label>Rating : </label>
+						                  <div class="price-range col-md-4" style="margin-top: 2px">
+						                  	<center><label>Prix :</label></center>
+								              <div class="text-center" style="border: 0">
+								              	
+								                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" >
+								            
+								              </div>
+								            </div>
+						                
+									</div>
+									<br><br>
+									<div class="row">
+										<div class="col-md-6">
+							            	 <input type="text" id="text-filter" name="search" placeholder="rechercher.."> 
+							            </div>
+										<div class="col-md-3" style="margin-top: 18px">
+							                <label>Evaluation : </label>
 								            <div class="srating" style="display: inline;">
 								                  <span id="star5" onclick="rating(5)">☆</span><span id="star4" onclick="rating(4)">☆</span><span id="star3" onclick="rating(3)">☆</span><span id="star2" onclick="rating(2)">☆</span><span id="star1" onclick="rating(1)">☆</span>
 											</div>
 											<input type="hidden" id="ratingStore">
 							            </div>
-							            <div class="col-md-5"> 
+								         <div class="col-md-3" style="margin: -15px 0 0 -30px">
+								         	<button id="filter" class="btn btn-default add-to-cart bg-primary" style="color: white;margin-top: 30px;"> <i class="fa fa-search"></i>Chercher </button>
+								         </div>   
+									</div>
+									
+
+										<center>
+											
+										</center>
+							           <!--  <div class="col-md-3"> 
 						                  <label>Prix : </label>
 						                  <input type="text" name="min" placeholder="min" id="minprice" style="width: 60px;">
 						                  -
 						                  <input type="text" name="max" placeholder="max" id="maxprice" style="width: 60px;">
-						                </div>
-						             	<div class="col-md-1">
-										<button id="filter" class="btn btn-default add-to-cart" style="background-color: #0fb9b1;color: white;"> Apply </button>
-										</div>
-									</div>
+						                </div> -->
+										<br>
 									      <div class="sort-element" style="border:none;margin-right: 6px;">
-									              Sorted by 
-									            </div>
+									              Trié par 
+									      </div>
 									            <div class="sort-element" style="border-top-left-radius: 10px;border-bottom-left-radius: 10px">
-									                <div style="float: left;margin-right: 6px;" class="sort-text">Name </div>
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Nom </div>
 									              <div style="float: left;display: block;">
 									                <div class="triangle triangle-up" id="nametoggleup" onclick="toggleTriangle(this,1)" ></div>
 									                <div class="triangle triangle-down" id="nametoggledown" onclick="toggleTriangle(this,0)" ></div>
 									              </div>
 									            </div>
 									             <div class="sort-element">
-									                <div style="float: left;margin-right: 6px;" class="sort-text">Price </div>
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Prix </div>
 									              <div style="float: left;display: block;">
 									                <div class="triangle triangle-up" id="pricetoggleup" onclick="toggleTriangle(this,1)" ></div>
 									                <div class="triangle triangle-down" id="pricetoggledown" onclick="toggleTriangle(this,0)" ></div>
 									              </div>
 									            </div>
 									             <div class="sort-element" style="border-top-right-radius: 10px;border-bottom-right-radius: 10px">
-									                <div style="float: left;margin-right: 6px;" class="sort-text">Rate </div>
+									                <div style="float: left;margin-right: 6px;" class="sort-text">Evaluation </div>
 									              <div style="float: left;display: block;">
 									                <div class="triangle triangle-up" id="ratetoggleup" onclick="toggleTriangle(this,1)" ></div>
 									                <div class="triangle triangle-down" id="ratetoggledown" onclick="toggleTriangle(this,0)" ></div>
 									              </div>
 									            </div>
-									            
+						</center>			            
 						</div>
-						@if(count($result)==0)
+
 						<div class="col-sm-12" style="text-align: center;">
+							<h2 class="title text-center">Résultat</h2>
+						@if(count($result)==0)
 							<h2>no result found</h2>
-						</div>
 						@else
+
+						
 						@foreach($result as $product)
 				            <div class="col-sm-4">
 				              <div class="product-image-wrapper">
@@ -115,9 +135,8 @@
 				                      <p> {{ $product->name }}  </p>
 				                      
 				                    </div>
-				                    <div class="product-overlay">
+				                    <div class="product-overlay" style="background-image: url('{{$product->category->picture}}')">
 				                      <div class="overlay-content">
-				                        <h2>{{ $product->price }} DA</h2>
 				                        <p>{{ $product->desc }}</p>
 				                        <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
 				                      </div>
@@ -133,11 +152,12 @@
 				              </div>
 				            </div>
 				            @endforeach
-				            
+				        </div>    
 				            
 					</div><!--features_items-->
 					<input type="hidden" id="currentPage" value="{{ $currentPage }}">
 		            <input type="hidden" id="lastPage" value="{{ $lastPage }}">
+		            <center>
 		             <ul class="pagination">
 		              <li><a onclick="prePage({{ $currentPage }})">&laquo;</a></li>
 		              @for ($i = 1;$i<=$lastPage;$i++)
@@ -145,6 +165,7 @@
 		              @endfor
 		              <li><a onclick="nexPage({{ $currentPage }})">&raquo;</a></li>
 		            </ul> 
+		            </center>
 		            @endif
 				</div>
 			</div>

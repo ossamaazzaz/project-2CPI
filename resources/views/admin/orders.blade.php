@@ -2,6 +2,7 @@
 Orders
 */
 -->
+
 @extends('layouts.dashboard')
 @section('title','Commandes')
 @section('page_heading','Commandes')
