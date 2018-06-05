@@ -4,7 +4,6 @@
 @section('page_heading','Tableau de bord')
 
 @section('section')
-
             <div class="container-fluid">
                 <!-- Start Page Content -->
                 <div class="row">
@@ -65,8 +64,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3"></div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
@@ -80,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
@@ -94,7 +92,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card p-30">
                             <div class="media">
                                 <div class="media-left meida media-middle">
@@ -145,7 +143,13 @@
                                         </thead>
                                         <tbody>
 
-                                            @for($i=0;$i<5;$i++)
+                                            @if(count($orders) > 0)
+
+                                            @php
+                                            $i = 0;
+                                            @endphp
+                                            
+                                            @while($i < count($orders) && $i < 5)
                                             <tr>
                                                 <td>
                                                     <div class="round-img">
@@ -186,9 +190,11 @@
                                                 @endswitch
                                                 <td><a href="/facture/{{$orders[$i]->code}}"><span><u>Aller au PDF</u></span></a></td>
                                             </tr>
-                                            @endfor
-
-
+                                            @php
+                                            $i++;
+                                            @endphp
+                                            @endwhile
+                                            @endif
 
 
                                         </tbody>

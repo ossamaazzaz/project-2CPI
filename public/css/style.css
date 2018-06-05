@@ -121,7 +121,7 @@
   background: rgba(0, 0, 0, 0.3);
   right: 0;
   border: 0;
-  width: 115px;
+  width: 120px;
   border-radius: 6px;
   font-size: 25px;
   cursor: pointer;
@@ -2628,20 +2628,20 @@ table.dataTable thead .sorting_desc_disabled {
   background: transparent none repeat scroll 0 0;
 }
 table.dataTable thead .sorting_asc::after {
-  content: "ïƒž";
+  content: "";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting_desc::after {
-  content: "ïƒ";
+  content: "\f0dd";
   cursor: pointer;
   font-family: fontawesome;
   margin-left: 10px;
 }
 table.dataTable thead .sorting::after {
   color: rgba(50, 50, 50, 0.5);
-  content: "ïƒœ";
+  content: "\f0d8";
   cursor: pointer;
   font-family: fontawesome !important;
   margin-left: 10px;
