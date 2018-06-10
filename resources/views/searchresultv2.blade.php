@@ -135,12 +135,10 @@
 				                      <p> {{ $product->name }}  </p>
 				                      
 				                    </div>
-				                    <div class="product-overlay" style="background-image: url('{{$product->category->picture}}')">
 				                      <div class="overlay-content">
 				                        <p>{{ $product->desc }}</p>
 				                        <a type="button" onclick="addToCart({{ $product->id }})" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ajouter au panier</a>
 				                      </div>
-				                    </div>
 				                </div>
 				                <div class="choose">
 				                  <ul class="nav nav-pills nav-justified">
