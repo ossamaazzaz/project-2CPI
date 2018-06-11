@@ -1,7 +1,7 @@
 # 7annoTech (Project 2cpi)
 ### Realization of a partial distance selling platform adapted to the constraints of the Algerian market .
 
-[[https://github.com/th3happybit/7annoTech/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-SupperetteCom-Home-1.jpg]]
+![](https://github.com/th3happybit/7annoTech/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-SupperetteCom-Home-1.jpg)
 
 ## Developed by :
 - AMAR BENSABER MOHMAED
