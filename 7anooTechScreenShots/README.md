@@ -1,5 +1,5 @@
 # 7annoTech (Project 2CPI) 
-### Réalisation d’une plateforme de vente à distance partielle adaptée aux contraintes du marché Algérien
+### Realization of a partial distance selling platform adapted to the constraints of the Algerian market .
 
 # Some Screenshots : 
 
