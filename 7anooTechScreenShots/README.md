@@ -4,7 +4,7 @@
 # Some screenshots : 
 ## client side :
 
-![alt text]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-SupperetteCom Home-1.jpg )
+![alt text]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-SupperetteCom-Home-1.jpg )
 ![alt text]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-SupperetteCom-Home.jpg )
 ![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Sign-Up-Login-Form.png )
 ![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Sign-U-Login-Title.png )
@@ -39,6 +39,6 @@
 ![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Vérifier-commandes-1.png )
 ![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Vérifier-commandes.png )
 ![alt text]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Paramètres.png  )
-![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Paramètres-1.png )
-![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Paramètres-2.png )
+![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Paramètres1.png )
+![alt text](  https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/7anooTechScreenshot-2018-6-5-Paramètres2.png )
 
