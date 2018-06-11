@@ -13,7 +13,7 @@
 [divider] [divider]
 # [ ScreenShots ]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/README.md )
 
-[divider] # Installation [divider]
+[divider] Installation [divider]
 
 ## Manual installation
 
