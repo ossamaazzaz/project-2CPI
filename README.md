@@ -23,7 +23,7 @@
 	extension=pdo_mysql.so`
 - clone this repository
 
-	`git clone https://github.com/ossamaazzaz/project-2CPI.git`
+	`git clone https://github.com/th3happybit/7annoTech.git`
 
 - navigate to the project folder
 - run `composer install` on your terminal
