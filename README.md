@@ -10,10 +10,10 @@
 - GOUMEIDA AHMED SEYF-EDDINE 
 - IFFEROUDJENE MOULOUD
 - MESSABIH OUSSAMA
-
+[divider] [divider]
 # [ ScreenShots ]( https://github.com/ossamaazzaz/project-2CPI/blob/master/7anooTechScreenShots/README.md )
- 
-# Installation
+
+[divider] # Installation [divider]
 
 ## Manual installation
 
