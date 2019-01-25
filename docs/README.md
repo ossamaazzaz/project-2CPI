@@ -1,4 +1,4 @@
-# 7annoTech (Project 2cpi)
+# 7annoTech
 ### Realization of a partial distance selling platform adapted to the constraints of the Algerian market .
 
 <img src="https://raw.githubusercontent.com/th3happybit/7anooTech/master/logo.png" alt="hi" class="inline"/>
